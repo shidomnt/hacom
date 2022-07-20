@@ -1,9 +1,10 @@
-import { Col, Row } from 'antd'
-import React, { createRef, useEffect, useState } from 'react'
+import React from 'react'
+import { Col, Row, Space } from 'antd'
 import SideBar from './SideBar'
 import style from './style.module.css'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Autoplay } from 'swiper'
+import ProductCard from './ProductCard'
 
 const slideSrcList = [
   'https://hanoicomputercdn.com/media/banner/30_Jun5f554fbfc506240d24abb33881ee5a78.jpg',
@@ -35,63 +36,81 @@ export default function Content() {
   return (
     <section className="content">
       <div className="container">
-        <Row gutter={6}>
-          <Col span={4}>
-            <SideBar />
-          </Col>
-          <Col span={20}>
-            <Row gutter={6}>
-              <Col span={16}>
-                <Swiper
-                  spaceBetween={10}
-                  slidesPerView={1}
-                  modules={[Navigation, Autoplay]}
-                  navigation
-                  autoplay={{ delay: 2000 }}
-                  className={style.swiperContainer}
-                >
-                  {slideSrcList.map((src) => (
-                    <SwiperSlide key={src}>
-                      <a href="#">
-                        <div className={style.img_container}>
-                          <img src={src} alt="banner" />
-                        </div>
-                      </a>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </Col>
-              <Col span={8}>
-                <Row gutter={[6, 6]}>
-                  {rightSlideBannerSrcList.map((src) => (
-                    <Col span={24} key={src}>
-                      <a href="#">
-                        <div className={style.img_container}>
-                          <img src={src} alt="banner" />
-                        </div>
-                      </a>
+        <Space size={6} direction='vertical'>
+          <Row gutter={6}>
+            <Col span={4}>
+              <SideBar />
+            </Col>
+            <Col span={20}>
+              <Row gutter={[6, 6]}>
+                <Col span={24}>
+                  <Row gutter={6}>
+                    <Col style={{ maxWidth: '688px' }}>
+                      <Swiper
+                        spaceBetween={10}
+                        slidesPerView={1}
+                        modules={[Navigation, Autoplay]}
+                        navigation
+                        autoplay={{ delay: 2000 }}
+                        className={style.swiperContainer}
+                      >
+                        {slideSrcList.map((src) => (
+                          <SwiperSlide key={src}>
+                            <a href="#">
+                              <div className={style.img_container}>
+                                <img src={src} alt="banner" />
+                              </div>
+                            </a>
+                          </SwiperSlide>
+                        ))}
+                      </Swiper>
                     </Col>
-                  ))}
-                </Row>
-              </Col>
-              <Col span={24}>
-                <Row gutter={6}>
-                  {bottomSlideBannerSrcList.map((src) => (
-                    <Col span={6} key={src}>
-                      <a href="#">
-                        <div className={style.img_container}>
-                          <img src={src} alt="banner" />
-                        </div>
-                      </a>
+                    <Col flex="1">
+                      <Row gutter={[6, 6]}>
+                        {rightSlideBannerSrcList.map((src) => (
+                          <Col span={24} key={src}>
+                            <a href="#">
+                              <div className={style.img_container}>
+                                <img src={src} alt="banner" />
+                              </div>
+                            </a>
+                          </Col>
+                        ))}
+                      </Row>
                     </Col>
-                  ))}
-                </Row>
+                  </Row>
+                </Col>
+                <Col span={24}>
+                  <Row gutter={6}>
+                    {bottomSlideBannerSrcList.map((src) => (
+                      <Col span={8} key={src}>
+                        <a href="#">
+                          <div className={style.img_container}>
+                            <img src={src} alt="banner" />
+                          </div>
+                        </a>
+                      </Col>
+                    ))}
+                  </Row>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+          <Row gutter={6}>
+            {underSlideBannerSrcList.map((src) => (
+              <Col span={6} key={src}>
+                <a href="#">
+                  <div className={style.img_container}>
+                    <img src={src} alt="banner" />
+                  </div>
+                </a>
               </Col>
-            </Row>
-          </Col>
-        </Row>
-
-        <Row>Slides</Row>
+            ))}
+          </Row>
+          <Row>
+            <ProductCard sku='hihi' />
+          </Row>
+        </Space>
       </div>
     </section>
   )
