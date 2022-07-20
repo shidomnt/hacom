@@ -37,7 +37,7 @@ export default function Content() {
     <section className="content">
       <div className="container">
         <Space size={6} direction='vertical'>
-          <Row gutter={6}>
+          <Row gutter={8}>
             <Col span={4}>
               <SideBar />
             </Col>
