@@ -1,56 +1,67 @@
-import { CheckOutlined, PhoneOutlined, ShoppingCartOutlined } from '@ant-design/icons'
-import { Card, Col, Row, Spin, Typography } from 'antd'
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
+import {
+  CheckOutlined,
+  PhoneOutlined,
+  ShoppingCartOutlined,
+} from '@ant-design/icons';
+import { Card, Col, Row, Spin, Typography } from 'antd';
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import style from './style.module.css';
+import useApi from '../../../hooks/useApi';
+import { useSwiper } from 'swiper/react';
 
 const StyledCard = styled(Card)`
   & {
-    max-width: 258px;
+    /* max-width: 258px; */
     .ant-card-body {
       padding: 8px;
     }
   }
-`
-
-const SkuCode = styled.span`
-  font-size: 10px;
-  background-color: #f1f1f1;
-  padding: 3px 5px;
-`
+`;
 
 const DonVi = styled.sup`
   font-size: 14px;
-`
+`;
 
-const apiUrl = 'http://localhost:4000/Laptop,Tablet,Mobile/LTMA083'
+export default function ProductCard({ category, sku }) {
+  const [product, setProduct] = useState(null);
 
-async function getProductById(id) {
-  try {
-    const response = await axios.get(apiUrl)
-    return response
-  } catch (e) {
-    console.log('Loi khi goi API')
-  }
-}
+  const { getProduct } = useApi();
 
-export default function ProductCard({ sku }) {
-  const [product, setProduct] = useState(null)
+  const swiper = useSwiper();
 
   useEffect(() => {
-    ;(async () => {
-      const result = await getProductById('LTAU705')
-      if (result) {
-        console.log(result.data)
-        setProduct(result.data)
-      } else {
-        setProduct(null)
-      }
-    })()
-  }, [sku])
+    if (sku) {
+      (async () => {
+        const result = await getProduct(category, sku);
+        if (result) {
+          setProduct(result.data);
+        } else {
+          setProduct(null);
+        }
+      })();
+    }
+  }, [sku, getProduct]);
+
+  function handleMouseEnter() {
+    swiper.autoplay.stop();
+  }
+
+  function handleMouseLeave() {
+    swiper.autoplay.start();
+  }
 
   return product ? (
-    <StyledCard cover={<img src={product.imgSrc} />} bordered={false}>
+    <StyledCard
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      cover={
+        <a href="#">
+          <img src={product.imgSrc} />
+        </a>
+      }
+      bordered={false}
+    >
       <Row>
         <Col span={12}>
           <img
@@ -62,7 +73,7 @@ export default function ProductCard({ sku }) {
           {product.rate}
         </Col>
         <Col span={12} style={{ textAlign: 'right' }}>
-          <SkuCode>MÃ: {product.sku}</SkuCode>
+          <span className={style.skuCode}>MÃ: {product.sku}</span>
         </Col>
       </Row>
       <Typography.Title
@@ -78,14 +89,14 @@ export default function ProductCard({ sku }) {
       </Typography.Title>
       <Typography.Text delete style={{ fontSize: '15px', color: '#666666' }}>
         {product.maxPrice}
-        <DonVi >₫</DonVi>
+        <DonVi>₫</DonVi>
       </Typography.Text>{' '}
       <Typography.Text style={{ fontSize: '12px', color: '#d82a29' }}>
         {product.discount}
       </Typography.Text>{' '}
       <Typography.Text strong style={{ fontSize: '22px', fontWeight: 'bold' }}>
         {product.price}
-        <DonVi >₫</DonVi>
+        <DonVi>₫</DonVi>
       </Typography.Text>
       <Row>
         <Col span={12}>
@@ -94,17 +105,24 @@ export default function ProductCard({ sku }) {
               color: product.action === 'Còn hàng' ? '#2cc067' : '#0074da',
             }}
           >
-            {product.action === 'Còn hàng' ? <CheckOutlined /> : <PhoneOutlined />}
+            {product.action === 'Còn hàng' ? (
+              <CheckOutlined />
+            ) : (
+              <PhoneOutlined />
+            )}{' '}
             {product.action}
           </Typography.Link>
         </Col>
         <Col span={12} style={{ textAlign: 'right' }}>
-          {product.action === 'Còn hàng' && <ShoppingCartOutlined style={{ fontSize: '20px' }} />}
+          {product.action === 'Còn hàng' && (
+            <span className={style.cartIcon}>
+              <ShoppingCartOutlined />
+            </span>
+          )}
         </Col>
       </Row>
     </StyledCard>
   ) : (
     <Spin />
-  )
+  );
 }
-
