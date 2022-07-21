@@ -1,42 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row, Space } from "antd";
 import SideBar from "./SideBar";
-import style from "./style.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper";
-import CollectionProduct from "./CollectionProduct";
+import CollectionProduct from "./ProductCollection";
 import useApi from "../../hooks/useApi";
-import ProductShow from "./ProductShow";
+import ProductShow from "./ProductSlideShow";
+import styled from "styled-components";
 
-const slideSrcList = [
-  "https://hanoicomputercdn.com/media/banner/30_Jun5f554fbfc506240d24abb33881ee5a78.jpg",
-  "https://hanoicomputercdn.com/media/banner/01_Julae73d3b3f05f8253fbe4d8c483c609ec.png",
-  "https://hanoicomputercdn.com/media/banner/04_Jul5d448b2e204aa778e135c23f1c6b3d30.jpg",
-  "https://hanoicomputercdn.com/media/banner/07_Julf2510bcf29fb56683fba210e2ba14815.jpg",
-  "https://hanoicomputercdn.com/media/banner/09_Juldeb6f9166ebe1f5064d0671eeb038b04.png",
-];
-
-const rightSlideBannerSrcList = [
-  "https://i.ytimg.com/vi/W0uuq13u4MY/hq720.jpg",
-  "https://hanoicomputercdn.com/media/banner/16_Jul4a47a0db6e60853dedfcfdf08a5ca249.png",
-];
-
-const bottomSlideBannerSrcList = [
-  "https://hanoicomputercdn.com/media/banner/16_Julfb5c81ed3a220004b71069645f112867.png",
-  "https://hanoicomputercdn.com/media/banner/16_Jul10fb15c77258a991b0028080a64fb42d.png",
-  "https://hanoicomputercdn.com/media/banner/16_Jul09dd8c2662b96ce14928333f055c5580.png",
-];
-
-const underSlideBannerSrcList = [
-  "https://hanoicomputercdn.com/media/banner/16_Jul8266e4bfeda1bd42d8f9794eb4ea0a13.png",
-  "https://hanoicomputercdn.com/media/banner/16_Julf19c9085129709ee14d013be869df69b.png",
-  "https://hanoicomputercdn.com/media/banner/16_Jul9eb9cd58b9ea5e04c890326b5c1f471f.png",
-  "https://hanoicomputercdn.com/media/banner/16_Jul602e8f042f463dc47ebfdf6a94ed5a6d.png",
-];
+const StyledImgContainer = styled.div`
+  & {
+    img {
+      border-radius: 6px;
+      width: 100%;
+    }
+  }
+`;
 
 export default function Content() {
   const [categories, setCategories] = useState(null);
-  const { getCategories } = useApi();
+  const { getCategories, getBannerList } = useApi();
+  const [bannerList] = useState(() => getBannerList());
+
+  const {
+    slideSrcList,
+    rightSlideBannerSrcList,
+    bottomSlideBannerSrcList,
+    underSlideBannerSrcList,
+  } = bannerList;
 
   useEffect(() => {
     (async () => {
@@ -50,11 +41,11 @@ export default function Content() {
   }, []);
 
   return (
-    <section className={style.content}>
+    <div style={{ backgroundColor: "#f4f4f4" }}>
       <div className="container">
-        <Row gutter={[0, 8]}>
+        <Row gutter={[0, 6]}>
           <Col span={24}>
-            <Row gutter={8}>
+            <Row gutter={6}>
               <Col xxl={4} xl={4} lg={0} md={0} sm={0} xs={0}>
                 <SideBar />
               </Col>
@@ -62,21 +53,29 @@ export default function Content() {
                 <Row gutter={[6, 6]}>
                   <Col span={24}>
                     <Row gutter={6}>
-                      <Col span={16} xl={16} lg={16} sm={24} md={24} style={{display: 'flex', alignItems:'center'}}>
+                      <Col
+                        span={16}
+                        xl={16}
+                        lg={16}
+                        sm={24}
+                        md={24}
+                        style={{ display: "flex", alignItems: "center" }}
+                      >
                         <Swiper
                           spaceBetween={10}
                           slidesPerView={1}
                           modules={[Navigation, Autoplay]}
                           navigation
                           autoplay={{ delay: 8000 }}
-                          className={style.swiperContainer}
+                          style={{ borderRadius: "6px" }}
+                          loop={true}
                         >
                           {slideSrcList.map((src) => (
                             <SwiperSlide key={src}>
                               <a href="#">
-                                <div className={style.img_container}>
+                                <StyledImgContainer>
                                   <img src={src} alt="banner" />
-                                </div>
+                                </StyledImgContainer>
                               </a>
                             </SwiperSlide>
                           ))}
@@ -87,9 +86,9 @@ export default function Content() {
                           {rightSlideBannerSrcList.map((src) => (
                             <Col span={24} key={src}>
                               <a href="#">
-                                <div className={style.img_container}>
+                                <StyledImgContainer>
                                   <img src={src} alt="banner" />
-                                </div>
+                                </StyledImgContainer>
                               </a>
                             </Col>
                           ))}
@@ -102,9 +101,9 @@ export default function Content() {
                       {bottomSlideBannerSrcList.map((src) => (
                         <Col span={8} key={src}>
                           <a href="#">
-                            <div className={style.img_container}>
+                            <StyledImgContainer>
                               <img src={src} alt="banner" />
-                            </div>
+                            </StyledImgContainer>
                           </a>
                         </Col>
                       ))}
@@ -119,9 +118,9 @@ export default function Content() {
               {underSlideBannerSrcList.map((src) => (
                 <Col span={6} key={src}>
                   <a href="#">
-                    <div className={style.img_container}>
+                    <StyledImgContainer>
                       <img src={src} alt="banner" />
-                    </div>
+                    </StyledImgContainer>
                   </a>
                 </Col>
               ))}
@@ -141,6 +140,6 @@ export default function Content() {
           )}
         </Row>
       </div>
-    </section>
+    </div>
   );
 }

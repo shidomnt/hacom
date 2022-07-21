@@ -30,7 +30,7 @@ const SlideShow = ({
   }, [category, getProductByCategory, query]);
 
   return (
-    products.length && (
+    !!products.length && (
       <React.Fragment>
         {title}
         <Swiper

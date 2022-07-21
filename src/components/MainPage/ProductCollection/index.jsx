@@ -14,6 +14,11 @@ const StyledTitle = styled.div`
   font-size: 17px;
 `;
 
+const StyledButton = styled(Button)`
+  background-color: #243a76;
+  border-radius: 4px;
+`;
+
 const listCollection = [
   {
     id: 1,
@@ -47,9 +52,9 @@ const CollectionProduct = ({ categories }) => {
             category={collection.category}
             title={<StyledTitle>{collection.title}</StyledTitle>}
             button={
-              <Button href="#" type="primary" block>
+              <StyledButton size="large" href="#" type="primary" block>
                 Xem tất cả sản phẩm
-              </Button>
+              </StyledButton>
             }
           />
         </Col>

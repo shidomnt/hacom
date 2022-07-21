@@ -6,7 +6,6 @@ import {
 import { Card, Col, Row, Space, Spin, Typography } from "antd";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import style from "./style.module.css";
 import useApi from "../../../hooks/useApi";
 import { useSwiper } from "swiper/react";
 
@@ -25,8 +24,26 @@ const StyledCard = styled(Card)`
   }
 `;
 
+const StyledCartIcon = styled.span`
+  font-size: 20px;
+  cursor: pointer;
+`;
+
+const StyledSkuCode = styled.span`
+font-size: 10px;
+  background-color: #f1f1f1;
+  padding: 3px 5px;
+}
+`;
+
 const DonVi = styled.sup`
   font-size: 14px;
+`;
+
+const Rate = styled.span`
+  color: #666;
+  font-size: 12px;
+  font-weight: bold;
 `;
 
 export default function ProductCard({ category, sku }) {
@@ -79,10 +96,10 @@ export default function ProductCard({ category, sku }) {
               .slice(1, -1)}.png`}
             alt=""
           />{" "}
-          {product.rate}
+          <Rate>{product.rate}</Rate>
         </Col>
         <Col span={12} style={{ textAlign: "right" }}>
-          <span className={style.skuCode}>MÃ: {product.sku}</span>
+          <StyledSkuCode>MÃ: {product.sku}</StyledSkuCode>
         </Col>
       </Row>
       <div className="titleContainer">
@@ -113,7 +130,9 @@ export default function ProductCard({ category, sku }) {
       </Typography.Text>
       <Row style={{ height: "30px" }}>
         <Col span={12}>
-          <div style={{display: 'flex', alignItems: 'center', height: '100%'}}>
+          <div
+            style={{ display: "flex", alignItems: "center", height: "100%" }}
+          >
             <Typography.Text
               style={{
                 color: product.action === "Còn hàng" ? "#2cc067" : "#0074da",
@@ -132,9 +151,9 @@ export default function ProductCard({ category, sku }) {
         </Col>
         <Col span={12} style={{ textAlign: "right" }}>
           {product.action === "Còn hàng" && (
-            <span className={style.cartIcon}>
+            <StyledCartIcon>
               <ShoppingCartOutlined />
-            </span>
+            </StyledCartIcon>
           )}
         </Col>
       </Row>
