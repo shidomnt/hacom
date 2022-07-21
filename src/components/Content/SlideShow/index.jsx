@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { Autoplay, Navigation } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import ProductCard from '../ProductCard';
-import useApi from '../../../hooks/useApi';
+import React, { useEffect, useState } from "react";
+import { Autoplay, Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import ProductCard from "../ProductCard";
+import useApi from "../../../hooks/useApi";
 
-const StyledTitle = styled.div`
-  text-align: center;
-  color: #d82a29;
-  font-size: 17px;
-`;
 
-const SlideShow = ({ title, category, query = '?_limit=3', slidesPerView = 1, spaceBetween = 10 }) => {
+
+const SlideShow = ({
+  title,
+  category,
+  query = "?_limit=3",
+  slidesPerView = 1,
+  spaceBetween = 10,
+  button
+}) => {
   const [products, setProducts] = useState([]);
 
   const { getProductByCategory } = useApi();
@@ -30,12 +32,13 @@ const SlideShow = ({ title, category, query = '?_limit=3', slidesPerView = 1, sp
   return (
     products.length && (
       <React.Fragment>
-        {title && <StyledTitle>{title}</StyledTitle>}
+        {title}
         <Swiper
           spaceBetween={spaceBetween}
           slidesPerView={slidesPerView}
           modules={[Navigation, Autoplay]}
           navigation
+          loop={true}
           autoplay={{ delay: 8000 }}
         >
           {products.map((product) => (
@@ -44,6 +47,9 @@ const SlideShow = ({ title, category, query = '?_limit=3', slidesPerView = 1, sp
             </SwiperSlide>
           ))}
         </Swiper>
+        {button && <div style={{marginTop: '16px'}}>
+          {button}
+          </div>}
       </React.Fragment>
     )
   );

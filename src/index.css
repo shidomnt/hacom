@@ -17,26 +17,8 @@ code {
     monospace;
 }
 
-
-.chip {
-  color: white;
-  padding: 4px 12px;
-  border-radius: 20px;
-  background-color: #1f3164;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.chip i {
-  margin-right: 4px;
-}
-
 .container {
   max-width: 1200px;
+  width: 100%;
   margin: auto;
-}
-
-.header .chip {
-  margin-right: 12px;
 }

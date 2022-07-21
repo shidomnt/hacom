@@ -13,7 +13,7 @@ async function getProduct(category, id) {
 
 async function getCategories() {
   try {
-    const response = await axios.get(apiUrl + `/categories`);
+    const response = await axios.get(apiUrl + `/test`);
     return response;
   } catch (e) {
     console.log('Loi khi goi API')
