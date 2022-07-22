@@ -2,40 +2,33 @@ import axios from "axios";
 
 const apiUrl = "http://localhost:4000";
 
-async function getProduct(category, id) {
+async function callApi(url, errMessage = "Loi khi goi API") {
   try {
-    const response = await axios.get(apiUrl + `/${category}/${id}`);
+    const response = await axios.get(apiUrl + url);
     return response;
   } catch (e) {
-    console.log("Loi khi goi API");
+    console.log(errMessage);
   }
+}
+
+async function getProduct(categorySlug, id) {
+  return await callApi(`/${categorySlug}/${id}`);
+}
+
+async function getShowRooms() {
+  return await callApi("/showrooms")
 }
 
 async function getCategories() {
-  try {
-    const response = await axios.get(apiUrl + `/categories`);
-    return response;
-  } catch (e) {
-    console.log("Loi khi goi API");
-  }
+  return await callApi(`/categories`)
 }
 
-async function getProductByCategory(category, query = "") {
-  try {
-    const response = await axios.get(apiUrl + `/${category}` + query);
-    return response;
-  } catch (e) {
-    console.log("Loi khi goi API");
-  }
+async function getProductByCategory(categorySlug, query = "") {
+  return await callApi(`/${categorySlug}` + query)
 }
 
 async function getSideBarContent() {
-  try {
-    const response = await axios.get(apiUrl + "/sidebar_content");
-    return response;
-  } catch (e) {
-    console.log("Loi khi goi API");
-  }
+  return await callApi("/sidebar_content");
 }
 
 function getSideBarMappingIcon() {
@@ -103,6 +96,7 @@ export default function useApi() {
     getProductByCategory,
     getBannerList,
     getSideBarMappingIcon,
-    getSideBarContent
+    getSideBarContent,
+    getShowRooms
   };
 }

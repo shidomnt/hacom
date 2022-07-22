@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -174,25 +175,25 @@ export default function SideBarPopover({ className, listContent }) {
                 <StyledExpandableTitle key={index}>
                   {!!child.childs?.length ? (
                     <StyledSubMenuWrapper>
-                      <a href="#" className="title-childLevelOne">
+                      <Link to='/' className="title-childLevelOne">
                         {checkHot(child.title)}{" "}
                         <i
                           style={{ fontSize: "8px" }}
                           className="fa-solid fa-angle-right"
                         ></i>
-                      </a>
+                      </Link>
                       <div className="sidebar-submenu">
                         {child.childs.map((childLevelTwo, index) => (
-                          <a href="#" key={index}>
+                          <Link to='/' key={index}>
                             {childLevelTwo}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </StyledSubMenuWrapper>
                   ) : (
-                    <a href="#" className="title-childLevelOne">
+                    <Link to='/' className="title-childLevelOne">
                       {checkHot(child.title)}
-                    </a>
+                    </Link>
                   )}
                 </StyledExpandableTitle>
               ))}

@@ -3,8 +3,7 @@ import { Autoplay, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ProductCard from "../ProductCard";
 import useApi from "../../../hooks/useApi";
-
-
+import Loading from "../../Loading";
 
 const SlideShow = ({
   title,
@@ -12,7 +11,8 @@ const SlideShow = ({
   query = "?_limit=3",
   slidesPerView = 1,
   spaceBetween = 10,
-  button
+  button = null,
+  breakpoints = {},
 }) => {
   const [products, setProducts] = useState([]);
 
@@ -29,30 +29,31 @@ const SlideShow = ({
     })();
   }, [category, getProductByCategory, query]);
 
-  return (
-    !!products.length && (
-      <React.Fragment>
-        {title}
-        <Swiper
-          spaceBetween={spaceBetween}
-          slidesPerView={slidesPerView}
-          modules={[Navigation, Autoplay]}
-          navigation
-          loop={true}
-          autoplay={{ delay: 8000 }}
-        >
-          {products.map((product) => (
-            <SwiperSlide key={product.id}>
-              <ProductCard category={category} sku={product.sku} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-        {button && <div style={{marginTop: '16px'}}>
-          {button}
-          </div>}
-      </React.Fragment>
-    )
+  return !!products.length ? (
+    <React.Fragment>
+      {title}
+      <Swiper
+        spaceBetween={spaceBetween}
+        slidesPerView={slidesPerView}
+        modules={[Navigation, Autoplay]}
+        navigation
+        loop={true}
+        autoplay={{ delay: 8000 }}
+        breakpoints={breakpoints}
+        lazy={true}
+        watchSlidesProgress={true}
+      >
+        {products.map((product) => (
+          <SwiperSlide key={product.id}>
+            <ProductCard category={category} product={product} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+      {button && <div style={{ marginTop: "16px" }}>{button}</div>}
+    </React.Fragment>
+  ) : (
+    <Loading />
   );
 };
 
-export default SlideShow;
+export default React.memo(SlideShow);

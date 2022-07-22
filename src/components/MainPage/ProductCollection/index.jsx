@@ -4,7 +4,7 @@ import SlideShow from "../SlideShow";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  padding: 20px 15px;
+  padding: 30px 25px 15px;
   background-color: white;
 `;
 
@@ -42,7 +42,7 @@ const listCollection = [
   },
 ];
 
-const CollectionProduct = ({ categories }) => {
+const CollectionProduct = () => {
   return (
     <Wrapper>
     <Row gutter={16}>

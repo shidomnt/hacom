@@ -5,8 +5,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper";
 import CollectionProduct from "./ProductCollection";
 import useApi from "../../hooks/useApi";
-import ProductShow from "./ProductSlideShow";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
+import ProductSlideShow from "./ProductSlideShow";
 
 const StyledImgContainer = styled.div`
   & {
@@ -55,10 +57,12 @@ export default function Content() {
                     <Row gutter={6}>
                       <Col
                         span={16}
+                        xxl={16}
                         xl={16}
                         lg={16}
                         sm={24}
                         md={24}
+                        xs={24}
                         style={{ display: "flex", alignItems: "center" }}
                       >
                         <Swiper
@@ -72,39 +76,39 @@ export default function Content() {
                         >
                           {slideSrcList.map((src) => (
                             <SwiperSlide key={src}>
-                              <a href="#">
+                              <Link to="/">
                                 <StyledImgContainer>
                                   <img src={src} alt="banner" />
                                 </StyledImgContainer>
-                              </a>
+                              </Link>
                             </SwiperSlide>
                           ))}
                         </Swiper>
                       </Col>
-                      <Col span={8} xl={8} lg={8} sm={0} md={0}>
+                      <Col span={8} xxl={8} xl={8} lg={8} sm={0} md={0} xs={0}>
                         <Row gutter={[6, 6]}>
                           {rightSlideBannerSrcList.map((src) => (
                             <Col span={24} key={src}>
-                              <a href="#">
+                              <Link to="/">
                                 <StyledImgContainer>
                                   <img src={src} alt="banner" />
                                 </StyledImgContainer>
-                              </a>
+                              </Link>
                             </Col>
                           ))}
                         </Row>
                       </Col>
                     </Row>
                   </Col>
-                  <Col span={24} xl={24} lg={24} sm={0} md={0}>
+                  <Col span={24} xxl={24} xl={24} lg={24} sm={0} md={0} xs={0}>
                     <Row gutter={6}>
                       {bottomSlideBannerSrcList.map((src) => (
                         <Col span={8} key={src}>
-                          <a href="#">
+                          <Link to="/">
                             <StyledImgContainer>
                               <img src={src} alt="banner" />
                             </StyledImgContainer>
-                          </a>
+                          </Link>
                         </Col>
                       ))}
                     </Row>
@@ -113,29 +117,29 @@ export default function Content() {
               </Col>
             </Row>
           </Col>
-          <Col span={24} xl={24} lg={24} sm={0} md={0}>
+          <Col span={24} xxl={24} xl={24} lg={24} sm={0} md={0} xs={0}>
             <Row gutter={6}>
               {underSlideBannerSrcList.map((src) => (
                 <Col span={6} key={src}>
-                  <a href="#">
+                  <Link to="/">
                     <StyledImgContainer>
                       <img src={src} alt="banner" />
                     </StyledImgContainer>
-                  </a>
+                  </Link>
                 </Col>
               ))}
             </Row>
           </Col>
 
           {categories && (
-            <Col span={24} xl={24} lg={24} sm={0} md={0}>
-              <CollectionProduct categories={categories} />
+            <Col span={24} xxl={24} xl={24} lg={24} sm={0} md={0} xs={0}>
+              <CollectionProduct />
             </Col>
           )}
 
           {categories && (
             <Col span={24}>
-              <ProductShow categories={categories} />
+              <ProductSlideShow categories={categories} />
             </Col>
           )}
         </Row>

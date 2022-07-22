@@ -3,11 +3,12 @@ import {
   PhoneOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
-import { Card, Col, Row, Space, Spin, Typography } from "antd";
-import React, { useEffect, useState } from "react";
+import { Card, Col, Row, Space, Typography } from "antd";
+import React from "react";
 import styled from "styled-components";
-import useApi from "../../../hooks/useApi";
 import { useSwiper } from "swiper/react";
+import { Link } from "react-router-dom";
+import Loading from "../../Loading";
 
 const StyledCard = styled(Card)`
   & {
@@ -46,25 +47,8 @@ const Rate = styled.span`
   font-weight: bold;
 `;
 
-export default function ProductCard({ category, sku }) {
-  const [product, setProduct] = useState(null);
-
-  const { getProduct } = useApi();
-
+export default function ProductCard({ category, product }) {
   const swiper = useSwiper();
-
-  useEffect(() => {
-    if (sku) {
-      (async () => {
-        const result = await getProduct(category, sku);
-        if (result) {
-          setProduct(result.data);
-        } else {
-          setProduct(null);
-        }
-      })();
-    }
-  }, [sku, getProduct, category]);
 
   function handleMouseEnter() {
     swiper.autoplay.stop();
@@ -74,18 +58,18 @@ export default function ProductCard({ category, sku }) {
     swiper.autoplay.start();
   }
 
-  return product ? (
+  return product && (
     <StyledCard
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       cover={
-        <a href="#">
+        <Link to={`/${category}/${product.sku}`}>
           <img
             style={{ width: "100%", aspectRatio: 1 / 1 }}
             src={product.imgSrc}
             alt=""
           />
-        </a>
+        </Link>
       }
       bordered={false}
     >
@@ -111,7 +95,7 @@ export default function ProductCard({ category, sku }) {
           }}
           ellipsis={{ rows: 3 }}
         >
-          <Typography.Link href="#" style={{ color: "#333333" }}>
+          <Typography.Link to={`/${category}/${product.sku}`} style={{ color: "#333333" }}>
             {product.name}
           </Typography.Link>
         </Typography.Title>
@@ -162,7 +146,5 @@ export default function ProductCard({ category, sku }) {
         </Col>
       </Row>
     </StyledCard>
-  ) : (
-    <Spin />
   );
 }
