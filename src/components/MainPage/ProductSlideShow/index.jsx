@@ -28,13 +28,13 @@ export default function ProductShow({ categories }) {
   console.log(activeBreakPoints);
   return (
     <Row gutter={[0, 12]}>
-      {/* {categories.map((category) => ( */}
-        <Col span={24} key={categories[0].id} style={{ backgroundColor: "white" }}>
+      {categories.map((category) => (
+        <Col span={24} key={category.id} style={{ backgroundColor: "white" }}>
           <SlideShow
-            category={categories[0].slug}
+            category={category.slug}
             title={
               <Title>
-                <span className="title">{categories[0].name}</span>
+                <span className="title">{category.name}</span>
                 <a href="#" className="more">
                   Xem tất cả
                 </a>
@@ -44,7 +44,7 @@ export default function ProductShow({ categories }) {
             query="?_limit=7"
           />
         </Col>
-      {/* ))} */}
+      ))}
     </Row>
   );
 }

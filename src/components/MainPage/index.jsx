@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row, Space } from "antd";
+import { Col, Row } from "antd";
 import SideBar from "./SideBar";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper";
@@ -38,7 +38,7 @@ export default function Content() {
         setCategories(null);
       }
     })();
-  }, []);
+  }, [getCategories]);
 
   return (
     <div style={{ backgroundColor: "#f4f4f4" }}>

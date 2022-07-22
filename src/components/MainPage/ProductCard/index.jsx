@@ -64,7 +64,7 @@ export default function ProductCard({ category, sku }) {
         }
       })();
     }
-  }, [sku, getProduct]);
+  }, [sku, getProduct, category]);
 
   function handleMouseEnter() {
     swiper.autoplay.stop();
@@ -83,6 +83,7 @@ export default function ProductCard({ category, sku }) {
           <img
             style={{ width: "100%", aspectRatio: 1 / 1 }}
             src={product.imgSrc}
+            alt=""
           />
         </a>
       }
@@ -117,8 +118,11 @@ export default function ProductCard({ category, sku }) {
       </div>
       <div>
         <Typography.Text delete style={{ fontSize: "15px", color: "#666666" }}>
-          {product.maxPrice}
-          <DonVi>₫</DonVi>
+          {product.maxPrice && (
+            <>
+              {product.maxPrice} <DonVi>₫</DonVi>
+            </>
+          )}
         </Typography.Text>{" "}
         <Typography.Text style={{ fontSize: "12px", color: "#d82a29" }}>
           {product.discount}

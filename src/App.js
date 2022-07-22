@@ -15,6 +15,7 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="cart" element={<Cart />} />
           <Route path=":category/:id" element={<DetailProduct />} />
+          <Route path="*" element={<div>Xin loi trang nay khong ton tai :(</div>} />
         </Routes>
         <Footer />
       </div>

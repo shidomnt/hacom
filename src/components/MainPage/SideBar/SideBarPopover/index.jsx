@@ -1,30 +1,49 @@
-import { RightOutlined } from "@ant-design/icons";
-import { Col, Popover, Row, Typography } from "antd";
 import React from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  padding: 16px;
+  padding: 10px;
   width: 100%;
+  margin-left: -6px;
+  margin-right: -6px;
+  width: 1005px;
+  min-height: 500px;
+  border-right: 1px solid #e1e1e1;
+  background-color: white;
+  border-bottom: 1px solid #e1e1e1;
 `;
 
 const SidebarContentWrapper = styled.div`
   & {
     width: calc(100% / 5);
-    margin: 0 8px;
+    padding-left: 6px;
+    padding-right: 6px;
   }
 `;
 
 const StyledNonExpandableTitle = styled.div`
   font-size: 11px;
   color: red;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 `;
 
 const StyledExpandableTitle = styled.div`
-  font-size: 12px;
+  & {
+    font-size: 12px;
+    color: #333;
+    margin-bottom: 4px;
+    a {
+      color: inherit;
+    }
+    a.title-childLevelOne {
+      &:hover {
+        color: #e00;
+        text-decoration: underline;
+      }
+    }
+  }
 `;
 
 const StyledHot = styled.span`
@@ -65,16 +84,81 @@ const StyledHot = styled.span`
   }
 `;
 
-export default function SideBarPopover({ className, listContent }) {
+const StyledSubMenuWrapper = styled.span`
+  & {
+    position: relative;
 
+    .sidebar-submenu {
+      position: absolute;
+      left: calc(100% + 10px);
+      top: -10px;
+      min-width: 160px;
+      background-color: white;
+      z-index: 20;
+      border-radius: 4px;
+      display: none;
+      box-shadow: 0 0 4px 0 #b5b5b5;
+      flex-direction: column;
+      padding: 12px;
+      &::before {
+        display: block;
+        content: "";
+        border: 5px solid transparent;
+        border-right-color: #d2d2d2;
+        position: absolute;
+        left: -10px;
+        top: 13px;
+      }
+      &::after {
+        display: block;
+        content: "";
+        width: 15px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: -15px;
+      }
+      a {
+        color: #333;
+        display: block;
+        text-decoration: none;
+        margin-bottom: 5px;
+        position: relative;
+        &::before {
+          display: none;
+          content: "";
+          position: absolute;
+          height: 1px;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background-color: #e00;
+        }
+        &:hover {
+          color: #e00;
+          &::before {
+            display: block;
+          }
+        }
+      }
+    }
+    &:hover {
+      .sidebar-submenu {
+        display: flex;
+      }
+    }
+  }
+`;
+
+export default function SideBarPopover({ className, listContent }) {
   function checkHot(title) {
-    return title.slice(-3) === "HOT" ? (
+    return title?.slice(-3) === "HOT" ? (
       <StyledHot>
         {title.slice(0, -3)} <span>HOT</span>
       </StyledHot>
     ) : (
       title
-    )
+    );
   }
 
   return (
@@ -88,16 +172,27 @@ export default function SideBarPopover({ className, listContent }) {
               </StyledNonExpandableTitle>
               {content.childs.map((child, index) => (
                 <StyledExpandableTitle key={index}>
-                  {!!child.childs.length ? (
-                    <a href="#">
-                      {checkHot(child.title)}{" "}
-                      <i
-                        style={{ fontSize: "8px" }}
-                        className="fa-solid fa-angle-right"
-                      ></i>
-                    </a>
+                  {!!child.childs?.length ? (
+                    <StyledSubMenuWrapper>
+                      <a href="#" className="title-childLevelOne">
+                        {checkHot(child.title)}{" "}
+                        <i
+                          style={{ fontSize: "8px" }}
+                          className="fa-solid fa-angle-right"
+                        ></i>
+                      </a>
+                      <div className="sidebar-submenu">
+                        {child.childs.map((childLevelTwo, index) => (
+                          <a href="#" key={index}>
+                            {childLevelTwo}
+                          </a>
+                        ))}
+                      </div>
+                    </StyledSubMenuWrapper>
                   ) : (
-                    <a href="#">{checkHot(child.title)}</a>
+                    <a href="#" className="title-childLevelOne">
+                      {checkHot(child.title)}
+                    </a>
                   )}
                 </StyledExpandableTitle>
               ))}

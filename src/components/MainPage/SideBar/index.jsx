@@ -1,5 +1,4 @@
-import { Col, Popover, Row } from "antd";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import useApi from "../../../hooks/useApi";
 import styled from "styled-components";
 import SideBarPopover from "./SideBarPopover";
@@ -13,13 +12,8 @@ const Wrapper = styled.div`
     z-index: 99;
     .pop {
       position: absolute;
-      left: calc(100% + 1px);
-      background-color: white;
+      left: calc(100% + 7px);
       top: 0;
-      width: 1005px;
-      min-height: 500px;
-      border-right: 1px solid #e1e1e1;
-      border-bottom: 1px solid #e1e1e1;
       z-index: 9;
       display: none;
     }
@@ -83,7 +77,7 @@ export default function SideBar() {
         setCategories(null);
       }
     })();
-  }, []);
+  }, [getCategories]);
 
   useEffect(() => {
     (async () => {
@@ -94,7 +88,7 @@ export default function SideBar() {
         setSideBarContent(null);
       }
     })();
-  }, []);
+  }, [getSideBarContent]);
   return (
     categories && (
       <Wrapper>
