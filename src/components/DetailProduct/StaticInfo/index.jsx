@@ -1,7 +1,7 @@
-import { Card, Col, List, Row, Select, Space, Typography } from "antd";
-import React, { useEffect, useMemo, useState } from "react";
-import styled from "styled-components";
-import useApi from "../../../hooks/useApi";
+import { Card, Col, List, Row, Select, Space, Typography } from 'antd';
+import React, { useEffect, useMemo, useState } from 'react';
+import styled from 'styled-components';
+import useApi from '../../../hooks/useApi';
 
 const Wrapper = styled.div`
   & {
@@ -61,7 +61,7 @@ const Wrapper = styled.div`
             position: relative;
             margin-right: 9px;
             &::before {
-              content: "";
+              content: '';
               display: block;
               width: 4px;
               height: 4px;
@@ -81,30 +81,30 @@ const Wrapper = styled.div`
 
 const data = [
   {
-    title: "YÊN TÂM MUA HÀNG",
+    title: 'YÊN TÂM MUA HÀNG',
     content: [
-      "Uy tín 20 năm xây dựng và phát triển",
-      "Sản phẩm chính hãng 100%",
-      "Trả góp lãi suất 0% toàn bộ giỏ hàng",
-      "Trả bảo hành tận nơi sử dụng",
-      "Bảo hành tận nơi cho doanh nghiệp",
-      "Vệ sinh miễn phí trọn đời PC, Laptop",
-      "Miễn phí quẹt thẻ",
+      'Uy tín 20 năm xây dựng và phát triển',
+      'Sản phẩm chính hãng 100%',
+      'Trả góp lãi suất 0% toàn bộ giỏ hàng',
+      'Trả bảo hành tận nơi sử dụng',
+      'Bảo hành tận nơi cho doanh nghiệp',
+      'Vệ sinh miễn phí trọn đời PC, Laptop',
+      'Miễn phí quẹt thẻ',
     ],
   },
   {
-    title: "MIỄN PHÍ GIAO HÀNG",
+    title: 'MIỄN PHÍ GIAO HÀNG',
     content: [
-      "Giao hàng siêu tốc trong 2h",
-      "Giao hàng miễn phí toàn quốc",
-      "Nhận hàng và thanh toán tại nhà (ship COD)",
+      'Giao hàng siêu tốc trong 2h',
+      'Giao hàng miễn phí toàn quốc',
+      'Nhận hàng và thanh toán tại nhà (ship COD)',
     ],
   },
 ];
 
 export default function StaticInfo() {
   const [showrooms, setShowrooms] = useState(null);
-  const [filterShowrooms, setFilterShowrooms] = useState("default");
+  const [filterShowrooms, setFilterShowrooms] = useState('default');
   const { getShowRooms } = useApi();
 
   useEffect(() => {
@@ -131,86 +131,90 @@ export default function StaticInfo() {
 
   return (
     <Wrapper>
-      <Space direction="vertical" size="middle" style={{ width: "100%" }}>
+      <Row gutter={[12, 12]}>
         {showrooms && (
-          <Card
-            className="card"
-            title={
-              <Typography.Text className="cart-title" strong>
-                Các cửa hàng có sẵn sản phẩm này
-              </Typography.Text>
-            }
-          >
-            <Space direction="vertical" style={{ width: "100%" }}>
-              <Row gutter={8}>
-                <Col span={12}>
-                  <Select
-                    defaultValue={filterShowrooms}
-                    onChange={(thanhpho) => setFilterShowrooms(thanhpho)}
-                    className="select-selector"
-                  >
-                    <Select.Option value="default">Tỉnh/Thành</Select.Option>
-                    {listThanhPho.map((thanhpho) => (
-                      <Select.Option value={thanhpho} key={thanhpho}>
-                        {thanhpho}
-                      </Select.Option>
-                    ))}
-                  </Select>
-                </Col>
-                <Col span={12}>
-                  <Select defaultValue="default" className="select-selector">
-                    <Select.Option value="default">Quận/Huyện</Select.Option>
-                  </Select>
-                </Col>
-              </Row>
+          <Col span={24}>
+            <Card
+              className="card"
+              title={
+                <Typography.Text className="cart-title" strong>
+                  Các cửa hàng có sẵn sản phẩm này
+                </Typography.Text>
+              }
+            >
+              <Space direction="vertical" style={{ width: '100%' }}>
+                <Row gutter={8}>
+                  <Col span={12}>
+                    <Select
+                      defaultValue={filterShowrooms}
+                      onChange={(thanhpho) => setFilterShowrooms(thanhpho)}
+                      className="select-selector"
+                    >
+                      <Select.Option value="default">Tỉnh/Thành</Select.Option>
+                      {listThanhPho.map((thanhpho) => (
+                        <Select.Option value={thanhpho} key={thanhpho}>
+                          {thanhpho}
+                        </Select.Option>
+                      ))}
+                    </Select>
+                  </Col>
+                  <Col span={12}>
+                    <Select defaultValue="default" className="select-selector">
+                      <Select.Option value="default">Quận/Huyện</Select.Option>
+                    </Select>
+                  </Col>
+                </Row>
+                <List
+                  className="list-showroom"
+                  dataSource={showrooms.filter((showroom) =>
+                    filterShowrooms === 'default'
+                      ? true
+                      : filterShowrooms === showroom.thanhpho
+                  )}
+                  renderItem={(showroom) => (
+                    <li className="item-showroom">
+                      <Typography.Text ellipsis={{ width: '100%' }}>
+                        {showroom.dienthoaiban && (
+                          <React.Fragment>
+                            <span className="dienthoaiban">
+                              <i className="fa-solid fa-phone"></i>{' '}
+                              {showroom.dienthoaiban}
+                            </span>
+                          </React.Fragment>
+                        )}
+                        <span className="diachi">{showroom.diachi}</span>
+                      </Typography.Text>
+                    </li>
+                  )}
+                />
+              </Space>
+            </Card>
+          </Col>
+        )}
+        {data.map((cardInfo) => (
+          <Col span={24} xll={24} xl={24} lg={24} md={0} sm={0} xs={0}>
+            <Card
+              className="card"
+              key={cardInfo.title}
+              title={
+                <Typography.Text strong className="card-title" level={5}>
+                  {cardInfo.title}
+                </Typography.Text>
+              }
+            >
               <List
-                className="list-showroom"
-                dataSource={showrooms.filter((showroom) =>
-                  filterShowrooms === "default"
-                    ? true
-                    : filterShowrooms === showroom.thanhpho
-                )}
-                renderItem={(showroom) => (
-                  <li className="item-showroom">
-                    <Typography.Text ellipsis={{ width: "100%" }}>
-                      {showroom.dienthoaiban && (
-                        <React.Fragment>
-                          <span className="dienthoaiban">
-                            <i className="fa-solid fa-phone"></i>{" "}
-                            {showroom.dienthoaiban}
-                          </span>
-                        </React.Fragment>
-                      )}
-                      <span className="diachi">{showroom.diachi}</span>
-                    </Typography.Text>
+                className="card-content"
+                dataSource={cardInfo.content}
+                renderItem={(item) => (
+                  <li className="card-content-item">
+                    <i className="fa-regular fa-circle"></i> {item}
                   </li>
                 )}
               />
-            </Space>
-          </Card>
-        )}
-        {data.map((cardInfo) => (
-          <Card
-            className="card"
-            key={cardInfo.title}
-            title={
-              <Typography.Text strong className="card-title" level={5}>
-                {cardInfo.title}
-              </Typography.Text>
-            }
-          >
-            <List
-              className="card-content"
-              dataSource={cardInfo.content}
-              renderItem={(item) => (
-                <li className="card-content-item">
-                  <i className="fa-regular fa-circle"></i> {item}
-                </li>
-              )}
-            />
-          </Card>
+            </Card>
+          </Col>
         ))}
-      </Space>
+      </Row>
     </Wrapper>
   );
 }

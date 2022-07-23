@@ -1,10 +1,10 @@
-import { Divider, List, Space, Typography } from "antd";
-import React, { useContext } from "react";
-import styled from "styled-components";
-import { ProductContext } from "..";
-import Gift from "./Gift";
-import Price from "./Price";
-import ThanhToan from "./ThanhToan";
+import { Col, Divider, List, Row, Space, Typography } from 'antd';
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import { ProductContext } from '..';
+import Gift from './Gift';
+import Price from './Price';
+import ThanhToan from './ThanhToan';
 
 const Wrapper = styled.div`
   & {
@@ -32,25 +32,24 @@ const Wrapper = styled.div`
 `;
 
 export default function DetailInfo() {
-
   const { product } = useContext(ProductContext);
 
   return (
     <Wrapper>
-      <Space direction="vertical" size='middle'>
-        <div>
+      <Row gutter={[12, 12]}>
+        <Col span={24}>
           <Typography.Text>
             Mã SP: <span className="color-288ad6">{product.sku}</span>
           </Typography.Text>
           <Divider type="vertical" />
           <Typography.Text>
-            Đánh giá:{" "}
+            Đánh giá:{' '}
             <img
               src={`https://hacom.vn/media/lib/star_${product.rate
-                .split("")
+                .split('')
                 .slice(1, -1)}.png`}
               alt=""
-            />{" "}
+            />{' '}
             <span className="color-288ad6">{product.rate.slice(1, -1)}</span>
           </Typography.Text>
           <Divider type="vertical" />
@@ -61,23 +60,35 @@ export default function DetailInfo() {
           <Typography.Text>
             Lượt xem: <span className="color-288ad6">0</span>
           </Typography.Text>
-        </div>
-        <div className="summary">
-          <Typography.Text className="title">Thông số sản phẩm</Typography.Text>
-          <List
-            className="thongso-sp"
-            dataSource={product.tssp.map(ts => ts.trim()).filter(v => !!v)}
-            renderItem={(thongso) => (
-              <li>
-                <i className="fa-solid fa-angle-right"></i> {thongso}
-              </li>
-            )}
-          />
-        </div>
-        <Price />
-        <Gift uudai={product.uudai.slice(1)} />
-        <ThanhToan />
-      </Space>
+        </Col>
+        <Col span={24} xxl={24} xl={24} lg={24} md={24} sm={0} xs={0}>
+          <div className="summary">
+            <Typography.Text className="title">
+              Thông số sản phẩm
+            </Typography.Text>
+            <List
+              className="thongso-sp"
+              dataSource={product.tssp
+                .map((ts) => ts.trim())
+                .filter((v) => !!v)}
+              renderItem={(thongso) => (
+                <li>
+                  <i className="fa-solid fa-angle-right"></i> {thongso}
+                </li>
+              )}
+            />
+          </div>
+        </Col>
+        <Col span={24}>
+          <Price />
+        </Col>
+        <Col span={24}>
+          <Gift uudai={product.uudai.slice(1)} />
+        </Col>
+        <Col span={24} xxl={24} xl={24} lg={24} md={24} sm={0} xs={0}>
+          <ThanhToan />
+        </Col>
+      </Row>
     </Wrapper>
   );
 }

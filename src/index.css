@@ -22,3 +22,25 @@ code {
   width: 100%;
   margin: auto;
 }
+
+@media (max-width: 575px) {
+    .container {
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .container {
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .container {
+        max-width: 644px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .container {
+    max-width: 984px;
+  }
+}

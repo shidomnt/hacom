@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Thumbs, Navigation, Grid } from 'swiper';
 import styled from 'styled-components';
 import { ProductContext } from '..';
-import { Image } from 'antd';
+import { Col, Image, Row } from 'antd';
 
 const Wrapper = styled.div`
   & {
@@ -26,36 +26,42 @@ export default function SlideGallery() {
 
   return (
     <Wrapper>
-      <Swiper
-        loop={true}
-        spaceBetween={5}
-        navigation={true}
-        slidesPerView={1}
-        thumbs={{ swiper: thumbsSwiper }}
-        modules={[Navigation, Thumbs]}
-      >
-        {gallery.map((imgSrc) => (
-          <SwiperSlide key={imgSrc}>
-            <Image width="100%" src={imgSrc} alt="" />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      <Swiper
-        onSwiper={setThumbsSwiper}
-        loop={true}
-        spaceBetween={5}
-        slidesPerView={3}
-        watchSlidesProgress={true}
-        modules={[Thumbs]}
-        centeredSlides={true}
-        centeredSlidesBounds={true}
-      >
-        {gallery.map((imgSrc) => (
-          <SwiperSlide key={imgSrc}>
-              <Image width='100%' preview={false} src={imgSrc} alt="" />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <Row>
+        <Col span={24}>
+          <Swiper
+            loop={true}
+            spaceBetween={5}
+            navigation={true}
+            slidesPerView={1}
+            thumbs={{ swiper: thumbsSwiper }}
+            modules={[Navigation, Thumbs]}
+          >
+            {gallery.map((imgSrc) => (
+              <SwiperSlide key={imgSrc}>
+                <Image width="100%" src={imgSrc} alt="" />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </Col>
+        <Col span={24}  xxl={24} xl={24} lg={24} md={24} sm={0} xs={0}>
+          <Swiper
+            onSwiper={setThumbsSwiper}
+            loop={true}
+            spaceBetween={5}
+            slidesPerView={3}
+            watchSlidesProgress={true}
+            modules={[Thumbs]}
+            centeredSlides={true}
+            centeredSlidesBounds={true}
+          >
+            {gallery.map((imgSrc) => (
+              <SwiperSlide key={imgSrc}>
+                <Image width="100%" preview={false} src={imgSrc} alt="" />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </Col>
+      </Row>
     </Wrapper>
   );
 }
