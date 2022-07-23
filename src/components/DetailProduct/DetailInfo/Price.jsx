@@ -1,6 +1,7 @@
 import { Divider, Space, Typography } from "antd";
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { ProductContext } from "..";
 
 const Wrapper = styled.div`
   & {
@@ -28,7 +29,10 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function Price({ product }) {
+export default function Price() {
+
+  const { product } = useContext(ProductContext);
+
   return (
     <Wrapper>
       <Space direction={'vertical'}>

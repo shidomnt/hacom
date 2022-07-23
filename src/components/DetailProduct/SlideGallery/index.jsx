@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Thumbs, Navigation, Grid } from "swiper";
-import styled from "styled-components";
+import React, { useContext, useEffect, useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Thumbs, Navigation, Grid } from 'swiper';
+import styled from 'styled-components';
+import { ProductContext } from '..';
+import { Image } from 'antd';
 
 const Wrapper = styled.div`
   & {
@@ -12,16 +14,15 @@ const Wrapper = styled.div`
   }
 `;
 
-const StyledImgContainer = styled.div`
-  & {
-    img {
-      width: 100%;
-    }
-  }
-`;
-
-export default function SlideGallery({ gallery }) {
+export default function SlideGallery() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [gallery, setGallery] = useState([]);
+
+  const { product } = useContext(ProductContext);
+
+  useEffect(() => {
+    setGallery([product.imgSrc, ...product.gallery]);
+  }, [product]);
 
   return (
     <Wrapper>
@@ -35,9 +36,7 @@ export default function SlideGallery({ gallery }) {
       >
         {gallery.map((imgSrc) => (
           <SwiperSlide key={imgSrc}>
-            <StyledImgContainer>
-              <img src={imgSrc} alt="" />
-            </StyledImgContainer>
+            <Image width="100%" src={imgSrc} alt="" />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -53,9 +52,7 @@ export default function SlideGallery({ gallery }) {
       >
         {gallery.map((imgSrc) => (
           <SwiperSlide key={imgSrc}>
-            <StyledImgContainer>
-              <img src={imgSrc} alt="" />
-            </StyledImgContainer>
+              <Image width='100%' preview={false} src={imgSrc} alt="" />
           </SwiperSlide>
         ))}
       </Swiper>

@@ -95,9 +95,9 @@ export default function ProductCard({ category, product }) {
           }}
           ellipsis={{ rows: 3 }}
         >
-          <Typography.Link to={`/${category}/${product.sku}`} style={{ color: "#333333" }}>
+          <Link to={`/${category}/${product.sku}`} style={{ color: "#333333" }}>
             {product.name}
-          </Typography.Link>
+          </Link>
         </Typography.Title>
       </div>
       <div>

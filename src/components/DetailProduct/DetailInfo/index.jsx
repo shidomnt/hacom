@@ -1,8 +1,10 @@
 import { Divider, List, Space, Typography } from "antd";
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { ProductContext } from "..";
 import Gift from "./Gift";
 import Price from "./Price";
+import ThanhToan from "./ThanhToan";
 
 const Wrapper = styled.div`
   & {
@@ -29,10 +31,13 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function DetailInfo({ product }) {
+export default function DetailInfo() {
+
+  const { product } = useContext(ProductContext);
+
   return (
     <Wrapper>
-      <Space direction="vertical">
+      <Space direction="vertical" size='middle'>
         <div>
           <Typography.Text>
             Mã SP: <span className="color-288ad6">{product.sku}</span>
@@ -69,8 +74,9 @@ export default function DetailInfo({ product }) {
             )}
           />
         </div>
-        <Price product={product} />
+        <Price />
         <Gift uudai={product.uudai.slice(1)} />
+        <ThanhToan />
       </Space>
     </Wrapper>
   );

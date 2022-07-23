@@ -16,7 +16,7 @@ const StyledCard = styled(Card)`
       }
     }
     .ant-card-body {
-      max-height: 380px;
+      max-height: 250px;
       overflow-y: scroll;
       font-size: 13px;
       &::-webkit-scrollbar {

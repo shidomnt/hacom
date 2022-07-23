@@ -48,7 +48,7 @@ function ProductSlideShow({ categories }) {
 
   return (
     <Row gutter={[0, 12]}>
-      {categories.map((category) => (
+      {categories.slice(0, 3).map((category) => (
       <Col
         span={24}
         key={category.id}
