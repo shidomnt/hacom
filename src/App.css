@@ -214,6 +214,7 @@ html {
   align-items: center;
   color: var(--text-white);
   padding: 0 12px;
+  position: relative;
 }
 .header__buttom--top-nav-hostsing-item:last-child {
   position: relative;
@@ -251,11 +252,13 @@ html {
   padding: 16px;
   background-color: #fff;
   position: absolute;
-  top: 52px;
-  left: 88px;
+  top: calc(100% + 6px);
+  left: -50%;
   border-radius: 5px;
   display: none;
   z-index: 999;
+  min-width: 265px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
 .use__submenu::after {
   content: "";
@@ -264,7 +267,8 @@ html {
   border-color: transparent transparent #fff transparent;
   position: absolute;
   top: -35px;
-  left: 117px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .use__submenu--list-link {
   font-size: 1.2em;
@@ -321,7 +325,7 @@ html {
   display: block;
   width: 15px;
   height: 15px;
-  font-size: 1.3rem;
+  font-size: 0.9rem;
   line-height: 1.6rem;
   text-align: center;
   background-color: rgb(247, 141, 28);
@@ -330,6 +334,7 @@ html {
   position: absolute;
   top: 12px;
   left: 30%;
+  color: white;
 }
 .header__buttom--top-nav-hostsing-item:first-child
   .header__buttom--top-nav-hostsing-content {

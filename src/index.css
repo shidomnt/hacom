@@ -23,6 +23,17 @@ code {
   margin: auto;
 }
 
+@keyframes slideIn {
+  from {
+    transform: translate(0, -100%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
 @media (max-width: 575px) {
     .container {
     }

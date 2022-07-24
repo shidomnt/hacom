@@ -12,8 +12,9 @@ const Wrapper = styled.div`
     left: 0;
     right: 0;
     z-index: 9999;
-    padding: 6px 0;
+    padding: 13px 0;
     box-shadow: 1px 4px 5px #b3aeae;
+    animation: slideIn 0.2s linear;
     .cart__price {
       top: 0;
     }
@@ -51,7 +52,7 @@ export default function StickyHeader() {
             <SearchBar />
           </Col>
           <Col span={7}>
-            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <div style={{ display: "flex", justifyContent: "center" }}>
               <div
                 style={{ width: "fit-content" }}
                 className="header__buttom--top-nav-hostsing"
