@@ -11,6 +11,10 @@ async function callApi(url, errMessage = "Loi khi goi API") {
   }
 }
 
+async function getAutoCompleteProduct({ searchValue, category = 'Laptop,Tablet,Mobile', limit = 3 }) {
+  return await callApi(`/${category}?q=${searchValue}&_limit=${limit}`)
+}
+
 async function getProduct(categorySlug, id) {
   return await callApi(`/${categorySlug}/${id}`);
 }
@@ -97,6 +101,7 @@ export default function useApi() {
     getBannerList,
     getSideBarMappingIcon,
     getSideBarContent,
-    getShowRooms
+    getShowRooms,
+    getAutoCompleteProduct,
   };
 }
