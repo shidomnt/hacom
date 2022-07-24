@@ -1,14 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import ModalItem from './ModalItem';
 import SubNavItem from './SubNavItem';
 import SearchBar from './SearchBar';
 import { Col, Row } from 'antd';
-import { CartContext } from '../../contexts/CartProvider';
+import SignAndCart from './SignAndCart';
 
 export default function Header() {
-
-  const { cart } = useContext(CartContext);
 
   return (
     <header className="header">
@@ -215,63 +213,7 @@ export default function Header() {
                     <span className="phone__number">1900.1903</span>
                   </div>
                 </div>
-                <div className="header__buttom--top-nav-hostsing-item">
-                  <i className="fa-solid fa-user header__buttom--top-nav-hostsing-icon" />
-                  <div className="header__buttom--top-nav-hostsing-content">
-                    <span>Đăng ký</span>
-                    <span>Đăng nhập</span>
-                    <div className="use__submenu">
-                      <ul className="use__submenu--list">
-                        <li>
-                          <Link to="#" className="use__submenu--list-link">
-                            <span>Đăng nhập</span>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="#" className="use__submenu--list-link">
-                            <span>Đăng ký</span>
-                          </Link>
-                        </li>
-                        <li className="use__submenu--social">
-                          <Link
-                            to="#"
-                            className="use__submenu--list-link social gg"
-                          >
-                            <i className="fa-brands fa-google" />
-                            <span>Đăng nhập bằng Google</span>
-                          </Link>
-                        </li>
-                        <li className="use__submenu--social">
-                          <Link
-                            to="#"
-                            className="use__submenu--list-link social fb"
-                          >
-                            <i className="fa-brands fa-facebook-square" />
-                            <span> Đăng nhập bằng Facebook</span>
-                          </Link>
-                        </li>
-                        <li className="use__submenu--social">
-                          <Link
-                            to="#"
-                            className="use__submenu--list-link social zl"
-                          >
-                            <i className="fa-solid fa-comment" />
-                            <span>Đăng nhập bằng Zalo</span>
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="header__buttom--top-nav-hostsing-item">
-                  <Link to="/cart" style={{display: 'flex', color: 'inherit'}} >
-                    <i className="fa-solid fa-bag-shopping header__buttom--top-nav-hostsing-icon" />
-                    <div className="header__buttom--top-nav-hostsing-content">
-                      <span>Giỏ hàng</span>
-                      <span className="cart__price">{cart.length}</span>
-                    </div>
-                  </Link>
-                </div>
+                <SignAndCart />
               </div>
             </div>
           </div>

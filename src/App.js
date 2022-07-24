@@ -7,6 +7,8 @@ import Layout from './components/Layout';
 import CartProvider from './contexts/CartProvider'
 
 function App() {
+  
+
   return (
     <BrowserRouter>
       <CartProvider>

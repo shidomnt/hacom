@@ -45,7 +45,7 @@ const listCollection = [
 const CollectionProduct = () => {
   return (
     <Wrapper>
-    <Row gutter={16}>
+    <Row gutter={32}>
       {listCollection.map((collection) => (
         <Col span={6} key={collection.id}> 
           <SlideShow

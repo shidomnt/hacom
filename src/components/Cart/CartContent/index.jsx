@@ -7,6 +7,7 @@ import Sidebar from './Sidebar';
 
 const Wrapper = styled.div`
   & {
+    padding-bottom: 48px;
     .cart-block {
       background-color: white;
       padding: 8px 8px;
@@ -15,6 +16,12 @@ const Wrapper = styled.div`
     .cart-remove-btn {
       padding: 0;
       height: unset;
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 8px 16px;
+      height: unset;
+      background-color: #243a76;
     }
   }
 `;
@@ -27,7 +34,7 @@ export default function CartContent() {
 
   useEffect(() => {
     console.log('checkedList', checkedList);
-  }, [checkedList])
+  }, [checkedList]);
 
   const handleChangeCheckAll = (event) => {
     setCheckedList(
@@ -68,7 +75,11 @@ export default function CartContent() {
                       placement="bottomRight"
                       title="Xóa toàn bộ giỏ hàng"
                     >
-                      <Button onClick={() => removeProduct('all')} className='cart-remove-btn' type='text'>
+                      <Button
+                        onClick={() => removeProduct('all')}
+                        className="cart-remove-btn"
+                        type="text"
+                      >
                         <i className="fa-solid fa-trash-can"></i>
                       </Button>
                     </Tooltip>
@@ -97,7 +108,16 @@ export default function CartContent() {
           </Row>
         </Col>
         <Col span={7}>
-          <Sidebar checkedList={checkedList} />
+          <Row gutter={[8,8]}>
+            <Col span={24}>
+              <Sidebar checkedList={checkedList} />
+            </Col>
+            <Col span={24}>
+              <Button className='submit-btn' type='primary'>
+                Tiến hành đặt hàng
+              </Button>
+            </Col>
+          </Row>
         </Col>
       </Row>
     </Wrapper>

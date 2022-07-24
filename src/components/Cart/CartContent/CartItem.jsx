@@ -29,7 +29,7 @@ export default function CartItem({ item }) {
   }, [item.product.price, item.quantify]);
 
   return (
-    <Row gutter={[8, 8]}>
+    <Row gutter={[8, 8]} style={{alignItems: 'center'}}>
       <Col span={1}>
         <Checkbox value={item.product.id} />
       </Col>
@@ -72,10 +72,10 @@ export default function CartItem({ item }) {
         />
       </Col>
       <Col span={4}>
-        <Typography.Text strong>
+        <Typography.Title level={5} style={{margin: 0, color: 'red'}}>
           {thanhTien}
           <sup>₫</sup>
-        </Typography.Text>
+        </Typography.Title>
       </Col>
       <Col span={1}>
         <Tooltip placement="bottomRight" title="Xóa khỏi giỏ hàng">
