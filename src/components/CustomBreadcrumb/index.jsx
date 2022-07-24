@@ -15,6 +15,10 @@ const StyledBreadcrumb = styled(Breadcrumb)`
   }
 `;
 
+const pathMapping = {
+  'cart': 'Giỏ hàng'
+}
+
 export default function CustomBreadcrumb() {
   const location = useLocation();
   const pathSnippets = location.pathname.split("/").filter((i) => i);
@@ -22,7 +26,7 @@ export default function CustomBreadcrumb() {
     const url = `/${pathSnippets.slice(0, index + 1).join("/")}`;
     return (
       <Breadcrumb.Item key={url}>
-        <Link to={url}>{pathSnippet}</Link>
+        <Link to={url}>{pathMapping[pathSnippet] || pathSnippet}</Link>
       </Breadcrumb.Item>
     );
   });

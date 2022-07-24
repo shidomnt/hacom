@@ -1,16 +1,12 @@
-import { Button, Col, InputNumber, Row, Space, Typography } from 'antd';
-import React, { useEffect, useState } from 'react';
+import { Button, Col, Row, Space, Typography } from 'antd';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { ProductContext } from '..';
+import { CartActionContext } from '../../../contexts/CartProvider';
+import InputQuantify from './InputQuantify'
 
 const Wrapper = styled.div`
   & {
-    .controller-btn {
-      user-select: none;
-      cursor: pointer;
-    }
-    .controller-btn.minus {
-      padding: 0 2px;
-    }
     .ant-input-number-group-wrapper {
       use-select: none;
       .ant-input-number {
@@ -53,6 +49,9 @@ const MAX_SOLUONG = 99;
 export default function ThanhToan() {
   const [soluong, setSoluong] = useState(1);
 
+  const { product } = useContext(ProductContext)
+  const { addProduct } = useContext(CartActionContext)
+
   useEffect(() => {
     if (soluong < MIN_SOLUONG) {
       setSoluong(MIN_SOLUONG);
@@ -62,6 +61,10 @@ export default function ThanhToan() {
     }
   }, [soluong]);
 
+  const handleClickBtnAddCart = useCallback((product, soluong) => {
+    addProduct(product, soluong);
+  }, [addProduct]);
+
   return (
     <Wrapper>
       <Space direction="vertical" size='middle'>
@@ -69,30 +72,16 @@ export default function ThanhToan() {
           <Typography.Text className="input-label" strong>
             Số lượng:{' '}
           </Typography.Text>
-          <InputNumber
+          <InputQuantify
             min={MIN_SOLUONG}
             max={MAX_SOLUONG}
             value={soluong}
             onChange={(value) => setSoluong(value)}
             controls={false}
-            addonBefore={
-              <div
-                className="controller-btn minus"
-                onClick={() => setSoluong((prev) => prev - 1)}
-              >
-                -
-              </div>
-            }
-            addonAfter={
-              <div
-                className="controller-btn add"
-                onClick={() => setSoluong((prev) => prev + 1)}
-              >
-                +
-              </div>
-            }
+            onClickMinus={() => setSoluong((prev) => prev - 1)}
+            onClickAdd={() => setSoluong((prev) => prev + 1)}
           />
-          <Button>
+          <Button onClick={() => handleClickBtnAddCart(product, soluong)}> 
             <Typography.Text strong>
               <i className="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng
             </Typography.Text>

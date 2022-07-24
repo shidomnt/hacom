@@ -1,14 +1,15 @@
-import "./App.css";
-import MainPage from "./components/MainPage";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import DetailProduct from "./components/DetailProduct";
-import Cart from "./components/Cart";
-import Layout from "./components/Layout";
+import './App.css';
+import MainPage from './components/MainPage';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import DetailProduct from './components/DetailProduct';
+import Cart from './components/Cart';
+import Layout from './components/Layout';
+import CartProvider from './contexts/CartProvider'
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="app">
+      <CartProvider>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route path="/" element={<MainPage />} />
@@ -17,7 +18,7 @@ function App() {
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
-      </div>
+      </CartProvider>
     </BrowserRouter>
   );
 }

@@ -1,11 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import ModalItem from "./ModalItem";
-import SubNavItem from "./SubNavItem";
-import SearchBar from "./SearchBar";
-import { Col, Row } from "antd";
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import ModalItem from './ModalItem';
+import SubNavItem from './SubNavItem';
+import SearchBar from './SearchBar';
+import { Col, Row } from 'antd';
+import { CartContext } from '../../contexts/CartProvider';
 
 export default function Header() {
+
+  const { cart } = useContext(CartContext);
+
   return (
     <header className="header">
       <div className="container">
@@ -185,7 +189,7 @@ export default function Header() {
         </div>
         <div className="header__buttom">
           <div className="header__buttom--top">
-            <Link to className="header__buttom--top-logo">
+            <Link to='/' className="header__buttom--top-logo">
               <img
                 src="https://hanoicomputercdn.com/media/lib/19-02-2022/logo-hacomtrangch.png"
                 alt="logo"
@@ -260,11 +264,13 @@ export default function Header() {
                   </div>
                 </div>
                 <div className="header__buttom--top-nav-hostsing-item">
-                  <i className="fa-solid fa-bag-shopping header__buttom--top-nav-hostsing-icon" />
-                  <div className="header__buttom--top-nav-hostsing-content">
-                    <span>Giỏ hàng</span>
-                    <span className="cart__price">0</span>
-                  </div>
+                  <Link to="/cart" style={{display: 'flex', color: 'inherit'}} >
+                    <i className="fa-solid fa-bag-shopping header__buttom--top-nav-hostsing-icon" />
+                    <div className="header__buttom--top-nav-hostsing-content">
+                      <span>Giỏ hàng</span>
+                      <span className="cart__price">{cart.length}</span>
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>

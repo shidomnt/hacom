@@ -1,4 +1,4 @@
-import { Col, Divider, Row, Space, Typography } from "antd";
+import { Col, Divider, Row, Typography } from "antd";
 import React, { createContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -48,7 +48,7 @@ export default function DetailProduct() {
   }, [getProduct, category, id, navigate]);
 
   return (
-    <div className="container">
+    <React.Fragment>
       {product ? (
         <ProductContext.Provider value={{ product }}>
           <CustomBreadcrumb />
@@ -118,7 +118,7 @@ export default function DetailProduct() {
       ) : (
         <Loading />
       )}
-    </div>
+    </React.Fragment>
   );
 }
 

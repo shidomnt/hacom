@@ -4,11 +4,11 @@ import {
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 import { Card, Col, Row, Space, Typography } from "antd";
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { useSwiper } from "swiper/react";
 import { Link } from "react-router-dom";
-import Loading from "../../Loading";
+import { CartActionContext } from "../../../contexts/CartProvider";
 
 const StyledCard = styled(Card)`
   & {
@@ -49,6 +49,8 @@ const Rate = styled.span`
 
 export default function ProductCard({ category, product }) {
   const swiper = useSwiper();
+  
+  const { addProduct } = useContext(CartActionContext);
 
   function handleMouseEnter() {
     swiper.autoplay.stop();
@@ -58,12 +60,16 @@ export default function ProductCard({ category, product }) {
     swiper.autoplay.start();
   }
 
+  function handleClickCartIcon(product) {
+    addProduct(product);
+  }
+
   return product && (
     <StyledCard
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       cover={
-        <Link to={`/${category}/${product.sku}`}>
+        <Link  to={`/${category}/${product.sku}`}>
           <img
             style={{ width: "100%", aspectRatio: 1 / 1 }}
             src={product.imgSrc}
@@ -95,7 +101,7 @@ export default function ProductCard({ category, product }) {
           }}
           ellipsis={{ rows: 3 }}
         >
-          <Link to={`/${category}/${product.sku}`} style={{ color: "#333333" }}>
+          <Link  to={`/${category}/${product.sku}`} style={{ color: "#333333" }}>
             {product.name}
           </Link>
         </Typography.Title>
@@ -139,7 +145,7 @@ export default function ProductCard({ category, product }) {
         </Col>
         <Col span={12} style={{ textAlign: "right" }}>
           {product.action === "Còn hàng" && (
-            <StyledCartIcon>
+            <StyledCartIcon onClick={() => handleClickCartIcon(product)}>
               <ShoppingCartOutlined />
             </StyledCartIcon>
           )}
