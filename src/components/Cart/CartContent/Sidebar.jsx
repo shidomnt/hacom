@@ -26,7 +26,7 @@ export default function Sidebar({ checkedList }) {
 
   useEffect(() => {
     const preCost = checkedList.reduce((accumulator, productId) => {
-      const item = cart.filter((item) => (item.product.id = productId))?.[0];
+      const item = cart.filter((item) => item.product.id === productId)?.[0];
       let price = 0;
       if (item) {
         price = formatStringPriceToNumber(item.product.price) * item.quantify;

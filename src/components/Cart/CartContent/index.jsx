@@ -97,7 +97,7 @@ export default function CartContent() {
           </Row>
         </Col>
         <Col span={7}>
-          {/* <Sidebar checkedList={checkedList} /> */}
+          <Sidebar checkedList={checkedList} />
         </Col>
       </Row>
     </Wrapper>

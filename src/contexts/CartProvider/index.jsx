@@ -24,7 +24,7 @@ export default function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    console.log(cart);
+    console.log('cart', cart);
   }, [cart]);
 
   const addProduct = useCallback(
