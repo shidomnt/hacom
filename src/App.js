@@ -1,23 +1,22 @@
 import "./App.css";
 import MainPage from "./components/MainPage";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import DetailProduct from "./components/DetailProduct";
 import Cart from "./components/Cart";
+import Layout from "./components/Layout";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="app">
-        <Header />
         <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="cart" element={<Cart />} />
-          <Route path=":category/:id" element={<DetailProduct />} />
-          <Route path="*" element={<div>Xin loi trang nay khong ton tai :(</div>} />
+          <Route path="/" element={<Layout />}>
+            <Route path="/" element={<MainPage />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path=":category/:id" element={<DetailProduct />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
-        <Footer />
       </div>
     </BrowserRouter>
   );

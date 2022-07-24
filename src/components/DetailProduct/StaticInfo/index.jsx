@@ -192,7 +192,7 @@ export default function StaticInfo() {
           </Col>
         )}
         {data.map((cardInfo) => (
-          <Col span={24} xll={24} xl={24} lg={24} md={0} sm={0} xs={0}>
+          <Col key={cardInfo.title} span={24} xll={24} xl={24} lg={24} md={0} sm={0} xs={0}>
             <Card
               className="card"
               key={cardInfo.title}
