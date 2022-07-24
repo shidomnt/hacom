@@ -51,7 +51,7 @@ export default function CartContent() {
   return (
     <Wrapper>
       <Row gutter={[8, 8]}>
-        <Col span={17}>
+        <Col span={17} xxl={17} xl={17} lg={17} md={24} sm={24} xs={24}>
           <Row gutter={[8, 8]}>
             <Col span={24}>
               <div className="cart-block">
@@ -107,7 +107,7 @@ export default function CartContent() {
             </Col>
           </Row>
         </Col>
-        <Col span={7}>
+        <Col span={7} xxl={7} xl={7} lg={7} md={24} sm={24} xs={24}>
           <Row gutter={[8,8]}>
             <Col span={24}>
               <Sidebar checkedList={checkedList} />
