@@ -32,10 +32,6 @@ export default function CartContent() {
   const [checkedList, setCheckedList] = useState([]);
   const [checkAll, setCheckAll] = useState(false);
 
-  useEffect(() => {
-    console.log('checkedList', checkedList);
-  }, [checkedList]);
-
   const handleChangeCheckAll = (event) => {
     setCheckedList(
       event.target.checked ? cart.map((item) => item.product.id) : []

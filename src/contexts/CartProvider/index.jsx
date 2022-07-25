@@ -5,7 +5,7 @@ const CartActionContext = createContext(null);
 
 const MIN_SOLUONG = 1;
 const MAX_SOLUONG = 99;
-const KEY_CART = "KEY_CART";
+const KEY_CART = 'KEY_CART';
 
 export default function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
@@ -15,15 +15,12 @@ export default function CartProvider({ children }) {
     if (!cartLocalStorage) {
       localStorage.setItem(KEY_CART, JSON.stringify([]));
     } else {
-      setCart(JSON.parse(cartLocalStorage))
+      setCart(JSON.parse(cartLocalStorage));
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
-    console.log('cart', cart);
-
     localStorage.setItem(KEY_CART, JSON.stringify(cart));
-
   }, [cart]);
 
   const addProduct = useCallback(

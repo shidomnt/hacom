@@ -25,6 +25,7 @@ const Wrapper = styled.div`
       width: fit-content;
       padding-left: 16px;
       padding-right: 16px;
+      font-size: 1.2rem;
     }
     .header__buttom--top-nav-hostsing-item:first-child
       .header__buttom--top-nav-hostsing-content {

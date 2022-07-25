@@ -284,6 +284,7 @@ html {
   margin-bottom: 5px;
   border-radius: 5px;
   overflow: hidden;
+  cursor: pointer;
 }
 .use__submenu--list-link span {
   display: block;

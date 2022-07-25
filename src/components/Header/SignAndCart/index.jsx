@@ -1,9 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../../contexts/CartProvider";
+import SignOtherPlatform from './SignOtherPlatform'
+import SignModal from './SignModal'
 
 export default function SignAndCart() {
   const { cart } = useContext(CartContext);
+
+  const [modalVisible, setModalVisible] = useState(false);
+
+  function handleShowModal() {
+    setModalVisible(true);
+  }
+
+  function handleHideModal() {
+    setModalVisible(false);
+  }
 
   return (
     <React.Fragment>
@@ -15,35 +27,19 @@ export default function SignAndCart() {
           <div className="use__submenu">
             <ul className="use__submenu--list">
               <li>
-                <Link to="#" className="use__submenu--list-link">
+                <span onClick={handleShowModal} className="use__submenu--list-link">
                   <span>Đăng nhập</span>
-                </Link>
+                </span>
               </li>
               <li>
-                <Link to="#" className="use__submenu--list-link">
+                <span onClick={handleShowModal} className="use__submenu--list-link">
                   <span>Đăng ký</span>
-                </Link>
+                </span>
               </li>
-              <li className="use__submenu--social">
-                <Link to="#" className="use__submenu--list-link social gg">
-                  <i className="fa-brands fa-google" />
-                  <span>Đăng nhập bằng Google</span>
-                </Link>
-              </li>
-              <li className="use__submenu--social">
-                <Link to="#" className="use__submenu--list-link social fb">
-                  <i className="fa-brands fa-facebook-square" />
-                  <span> Đăng nhập bằng Facebook</span>
-                </Link>
-              </li>
-              <li className="use__submenu--social">
-                <Link to="#" className="use__submenu--list-link social zl">
-                  <i className="fa-solid fa-comment" />
-                  <span>Đăng nhập bằng Zalo</span>
-                </Link>
-              </li>
+              <SignOtherPlatform />
             </ul>
           </div>
+          <SignModal visible={modalVisible} onCancel={handleHideModal} />
         </div>
       </div>
       <div className="header__buttom--top-nav-hostsing-item">
