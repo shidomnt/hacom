@@ -2,6 +2,7 @@ import { Col, Image, Row, Typography } from 'antd';
 import React, { useDeferredValue, useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import useApi from '../../../../hooks/useApi';
+import EmptySearch from './EmptySearch';
 
 const autoCompleteSlideIn = keyframes`
   0% {transform: translateY(10%);opacity: 0;}
@@ -21,11 +22,13 @@ const Wrapper = styled.div`
     border-radius: 2px;
     font-size: 12px;
     animation: ${autoCompleteSlideIn} 0.2s linear;
+    max-height: 300px;
+    overflow-y: auto;
   }
 `;
 
 export default function AutoComplete({ searchValue }) {
-  const [autoCompleteProducts, setAutoCompleteProducts] = useState(null);
+  const [autoCompleteProducts, setAutoCompleteProducts] = useState([]);
 
   const { getAutoCompleteProduct } = useApi();
 
@@ -33,19 +36,21 @@ export default function AutoComplete({ searchValue }) {
 
   useEffect(() => {
     (async () => {
-      const response = await getAutoCompleteProduct({ searchValue: deferredSearchValue });
+      const response = await getAutoCompleteProduct({
+        searchValue: deferredSearchValue,
+        limit: 6
+      });
       if (response) {
-        console.log(response.data);
         setAutoCompleteProducts(response.data);
       } else {
-        setAutoCompleteProducts(null);
+        setAutoCompleteProducts([]);
       }
     })();
   }, [deferredSearchValue]);
 
   return (
     <Wrapper>
-      {autoCompleteProducts &&
+      {!!autoCompleteProducts.length ? (
         autoCompleteProducts.map((product) => (
           <Row key={product.id} gutter={[6, 6]}>
             <Col span={3}>
@@ -61,7 +66,10 @@ export default function AutoComplete({ searchValue }) {
               </Typography.Text>
             </Col>
           </Row>
-        ))}
+        ))
+      ) : (
+        <EmptySearch />
+      )}
     </Wrapper>
   );
 }
