@@ -1,9 +1,10 @@
 import { Button, Col, Row, Space, Typography } from 'antd';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { ProductContext } from '..';
 import { CartActionContext } from '../../../contexts/CartProvider';
-import InputQuantify from './InputQuantify'
+import InputQuantify from './InputQuantify';
 
 const Wrapper = styled.div`
   & {
@@ -24,6 +25,7 @@ const StyledButton = styled.button`
     * {
       color: inherit !important;
     }
+    cursor: pointer;
     width: 100%;
     border: none;
     border-radius: 4px;
@@ -49,8 +51,10 @@ const MAX_SOLUONG = 99;
 export default function ThanhToan() {
   const [soluong, setSoluong] = useState(1);
 
-  const { product } = useContext(ProductContext)
-  const { addProduct } = useContext(CartActionContext)
+  const { product } = useContext(ProductContext);
+  const { addProduct } = useContext(CartActionContext);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (soluong < MIN_SOLUONG) {
@@ -61,13 +65,16 @@ export default function ThanhToan() {
     }
   }, [soluong]);
 
-  const handleClickBtnAddCart = useCallback((product, soluong) => {
+  const handleAddProductToCart = (product, soluong, redirect = false) => {
     addProduct(product, soluong);
-  }, [addProduct]);
+    if (redirect) {
+      navigate('/cart');
+    }
+  };
 
   return (
     <Wrapper>
-      <Space direction="vertical" size='middle'>
+      <Space direction="vertical" size="middle">
         <Space size="middle" direction="horizontal">
           <Typography.Text className="input-label" strong>
             Số lượng:{' '}
@@ -81,7 +88,7 @@ export default function ThanhToan() {
             onClickMinus={() => setSoluong((prev) => prev - 1)}
             onClickAdd={() => setSoluong((prev) => prev + 1)}
           />
-          <Button onClick={() => handleClickBtnAddCart(product, soluong)}> 
+          <Button onClick={() => handleAddProductToCart(product, soluong)}>
             <Typography.Text strong>
               <i className="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng
             </Typography.Text>
@@ -89,7 +96,7 @@ export default function ThanhToan() {
         </Space>
         <Row gutter={[12, 12]} className="button-group">
           <Col span={24}>
-            <StyledButton className="primary">
+            <StyledButton onClick={() => handleAddProductToCart(product, soluong, true)} className="primary">
               <div>
                 <Typography.Text strong>Đặt mua ngay</Typography.Text>
               </div>

@@ -1,13 +1,12 @@
+import { Grid } from "antd";
 import React, {
   useEffect,
-  useLayoutEffect,
-  useState,
 } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Footer from "../Footer";
 import Header from "../Header";
-import StickyHeader from "../Header/StickyHeader";
+import CollapseHeader from '../CollapseHeader'
 
 const Content = styled.div`
   padding: 8px 0 32px;
@@ -15,34 +14,20 @@ const Content = styled.div`
 `;
 
 export default function Layout() {
-  const [displayStickyHeader, setDisplayStickyHeader] = useState(false);
+
+  const {xl} = Grid.useBreakpoint();
 
   const { pathname } = useLocation();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     window.scrollTo({
       top: 0,
     });
   }, [pathname]);
 
-  useEffect(() => {
-    const handleSroll = () => {
-      if (window.scrollY >= 550) {
-        setDisplayStickyHeader(true);
-      } else {
-        setDisplayStickyHeader(false);
-      }
-    };
-    window.addEventListener("scroll", handleSroll);
-    return () => {
-      window.removeEventListener("scroll", handleSroll);
-    };
-  }, []);
-
   return (
     <React.Fragment>
-      <Header />
-      {displayStickyHeader && <StickyHeader />}
+      {xl ? <Header /> : <CollapseHeader />}
       <Content>
         <div className="container">
           <Outlet />

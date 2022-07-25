@@ -11,6 +11,12 @@ const autoCompleteSlideIn = keyframes`
 
 const Wrapper = styled.div`
   & {
+    position: relative;
+  }
+`;
+
+const AutoCompleteWrapper = styled.div`
+  & {
     position: absolute;
     background-color: white;
     border: 1px solid #ddd;
@@ -27,7 +33,7 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function AutoComplete({ searchValue }) {
+export default function AutoComplete({ visible, searchValue, children }) {
   const [autoCompleteProducts, setAutoCompleteProducts] = useState([]);
 
   const { getAutoCompleteProduct } = useApi();
@@ -38,7 +44,7 @@ export default function AutoComplete({ searchValue }) {
     (async () => {
       const response = await getAutoCompleteProduct({
         searchValue: deferredSearchValue,
-        limit: 6
+        limit: 6,
       });
       if (response) {
         setAutoCompleteProducts(response.data);
@@ -50,25 +56,30 @@ export default function AutoComplete({ searchValue }) {
 
   return (
     <Wrapper>
-      {!!autoCompleteProducts.length ? (
-        autoCompleteProducts.map((product) => (
-          <Row key={product.id} gutter={[6, 6]}>
-            <Col span={3}>
-              <Image src={product.imgSrc} alt="" />
-            </Col>
-            <Col span={21}>
-              <div>
-                <Typography.Text>{product.name}</Typography.Text>
-              </div>
-              <Typography.Text>
-                {product.price}
-                <sup>₫</sup>
-              </Typography.Text>
-            </Col>
-          </Row>
-        ))
-      ) : (
-        <EmptySearch />
+      {children}
+      {visible && (
+        <AutoCompleteWrapper>
+          {!!autoCompleteProducts.length ? (
+            autoCompleteProducts.map((product) => (
+              <Row key={product.id} gutter={[6, 6]}>
+                <Col span={3}>
+                  <Image preview={false} src={product.imgSrc} alt="" />
+                </Col>
+                <Col span={21}>
+                  <div>
+                    <Typography.Text>{product.name}</Typography.Text>
+                  </div>
+                  <Typography.Text>
+                    {product.price}
+                    <sup>₫</sup>
+                  </Typography.Text>
+                </Col>
+              </Row>
+            ))
+          ) : (
+            <EmptySearch />
+          )}
+        </AutoCompleteWrapper>
       )}
     </Wrapper>
   );

@@ -1,12 +1,11 @@
 import { Input } from 'antd';
-import React, { useDeferredValue, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import AutoComplete from './AutoComplete';
 
 const Wrapper = styled.div`
   & {
     flex: 1;
-    position: relative;
     .ant-input-search-button {
       font-size: 1.8rem;
       color: var(--primary-color);
@@ -23,19 +22,18 @@ export default function SearchBar() {
 
   return (
     <Wrapper>
-      <Input.Search
-        placeholder="Nhập tên sản phẩm, từ khóa cần tìm"
-        value={searchValue}
-        onChange={(event) => setSearchValue(event.target.value)}
-        enterButton={
-          <i className="fa-solid fa-magnifying-glass header__search--icon" />
-        }
-        onFocus={() => setAutoComplete(true)}
-        onBlur={() => setAutoComplete(false)}
-      />
-      {autoComplete && (
-        <AutoComplete searchValue={searchValue} />
-      )}
+      <AutoComplete visible={autoComplete} searchValue={searchValue}>
+        <Input.Search
+          placeholder="Nhập tên sản phẩm, từ khóa cần tìm"
+          value={searchValue}
+          onChange={(event) => setSearchValue(event.target.value)}
+          enterButton={
+            <i className="fa-solid fa-magnifying-glass header__search--icon" />
+          }
+          onFocus={() => setAutoComplete(true)}
+          onBlur={() => setAutoComplete(false)}
+        />
+      </AutoComplete>
     </Wrapper>
   );
 }

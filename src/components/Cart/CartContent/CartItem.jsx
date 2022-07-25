@@ -11,15 +11,13 @@ import {
 import React, { useContext, useEffect, useState } from 'react';
 import { CartActionContext } from '../../../contexts/CartProvider';
 import InputQuantify from '../../DetailProduct/DetailInfo/InputQuantify';
-import { caculateThanhTien } from '../../../utils'
+import { caculateThanhTien } from '../../../utils';
 
 const MIN_SOLUONG = 1;
 const MAX_SOLUONG = 99;
 
 export default function CartItem({ item }) {
-
-  const { changeQuantify, removeProduct } =
-    useContext(CartActionContext);
+  const { changeQuantify, removeProduct } = useContext(CartActionContext);
 
   const [thanhTien, setThanhTien] = useState(() =>
     caculateThanhTien(item.product.price, item.quantify)
@@ -30,7 +28,7 @@ export default function CartItem({ item }) {
   }, [item.product.price, item.quantify]);
 
   return (
-    <Row gutter={[8, 8]} style={{alignItems: 'center'}}>
+    <Row gutter={[8, 8]} style={{ alignItems: 'center' }}>
       <Col span={1}>
         <Checkbox value={item.product.id} />
       </Col>
@@ -53,10 +51,12 @@ export default function CartItem({ item }) {
             {item.product.price}
             <sup>₫</sup>
           </Typography.Text>
-          <Typography.Text delete>
-            {item.product.maxPrice}
-            <sup>₫</sup>
-          </Typography.Text>
+          {item.product.maxPrice && (
+            <Typography.Text delete>
+              {item.product.maxPrice}
+              <sup>₫</sup>
+            </Typography.Text>
+          )}
         </Space>
       </Col>
       <Col span={4}>
@@ -73,7 +73,7 @@ export default function CartItem({ item }) {
         />
       </Col>
       <Col span={4}>
-        <Typography.Title level={5} style={{margin: 0, color: 'red'}}>
+        <Typography.Title level={5} style={{ margin: 0, color: 'red' }}>
           {thanhTien}
           <sup>₫</sup>
         </Typography.Title>

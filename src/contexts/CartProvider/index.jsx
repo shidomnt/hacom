@@ -9,6 +9,7 @@ const KEY_CART = 'KEY_CART';
 
 export default function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
+  const [discountInfo, setDiscountInfo] = useState(null);
 
   useEffect(() => {
     const cartLocalStorage = localStorage.getItem(KEY_CART);
@@ -76,9 +77,10 @@ export default function CartProvider({ children }) {
         changeQuantify,
         addProduct,
         removeProduct,
+        setDiscountInfo
       }}
     >
-      <CartContext.Provider value={{ cart }}>{children}</CartContext.Provider>
+      <CartContext.Provider value={{ cart, discountInfo }}>{children}</CartContext.Provider>
     </CartActionContext.Provider>
   );
 }

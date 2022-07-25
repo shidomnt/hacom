@@ -213,7 +213,7 @@ export default function Footer() {
                     <li>
                       <Link to="#" className="footer__buttom-link">
                         <img
-                          src="./assets/img/dathongbao.png"
+                          src="/assets/img/dathongbao.png"
                           alt="dadangky"
                           className="footer__buttom-img"
                         />

@@ -1,7 +1,7 @@
 import { Button, Col, Divider, Input, Row, Typography } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { CartContext } from '../../../contexts/CartProvider';
+import { CartActionContext, CartContext } from '../../../contexts/CartProvider';
 import {
   checkDiscountCode,
   displayDiscountInfo,
@@ -32,10 +32,10 @@ const Wrapper = styled.div`
 export default function Sidebar({ checkedList }) {
   const [cost, setCost] = useState(0);
   const [discountCode, setDisCountCode] = useState('');
-  const [discountInfo, setDiscountInfo] = useState(null);
   const [discountCost, setDiscountCost] = useState(0);
 
-  const { cart } = useContext(CartContext);
+  const { cart, discountInfo } = useContext(CartContext);
+  const { setDiscountInfo } = useContext(CartActionContext)
 
   useEffect(() => {
     const selectedItems = cart.filter((item) =>

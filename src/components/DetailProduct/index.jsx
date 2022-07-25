@@ -10,6 +10,7 @@ import SlideGallery from "./SlideGallery";
 import StaticInfo from "./StaticInfo";
 import Review from "./Review";
 import ThongSoKiThuat from "./ThongSoKiThuat";
+import Helmet from "react-helmet";
 
 const StyledDetailProductWrapper = styled.div`
   & {
@@ -51,6 +52,11 @@ export default function DetailProduct() {
     <React.Fragment>
       {product ? (
         <ProductContext.Provider value={{ product }}>
+          <Helmet>
+            <title>
+              {product.name}
+            </title>
+          </Helmet>
           <CustomBreadcrumb />
           <StyledDetailProductWrapper>
             <Typography.Title level={4}>{product.name}</Typography.Title>

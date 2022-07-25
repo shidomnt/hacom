@@ -5,6 +5,7 @@ import { CartContext } from '../../contexts/CartProvider';
 import CustomBreadcrumb from '../CustomBreadcrumb';
 import EmptyCart from './EmptyCart';
 import CartContent from './CartContent'
+import { Helmet } from 'react-helmet';
 
 const Wrapper = styled.div`
   .ant-typography {
@@ -17,6 +18,11 @@ export default function Cart() {
 
   return (
     <Wrapper>
+      <Helmet>
+        <title>
+          Thông tin giỏ hàng
+        </title>
+      </Helmet>
       <CustomBreadcrumb />
       <div className="cart-title">
         <Space direction="horizontal">
