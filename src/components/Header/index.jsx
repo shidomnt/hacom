@@ -7,14 +7,13 @@ import { Col, Row } from 'antd';
 import SignAndCart from './SignAndCart';
 
 export default function Header() {
-
   return (
     <header className="header">
       <div className="container">
         <div className="header__top">
           {/* tìm cửa hàng gần nhẩt  */}
           <div className="header__top--nav">
-            <Link to="#" className="header__top--item btn">
+            <Link to="/" className="header__top--item btn">
               <i className="fa-solid fa-location-dot header__top--item-icon" />
               Tìm cửa hàng gần nhất
             </Link>
@@ -167,19 +166,19 @@ export default function Header() {
             </span>
           </div>
           <div className="header__top--nav">
-            <Link to="#" className="header__top--item">
+            <Link to="/" className="header__top--item">
               <i className="fa-solid fa-shield header__top--item-icon" />
               Tra cứu bảo hàng
             </Link>
           </div>
           <div className="header__top--nav">
-            <Link to="#" className="header__top--item">
+            <Link to="/" className="header__top--item">
               <i className="fa-solid fa-file header__top--item-icon" />
               In hóa đơn điện tử
             </Link>
           </div>
           <div className="header__top--nav">
-            <Link to="#" className="header__top--item">
+            <Link to="/" className="header__top--item">
               <i className="fa-solid fa-bullhorn header__top--item-icon" />
               Tuyển dụng
             </Link>
@@ -187,7 +186,7 @@ export default function Header() {
         </div>
         <div className="header__buttom">
           <div className="header__buttom--top">
-            <Link to='/' className="header__buttom--top-logo">
+            <Link to="/" className="header__buttom--top-logo">
               <img
                 src="https://hanoicomputercdn.com/media/lib/19-02-2022/logo-hacomtrangch.png"
                 alt="logo"
@@ -196,11 +195,11 @@ export default function Header() {
             </Link>
             <div className="header__buttom--top-nav">
               <div className="header__buttom--top-nav-build">
-                <Link to="#" className="header__buttom--top-nav-build-list">
+                <Link to="/" className="header__buttom--top-nav-build-list">
                   <i className="fa-solid fa-wrench header__buttom--top-nav-build-list-icon" />
                   Xây dựng cấu hình máy tính
                 </Link>
-                <Link to="#" className="header__buttom--top-nav-build-list">
+                <Link to="/" className="header__buttom--top-nav-build-list">
                   <i className="fa-solid fa-temperature-three-quarters header__buttom--top-nav-build-list-icon"></i>
                   Xây dựng tản nhiệt nước PC
                 </Link>
@@ -222,7 +221,7 @@ export default function Header() {
               <Col span={7}>
                 <div className="header__buttom--buttom-item">
                   <div className="header__buttom--buttom-btn">
-                    <Link to="#" className="header__buttom--buttom-btn-link">
+                    <Link to="/" className="header__buttom--buttom-btn-link">
                       Chính sách - Hướng dẫn
                     </Link>
                     <i className="fa-solid fa-angle-down header__buttom--buttom-btn-icon" />
@@ -237,7 +236,7 @@ export default function Header() {
                     </div>
                   </div>
                   <div className="header__buttom--buttom-btn">
-                    <Link to="#" className="header__buttom--buttom-btn-link">
+                    <Link to="/" className="header__buttom--buttom-btn-link">
                       Tìm theo hãng
                     </Link>
                     <i className="fa-solid fa-angle-down header__buttom--buttom-btn-icon" />
@@ -245,7 +244,7 @@ export default function Header() {
                     <div className="header__subnav brand">
                       <div className="header__subnav-header">
                         <h4>Thương hiệu nổi bật</h4>
-                        <Link to="#" className="header__subnav-brand-link">
+                        <Link to="/" className="header__subnav-brand-link">
                           Xem tất cả
                           <i className="fa-solid fa-arrow-right" />
                         </Link>
@@ -253,84 +252,84 @@ export default function Header() {
                       <div className="header__subnav--list">
                         <ul className="header__subnav-item">
                           <li>
-                            <Link to="#" className="header__subnav-link">
+                            <Link to="/" className="header__subnav-link">
                               <img src="/assets/img/asus.jpg" alt="" />
                             </Link>
                           </li>
                         </ul>
                         <ul className="header__subnav-item">
                           <li>
-                            <Link to="#" className="header__subnav-link">
+                            <Link to="/" className="header__subnav-link">
                               <img src="/assets/img/dell.jpg" alt="" />
                             </Link>
                           </li>
                         </ul>
                         <ul className="header__subnav-item">
                           <li>
-                            <Link to="#" className="header__subnav-link">
+                            <Link to="/" className="header__subnav-link">
                               <img src="/assets/img/msi.jpg" alt="" />
                             </Link>
                           </li>
                         </ul>
                         <ul className="header__subnav-item">
                           <li>
-                            <Link to="#" className="header__subnav-link">
+                            <Link to="/" className="header__subnav-link">
                               <img src="/assets/img/hp.jpg" alt="" />
                             </Link>
                           </li>
                         </ul>
                         <ul className="header__subnav-item">
                           <li>
-                            <Link to="#" className="header__subnav-link">
+                            <Link to="/" className="header__subnav-link">
                               <img src="/assets/img/acer.jpg" alt="" />
                             </Link>
                           </li>
                         </ul>
                         <ul className="header__subnav-item">
                           <li>
-                            <Link to="#" className="header__subnav-link">
+                            <Link to="/" className="header__subnav-link">
                               <img src="/assets/img/intel.png" alt="" />
                             </Link>
                           </li>
                         </ul>
                         <ul className="header__subnav-item">
                           <li>
-                            <Link to="#" className="header__subnav-link">
+                            <Link to="/" className="header__subnav-link">
                               <img src="/assets/img/amd.jpg" alt="" />
                             </Link>
                           </li>
                         </ul>
                         <ul className="header__subnav-item">
                           <li>
-                            <Link to="#" className="header__subnav-link">
+                            <Link to="/" className="header__subnav-link">
                               <img src="/assets/img/lenovo.jpg" alt="" />
                             </Link>
                           </li>
                         </ul>
                         <ul className="header__subnav-item">
                           <li>
-                            <Link to="#" className="header__subnav-link">
+                            <Link to="/" className="header__subnav-link">
                               <img src="/assets/img/gigabyte.jpg" alt="" />
                             </Link>
                           </li>
                         </ul>
                         <ul className="header__subnav-item">
                           <li>
-                            <Link to="#" className="header__subnav-link">
+                            <Link to="/" className="header__subnav-link">
                               <img src="/assets/img/microsoft.jpg" alt="" />
                             </Link>
                           </li>
                         </ul>
                         <ul className="header__subnav-item">
                           <li>
-                            <Link to="#" className="header__subnav-link">
+                            <Link to="/" className="header__subnav-link">
                               <img src="/assets/img/lg.jpg" alt="" />
                             </Link>
                           </li>
                         </ul>
                         <ul className="header__subnav-item">
                           <li>
-                            <Link to="#" className="header__subnav-link">
+                            <Link to="/" className="header__subnav-link">
                               <img src="/assets/img/samsung.jpg" alt="" />
                             </Link>
                           </li>
@@ -347,11 +346,11 @@ export default function Header() {
               <Col span={5}>
                 {/* end header search */}
                 <div className="header__sep">
-                  <Link to="#" className="header__sep--item">
+                  <Link to="/" className="header__sep--item">
                     <i className="fas fa-rss header__sep--item-icon" />
                     Tin công nghệ
                   </Link>
-                  <Link to="#" className="header__sep--item">
+                  <Link to="/" className="header__sep--item">
                     <i className="fa-solid fa-tags header__sep--item-icon" />
                     Khuyến mại
                   </Link>

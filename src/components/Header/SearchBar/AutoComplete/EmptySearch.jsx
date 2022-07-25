@@ -1,9 +1,11 @@
-import { Empty } from 'antd'
-import React from 'react'
+import { Empty } from 'antd';
+import React from 'react';
 
 export default function EmptySearch() {
   return (
-    <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
-  )
+    <Empty
+      description="Không tìm thấy sản phẩm nào :("
+      image={Empty.PRESENTED_IMAGE_SIMPLE}
+    />
+  );
 }
-

@@ -10,7 +10,7 @@ import Header from "../Header";
 import StickyHeader from "../Header/StickyHeader";
 
 const Content = styled.div`
-  padding: 8px 0;
+  padding: 8px 0 32px;
   background-color: #f4f4f4;
 `;
 

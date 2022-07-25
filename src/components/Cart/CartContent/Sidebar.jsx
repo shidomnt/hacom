@@ -1,7 +1,11 @@
 import { Button, Col, Divider, Input, Row, Typography } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { CartActionContext, CartContext } from '../../../contexts/CartProvider';
+import { CartContext } from '../../../contexts/CartProvider';
+import {
+  formatNumberPriceToString,
+  formatStringPriceToNumber,
+} from '../../../utils';
 
 const Wrapper = styled.div`
   & {
@@ -27,8 +31,6 @@ export default function Sidebar({ checkedList }) {
   const [cost, setCost] = useState(0);
 
   const { cart } = useContext(CartContext);
-  const { formatStringPriceToNumber, formatNumberPriceToString } =
-    useContext(CartActionContext);
 
   useEffect(() => {
     const cost = checkedList.reduce((accumulator, productId) => {
@@ -40,7 +42,7 @@ export default function Sidebar({ checkedList }) {
       return accumulator + price;
     }, 0);
     setCost(cost);
-  }, [cart, checkedList, formatStringPriceToNumber]);
+  }, [cart, checkedList]);
 
   return (
     <Wrapper>

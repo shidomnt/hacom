@@ -11,13 +11,14 @@ import {
 import React, { useContext, useEffect, useState } from 'react';
 import { CartActionContext } from '../../../contexts/CartProvider';
 import InputQuantify from '../../DetailProduct/DetailInfo/InputQuantify';
+import { caculateThanhTien } from '../../../utils'
 
 const MIN_SOLUONG = 1;
 const MAX_SOLUONG = 99;
 
 export default function CartItem({ item }) {
 
-  const { changeQuantify, removeProduct, caculateThanhTien } =
+  const { changeQuantify, removeProduct } =
     useContext(CartActionContext);
 
   const [thanhTien, setThanhTien] = useState(() =>

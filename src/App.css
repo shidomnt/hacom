@@ -205,6 +205,9 @@ html {
   margin-right: 10px;
   border-radius: 3px;
 }
+.header__buttom--top-nav-build-list:hover {
+  color: white;
+}
 .header__buttom--top-nav-build-list-icon {
   min-width: 16px;
 }

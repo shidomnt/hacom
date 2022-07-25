@@ -46,7 +46,7 @@ export default function AutoComplete({ searchValue }) {
         setAutoCompleteProducts([]);
       }
     })();
-  }, [deferredSearchValue]);
+  }, [deferredSearchValue, getAutoCompleteProduct]);
 
   return (
     <Wrapper>

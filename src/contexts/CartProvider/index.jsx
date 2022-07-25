@@ -7,25 +7,6 @@ const MIN_SOLUONG = 1;
 const MAX_SOLUONG = 99;
 const KEY_CART = "KEY_CART";
 
-const formatStringPriceToNumber = (stringPrice) =>
-  Number(stringPrice.split('.').join(''));
-
-const formatNumberPriceToString = (thanhTienNumber) => {
-  const thanhTienArrayReverse = thanhTienNumber.toString().split('').reverse();
-  let thanhTienArrayFormated = [];
-  while (thanhTienArrayReverse.length) {
-    const string = thanhTienArrayReverse.splice(0, 3).reverse().join('');
-    thanhTienArrayFormated.unshift(string);
-  }
-  const thanhTienStringFormated = thanhTienArrayFormated.join('.');
-  return thanhTienStringFormated;
-};
-
-const caculateThanhTien = (price, quantify) => {
-  const thanhTienNumber = formatStringPriceToNumber(price) * quantify;
-  return formatNumberPriceToString(thanhTienNumber);
-};
-
 export default function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
 
@@ -98,9 +79,6 @@ export default function CartProvider({ children }) {
         changeQuantify,
         addProduct,
         removeProduct,
-        caculateThanhTien,
-        formatStringPriceToNumber,
-        formatNumberPriceToString,
       }}
     >
       <CartContext.Provider value={{ cart }}>{children}</CartContext.Provider>
