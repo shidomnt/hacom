@@ -16,3 +16,32 @@ export const caculateThanhTien = (price, quantify) => {
   const thanhTienNumber = formatStringPriceToNumber(price) * quantify;
   return formatNumberPriceToString(thanhTienNumber);
 };
+
+const discountMapping = {
+  CDNBK: {
+    type: 'rate',
+    value: 0.9,
+  },
+};
+
+export const displayDiscountInfo = (discountInfo) => {
+  switch (discountInfo.type) {
+    case 'rate':
+      return `${discountInfo.value * 100}%`;
+    default:
+      throw new Error('Discount type khong hop le');
+  }
+};
+
+export const checkDiscountCode = (discountCode = '') => {
+  discountCode = discountCode.toUpperCase();
+  if (Object.keys(discountMapping).includes(discountCode)) {
+    return {
+      discount: discountMapping[discountCode],
+    };
+  }
+  return {
+    discount: null,
+  };
+};
+

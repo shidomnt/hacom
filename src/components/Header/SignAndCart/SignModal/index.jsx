@@ -30,6 +30,27 @@ const StyledModal = styled(Modal)`
         font-size: 40px;
         cursor: pointer;
       }
+      .sign-modal-wrap-image {
+        border-top-right-radius: 16px;
+        border-bottom-right-radius: 16px;
+        position: relative;
+        background-color: #f2f6ff;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        .sign-modal-float-text {
+          .ant-typography {
+            color: #3d5387;
+          }
+          position: absolute;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          bottom: 30px;
+          left: 0;
+          right: 0;
+        }
+      }
     }
   }
 `;
@@ -114,11 +135,17 @@ export default function SignModal({ visible, onCancel }) {
           </StyledMainContent>
         </Col>
         <Col span={9}>
-          <Image
-            style={{ padding: '50px 46px' }}
-            preview={false}
-            src="/assets/img/bg-pop-login-phone.png"
-          />
+          <div className="sign-modal-wrap-image">
+            <Image
+              style={{ padding: '50px 46px' }}
+              preview={false}
+              src="/assets/img/bg-pop-login-phone.png"
+            />
+            <div className="sign-modal-float-text">
+              <Typography.Text strong>Mua sắm tại HACOM</Typography.Text>
+              <Typography.Text>Siêu ưu đãi mỗi ngày</Typography.Text>
+            </div>
+          </div>
         </Col>
       </Row>
     </StyledModal>
