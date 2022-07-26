@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { CartContext } from '../../contexts/CartProvider';
-import SearchBar from '../Header/SearchBar';
+import SearchBar from './SearchBar';
 import DrawerContent from './DrawerContent';
 
 const Wrapper = styled.div`
@@ -20,6 +20,7 @@ const Wrapper = styled.div`
     }
     .search-bar-wrap {
       padding: 0 4px;
+      border-radius: 5px;
     }
     .icon-wrap {
       color: white;
@@ -38,7 +39,7 @@ const Wrapper = styled.div`
         padding: 0 6px;
         border-radius: 50%;
         font-size: 12px;
-        top: -4px;
+        top: 0px;
         right: -12px;
       }
     }

@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   display: flex;
@@ -61,7 +61,7 @@ const StyledHot = styled.span`
       position: absolute;
       left: calc(100% + 4px);
       &:before {
-        content: "";
+        content: '';
         display: block;
         border: 7px solid transparent;
         border-right-color: #ed1b24;
@@ -71,7 +71,7 @@ const StyledHot = styled.span`
         bottom: 0;
       }
       &:after {
-        content: "";
+        content: '';
         display: block;
         border-top: 7px solid #ed1b24;
         border-right: 7px solid transparent;
@@ -103,7 +103,7 @@ const StyledSubMenuWrapper = styled.span`
       padding: 12px;
       &::before {
         display: block;
-        content: "";
+        content: '';
         border: 5px solid transparent;
         border-right-color: #d2d2d2;
         position: absolute;
@@ -112,7 +112,7 @@ const StyledSubMenuWrapper = styled.span`
       }
       &::after {
         display: block;
-        content: "";
+        content: '';
         width: 15px;
         height: 100%;
         position: absolute;
@@ -127,7 +127,7 @@ const StyledSubMenuWrapper = styled.span`
         position: relative;
         &::before {
           display: none;
-          content: "";
+          content: '';
           position: absolute;
           height: 1px;
           bottom: 0;
@@ -153,7 +153,7 @@ const StyledSubMenuWrapper = styled.span`
 
 export default function SideBarPopover({ className, listContent }) {
   function checkHot(title) {
-    return title?.slice(-3) === "HOT" ? (
+    return title?.slice(-3) === 'HOT' ? (
       <StyledHot>
         {title.slice(0, -3)} <span>HOT</span>
       </StyledHot>
@@ -175,23 +175,23 @@ export default function SideBarPopover({ className, listContent }) {
                 <StyledExpandableTitle key={index}>
                   {!!child.childs?.length ? (
                     <StyledSubMenuWrapper>
-                      <Link to='/' className="title-childLevelOne">
-                        {checkHot(child.title)}{" "}
+                      <Link to="/" className="title-childLevelOne">
+                        {checkHot(child.title)}{' '}
                         <i
-                          style={{ fontSize: "8px" }}
+                          style={{ fontSize: '8px' }}
                           className="fa-solid fa-angle-right"
                         ></i>
                       </Link>
                       <div className="sidebar-submenu">
                         {child.childs.map((childLevelTwo, index) => (
-                          <Link to='/' key={index}>
+                          <Link to="/Laptop,Tablet,Mobile/LTAC791" key={index}>
                             {childLevelTwo}
                           </Link>
                         ))}
                       </div>
                     </StyledSubMenuWrapper>
                   ) : (
-                    <Link to='/' className="title-childLevelOne">
+                    <Link to="/" className="title-childLevelOne">
                       {checkHot(child.title)}
                     </Link>
                   )}

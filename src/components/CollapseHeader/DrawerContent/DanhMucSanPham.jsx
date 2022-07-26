@@ -7,9 +7,9 @@ import { getItem } from '../../../utils/';
 
 const StyledMenu = styled(Menu)`
   & {
-    /* .ant-menu-submenu-title { */
-    /*   padding-left: 0 !important; */
-    /* } */
+    & > li > .ant-menu-submenu-title {
+      padding-left: 0 !important;
+    }
   }
 `;
 
