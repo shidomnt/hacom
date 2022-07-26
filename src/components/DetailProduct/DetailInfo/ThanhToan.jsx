@@ -1,5 +1,5 @@
 import { Button, Col, Row, Space, Typography } from 'antd';
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { ProductContext } from '..';

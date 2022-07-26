@@ -1,4 +1,4 @@
-import { Col, Divider, Row, Space, Typography } from 'antd';
+import { Col, Divider, Row, Typography } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { ProductContext } from '../';

@@ -1,5 +1,5 @@
 import { Button, Checkbox, Col, Row, Tooltip, Typography } from 'antd';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { CartActionContext, CartContext } from '../../../contexts/CartProvider';
 import CartItem from './CartItem';
