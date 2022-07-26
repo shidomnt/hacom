@@ -58,11 +58,14 @@ export default function DanhMucSanPham() {
         const itemsOfCategory = sideBarContent[category.slug];
         const listItem = itemsOfCategory.map((item) => {
           const listSubitem = item.childs.map((child) => {
-            return getItem(<Link to="/">{child.title}</Link>, child.title);
+            return getItem(
+              <Link to="/">{child.title}</Link>,
+              `${category.slug}-${item.title}-${child.title}`
+            );
           });
           return getItem(
             <Link to="/">{item.title}</Link>,
-            item.title,
+            `${category.slug}-${item.title}`,
             null,
             listSubitem
           );

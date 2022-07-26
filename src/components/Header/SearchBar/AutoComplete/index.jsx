@@ -1,5 +1,6 @@
 import { Col, Image, Row, Typography } from 'antd';
 import React, { useDeferredValue, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import useApi from '../../../../hooks/useApi';
 import EmptySearch from './EmptySearch';
@@ -63,11 +64,15 @@ export default function AutoComplete({ visible, searchValue, children }) {
             autoCompleteProducts.map((product) => (
               <Row key={product.id} gutter={[6, 6]}>
                 <Col span={3}>
-                  <Image preview={false} src={product.imgSrc} alt="" />
+                  <Link reloadDocument to={`/Laptop,Tablet,Mobile/${product.id}`}>
+                    <Image preview={false} src={product.imgSrc} alt="" />
+                  </Link>
                 </Col>
                 <Col span={21}>
                   <div>
-                    <Typography.Text>{product.name}</Typography.Text>
+                    <Link reloadDocument to={`/Laptop,Tablet,Mobile/${product.id}`}>
+                      <Typography.Text>{product.name}</Typography.Text>
+                    </Link>
                   </div>
                   <Typography.Text>
                     {product.price}

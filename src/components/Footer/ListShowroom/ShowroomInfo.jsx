@@ -1,9 +1,25 @@
-import { Typography } from "antd";
-import React from "react";
+import { Typography } from 'antd';
+import React from 'react';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  & {
+    .showroom-info {
+      margin: 6px 0;
+      font-size: 12px;
+      a {
+        color: red;
+      }
+      i {
+        min-width: 20px;
+      }
+    }
+  }
+`;
 
 export default function ShowroomInfo({ showroom }) {
   return (
-    <React.Fragment>
+    <Wrapper>
       {showroom.diachi && (
         <div className="showroom-info">
           <i className="fa-solid fa-location-dot"></i>
@@ -42,6 +58,6 @@ export default function ShowroomInfo({ showroom }) {
           {showroom.openTime}
         </div>
       )}
-    </React.Fragment>
+    </Wrapper>
   );
 }

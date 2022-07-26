@@ -31,7 +31,7 @@ export default function SearchBar() {
             <i className="fa-solid fa-magnifying-glass header__search--icon" />
           }
           onFocus={() => setAutoComplete(true)}
-          onBlur={() => setAutoComplete(false)}
+          onBlur={() => setTimeout(() => setAutoComplete(false), 200)}
         />
       </AutoComplete>
     </Wrapper>

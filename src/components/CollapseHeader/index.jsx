@@ -1,13 +1,26 @@
-import { Col, Drawer, Row } from 'antd';
-import React, { useContext, useState } from 'react';
+import { Col, Drawer, Image, Row } from 'antd';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { CartContext } from '../../contexts/CartProvider'
-import DrawerContent from './DrawerContent'
+import { CartContext } from '../../contexts/CartProvider';
+import SearchBar from '../Header/SearchBar';
+import DrawerContent from './DrawerContent';
 
 const Wrapper = styled.div`
   & {
-    padding: 4px 20px;
+    padding: 4px 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 9999;
+    background-color: var(--primary-color);
+    .row-wrap {
+      padding: 0 20px;
+    }
+    .search-bar-wrap {
+      padding: 0 4px;
+    }
     .icon-wrap {
       color: white;
       display: flex;
@@ -39,7 +52,8 @@ const StyledDrawer = styled(Drawer)`
   & {
     top: unset;
     bottom: 0;
-    height: calc(100% - 67px);
+    height: calc(100% - 48px + 4px);
+    z-index: 9999;
     .ant-drawer-body {
       padding: 0;
     }
@@ -47,8 +61,8 @@ const StyledDrawer = styled(Drawer)`
 `;
 
 export default function CollapseHeader() {
-
   const { cart } = useContext(CartContext);
+  const [hideLogo, setHideLogo] = useState(false);
 
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -56,48 +70,76 @@ export default function CollapseHeader() {
     setDrawerOpen((prev) => !prev);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY >= 50) {
+        setHideLogo(true);
+      } else {
+        setHideLogo(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <header className="header">
+    <header className="header" style={{ height: 'calc(48px + 32px)' }}>
       <Wrapper>
-        <Row align="middle">
-          <Col span={1}>
-            <div onClick={handleToggleDrawer} className="icon-wrap">
-              {drawerOpen ? (
-                <i className="fa-solid fa-xmark"></i>
+        <div className="row-wrap">
+          <Row gutter={[8, 8]} align="middle">
+            <Col span={1}>
+              <div onClick={handleToggleDrawer} className="icon-wrap">
+                {drawerOpen ? (
+                  <i className="fa-solid fa-xmark"></i>
+                ) : (
+                  <i className="fa-solid fa-bars"></i>
+                )}
+              </div>
+              <StyledDrawer
+                visible={drawerOpen}
+                placement="left"
+                closable={false}
+                autoFocus={false}
+                onClose={() => setDrawerOpen(false)}
+              >
+                <DrawerContent />
+              </StyledDrawer>
+            </Col>
+            <Col flex="auto">
+              {hideLogo ? (
+                <div className="search-bar-wrap">
+                  <SearchBar />
+                </div>
               ) : (
-                <i className="fa-solid fa-bars"></i>
+                <div className="logo-wrap">
+                  <Link to="/" className="header__buttom--top-logo">
+                    <Image
+                      style={{ height: '40px' }}
+                      src="https://hanoicomputercdn.com/media/lib/19-02-2022/logo-hacomtrangch.png"
+                      alt="logo"
+                      className="header__buttom--top-logo-img"
+                    />
+                  </Link>
+                </div>
               )}
-            </div>
-            <StyledDrawer
-              visible={drawerOpen}
-              placement="left"
-              closable={false}
-              autoFocus={false}
-              onClose={() => setDrawerOpen(false)}
-            >
-              <DrawerContent />
-            </StyledDrawer>
-          </Col>
-          <Col flex="auto">
-            <div className="logo-wrap">
-              <Link to="/" className="header__buttom--top-logo">
-                <img
-                  src="https://hanoicomputercdn.com/media/lib/19-02-2022/logo-hacomtrangch.png"
-                  alt="logo"
-                  className="header__buttom--top-logo-img"
-                />
-              </Link>
-            </div>
-          </Col>
-          <Col span={1}>
-            <div className="icon-wrap cart-wrap">
-              <Link to="/cart" style={{ color: 'inherit' }}>
-                <i className="fa-solid fa-cart-shopping"></i>
-              </Link>
-              <span className='cart-soluong'>{cart.length}</span>
-            </div>
-          </Col>
-        </Row>
+            </Col>
+            <Col span={1}>
+              <div className="icon-wrap cart-wrap">
+                <Link to="/cart" style={{ color: 'inherit' }}>
+                  <i className="fa-solid fa-cart-shopping"></i>
+                </Link>
+                <span className="cart-soluong">{cart.length}</span>
+              </div>
+            </Col>
+          </Row>
+        </div>
+        {!hideLogo && (
+          <div className="search-bar-wrap">
+            <SearchBar />
+          </div>
+        )}
       </Wrapper>
     </header>
   );
