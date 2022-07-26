@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import HotLabel from "./HotLabel";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+import HotLabel from './HotLabel'
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   border-right: 1px solid #e1e1e1;
   background-color: white;
   border-bottom: 1px solid #e1e1e1;
-`;
+`
 
 const SidebarContentWrapper = styled.div`
   & {
@@ -23,13 +23,13 @@ const SidebarContentWrapper = styled.div`
     padding-left: 6px;
     padding-right: 6px;
   }
-`;
+`
 
 const StyledNonExpandableTitle = styled.div`
   font-size: 11px;
   color: red;
   margin-bottom: 6px;
-`;
+`
 
 const StyledExpandableTitle = styled.div`
   & {
@@ -46,7 +46,7 @@ const StyledExpandableTitle = styled.div`
       }
     }
   }
-`;
+`
 
 const StyledSubMenuWrapper = styled.span`
   & {
@@ -66,7 +66,7 @@ const StyledSubMenuWrapper = styled.span`
       padding: 12px;
       &::before {
         display: block;
-        content: "";
+        content: '';
         border: 5px solid transparent;
         border-right-color: #d2d2d2;
         position: absolute;
@@ -75,7 +75,7 @@ const StyledSubMenuWrapper = styled.span`
       }
       &::after {
         display: block;
-        content: "";
+        content: '';
         width: 15px;
         height: 100%;
         position: absolute;
@@ -90,7 +90,7 @@ const StyledSubMenuWrapper = styled.span`
         position: relative;
         &::before {
           display: none;
-          content: "";
+          content: '';
           position: absolute;
           height: 1px;
           bottom: 0;
@@ -112,18 +112,23 @@ const StyledSubMenuWrapper = styled.span`
       }
     }
   }
-`;
+`
 
 function checkHot(title) {
-  return title?.slice(-3) === "HOT" ? (
+  return title?.slice(-3) === 'HOT' ? (
     <HotLabel>
       {title.slice(0, -3)} <span>HOT</span>
     </HotLabel>
   ) : (
     title
-  );
+  )
 }
 
+/**
+ *
+ * @param {import("react").PropsWithChildren<{ className: string, listContent: import("../../../../hooks/useApi").SideBarContentChild[]}>} props
+ * @returns
+ */
 export default function SideBarPopover({ className, listContent }) {
   return (
     <Wrapper className={className}>
@@ -136,33 +141,40 @@ export default function SideBarPopover({ className, listContent }) {
               </StyledNonExpandableTitle>
               {content.childs.map((child, index) => (
                 <StyledExpandableTitle key={index}>
-                  {!!child.childs?.length ? (
+                  {!(typeof child === 'string') ? (
                     <StyledSubMenuWrapper>
                       <Link to="/" className="title-child">
-                        {checkHot(child.title)}{" "}
-                        <i
-                          style={{ fontSize: "8px" }}
-                          className="fa-solid fa-angle-right"
-                        ></i>
+                        {checkHot(child.title)}{' '}
+                        {!!child.childs.length && (
+                          <i
+                            style={{ fontSize: '8px' }}
+                            className="fa-solid fa-angle-right"
+                          ></i>
+                        )}
                       </Link>
-                      <div className="sidebar-submenu">
-                        {child.childs.map((childLevelTwo, index) => (
-                          <Link to="/Laptop,Tablet,Mobile/LTAC791" key={index}>
-                            {childLevelTwo}
-                          </Link>
-                        ))}
-                      </div>
+                      {!!child.childs.length && (
+                        <div className="sidebar-submenu">
+                          {child.childs.map((childLevelTwo, index) => (
+                            <Link
+                              to="/Laptop,Tablet,Mobile/LTAC791"
+                              key={index}
+                            >
+                              {childLevelTwo}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
                     </StyledSubMenuWrapper>
                   ) : (
                     <Link to="/" className="title-child">
-                      {checkHot(child.title)}
+                      {checkHot(child)}
                     </Link>
                   )}
                 </StyledExpandableTitle>
               ))}
             </SidebarContentWrapper>
-          );
+          )
         })}
     </Wrapper>
-  );
+  )
 }

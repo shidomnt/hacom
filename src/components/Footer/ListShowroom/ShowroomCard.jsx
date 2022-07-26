@@ -29,6 +29,13 @@ const StyledCard = styled(Card)`
   }
 `;
 
+/**
+ * 
+ * @param {Object} props 
+ * @param {import('../../../hooks/useApi').Showroom} props.showroom
+ * @param {number} props.index
+ * @returns 
+ */
 export default function ShowroomCard({showroom, index}) {
   return (
     <StyledCard

@@ -15,6 +15,12 @@ import InputQuantify from '../../DetailProduct/DetailInfo/InputQuantify';
 import { caculateThanhTien } from '../../../utils';
 import { MIN_SOLUONG, MAX_SOLUONG } from '../../../constant';
 
+/**
+ * 
+ * @param {Object} param
+ * @param {import('../../../contexts/CartProvider').CartItem} param.item 
+ * @returns 
+ */
 export default function CartItem({ item }) {
   const { changeQuantify, removeProduct } = useContext(CartActionContext);
 

@@ -63,8 +63,13 @@ export default function ThanhToan() {
     }
   }, [soluong]);
 
-  const handleAddProductToCart = (product, soluong, redirect = false) => {
-    addProduct(product, soluong);
+  /**
+   * @param {import('../../../hooks/useApi').Product} product 
+   * @param {number} quantify 
+   * @param {boolean} redirect 
+   */
+  const handleAddProductToCart = (product, quantify, redirect = false) => {
+    addProduct(product, quantify);
     if (redirect) {
       navigate('/cart');
     }

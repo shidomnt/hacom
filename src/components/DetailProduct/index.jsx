@@ -11,6 +11,7 @@ import StaticInfo from "./StaticInfo";
 import Review from "./Review";
 import ThongSoKiThuat from "./ThongSoKiThuat";
 import Helmet from "react-helmet";
+import { initProduct } from "../../constant";
 
 const StyledDetailProductWrapper = styled.div`
   & {
@@ -25,10 +26,14 @@ const StyledDetailProductWrapper = styled.div`
   }
 `;
 
-const ProductContext = createContext(null);
+/**
+ * @type {React.Context<{product: import("../../hooks/useApi").Product}>}
+ */
+const ProductContext = createContext();
+
 
 export default function DetailProduct() {
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState(initProduct);
 
   const { category, id } = useParams();
 

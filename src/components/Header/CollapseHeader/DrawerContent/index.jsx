@@ -36,8 +36,6 @@ const Wrapper = styled.div`
 `;
 
 export default function DrawerContent() {
-
-  
   return (
     <Wrapper>
       <Space direction="vertical">

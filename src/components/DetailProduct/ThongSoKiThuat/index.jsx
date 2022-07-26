@@ -32,7 +32,7 @@ export default function ThongSoKiThuat() {
     } else {
       setIsPC(false);
     }
-  }, [product.sku]);
+  }, [product]);
 
   return (
     <Wrapper>

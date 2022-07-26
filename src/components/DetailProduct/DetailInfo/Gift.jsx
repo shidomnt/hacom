@@ -33,6 +33,12 @@ const StyledCard = styled(Card)`
   }
 `;
 
+/**
+ * 
+ * @param {Object} param
+ * @param {import("../../../hooks/useApi").Product['uudai']} param.uudai 
+ * @returns 
+ */
 export default function Gift({ uudai }) {
   return (
     <StyledCard

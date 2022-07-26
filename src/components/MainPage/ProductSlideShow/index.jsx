@@ -42,6 +42,11 @@ const breakPoints = {
   },
 };
 
+/**
+ * 
+ * @param {import("react").PropsWithChildren<{ categories: import("../../../hooks/useApi").Category[]}>} props 
+ * @returns 
+ */
 function ProductSlideShow({ categories }) {
   return (
     <Row gutter={[0, 12]}>

@@ -47,6 +47,11 @@ const Rate = styled.span`
   font-weight: bold;
 `;
 
+/**
+ * 
+ * @param {import("react").PropsWithChildren<{ category: import("../../../hooks/useApi").Category, product: import("../../../hooks/useApi").Product}>} props 
+ * @returns 
+ */
 export default function ProductCard({ category, product }) {
   const swiper = useSwiper();
   

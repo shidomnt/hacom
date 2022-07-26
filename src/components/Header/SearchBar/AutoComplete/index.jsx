@@ -1,20 +1,20 @@
-import { Col, Image, Row, Typography } from 'antd';
-import React, { useDeferredValue, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
-import useApi from '../../../../hooks/useApi';
-import EmptySearch from './EmptySearch';
+import { Col, Image, Row, Typography } from 'antd'
+import React, { useDeferredValue, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import styled, { keyframes } from 'styled-components'
+import useApi from '../../../../hooks/useApi'
+import EmptySearch from './EmptySearch'
 
 const autoCompleteSlideIn = keyframes`
   0% {transform: translateY(10%);opacity: 0;}
 100% {transform: translateY(0%); opacity: 1;}
-`;
+`
 
 const Wrapper = styled.div`
   & {
     position: relative;
   }
-`;
+`
 
 const AutoCompleteWrapper = styled.div`
   & {
@@ -32,28 +32,33 @@ const AutoCompleteWrapper = styled.div`
     max-height: 300px;
     overflow-y: auto;
   }
-`;
+`
 
+/**
+ *
+ * @param {import('react').PropsWithChildren<{visible: boolean, searchValue: string}>} props
+ * @returns
+ */
 export default function AutoComplete({ visible, searchValue, children }) {
-  const [autoCompleteProducts, setAutoCompleteProducts] = useState([]);
+  const [autoCompleteProducts, setAutoCompleteProducts] = useState([])
 
-  const { getAutoCompleteProduct } = useApi();
+  const { getAutoCompleteProduct } = useApi()
 
-  const deferredSearchValue = useDeferredValue(searchValue);
+  const deferredSearchValue = useDeferredValue(searchValue)
 
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       const response = await getAutoCompleteProduct({
         searchValue: deferredSearchValue,
         limit: 6,
-      });
+      })
       if (response) {
-        setAutoCompleteProducts(response.data);
+        setAutoCompleteProducts(response.data)
       } else {
-        setAutoCompleteProducts([]);
+        setAutoCompleteProducts([])
       }
-    })();
-  }, [deferredSearchValue, getAutoCompleteProduct]);
+    })()
+  }, [deferredSearchValue, getAutoCompleteProduct])
 
   return (
     <Wrapper>
@@ -64,13 +69,19 @@ export default function AutoComplete({ visible, searchValue, children }) {
             autoCompleteProducts.map((product) => (
               <Row key={product.id} gutter={[6, 6]}>
                 <Col span={3}>
-                  <Link reloadDocument to={`/Laptop,Tablet,Mobile/${product.id}`}>
+                  <Link
+                    reloadDocument
+                    to={`/Laptop,Tablet,Mobile/${product.id}`}
+                  >
                     <Image preview={false} src={product.imgSrc} alt="" />
                   </Link>
                 </Col>
                 <Col span={21}>
                   <div>
-                    <Link reloadDocument to={`/Laptop,Tablet,Mobile/${product.id}`}>
+                    <Link
+                      reloadDocument
+                      to={`/Laptop,Tablet,Mobile/${product.id}`}
+                    >
                       <Typography.Text>{product.name}</Typography.Text>
                     </Link>
                   </div>
@@ -87,5 +98,5 @@ export default function AutoComplete({ visible, searchValue, children }) {
         </AutoCompleteWrapper>
       )}
     </Wrapper>
-  );
+  )
 }

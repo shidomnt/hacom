@@ -4,30 +4,31 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import ProductCard from "../ProductCard";
 import useApi from "../../../hooks/useApi";
 import Loading from "../../Loading";
+import { initProducts } from "../../../constant";
 
 const SlideShow = ({
   title,
-  category,
+  category: categorySlug,
   query = "?_limit=3",
   slidesPerView = 1,
   spaceBetween = 10,
   button = null,
   breakpoints = {},
 }) => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(initProducts);
 
   const { getProductByCategory } = useApi();
 
   useEffect(() => {
     (async () => {
-      const response = await getProductByCategory(category, query);
+      const response = await getProductByCategory(categorySlug, query);
       if (response) {
         setProducts(response.data);
       } else {
         setProducts([]);
       }
     })();
-  }, [category, getProductByCategory, query]);
+  }, [categorySlug, getProductByCategory, query]);
 
   return !!products.length ? (
     <React.Fragment>
@@ -45,7 +46,7 @@ const SlideShow = ({
       >
         {products.map((product) => (
           <SwiperSlide key={product.id}>
-            <ProductCard category={category} product={product} />
+            <ProductCard category={categorySlug} product={product} />
           </SwiperSlide>
         ))}
       </Swiper>

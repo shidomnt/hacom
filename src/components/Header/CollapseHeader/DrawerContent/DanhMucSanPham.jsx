@@ -1,9 +1,10 @@
-import { Menu } from 'antd';
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import useApi from '../../../../hooks/useApi';
-import { getItem } from '../../../../utils/';
+import { Menu } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+import { initCategories, initSideBarContent } from '../../../../constant'
+import useApi from '../../../../hooks/useApi'
+import { getItem } from '../../../../utils/'
 
 const StyledMenu = styled(Menu)`
   & {
@@ -11,16 +12,16 @@ const StyledMenu = styled(Menu)`
       padding-left: 0 !important;
     }
   }
-`;
+`
 
 export default function DanhMucSanPham() {
-  const { getCategories, getSideBarContent, getSideBarMappingIcon } = useApi();
+  const { getCategories, getSideBarContent, getSideBarMappingIcon } = useApi()
 
-  const [mappingIcon] = useState(() => getSideBarMappingIcon());
+  const [mappingIcon] = useState(() => getSideBarMappingIcon())
 
-  const [categories, setCategories] = useState(null);
+  const [categories, setCategories] = useState(initCategories)
 
-  const [sideBarContent, setSideBarContent] = useState(null);
+  const [sideBarContent, setSideBarContent] = useState(initSideBarContent)
 
   const [items, setItems] = useState(() => [
     getItem(
@@ -28,50 +29,55 @@ export default function DanhMucSanPham() {
       'Danh mục sản phẩm',
       <i className="fa-solid fa-bars"></i>
     ),
-  ]);
+  ])
 
   useEffect(() => {
-    (async () => {
-      const response = await getCategories();
+    ;(async () => {
+      const response = await getCategories()
       if (response) {
-        setCategories(response.data);
+        setCategories(response.data)
       } else {
-        setCategories(null);
+        setCategories([])
       }
-    })();
-  }, [getCategories]);
+    })()
+  }, [getCategories])
 
   useEffect(() => {
-    (async () => {
-      const response = await getSideBarContent();
+    ;(async () => {
+      const response = await getSideBarContent()
       if (response) {
-        setSideBarContent(response.data);
+        setSideBarContent(response.data)
       } else {
-        setSideBarContent(null);
+        setSideBarContent(null)
       }
-    })();
-  }, [getSideBarContent]);
+    })()
+  }, [getSideBarContent])
 
   useEffect(() => {
-    if (categories && sideBarContent) {
+    if (categories.length && sideBarContent) {
       const listCategory = categories.map((category, index) => {
-        const itemsOfCategory = sideBarContent[category.slug];
+        const itemsOfCategory = sideBarContent[category.slug]
         const listItem = itemsOfCategory.map((item) => {
           const listSubitem = item.childs.map((child) => {
             return getItem(
               <Link to="/">{child.title}</Link>,
               `${category.slug}-${item.title}-${child.title}`
-            );
-          });
+            )
+          })
           return getItem(
             <Link to="/">{item.title}</Link>,
             `${category.slug}-${item.title}`,
             null,
             listSubitem
-          );
-        });
-        return getItem(category.name, category.slug, mappingIcon[index], listItem);
-      });
+          )
+        })
+        return getItem(
+          category.name,
+          category.slug,
+          mappingIcon[index],
+          listItem
+        )
+      })
       setItems([
         getItem(
           'Danh mục sản phẩm',
@@ -79,15 +85,15 @@ export default function DanhMucSanPham() {
           <i className="fa-solid fa-bars"></i>,
           listCategory
         ),
-      ]);
+      ])
     }
-  }, [categories, sideBarContent, mappingIcon]);
+  }, [categories, sideBarContent, mappingIcon])
 
   return (
     <React.Fragment>
-      {categories && sideBarContent && (
+      {categories.length && sideBarContent && (
         <StyledMenu mode="inline" items={items} />
       )}
     </React.Fragment>
-  );
+  )
 }

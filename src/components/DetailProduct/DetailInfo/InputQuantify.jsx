@@ -17,8 +17,15 @@ const Wrapper = styled.span`
   }
 `;
 
+/**
+ * 
+ * @param {Object} props
+ * @param {Object} props.onChange
+ * @param {Object} props.onClickMinus
+ * @param {Object} props.onClickAdd
+ * @returns 
+ */
 export default function InputQuantify({
-  onChange,
   onClickMinus,
   onClickAdd,
   ...props

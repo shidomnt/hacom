@@ -13,6 +13,12 @@ import { CartActionContext } from '../../../contexts/CartProvider';
 import InputQuantify from '../../DetailProduct/DetailInfo/InputQuantify';
 import { MAX_SOLUONG, MIN_SOLUONG } from '../../../constant';
 
+/**
+ * 
+ * @param {Object} param
+ * @param {import('../../../contexts/CartProvider').CartItem} param.item 
+ * @returns 
+ */
 export default function CollapseCartItem({ item }) {
   const { changeQuantify, removeProduct } = useContext(CartActionContext);
 

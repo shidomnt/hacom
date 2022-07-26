@@ -5,6 +5,12 @@ import ShowroomInfo from './ShowroomInfo';
 
 const Wrapper = styled.div``;
 
+/**
+ * 
+ * @param {Object} props 
+ * @param {import('../../../hooks/useApi').Showroom[]} props.showrooms 
+ * @returns 
+ */
 export default function ListShowroomCollapse({ showrooms }) {
   return (
     <Wrapper>

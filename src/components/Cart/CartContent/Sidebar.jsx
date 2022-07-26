@@ -30,6 +30,12 @@ const Wrapper = styled.div`
   }
 `;
 
+/**
+ * 
+ * @param {Object} param
+ * @param {import('../../../hooks/useApi').Product['id'][]} param.checkedList
+ * @returns 
+ */
 export default function Sidebar({ checkedList }) {
   const [cost, setCost] = useState(0);
   const [discountCode, setDisCountCode] = useState('');

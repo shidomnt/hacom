@@ -117,6 +117,7 @@ export default function CollapseHeader() {
                 <div className="logo-wrap">
                   <Link to="/" className="header__buttom--top-logo">
                     <Image
+                    preview={false}
                       style={{ height: '40px' }}
                       src="https://hanoicomputercdn.com/media/lib/19-02-2022/logo-hacomtrangch.png"
                       alt="logo"

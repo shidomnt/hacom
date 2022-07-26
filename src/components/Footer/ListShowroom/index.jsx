@@ -4,12 +4,14 @@ import styled from 'styled-components';
 import useApi from '../../../hooks/useApi';
 import ShowroomCard from './ShowroomCard';
 import ListShowroomCollapse from './ListShowroomCollapse';
+import { initShowrooms } from '../../../constant';
 
 const Wrapper = styled.div`
   padding-bottom: 24px;
 `;
+
 export default function ListShowroom() {
-  const [showrooms, setShowrooms] = useState(null);
+  const [showrooms, setShowrooms] = useState(initShowrooms);
   const { getShowRooms } = useApi();
 
   useEffect(() => {
@@ -18,16 +20,12 @@ export default function ListShowroom() {
       if (response) {
         setShowrooms(response.data);
       } else {
-        setShowrooms(null);
+        setShowrooms([]);
       }
     })();
   }, [getShowRooms]);
 
   const { md } = Grid.useBreakpoint();
-
-  if (!showrooms) {
-    return;
-  }
 
   if (!md) {
     return <ListShowroomCollapse showrooms={showrooms} />;

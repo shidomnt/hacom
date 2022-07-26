@@ -17,6 +17,12 @@ const Wrapper = styled.div`
   }
 `;
 
+/**
+ * 
+ * @param {Object} props 
+ * @param {import('../../../hooks/useApi').Showroom} props.showroom
+ * @returns 
+ */
 export default function ShowroomInfo({ showroom }) {
   return (
     <Wrapper>

@@ -1,7 +1,8 @@
-import { Card, Col, List, Row, Select, Space, Typography } from 'antd';
-import React, { useEffect, useMemo, useState } from 'react';
-import styled from 'styled-components';
-import useApi from '../../../hooks/useApi';
+import { Card, Col, List, Row, Select, Space, Typography } from 'antd'
+import React, { useEffect, useMemo, useState } from 'react'
+import styled from 'styled-components'
+import { initShowrooms } from '../../../constant'
+import useApi from '../../../hooks/useApi'
 
 const Wrapper = styled.div`
   & {
@@ -77,7 +78,7 @@ const Wrapper = styled.div`
       }
     }
   }
-`;
+`
 
 const data = [
   {
@@ -100,99 +101,104 @@ const data = [
       'Nhận hàng và thanh toán tại nhà (ship COD)',
     ],
   },
-];
+]
 
 export default function StaticInfo() {
-  const [showrooms, setShowrooms] = useState(null);
-  const [filterShowrooms, setFilterShowrooms] = useState('default');
-  const { getShowRooms } = useApi();
+  const [showrooms, setShowrooms] = useState(initShowrooms)
+  const [filterShowrooms, setFilterShowrooms] = useState('default')
+  const { getShowRooms } = useApi()
 
   useEffect(() => {
-    (async () => {
-      const response = await getShowRooms();
+    ;(async () => {
+      const response = await getShowRooms()
       if (response) {
-        setShowrooms(response.data);
+        setShowrooms(response.data)
       } else {
-        setShowrooms(null);
+        setShowrooms(null)
       }
-    })();
-  }, [getShowRooms]);
+    })()
+  }, [getShowRooms])
 
   const listThanhPho = useMemo(() => {
-    if (showrooms) {
-      const result = new Set();
-      showrooms.forEach((showroom) => {
-        result.add(showroom.thanhpho);
-      });
-      return Array.from(result);
-    }
-    return null;
-  }, [showrooms]);
+    /** @type {Set<string>} */
+    const result = new Set()
+    showrooms.forEach((showroom) => {
+      result.add(showroom.thanhpho)
+    })
+    return Array.from(result)
+  }, [showrooms])
 
   return (
     <Wrapper>
       <Row gutter={[12, 12]}>
-        {showrooms && (
-          <Col span={24}>
-            <Card
-              className="card"
-              title={
-                <Typography.Text className="cart-title" strong>
-                  Các cửa hàng có sẵn sản phẩm này
-                </Typography.Text>
-              }
-            >
-              <Space direction="vertical" style={{ width: '100%' }}>
-                <Row gutter={8}>
-                  <Col span={12}>
-                    <Select
-                      defaultValue={filterShowrooms}
-                      onChange={(thanhpho) => setFilterShowrooms(thanhpho)}
-                      className="select-selector"
-                    >
-                      <Select.Option value="default">Tỉnh/Thành</Select.Option>
-                      {listThanhPho.map((thanhpho) => (
-                        <Select.Option value={thanhpho} key={thanhpho}>
-                          {thanhpho}
-                        </Select.Option>
-                      ))}
-                    </Select>
-                  </Col>
-                  <Col span={12}>
-                    <Select defaultValue="default" className="select-selector">
-                      <Select.Option value="default">Quận/Huyện</Select.Option>
-                    </Select>
-                  </Col>
-                </Row>
-                <List
-                  className="list-showroom"
-                  dataSource={showrooms.filter((showroom) =>
-                    filterShowrooms === 'default'
-                      ? true
-                      : filterShowrooms === showroom.thanhpho
-                  )}
-                  renderItem={(showroom) => (
-                    <li className="item-showroom">
-                      <Typography.Text ellipsis={{ width: '100%' }}>
-                        {showroom.dienthoaiban && (
-                          <React.Fragment>
-                            <span className="dienthoaiban">
-                              <i className="fa-solid fa-phone"></i>{' '}
-                              {showroom.dienthoaiban}
-                            </span>
-                          </React.Fragment>
-                        )}
-                        <span className="diachi">{showroom.diachi}</span>
-                      </Typography.Text>
-                    </li>
-                  )}
-                />
-              </Space>
-            </Card>
-          </Col>
-        )}
+        <Col span={24}>
+          <Card
+            className="card"
+            title={
+              <Typography.Text className="cart-title" strong>
+                Các cửa hàng có sẵn sản phẩm này
+              </Typography.Text>
+            }
+          >
+            <Space direction="vertical" style={{ width: '100%' }}>
+              <Row gutter={8}>
+                <Col span={12}>
+                  <Select
+                    defaultValue={filterShowrooms}
+                    onChange={(thanhpho) => setFilterShowrooms(thanhpho)}
+                    className="select-selector"
+                  >
+                    <Select.Option value="default">Tỉnh/Thành</Select.Option>
+                    {listThanhPho.map((thanhpho) => (
+                      <Select.Option value={thanhpho} key={thanhpho}>
+                        {thanhpho}
+                      </Select.Option>
+                    ))}
+                  </Select>
+                </Col>
+                <Col span={12}>
+                  <Select defaultValue="default" className="select-selector">
+                    <Select.Option value="default">Quận/Huyện</Select.Option>
+                  </Select>
+                </Col>
+              </Row>
+              <List
+                className="list-showroom"
+                dataSource={showrooms.filter((showroom) =>
+                  filterShowrooms === 'default'
+                    ? true
+                    : filterShowrooms === showroom.thanhpho
+                )}
+                renderItem={(showroom) => (
+                  <li className="item-showroom">
+                    <Typography.Text ellipsis={{ width: '100%' }}>
+                      {showroom.dienthoaiban && (
+                        <React.Fragment>
+                          <span className="dienthoaiban">
+                            <i className="fa-solid fa-phone"></i>{' '}
+                            {showroom.dienthoaiban}
+                          </span>
+                        </React.Fragment>
+                      )}
+                      <span className="diachi">{showroom.diachi}</span>
+                    </Typography.Text>
+                  </li>
+                )}
+              />
+            </Space>
+          </Card>
+        </Col>
         {data.map((cardInfo) => (
-          <Col key={cardInfo.title} span={24} xll={24} xl={24} lg={24} md={0} sm={0} xs={0}>
+          <Col
+            key={cardInfo.title}
+            span={24}
+            xll={24}
+            xl={24}
+            lg={24}
+            md={0}
+            sm={0}
+            xs={0}
+          >
             <Card
               className="card"
               key={cardInfo.title}
@@ -216,5 +222,5 @@ export default function StaticInfo() {
         ))}
       </Row>
     </Wrapper>
-  );
+  )
 }
