@@ -6,6 +6,7 @@ import SearchBar from './SearchBar';
 import { Col, Row } from 'antd';
 import SignAndCart from './SignAndCart';
 import StickyHeader from './StickyHeader';
+import './style.css'
 
 export default function Header() {
   const [displayStickyHeader, setDisplayStickyHeader] = useState(false);

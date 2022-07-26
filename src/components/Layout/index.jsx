@@ -6,7 +6,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Footer from "../Footer";
 import Header from "../Header";
-import CollapseHeader from '../CollapseHeader'
+import CollapseHeader from '../Header/CollapseHeader'
 
 const Content = styled.div`
   padding: 8px 0 32px;

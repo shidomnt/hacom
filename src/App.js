@@ -1,14 +1,12 @@
-import './App.css';
-import MainPage from './components/MainPage';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import DetailProduct from './components/DetailProduct';
-import Cart from './components/Cart';
-import Layout from './components/Layout';
-import CartProvider from './contexts/CartProvider'
+import "./App.css";
+import MainPage from "./components/MainPage";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import DetailProduct from "./components/DetailProduct";
+import Cart from "./components/Cart";
+import Layout from "./components/Layout";
+import CartProvider from "./contexts/CartProvider";
 
 function App() {
-  
-
   return (
     <BrowserRouter>
       <CartProvider>

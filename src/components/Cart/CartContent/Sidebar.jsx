@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { CartActionContext, CartContext } from '../../../contexts/CartProvider';
 import {
+  caculateDiscountCost,
   checkDiscountCode,
   displayDiscountInfo,
   formatNumberPriceToString,
@@ -35,7 +36,7 @@ export default function Sidebar({ checkedList }) {
   const [discountCost, setDiscountCost] = useState(0);
 
   const { cart, discountInfo } = useContext(CartContext);
-  const { setDiscountInfo } = useContext(CartActionContext)
+  const { setDiscountInfo } = useContext(CartActionContext);
 
   useEffect(() => {
     const selectedItems = cart.filter((item) =>
@@ -51,13 +52,8 @@ export default function Sidebar({ checkedList }) {
 
   useEffect(() => {
     if (discountInfo) {
-      switch (discountInfo.type) {
-        case 'rate':
-          setDiscountCost(cost * discountInfo.value);
-          break;
-        default:
-          throw new Error('Discount type khong hop le');
-      }
+      const result = caculateDiscountCost(discountInfo, cost);
+      setDiscountCost(result);
     } else {
       setDiscountCost(0);
     }
@@ -126,6 +122,11 @@ export default function Sidebar({ checkedList }) {
             <div style={{ textAlign: 'right' }}>(Đã bao gồm VAT nếu có)</div>
             <Divider type="horizontal" />
           </div>
+        </Col>
+        <Col span={24}>
+          <Button className="submit-btn" type="primary">
+            Tiến hành đặt hàng
+          </Button>
         </Col>
       </Row>
     </Wrapper>

@@ -1,27 +1,28 @@
-import React, { createContext, useCallback, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useEffect, useState } from "react";
+import {
+  MAX_SOLUONG,
+  MIN_SOLUONG,
+  KEY_LOCAL_STORAGE_CART,
+} from "../../constant";
 
 const CartContext = createContext(null);
 const CartActionContext = createContext(null);
-
-const MIN_SOLUONG = 1;
-const MAX_SOLUONG = 99;
-const KEY_CART = 'KEY_CART';
 
 export default function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
   const [discountInfo, setDiscountInfo] = useState(null);
 
   useEffect(() => {
-    const cartLocalStorage = localStorage.getItem(KEY_CART);
+    const cartLocalStorage = localStorage.getItem(KEY_LOCAL_STORAGE_CART);
     if (!cartLocalStorage) {
-      localStorage.setItem(KEY_CART, JSON.stringify([]));
+      localStorage.setItem(KEY_LOCAL_STORAGE_CART, JSON.stringify([]));
     } else {
       setCart(JSON.parse(cartLocalStorage));
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(KEY_CART, JSON.stringify(cart));
+    localStorage.setItem(KEY_LOCAL_STORAGE_CART, JSON.stringify(cart));
   }, [cart]);
 
   const addProduct = useCallback(
@@ -29,7 +30,7 @@ export default function CartProvider({ children }) {
       const isExisted = cart.find((item) => item.product.id === product.id);
 
       if (isExisted) {
-        return window.alert('San pham da co trong gio hang!');
+        return window.alert("San pham da co trong gio hang!");
       }
 
       setCart((prevCart) => [
@@ -39,7 +40,7 @@ export default function CartProvider({ children }) {
           quantify,
         },
       ]);
-      window.alert('Them vao gio hang thanh cong!');
+      window.alert("Them vao gio hang thanh cong!");
     },
     [cart]
   );
@@ -63,7 +64,7 @@ export default function CartProvider({ children }) {
   }, []);
 
   const removeProduct = useCallback((productId) => {
-    if (productId === 'all') {
+    if (productId === "all") {
       setCart([]);
     }
     setCart((prevCart) =>
@@ -77,10 +78,12 @@ export default function CartProvider({ children }) {
         changeQuantify,
         addProduct,
         removeProduct,
-        setDiscountInfo
+        setDiscountInfo,
       }}
     >
-      <CartContext.Provider value={{ cart, discountInfo }}>{children}</CartContext.Provider>
+      <CartContext.Provider value={{ cart, discountInfo }}>
+        {children}
+      </CartContext.Provider>
     </CartActionContext.Provider>
   );
 }

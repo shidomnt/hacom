@@ -11,9 +11,7 @@ import {
 import React, { useContext } from 'react';
 import { CartActionContext } from '../../../contexts/CartProvider';
 import InputQuantify from '../../DetailProduct/DetailInfo/InputQuantify';
-
-const MIN_SOLUONG = 1;
-const MAX_SOLUONG = 99;
+import { MAX_SOLUONG, MIN_SOLUONG } from '../../../constant';
 
 export default function CollapseCartItem({ item }) {
   const { changeQuantify, removeProduct } = useContext(CartActionContext);

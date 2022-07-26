@@ -2,7 +2,7 @@ import { Col, Drawer, Image, Row } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { CartContext } from '../../contexts/CartProvider';
+import { CartContext } from '../../../contexts/CartProvider';
 import SearchBar from './SearchBar';
 import DrawerContent from './DrawerContent';
 

@@ -2,6 +2,7 @@ import React from 'react';
 import ListShowroom from './ListShowroom';
 import Policies from './Policies';
 import About from './About';
+import './style.css'
 
 export default function Footer() {
   return (

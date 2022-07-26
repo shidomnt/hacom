@@ -1,0 +1,139 @@
+/*start footer HỆ THỐNG CÁC SHOWROOM CỦA HACOM */
+.footer__item {
+  margin: 16px 0;
+}
+.footer__title {
+  text-align: center;
+  font-size: 1.8rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  padding: 15px 0 0;
+  margin-bottom: 32px;
+}
+.footer__title::after {
+  display: block;
+  content: "";
+  height: 2px;
+  width: 200px;
+  background: #333;
+  margin: auto;
+}
+.footer__item--header {
+  display: flex;
+}
+.footer__item--stt {
+  display: inline-block;
+  color: #fff;
+  background-color: #ed1b24;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 3px 0 0 3px;
+  padding: 2px 14px;
+}
+.footer__item--title {
+  width: 100%;
+  font-size: 1.3rem;
+  color: #fff;
+  background-color: #243a76;
+  padding: 10px 10px;
+}
+.footer__item--description {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  margin: 4px 0;
+}
+.footer__item--description.address {
+  color: #222;
+  font-weight: 700;
+}
+.footer__item--description.showroom {
+  color: #ed1b24;
+}
+/*end footer HỆ THỐNG CÁC SHOWROOM CỦA HACOM */
+
+/* start footer 2 */
+.footer__buttom--header {
+  border-top: 1px solid #dadada;
+  border-bottom: 1px dashed #dadada;
+}
+.footer__policies-list {
+  /* display: flex; */
+  /* justify-content: space-between; */
+  align-items: center;
+  padding: 16px 0;
+}
+.footer__policies {
+  /* width: calc((100% - 12px) / 4); */
+  display: flex;
+  align-items: center;
+}
+.footer__policies--icon {
+  color: #ed1b24;
+  font-size: 3.2rem;
+  margin-right: 12px;
+}
+.footer__policies--title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #222;
+}
+.footer__policies--content {
+  font-size: 1.3rem;
+}
+.footet__buttom--body-item {
+  margin-top: 22px;
+}
+.footet__buttom--body-item li {
+  list-style: none;
+  padding: 4px 0;
+}
+.footet__buttom--body-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.footet__buttom--body-title::after {
+  display: block;
+  content: "";
+  height: 2px;
+  width: 100px;
+  background: red;
+  margin-top: 5px;
+}
+.footer__buttom-link {
+  display: block;
+  font-size: 1.2rem;
+  color: #222;
+  text-decoration: none;
+}
+.footer__social {
+  display: flex;
+}
+.footer__buttom-link i {
+  font-size: 3.4rem;
+  margin-right: 8px;
+}
+.footer__buttom-link i.fb {
+  color: rgb(66, 103, 178);
+}
+.footer__buttom-link i.ytb {
+  color: rgb(255, 0, 0);
+}
+.footer__buttom-link i.ins {
+  color: #f09433;
+}
+.foooter__btn {
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  color: #fff;
+  background-color: rgb(36, 58, 118);
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/*  end footer 2 */

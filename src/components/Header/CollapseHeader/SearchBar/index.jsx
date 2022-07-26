@@ -1,7 +1,7 @@
 import { Input } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import AutoComplete from '../../Header/SearchBar/AutoComplete';
+import AutoComplete from '../../SearchBar/AutoComplete';
 
 const Wrapper = styled.div`
 & {

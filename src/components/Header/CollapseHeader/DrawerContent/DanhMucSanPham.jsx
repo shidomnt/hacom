@@ -2,8 +2,8 @@ import { Menu } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import useApi from '../../../hooks/useApi';
-import { getItem } from '../../../utils/';
+import useApi from '../../../../hooks/useApi';
+import { getItem } from '../../../../utils/';
 
 const StyledMenu = styled(Menu)`
   & {
@@ -54,7 +54,7 @@ export default function DanhMucSanPham() {
 
   useEffect(() => {
     if (categories && sideBarContent) {
-      const listCategory = categories.map((category) => {
+      const listCategory = categories.map((category, index) => {
         const itemsOfCategory = sideBarContent[category.slug];
         const listItem = itemsOfCategory.map((item) => {
           const listSubitem = item.childs.map((child) => {
@@ -70,7 +70,7 @@ export default function DanhMucSanPham() {
             listSubitem
           );
         });
-        return getItem(category.name, category.slug, null, listItem);
+        return getItem(category.name, category.slug, mappingIcon[index], listItem);
       });
       setItems([
         getItem(
@@ -81,7 +81,7 @@ export default function DanhMucSanPham() {
         ),
       ]);
     }
-  }, [categories, sideBarContent]);
+  }, [categories, sideBarContent, mappingIcon]);
 
   return (
     <React.Fragment>

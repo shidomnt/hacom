@@ -1,10 +1,9 @@
-import axios from 'axios';
-
-const apiUrl = 'http://localhost:4000';
+import axios from "axios";
+import { API_URL } from '../constant'
 
 async function callApi(url, onError = () => {}) {
   try {
-    const response = await axios.get(apiUrl + url);
+    const response = await axios.get(API_URL + url);
     return response;
   } catch (e) {
     onError(e);
@@ -13,7 +12,7 @@ async function callApi(url, onError = () => {}) {
 
 async function getAutoCompleteProduct({
   searchValue,
-  category = 'Laptop,Tablet,Mobile',
+  category = "Laptop,Tablet,Mobile",
   limit = 3,
 }) {
   return await callApi(`/${category}?q=${searchValue}&_limit=${limit}`);
@@ -24,19 +23,19 @@ async function getProduct(categorySlug, id) {
 }
 
 async function getShowRooms() {
-  return await callApi('/showrooms');
+  return await callApi("/showrooms");
 }
 
 async function getCategories() {
   return await callApi(`/categories`);
 }
 
-async function getProductByCategory(categorySlug, query = '') {
+async function getProductByCategory(categorySlug, query = "") {
   return await callApi(`/${categorySlug}` + query);
 }
 
 async function getSideBarContent() {
-  return await callApi('/sidebar_content');
+  return await callApi("/sidebar_content");
 }
 
 function getSideBarMappingIcon() {
@@ -64,29 +63,29 @@ function getSideBarMappingIcon() {
 
 function getBannerList() {
   const slideSrcList = [
-    'https://hanoicomputercdn.com/media/banner/30_Jun5f554fbfc506240d24abb33881ee5a78.jpg',
-    'https://hanoicomputercdn.com/media/banner/01_Julae73d3b3f05f8253fbe4d8c483c609ec.png',
-    'https://hanoicomputercdn.com/media/banner/04_Jul5d448b2e204aa778e135c23f1c6b3d30.jpg',
-    'https://hanoicomputercdn.com/media/banner/07_Julf2510bcf29fb56683fba210e2ba14815.jpg',
-    'https://hanoicomputercdn.com/media/banner/09_Juldeb6f9166ebe1f5064d0671eeb038b04.png',
+    "https://hanoicomputercdn.com/media/banner/30_Jun5f554fbfc506240d24abb33881ee5a78.jpg",
+    "https://hanoicomputercdn.com/media/banner/01_Julae73d3b3f05f8253fbe4d8c483c609ec.png",
+    "https://hanoicomputercdn.com/media/banner/04_Jul5d448b2e204aa778e135c23f1c6b3d30.jpg",
+    "https://hanoicomputercdn.com/media/banner/07_Julf2510bcf29fb56683fba210e2ba14815.jpg",
+    "https://hanoicomputercdn.com/media/banner/09_Juldeb6f9166ebe1f5064d0671eeb038b04.png",
   ];
 
   const rightSlideBannerSrcList = [
-    'https://i.ytimg.com/vi/W0uuq13u4MY/hq720.jpg',
-    'https://hanoicomputercdn.com/media/banner/16_Jul4a47a0db6e60853dedfcfdf08a5ca249.png',
+    "https://i.ytimg.com/vi/W0uuq13u4MY/hq720.jpg",
+    "https://hanoicomputercdn.com/media/banner/16_Jul4a47a0db6e60853dedfcfdf08a5ca249.png",
   ];
 
   const bottomSlideBannerSrcList = [
-    'https://hanoicomputercdn.com/media/banner/16_Julfb5c81ed3a220004b71069645f112867.png',
-    'https://hanoicomputercdn.com/media/banner/16_Jul10fb15c77258a991b0028080a64fb42d.png',
-    'https://hanoicomputercdn.com/media/banner/16_Jul09dd8c2662b96ce14928333f055c5580.png',
+    "https://hanoicomputercdn.com/media/banner/16_Julfb5c81ed3a220004b71069645f112867.png",
+    "https://hanoicomputercdn.com/media/banner/16_Jul10fb15c77258a991b0028080a64fb42d.png",
+    "https://hanoicomputercdn.com/media/banner/16_Jul09dd8c2662b96ce14928333f055c5580.png",
   ];
 
   const underSlideBannerSrcList = [
-    'https://hanoicomputercdn.com/media/banner/16_Jul8266e4bfeda1bd42d8f9794eb4ea0a13.png',
-    'https://hanoicomputercdn.com/media/banner/16_Julf19c9085129709ee14d013be869df69b.png',
-    'https://hanoicomputercdn.com/media/banner/16_Jul9eb9cd58b9ea5e04c890326b5c1f471f.png',
-    'https://hanoicomputercdn.com/media/banner/16_Jul602e8f042f463dc47ebfdf6a94ed5a6d.png',
+    "https://hanoicomputercdn.com/media/banner/16_Jul8266e4bfeda1bd42d8f9794eb4ea0a13.png",
+    "https://hanoicomputercdn.com/media/banner/16_Julf19c9085129709ee14d013be869df69b.png",
+    "https://hanoicomputercdn.com/media/banner/16_Jul9eb9cd58b9ea5e04c890326b5c1f471f.png",
+    "https://hanoicomputercdn.com/media/banner/16_Jul602e8f042f463dc47ebfdf6a94ed5a6d.png",
   ];
 
   return {
@@ -95,6 +94,32 @@ function getBannerList() {
     bottomSlideBannerSrcList,
     underSlideBannerSrcList,
   };
+}
+
+function getListCollection() {
+  const listCollection = [
+    {
+      id: 1,
+      category: "Laptop,Tablet,Mobile",
+      title: "MÁY TÍNH CHO GAME THỦ HACOM LUÔN SẴN ĐỦ",
+    },
+    {
+      id: 2,
+      category: "PhuKienLaptop,PC,Mobile",
+      title: "TRƯỚC MẶT SẠCH SẼ KHÔNG GIAN LUÔN ĐẸP ĐẼ",
+    },
+    {
+      id: 3,
+      category: "PCVanPhong,AIO,MiniPC",
+      title: "TẤT CẢ TRONG MỘT ALL IN ONE, MINI PC, LÀ SỐ 1",
+    },
+    {
+      id: 4,
+      category: "Loa,TaiNghe,Mic,Webcam",
+      title: "VỰA KHÔNG GIAN RIÊNG TƯ ĐEO VÀO LÀ LẮC LƯ",
+    },
+  ];
+  return listCollection;
 }
 
 export default function useApi() {
@@ -107,5 +132,6 @@ export default function useApi() {
     getSideBarContent,
     getShowRooms,
     getAutoCompleteProduct,
+    getListCollection
   };
 }

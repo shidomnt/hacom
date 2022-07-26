@@ -10,7 +10,7 @@ const Wrapper = styled.div`
     border-bottom: 1px solid #e1e1e1;
     position: relative;
     z-index: 99;
-    .pop {
+    .popover {
       position: absolute;
       left: calc(100% + 7px);
       top: 0;
@@ -53,7 +53,7 @@ const StyledCategoryWrapper = styled.div`
         display: block;
       }
     }
-    .pop {
+    .popover {
       display: flex;
     }
     }
@@ -89,6 +89,7 @@ export default function SideBar() {
       }
     })();
   }, [getSideBarContent]);
+
   return (
     categories && (
       <Wrapper>
@@ -99,7 +100,7 @@ export default function SideBar() {
             </div>
             {sideBarContent && (
               <SideBarPopover
-                className="pop"
+                className="popover"
                 listContent={sideBarContent[category.slug]}
               />
             )}

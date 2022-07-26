@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { CartActionContext, CartContext } from '../../../contexts/CartProvider';
 import CartItem from './CartItem';
 import Sidebar from './Sidebar';
-import CollapseCartItem from './CollapseCartItem'
+import CollapseCartItem from './CollapseCartItem';
 
 const Wrapper = styled.div`
   & {
@@ -101,7 +101,11 @@ export default function CartContent() {
                     {cart.map((item) => (
                       <Col span={24} key={item.product.id}>
                         <div className="cart-block">
-                          {md ? <CartItem item={item} /> : <CollapseCartItem item={item} />}
+                          {md ? (
+                            <CartItem item={item} />
+                          ) : (
+                            <CollapseCartItem item={item} />
+                          )}
                         </div>
                       </Col>
                     ))}
@@ -112,16 +116,7 @@ export default function CartContent() {
           </Row>
         </Col>
         <Col span={7} xxl={7} xl={7} lg={7} md={24} sm={24} xs={24}>
-          <Row gutter={[8, 8]}>
-            <Col span={24}>
-              <Sidebar checkedList={checkedList} />
-            </Col>
-            <Col span={24}>
-              <Button className="submit-btn" type="primary">
-                Tiến hành đặt hàng
-              </Button>
-            </Col>
-          </Row>
+          <Sidebar checkedList={checkedList} />
         </Col>
       </Row>
     </Wrapper>

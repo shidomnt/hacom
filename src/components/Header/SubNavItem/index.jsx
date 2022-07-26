@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import './style.css'
 
 const data = [1, 2, 3, 4];
 

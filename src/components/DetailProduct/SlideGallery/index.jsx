@@ -43,10 +43,9 @@ export default function SlideGallery() {
             ))}
           </Swiper>
         </Col>
-        <Col span={24}  xxl={24} xl={24} lg={24} md={24} sm={0} xs={0}>
+        <Col span={24} xxl={24} xl={24} lg={24} md={24} sm={0} xs={0}>
           <Swiper
             onSwiper={setThumbsSwiper}
-            loop={true}
             spaceBetween={5}
             slidesPerView={3}
             watchSlidesProgress={true}

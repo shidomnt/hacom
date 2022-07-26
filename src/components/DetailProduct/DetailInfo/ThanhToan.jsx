@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { ProductContext } from '..';
 import { CartActionContext } from '../../../contexts/CartProvider';
 import InputQuantify from './InputQuantify';
+import { MAX_SOLUONG, MIN_SOLUONG } from '../../../constant';
 
 const Wrapper = styled.div`
   & {
@@ -44,9 +45,6 @@ const StyledButton = styled.button`
     background-color: #2b7cea;
   }
 `;
-
-const MIN_SOLUONG = 1;
-const MAX_SOLUONG = 99;
 
 export default function ThanhToan() {
   const [soluong, setSoluong] = useState(1);

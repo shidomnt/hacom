@@ -1,6 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import HotLabel from "./HotLabel";
 
 const Wrapper = styled.div`
   display: flex;
@@ -38,48 +39,10 @@ const StyledExpandableTitle = styled.div`
     a {
       color: inherit;
     }
-    a.title-childLevelOne {
+    a.title-child {
       &:hover {
         color: #e00;
         text-decoration: underline;
-      }
-    }
-  }
-`;
-
-const StyledHot = styled.span`
-  & {
-    position: relative;
-    span {
-      font-size: 9px;
-      background: #ed1b24;
-      color: #fff;
-      padding: 0 5px;
-      margin-left: 9px;
-      text-transform: uppercase;
-      font-weight: 700;
-      position: absolute;
-      left: calc(100% + 4px);
-      &:before {
-        content: '';
-        display: block;
-        border: 7px solid transparent;
-        border-right-color: #ed1b24;
-        position: absolute;
-        right: 100%;
-        top: 0;
-        bottom: 0;
-      }
-      &:after {
-        content: '';
-        display: block;
-        border-top: 7px solid #ed1b24;
-        border-right: 7px solid transparent;
-        border-bottom: 7px solid #ed1b24;
-        position: absolute;
-        left: 100%;
-        top: 0;
-        bottom: 0;
       }
     }
   }
@@ -103,7 +66,7 @@ const StyledSubMenuWrapper = styled.span`
       padding: 12px;
       &::before {
         display: block;
-        content: '';
+        content: "";
         border: 5px solid transparent;
         border-right-color: #d2d2d2;
         position: absolute;
@@ -112,7 +75,7 @@ const StyledSubMenuWrapper = styled.span`
       }
       &::after {
         display: block;
-        content: '';
+        content: "";
         width: 15px;
         height: 100%;
         position: absolute;
@@ -127,7 +90,7 @@ const StyledSubMenuWrapper = styled.span`
         position: relative;
         &::before {
           display: none;
-          content: '';
+          content: "";
           position: absolute;
           height: 1px;
           bottom: 0;
@@ -151,17 +114,17 @@ const StyledSubMenuWrapper = styled.span`
   }
 `;
 
-export default function SideBarPopover({ className, listContent }) {
-  function checkHot(title) {
-    return title?.slice(-3) === 'HOT' ? (
-      <StyledHot>
-        {title.slice(0, -3)} <span>HOT</span>
-      </StyledHot>
-    ) : (
-      title
-    );
-  }
+function checkHot(title) {
+  return title?.slice(-3) === "HOT" ? (
+    <HotLabel>
+      {title.slice(0, -3)} <span>HOT</span>
+    </HotLabel>
+  ) : (
+    title
+  );
+}
 
+export default function SideBarPopover({ className, listContent }) {
   return (
     <Wrapper className={className}>
       {listContent &&
@@ -175,10 +138,10 @@ export default function SideBarPopover({ className, listContent }) {
                 <StyledExpandableTitle key={index}>
                   {!!child.childs?.length ? (
                     <StyledSubMenuWrapper>
-                      <Link to="/" className="title-childLevelOne">
-                        {checkHot(child.title)}{' '}
+                      <Link to="/" className="title-child">
+                        {checkHot(child.title)}{" "}
                         <i
-                          style={{ fontSize: '8px' }}
+                          style={{ fontSize: "8px" }}
                           className="fa-solid fa-angle-right"
                         ></i>
                       </Link>
@@ -191,7 +154,7 @@ export default function SideBarPopover({ className, listContent }) {
                       </div>
                     </StyledSubMenuWrapper>
                   ) : (
-                    <Link to="/" className="title-childLevelOne">
+                    <Link to="/" className="title-child">
                       {checkHot(child.title)}
                     </Link>
                   )}

@@ -1,7 +1,8 @@
 import { Button, Col, Grid, Row } from 'antd';
-import React from 'react';
+import React, { useState } from 'react';
 import SlideShow from '../SlideShow';
 import styled from 'styled-components';
+import useApi from '../../../hooks/useApi';
 
 const Wrapper = styled.div`
   padding: 30px 25px 15px;
@@ -19,36 +20,17 @@ const StyledButton = styled(Button)`
   border-radius: 4px;
 `;
 
-const listCollection = [
-  {
-    id: 1,
-    category: 'Laptop,Tablet,Mobile',
-    title: 'MÁY TÍNH CHO GAME THỦ HACOM LUÔN SẴN ĐỦ',
-  },
-  {
-    id: 2,
-    category: 'PhuKienLaptop,PC,Mobile',
-    title: 'TRƯỚC MẶT SẠCH SẼ KHÔNG GIAN LUÔN ĐẸP ĐẼ',
-  },
-  {
-    id: 3,
-    category: 'PCVanPhong,AIO,MiniPC',
-    title: 'TẤT CẢ TRONG MỘT ALL IN ONE, MINI PC, LÀ SỐ 1',
-  },
-  {
-    id: 4,
-    category: 'Loa,TaiNghe,Mic,Webcam',
-    title: 'VỰA KHÔNG GIAN RIÊNG TƯ ĐEO VÀO LÀ LẮC LƯ',
-  },
-];
-
 const CollectionProduct = () => {
   const { xl } = Grid.useBreakpoint();
+  
+  const { getListCollection } = useApi();
+  
+  const [listCollection] = useState(() => getListCollection());
 
   return (
     <Wrapper>
       <Row gutter={32}>
-        {listCollection.slice(0, xl ? null : 3).map((collection) => (
+        {listCollection.slice(0, xl ? undefined : 3).map((collection) => (
           <Col span={xl ? 6 : 8} key={collection.id}>
             <SlideShow
               category={collection.category}

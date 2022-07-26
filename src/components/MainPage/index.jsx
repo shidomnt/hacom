@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { Col, Row } from 'antd';
-import SideBar from './SideBar';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Autoplay } from 'swiper';
-import CollectionProduct from './ProductCollection';
-import useApi from '../../hooks/useApi';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-
-import ProductSlideShow from './ProductSlideShow';
-import { Helmet } from 'react-helmet';
+import React, { useEffect, useState } from "react";
+import { Col, Row } from "antd";
+import SideBar from "./SideBar";
+import CollectionProduct from "./ProductCollection";
+import useApi from "../../hooks/useApi";
+import styled from "styled-components";
+import ProductSlideShow from "./ProductSlideShow";
+import { Helmet } from "react-helmet";
+import MainBanner from "./Banner/MainBanner";
+import RightBanner from "./Banner/RightBanner";
+import BottomBanner from "./Banner/BottomBanner";
+import UnderBanner from "./Banner/UnderBanner";
 
 const StyledImgContainer = styled.div`
   & {
@@ -66,72 +66,28 @@ export default function Content() {
                       sm={24}
                       md={24}
                       xs={24}
-                      style={{ display: 'flex', alignItems: 'center' }}
+                      style={{ display: "flex", alignItems: "center" }}
                     >
-                      <Swiper
-                        spaceBetween={10}
-                        slidesPerView={1}
-                        modules={[Navigation, Autoplay]}
-                        navigation
-                        autoplay={{ delay: 8000 }}
-                        style={{ borderRadius: '6px' }}
-                        loop={true}
-                      >
-                        {slideSrcList.map((src) => (
-                          <SwiperSlide key={src}>
-                            <Link to="/">
-                              <StyledImgContainer>
-                                <img src={src} alt="banner" />
-                              </StyledImgContainer>
-                            </Link>
-                          </SwiperSlide>
-                        ))}
-                      </Swiper>
+                      <MainBanner slideSrcList={slideSrcList} />
                     </Col>
                     <Col span={8} xxl={8} xl={8} lg={8} sm={0} md={0} xs={0}>
-                      <Row gutter={[6, 6]}>
-                        {rightSlideBannerSrcList.map((src) => (
-                          <Col span={24} key={src}>
-                            <Link to="/">
-                              <StyledImgContainer>
-                                <img src={src} alt="banner" />
-                              </StyledImgContainer>
-                            </Link>
-                          </Col>
-                        ))}
-                      </Row>
+                      <RightBanner
+                        rightSlideBannerSrcList={rightSlideBannerSrcList}
+                      />
                     </Col>
                   </Row>
                 </Col>
                 <Col span={24} xxl={24} xl={24} lg={24} sm={0} md={0} xs={0}>
-                  <Row gutter={6}>
-                    {bottomSlideBannerSrcList.map((src) => (
-                      <Col span={8} key={src}>
-                        <Link to="/">
-                          <StyledImgContainer>
-                            <img src={src} alt="banner" />
-                          </StyledImgContainer>
-                        </Link>
-                      </Col>
-                    ))}
-                  </Row>
+                  <BottomBanner
+                    bottomSlideBannerSrcList={bottomSlideBannerSrcList}
+                  />
                 </Col>
               </Row>
             </Col>
           </Row>
         </Col>
         <Col span={24} xxl={24} xl={24} lg={24} sm={0} md={0} xs={0}>
-          <Row gutter={6}>
-            {underSlideBannerSrcList.map((src) => (
-              <Col span={6} key={src}>
-                <Link to="/">
-                  <StyledImgContainer>
-                    <img src={src} alt="banner" />
-                  </StyledImgContainer>
-                </Link>
-              </Col>
-            ))}
-          </Row>
+          <UnderBanner underSlideBannerSrcList={underSlideBannerSrcList} />
         </Col>
 
         {categories && (
@@ -149,3 +105,5 @@ export default function Content() {
     </React.Fragment>
   );
 }
+
+export { StyledImgContainer };
