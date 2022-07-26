@@ -80,10 +80,6 @@ export default function DanhMucSanPham() {
     }
   }, [categories, sideBarContent]);
 
-  useEffect(() => {
-    console.log('items', items);
-  }, [items]);
-
   return (
     <React.Fragment>
       {categories && sideBarContent && (

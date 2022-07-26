@@ -2,6 +2,7 @@ import {
   Button,
   Checkbox,
   Col,
+  Grid,
   Image,
   Row,
   Space,
@@ -22,6 +23,8 @@ export default function CartItem({ item }) {
   const [thanhTien, setThanhTien] = useState(() =>
     caculateThanhTien(item.product.price, item.quantify)
   );
+
+  const { lg } = Grid.useBreakpoint();
 
   useEffect(() => {
     setThanhTien(caculateThanhTien(item.product.price, item.quantify));
@@ -51,7 +54,7 @@ export default function CartItem({ item }) {
             {item.product.price}
             <sup>₫</sup>
           </Typography.Text>
-          {item.product.maxPrice && (
+          {item.product.maxPrice && lg && (
             <Typography.Text delete>
               {item.product.maxPrice}
               <sup>₫</sup>

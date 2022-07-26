@@ -1,9 +1,10 @@
-import { Button, Checkbox, Col, Row, Tooltip, Typography } from 'antd';
+import { Button, Checkbox, Col, Grid, Row, Tooltip, Typography } from 'antd';
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { CartActionContext, CartContext } from '../../../contexts/CartProvider';
 import CartItem from './CartItem';
 import Sidebar from './Sidebar';
+import CollapseCartItem from './CollapseCartItem'
 
 const Wrapper = styled.div`
   & {
@@ -12,6 +13,11 @@ const Wrapper = styled.div`
       background-color: white;
       padding: 8px 8px;
       border-radius: 6px;
+    }
+    .cart-list {
+      .ant-checkbox-group {
+        width: 100%;
+      }
     }
     .cart-remove-btn {
       padding: 0;
@@ -32,6 +38,8 @@ export default function CartContent() {
   const [checkedList, setCheckedList] = useState([]);
   const [checkAll, setCheckAll] = useState(false);
 
+  const { md } = Grid.useBreakpoint();
+
   const handleChangeCheckAll = (event) => {
     setCheckedList(
       event.target.checked ? cart.map((item) => item.product.id) : []
@@ -49,7 +57,7 @@ export default function CartContent() {
       <Row gutter={[8, 8]}>
         <Col span={17} xxl={17} xl={17} lg={17} md={24} sm={24} xs={24}>
           <Row gutter={[8, 8]}>
-            <Col span={24}>
+            <Col span={24} xxl={24} xl={24} lg={24} md={24} sm={0} xs={0}>
               <div className="cart-block">
                 <Row gutter={[8, 8]}>
                   <Col span={1}>
@@ -93,7 +101,7 @@ export default function CartContent() {
                     {cart.map((item) => (
                       <Col span={24} key={item.product.id}>
                         <div className="cart-block">
-                          <CartItem item={item} />
+                          {md ? <CartItem item={item} /> : <CollapseCartItem item={item} />}
                         </div>
                       </Col>
                     ))}
@@ -104,12 +112,12 @@ export default function CartContent() {
           </Row>
         </Col>
         <Col span={7} xxl={7} xl={7} lg={7} md={24} sm={24} xs={24}>
-          <Row gutter={[8,8]}>
+          <Row gutter={[8, 8]}>
             <Col span={24}>
               <Sidebar checkedList={checkedList} />
             </Col>
             <Col span={24}>
-              <Button className='submit-btn' type='primary'>
+              <Button className="submit-btn" type="primary">
                 Tiến hành đặt hàng
               </Button>
             </Col>
