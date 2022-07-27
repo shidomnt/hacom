@@ -62,7 +62,7 @@ function ProductSlideShow({ categories }) {
             title={
               <Title>
                 <span className="title">{category.name}</span>
-                <Link to="/" className="more">
+                <Link to={`/${category.slug}`} className="more">
                   Xem tất cả
                 </Link>
               </Title>

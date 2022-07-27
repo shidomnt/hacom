@@ -1,6 +1,6 @@
 // @ts-check
 import { Col, Image, Row, Typography } from 'antd'
-import React, { useDeferredValue, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
 import { initProducts } from '../../../../constant'
@@ -33,6 +33,10 @@ const AutoCompleteWrapper = styled.div`
     animation: ${autoCompleteSlideIn} 0.2s linear;
     max-height: 300px;
     overflow-y: auto;
+    .autocomplete-row-wrap:not(:last-child) {
+      margin-bottom: 12px;
+      border-bottom: 1px solid #f4f4f4;
+    }
   }
 `
 
@@ -52,21 +56,25 @@ export default function AutoComplete({ visible, searchValue, children }) {
 
   const { getAutoCompleteProduct } = useApi()
 
-  const deferredSearchValue = useDeferredValue(searchValue)
-
   useEffect(() => {
-    ;(async () => {
-      const response = await getAutoCompleteProduct({
-        searchValue: deferredSearchValue,
-        limit: 6,
-      })
-      if (response) {
-        setAutoCompleteProducts(response.data)
-      } else {
-        setAutoCompleteProducts([])
-      }
-    })()
-  }, [deferredSearchValue, getAutoCompleteProduct])
+    let idSetTimeOut
+    if (searchValue) {
+      idSetTimeOut = setTimeout(async () => {
+        const response = await getAutoCompleteProduct({
+          searchValue: searchValue,
+          limit: 6,
+        })
+        if (response) {
+          setAutoCompleteProducts(response.data)
+        } else {
+          setAutoCompleteProducts([])
+        }
+      }, 500)
+    }
+    return () => {
+      clearTimeout(idSetTimeOut)
+    }
+  }, [searchValue, getAutoCompleteProduct])
 
   return (
     <Wrapper>
@@ -75,30 +83,35 @@ export default function AutoComplete({ visible, searchValue, children }) {
         <AutoCompleteWrapper>
           {!!autoCompleteProducts.length ? (
             autoCompleteProducts.map((product) => (
-              <Row key={product.id} gutter={[6, 6]}>
-                <Col span={3}>
-                  <Link
-                    reloadDocument
-                    to={`/Laptop,Tablet,Mobile/${product.id}`}
-                  >
-                    <Image preview={false} src={product.imgSrc} alt="" />
-                  </Link>
-                </Col>
-                <Col span={21}>
-                  <div>
+              <div className="autocomplete-row-wrap">
+                <Row key={product.id} gutter={[6, 6]}>
+                  <Col span={3} xs={6}>
                     <Link
                       reloadDocument
                       to={`/Laptop,Tablet,Mobile/${product.id}`}
                     >
-                      <Typography.Text>{product.name}</Typography.Text>
+                      <Image preview={false} src={product.imgSrc} alt="" />
                     </Link>
-                  </div>
-                  <Typography.Text>
-                    {product.price}
-                    <sup>₫</sup>
-                  </Typography.Text>
-                </Col>
-              </Row>
+                  </Col>
+                  <Col span={21} xs={18}>
+                    <Link
+                      reloadDocument
+                      to={`/Laptop,Tablet,Mobile/${product.id}`}
+                    >
+                      <Typography.Paragraph
+                        style={{ margin: 0 }}
+                        ellipsis={{ rows: 2 }}
+                      >
+                        {product.name}
+                      </Typography.Paragraph>
+                    </Link>
+                    <Typography.Text strong>
+                      {product.price}
+                      <sup>₫</sup>
+                    </Typography.Text>
+                  </Col>
+                </Row>
+              </div>
             ))
           ) : (
             <EmptySearch />
@@ -108,3 +121,4 @@ export default function AutoComplete({ visible, searchValue, children }) {
     </Wrapper>
   )
 }
+

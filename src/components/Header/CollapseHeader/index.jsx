@@ -20,7 +20,7 @@ const Wrapper = styled.div`
       padding: 0 20px;
     }
     .search-bar-wrap {
-      padding: 0 4px;
+      padding: 0 12px;
       border-radius: 5px;
     }
     .icon-wrap {

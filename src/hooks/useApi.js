@@ -213,22 +213,22 @@ function getListCollection() {
   const listCollection = [
     {
       id: 1,
-      category: 'Laptop,Tablet,Mobile',
+      categorySlug: 'Laptop,Tablet,Mobile',
       title: 'MÁY TÍNH CHO GAME THỦ HACOM LUÔN SẴN ĐỦ',
     },
     {
       id: 2,
-      category: 'PhuKienLaptop,PC,Mobile',
+      categorySlug: 'PhuKienLaptop,PC,Mobile',
       title: 'TRƯỚC MẶT SẠCH SẼ KHÔNG GIAN LUÔN ĐẸP ĐẼ',
     },
     {
       id: 3,
-      category: 'PCVanPhong,AIO,MiniPC',
+      categorySlug: 'PCVanPhong,AIO,MiniPC',
       title: 'TẤT CẢ TRONG MỘT ALL IN ONE, MINI PC, LÀ SỐ 1',
     },
     {
       id: 4,
-      category: 'Loa,TaiNghe,Mic,Webcam',
+      categorySlug: 'Loa,TaiNghe,Mic,Webcam',
       title: 'VỰA KHÔNG GIAN RIÊNG TƯ ĐEO VÀO LÀ LẮC LƯ',
     },
   ]

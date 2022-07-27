@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import SlideShow from '../SlideShow';
 import styled from 'styled-components';
 import useApi from '../../../hooks/useApi';
+import { Link } from 'react-router-dom';
 
 const Wrapper = styled.div`
   padding: 30px 25px 15px;
@@ -19,6 +20,7 @@ const StyledTitle = styled.div`
 const StyledButton = styled(Button)`
   background-color: #243a76;
   border-radius: 4px;
+  font-size: 13px;
 `;
 
 const CollectionProduct = () => {
@@ -34,11 +36,13 @@ const CollectionProduct = () => {
         {listCollection.slice(0, xl ? undefined : 3).map((collection) => (
           <Col span={xl ? 6 : 8} key={collection.id}>
             <SlideShow
-              category={collection.category}
+              category={collection.categorySlug}
               title={<StyledTitle>{collection.title}</StyledTitle>}
               button={
-                <StyledButton size="large" href="#" type="primary" block>
+                <StyledButton size="large" type="primary" block>
+                  <Link to={`/${collection.categorySlug}`}>
                   Xem tất cả sản phẩm
+                  </Link>
                 </StyledButton>
               }
             />

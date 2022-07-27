@@ -1,11 +1,11 @@
 // @ts-check
-import { Col, Divider, List, Row, Typography } from 'antd';
-import React, { useContext } from 'react';
-import styled from 'styled-components';
-import { ProductContext } from '..';
-import Gift from './Gift';
-import Price from './Price';
-import ThanhToan from './ThanhToan';
+import { Col, Divider, Grid, List, Row, Typography } from 'antd'
+import React, { useContext } from 'react'
+import styled from 'styled-components'
+import { ProductContext } from '..'
+import Gift from './Gift'
+import Price from './Price'
+import ThanhToan from './ThanhToan'
 
 const Wrapper = styled.div`
   & {
@@ -30,10 +30,12 @@ const Wrapper = styled.div`
       }
     }
   }
-`;
+`
 
 export default function DetailInfo() {
-  const { product } = useContext(ProductContext);
+  const { product } = useContext(ProductContext)
+
+  const { xs } = Grid.useBreakpoint()
 
   return (
     <Wrapper>
@@ -53,14 +55,18 @@ export default function DetailInfo() {
             />{' '}
             <span className="color-288ad6">{product.rate.slice(1, -1)}</span>
           </Typography.Text>
-          <Divider type="vertical" />
-          <Typography.Text>
-            Bình luận: <span className="color-288ad6">0</span>
-          </Typography.Text>
-          <Divider type="vertical" />
-          <Typography.Text>
-            Lượt xem: <span className="color-288ad6">0</span>
-          </Typography.Text>
+          {!xs && (
+            <React.Fragment>
+              <Divider type="vertical" />
+              <Typography.Text>
+                Bình luận: <span className="color-288ad6">0</span>
+              </Typography.Text>
+              <Divider type="vertical" />
+              <Typography.Text>
+                Lượt xem: <span className="color-288ad6">0</span>
+              </Typography.Text>
+            </React.Fragment>
+          )}
         </Col>
         <Col span={24} xxl={24} xl={24} lg={24} md={24} sm={0} xs={0}>
           <div className="summary">
@@ -91,5 +97,6 @@ export default function DetailInfo() {
         </Col>
       </Row>
     </Wrapper>
-  );
+  )
 }
+

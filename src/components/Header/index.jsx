@@ -148,7 +148,6 @@ export default function Header() {
                   </div>
                 </div>
               </div>
-              <div className="header__overlay" />
             </div>
             {/* khách doanh nghiệpp */}
             <div className="header__top--nav">
@@ -178,7 +177,6 @@ export default function Header() {
                   </div>
                 </div>
               </div>
-              <div className="header__overlay" />
             </div>
             <div className="header__top--nav">
               <span className="header__top--item btn-primary">
@@ -242,9 +240,9 @@ export default function Header() {
                 <Col span={7}>
                   <div className="header__buttom--buttom-item">
                     <div className="header__buttom--buttom-btn">
-                      <Link to="/" className="header__buttom--buttom-btn-link">
+                      <span className="header__buttom--buttom-btn-link">
                         Chính sách - Hướng dẫn
-                      </Link>
+                      </span>
                       <i className="fa-solid fa-angle-down header__buttom--buttom-btn-icon" />
                       {/* submenu chích sách - hướng dẫn */}
                       <div className="header__subnav">
@@ -257,9 +255,9 @@ export default function Header() {
                       </div>
                     </div>
                     <div className="header__buttom--buttom-btn">
-                      <Link to="/" className="header__buttom--buttom-btn-link">
+                      <span className="header__buttom--buttom-btn-link">
                         Tìm theo hãng
-                      </Link>
+                      </span>
                       <i className="fa-solid fa-angle-down header__buttom--buttom-btn-icon" />
                       {/* submenu tìm theo hãng */}
                       <div className="header__subnav brand">

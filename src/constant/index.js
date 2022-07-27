@@ -16,7 +16,9 @@
  * @typedef {CartItem[]} Cart
  */
 
-/** ========= Type Define ========= */
+/** ========= End Type Define ========= */
+
+/** ========= State Init ========= */
 
 /**
  * @type {string[]}
@@ -57,6 +59,8 @@ export const initSideBarContent = null
  * @type {import("../hooks/useApi").Product[]}
  */
 export const initProducts = []
+
+/** ========= End State Init ========= */
 
 /**
  * @type {number}

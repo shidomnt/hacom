@@ -16,9 +16,6 @@ const Wrapper = styled.div`
     padding: 13px 0;
     box-shadow: 1px 4px 5px #b3aeae;
     animation: slideIn 0.2s linear;
-    .cart__price {
-      top: 0;
-    }
     .header__buttom--top-nav-hostsing {
       background: none;
     }

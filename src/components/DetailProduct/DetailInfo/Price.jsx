@@ -1,8 +1,8 @@
 // @ts-check
-import { Divider, Space, Typography } from "antd";
-import React, { useContext } from "react";
-import styled from "styled-components";
-import { ProductContext } from "..";
+import { Divider, Grid, Space, Typography } from 'antd'
+import React, { useContext } from 'react'
+import styled from 'styled-components'
+import { ProductContext } from '..'
 
 const Wrapper = styled.div`
   & {
@@ -28,11 +28,12 @@ const Wrapper = styled.div`
       font-size: 14px;
     }
   }
-`;
+`
 
 export default function Price() {
+  const { product } = useContext(ProductContext)
 
-  const { product } = useContext(ProductContext);
+  const { xs } = Grid.useBreakpoint()
 
   return (
     <Wrapper>
@@ -42,15 +43,19 @@ export default function Price() {
             {product.price}
             <sup>₫</sup>
           </Typography.Title>
-          <Divider type="vertical" />
-          <Typography.Text className="max-price" delete>
-            {product.maxPrice}
-            <sup>₫</sup>
-          </Typography.Text>
-          <Divider type="vertical" />
-          <Typography.Text className="discount">
-            {product.discount}
-          </Typography.Text>
+          {!xs && (
+            <React.Fragment>
+              <Divider type="vertical" />
+              <Typography.Text className="max-price" delete>
+                {product.maxPrice}
+                <sup>₫</sup>
+              </Typography.Text>
+              <Divider type="vertical" />
+              <Typography.Text className="discount">
+                {product.discount}
+              </Typography.Text>
+            </React.Fragment>
+          )}
         </div>
         <div>
           <div className="chip">{product.vat}</div>
@@ -59,5 +64,6 @@ export default function Price() {
         </div>
       </Space>
     </Wrapper>
-  );
+  )
 }
+
