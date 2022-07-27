@@ -1,3 +1,4 @@
+// @ts-check
 import { Empty } from 'antd';
 import React from 'react';
 

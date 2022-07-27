@@ -1,35 +1,61 @@
+// @ts-check
 import React, { createContext, useCallback, useEffect, useState } from 'react'
 import {
   MAX_SOLUONG,
   MIN_SOLUONG,
   KEY_LOCAL_STORAGE_CART,
+  initDiscountInfo,
+  initCart,
 } from '../../constant'
 
+/** ========= Type Define ========= */
+
 /**
- * @typedef {Object} CartItem
- * @property {import("../../hooks/useApi").Product} product
- * @property {number} quantify
+ * @callback AddProduct
+ * @param {import('../../hooks/useApi').Product} product
+ * @param {number=} quantify
+ * @returns {void}
  */
 
 /**
- * @typedef {CartItem[]} Cart
+ * @callback ChangeQuantify
+ * @param {string} productId
+ * @param {number} newQuantify
+ * @returns {void}
  */
 
 /**
- * @type {Cart}
+ * @callback RemoveProduct
+ * @param {string | 'all'} productId
+ * @return {void}
  */
-const initCart = []
 
 /**
- * @type {import('../../constant').DiscountInfo | null}
+ * @typedef {Object} CartContextType
+ * @property {import('../../constant').Cart} cart
+ * @property {import('../../constant').DiscountInfo | null} discountInfo
  */
-const initDiscountInfo = null
 
 /**
- * @type {React.Context<{cart: Cart, discountInfo: import('../../constant').DiscountInfo | null}>}
+ * @typedef {Object} CartActionContextType
+ * @property {AddProduct} addProduct
+ * @property {RemoveProduct} removeProduct
+ * @property {ChangeQuantify} changeQuantify
+ * @property {React.Dispatch<React.SetStateAction<import('../../constant').DiscountInfo | null>>} setDiscountInfo
  */
+
+/** ========= Type Define ========= */
+
+/**
+ * @type {React.Context<CartContextType>}
+ */
+// @ts-ignore
 const CartContext = createContext()
 
+/**
+ * @type {React.Context<CartActionContextType>}
+ */
+// @ts-ignore
 const CartActionContext = createContext()
 
 export default function CartProvider({ children }) {
@@ -51,8 +77,7 @@ export default function CartProvider({ children }) {
 
   const addProduct = useCallback(
     /**
-     * @param {import('../../hooks/useApi').Product} product
-     * @param {number} quantify
+     * @type {AddProduct}
      */
     (product, quantify = 1) => {
       const isExisted = cart.find((item) => item.product.id === product.id)
@@ -75,9 +100,7 @@ export default function CartProvider({ children }) {
 
   const changeQuantify = useCallback(
     /**
-     *
-     * @param {string} productId
-     * @param {number} newQuantify
+     * @type {ChangeQuantify}
      */
     (productId, newQuantify) => {
       if (newQuantify > MAX_SOLUONG) {
@@ -101,8 +124,7 @@ export default function CartProvider({ children }) {
 
   const removeProduct = useCallback(
     /**
-     *
-     * @param {string} productId
+     * @type {RemoveProduct}
      */
     (productId) => {
       if (productId === 'all') {
@@ -132,3 +154,4 @@ export default function CartProvider({ children }) {
 }
 
 export { CartContext, CartActionContext }
+

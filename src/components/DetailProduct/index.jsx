@@ -1,17 +1,18 @@
-import { Col, Divider, Row, Typography } from "antd";
-import React, { createContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import styled from "styled-components";
-import useApi from "../../hooks/useApi";
-import CustomBreadcrumb from "../CustomBreadcrumb";
-import Loading from "../Loading";
-import DetailInfo from "./DetailInfo";
-import SlideGallery from "./SlideGallery";
-import StaticInfo from "./StaticInfo";
-import Review from "./Review";
-import ThongSoKiThuat from "./ThongSoKiThuat";
-import Helmet from "react-helmet";
-import { initProduct } from "../../constant";
+// @ts-check
+import { Col, Divider, Row, Typography } from 'antd'
+import React, { createContext, useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import styled from 'styled-components'
+import useApi from '../../hooks/useApi'
+import CustomBreadcrumb from '../CustomBreadcrumb'
+import Loading from '../Loading'
+import DetailInfo from './DetailInfo'
+import SlideGallery from './SlideGallery'
+import StaticInfo from './StaticInfo'
+import Review from './Review'
+import ThongSoKiThuat from './ThongSoKiThuat'
+import Helmet from 'react-helmet'
+import { initProduct } from '../../constant'
 
 const StyledDetailProductWrapper = styled.div`
   & {
@@ -24,43 +25,48 @@ const StyledDetailProductWrapper = styled.div`
       margin: 12px 0;
     }
   }
-`;
+`
 
 /**
- * @type {React.Context<{product: import("../../hooks/useApi").Product}>}
+ * @typedef {Object} ProductContextType
+ * @property {import("../../hooks/useApi").Product} product
  */
-const ProductContext = createContext();
 
+/**
+ * @type {React.Context<ProductContextType>}
+ */
+// @ts-ignore
+const ProductContext = createContext()
 
 export default function DetailProduct() {
-  const [product, setProduct] = useState(initProduct);
+  const [product, setProduct] = useState(initProduct)
 
-  const { category, id } = useParams();
+  const { category, id } = useParams()
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const { getProduct } = useApi();
+  const { getProduct } = useApi()
 
   useEffect(() => {
-    (async () => {
-      const response = await getProduct(category, id);
-      if (response) {
-        setProduct(response.data);
-      } else {
-        setProduct(null);
-        navigate("/");
+    ;(async () => {
+      if (category && id) {
+        const response = await getProduct(category, id)
+        if (response) {
+          setProduct(response.data)
+        } else {
+          setProduct(null)
+          navigate('/')
+        }
       }
-    })();
-  }, [getProduct, category, id, navigate]);
+    })()
+  }, [getProduct, category, id, navigate])
 
   return (
     <React.Fragment>
       {product ? (
         <ProductContext.Provider value={{ product }}>
           <Helmet>
-            <title>
-              {product.name}
-            </title>
+            <title>{product.name}</title>
           </Helmet>
           <CustomBreadcrumb />
           <StyledDetailProductWrapper>
@@ -130,7 +136,8 @@ export default function DetailProduct() {
         <Loading />
       )}
     </React.Fragment>
-  );
+  )
 }
 
-export { ProductContext };
+export { ProductContext }
+

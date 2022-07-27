@@ -1,9 +1,11 @@
+// @ts-check
 import React, { useContext, useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Thumbs, Navigation } from 'swiper';
+import  { Thumbs, Navigation } from 'swiper';
 import styled from 'styled-components';
 import { ProductContext } from '..';
 import { Col, Image, Row } from 'antd';
+import { initGallerySrc } from '../../../constant';
 
 const Wrapper = styled.div`
   & {
@@ -16,7 +18,7 @@ const Wrapper = styled.div`
 
 export default function SlideGallery() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const [gallery, setGallery] = useState([]);
+  const [gallery, setGallery] = useState(initGallerySrc);
 
   const { product } = useContext(ProductContext);
 
@@ -45,6 +47,7 @@ export default function SlideGallery() {
         </Col>
         <Col span={24} xxl={24} xl={24} lg={24} md={24} sm={0} xs={0}>
           <Swiper
+            // @ts-ignore
             onSwiper={setThumbsSwiper}
             spaceBetween={5}
             slidesPerView={3}

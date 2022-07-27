@@ -1,3 +1,4 @@
+// @ts-check
 import React, { useEffect, useState } from 'react'
 import useApi from '../../../hooks/useApi'
 import styled from 'styled-components'

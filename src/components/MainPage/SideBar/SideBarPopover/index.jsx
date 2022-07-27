@@ -1,3 +1,4 @@
+// @ts-check
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
@@ -125,8 +126,13 @@ function checkHot(title) {
 }
 
 /**
- *
- * @param {import("react").PropsWithChildren<{ className: string, listContent: import("../../../../hooks/useApi").SideBarContentChild[]}>} props
+ * @typedef {Object} SideBarPopoverProps
+ * @property {string} className
+ * @property {import("../../../../hooks/useApi").SideBarContentChild[]} listContent
+ */
+
+/**
+ * @param {import("react").PropsWithChildren<SideBarPopoverProps>} props
  * @returns
  */
 export default function SideBarPopover({ className, listContent }) {
@@ -159,7 +165,7 @@ export default function SideBarPopover({ className, listContent }) {
                               to="/Laptop,Tablet,Mobile/LTAC791"
                               key={index}
                             >
-                              {childLevelTwo}
+                              {(typeof childLevelTwo === 'string') && childLevelTwo}
                             </Link>
                           ))}
                         </div>

@@ -1,3 +1,4 @@
+// @ts-check
 import { Typography } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
@@ -18,9 +19,12 @@ const Wrapper = styled.div`
 `;
 
 /**
- * 
- * @param {Object} props 
- * @param {import('../../../hooks/useApi').Showroom} props.showroom
+ * @typedef {Object} ShowroomInfoProps 
+ * @property {import('../../../hooks/useApi').Showroom} showroom
+ */
+
+/**
+ * @param {import('react').PropsWithChildren<ShowroomInfoProps>} props 
  * @returns 
  */
 export default function ShowroomInfo({ showroom }) {

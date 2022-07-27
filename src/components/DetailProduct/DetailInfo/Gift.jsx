@@ -1,3 +1,4 @@
+// @ts-check
 import { Card, Typography } from "antd";
 import React from "react";
 import styled from "styled-components";
@@ -34,9 +35,12 @@ const StyledCard = styled(Card)`
 `;
 
 /**
- * 
- * @param {Object} param
- * @param {import("../../../hooks/useApi").Product['uudai']} param.uudai 
+ * @typedef {Object} GiftProps
+ * @property {import("../../../hooks/useApi").Product['uudai']} uudai
+ */
+
+/**
+ * @param {import("react").PropsWithChildren<GiftProps>} props
  * @returns 
  */
 export default function Gift({ uudai }) {

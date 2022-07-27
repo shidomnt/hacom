@@ -1,3 +1,4 @@
+// @ts-check
 import { Button, Col, Divider, Input, Row, Typography } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -31,9 +32,12 @@ const Wrapper = styled.div`
 `;
 
 /**
- * 
- * @param {Object} param
- * @param {import('../../../hooks/useApi').Product['id'][]} param.checkedList
+ * @typedef {Object} SidebarProps
+ * @property {import('../../../hooks/useApi').Product['id'][]} checkedList
+ */
+
+/**
+ * @param {import('react').PropsWithChildren<SidebarProps>} props
  * @returns 
  */
 export default function Sidebar({ checkedList }) {

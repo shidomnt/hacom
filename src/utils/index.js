@@ -1,3 +1,4 @@
+// @ts-check
 import { discountMapping } from "../constant";
 
 /**

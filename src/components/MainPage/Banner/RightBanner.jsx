@@ -1,12 +1,15 @@
+// @ts-check
 import { Col, Row } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
 import { StyledImgContainer } from "..";
 
+/**
+ * 
+ * @param {import("react").PropsWithChildren<{ rightSlideBannerSrcList: string[] }>} props 
+ * @returns 
+ */
 export default function RightBanner({ rightSlideBannerSrcList }) {
-  if (!rightSlideBannerSrcList) {
-    return;
-  }
 
   return (
     <Row gutter={[6, 6]}>

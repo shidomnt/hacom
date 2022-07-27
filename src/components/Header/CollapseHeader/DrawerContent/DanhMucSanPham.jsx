@@ -1,3 +1,4 @@
+// @ts-check
 import { Menu } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -60,8 +61,8 @@ export default function DanhMucSanPham() {
         const listItem = itemsOfCategory.map((item) => {
           const listSubitem = item.childs.map((child) => {
             return getItem(
-              <Link to="/">{child.title}</Link>,
-              `${category.slug}-${item.title}-${child.title}`
+              <Link to="/">{(typeof child === 'string') ? child : child.title}</Link>,
+              `${category.slug}-${item.title}-${(typeof child === 'string') ? child : child.title}`
             )
           })
           return getItem(

@@ -1,3 +1,4 @@
+// @ts-check
 import {
   Button,
   Checkbox,
@@ -7,20 +8,23 @@ import {
   Space,
   Tooltip,
   Typography,
-} from 'antd';
-import React, { useContext } from 'react';
-import { CartActionContext } from '../../../contexts/CartProvider';
-import InputQuantify from '../../DetailProduct/DetailInfo/InputQuantify';
-import { MAX_SOLUONG, MIN_SOLUONG } from '../../../constant';
+} from 'antd'
+import React, { useContext } from 'react'
+import { CartActionContext } from '../../../contexts/CartProvider'
+import InputQuantify from '../../DetailProduct/DetailInfo/InputQuantify'
+import { MAX_SOLUONG, MIN_SOLUONG } from '../../../constant'
 
 /**
- * 
- * @param {Object} param
- * @param {import('../../../contexts/CartProvider').CartItem} param.item 
- * @returns 
+ * @typedef {Object} CollapseCartItemProps
+ * @property {import('../../../constant').CartItem} item
+ */
+
+/**
+ * @param {import('react').PropsWithChildren<CollapseCartItemProps>} props
+ * @returns
  */
 export default function CollapseCartItem({ item }) {
-  const { changeQuantify, removeProduct } = useContext(CartActionContext);
+  const { changeQuantify, removeProduct } = useContext(CartActionContext)
 
   return (
     <Row gutter={[8, 8]} style={{ alignItems: 'center' }}>
@@ -31,10 +35,10 @@ export default function CollapseCartItem({ item }) {
         <Image src={item.product.imgSrc} alt="" preview={false} />
       </Col>
       <Col span={19}>
-        <Space style={{width: '100%'}} direction="vertical">
+        <Space style={{ width: '100%' }} direction="vertical">
           <Row>
             <Col span={23}>
-              <Typography.Text ellipsis={{ width: '70%' }}>
+              <Typography.Text ellipsis={true}>
                 {item.product.name}
               </Typography.Text>
             </Col>
@@ -52,7 +56,14 @@ export default function CollapseCartItem({ item }) {
           </Row>
           <div>
             <Space direction="horizontal">
-              <Typography.Text strong>
+              <Typography.Text
+                strong
+                style={{
+                  display: 'block',
+                  minWidth: '100px',
+                  textAlign: 'center',
+                }}
+              >
                 {item.product.price}
                 <sup>₫</sup>
               </Typography.Text>
@@ -74,5 +85,6 @@ export default function CollapseCartItem({ item }) {
         </Space>
       </Col>
     </Row>
-  );
+  )
 }
+

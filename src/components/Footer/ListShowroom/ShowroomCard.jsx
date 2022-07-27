@@ -1,3 +1,4 @@
+// @ts-check
 import React from 'react';
 import { Card } from 'antd'
 import styled from 'styled-components';
@@ -30,10 +31,13 @@ const StyledCard = styled(Card)`
 `;
 
 /**
- * 
- * @param {Object} props 
- * @param {import('../../../hooks/useApi').Showroom} props.showroom
- * @param {number} props.index
+ * @typedef {Object} ShowroomCardProps 
+ * @property {import('../../../hooks/useApi').Showroom} showroom
+ * @property {number} index
+ */
+
+/**
+ * @param {import('react').PropsWithChildren<ShowroomCardProps>} props 
  * @returns 
  */
 export default function ShowroomCard({showroom, index}) {

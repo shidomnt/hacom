@@ -1,3 +1,4 @@
+// @ts-check
 import { Input } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';

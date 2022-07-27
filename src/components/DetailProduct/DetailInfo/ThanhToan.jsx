@@ -1,3 +1,4 @@
+// @ts-check
 import { Button, Col, Row, Space, Typography } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -83,11 +84,8 @@ export default function ThanhToan() {
             Số lượng:{' '}
           </Typography.Text>
           <InputQuantify
-            min={MIN_SOLUONG}
-            max={MAX_SOLUONG}
             value={soluong}
             onChange={(value) => setSoluong(value)}
-            controls={false}
             onClickMinus={() => setSoluong((prev) => prev - 1)}
             onClickAdd={() => setSoluong((prev) => prev + 1)}
           />

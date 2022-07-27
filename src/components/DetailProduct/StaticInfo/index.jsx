@@ -1,3 +1,4 @@
+// @ts-check
 import { Card, Col, List, Row, Select, Space, Typography } from 'antd'
 import React, { useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
@@ -114,7 +115,7 @@ export default function StaticInfo() {
       if (response) {
         setShowrooms(response.data)
       } else {
-        setShowrooms(null)
+        setShowrooms([])
       }
     })()
   }, [getShowRooms])
@@ -171,7 +172,7 @@ export default function StaticInfo() {
                 )}
                 renderItem={(showroom) => (
                   <li className="item-showroom">
-                    <Typography.Text ellipsis={{ width: '100%' }}>
+                    <Typography.Text ellipsis={true}>
                       {showroom.dienthoaiban && (
                         <React.Fragment>
                           <span className="dienthoaiban">
@@ -192,7 +193,7 @@ export default function StaticInfo() {
           <Col
             key={cardInfo.title}
             span={24}
-            xll={24}
+            xxl={24}
             xl={24}
             lg={24}
             md={0}
@@ -203,7 +204,7 @@ export default function StaticInfo() {
               className="card"
               key={cardInfo.title}
               title={
-                <Typography.Text strong className="card-title" level={5}>
+                <Typography.Text strong className="card-title">
                   {cardInfo.title}
                 </Typography.Text>
               }

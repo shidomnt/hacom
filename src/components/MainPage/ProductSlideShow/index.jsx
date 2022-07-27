@@ -1,3 +1,4 @@
+// @ts-check
 import { Col, Row } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -43,8 +44,12 @@ const breakPoints = {
 };
 
 /**
- * 
- * @param {import("react").PropsWithChildren<{ categories: import("../../../hooks/useApi").Category[]}>} props 
+ * @typedef {Object} ProductSlideShowProps
+ * @property {import("../../../hooks/useApi").Category[]} categories
+ */
+
+/**
+ * @param {import("react").PropsWithChildren<ProductSlideShowProps>} props 
  * @returns 
  */
 function ProductSlideShow({ categories }) {

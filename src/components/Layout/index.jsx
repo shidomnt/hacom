@@ -5,6 +5,7 @@ import React, {
 import { Outlet, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Footer from "../Footer";
+// @ts-check
 import Header from "../Header";
 import CollapseHeader from '../Header/CollapseHeader'
 

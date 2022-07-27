@@ -1,3 +1,4 @@
+// @ts-check
 import { Col, Drawer, Image, Row } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';

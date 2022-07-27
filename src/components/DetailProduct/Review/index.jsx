@@ -1,3 +1,4 @@
+// @ts-check
 import { Button, Divider, Image, Typography } from 'antd';
 import React, { useState } from 'react';
 import { useContext } from 'react';
@@ -56,7 +57,7 @@ export default function Review() {
     <Wrapper>
       <Typography.Title level={4}>Đánh giá {product.name}</Typography.Title>
       <Divider type="horizontal" />
-      <ContentWrapper className={isExpanded && 'expanded'}>
+      <ContentWrapper className={isExpanded ? 'expanded' : ''}>
         <div className="content-danhgia">
           {danhgia.title.slice(1).map((title, index) => (
             <div key={title}>
@@ -79,6 +80,8 @@ export default function Review() {
         </div>
         <ButtonExpandWrapper>
           <Button
+            type='primary'
+            className='expand-btn'
             onClick={() => handleClickExpandBtn()}
             icon={
               isExpanded ? (

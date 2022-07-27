@@ -1,3 +1,4 @@
+// @ts-check
 import {
   Button,
   Checkbox,
@@ -8,31 +9,35 @@ import {
   Space,
   Tooltip,
   Typography,
-} from 'antd';
-import React, { useContext, useEffect, useState } from 'react';
-import { CartActionContext } from '../../../contexts/CartProvider';
-import InputQuantify from '../../DetailProduct/DetailInfo/InputQuantify';
-import { caculateThanhTien } from '../../../utils';
-import { MIN_SOLUONG, MAX_SOLUONG } from '../../../constant';
+} from 'antd'
+import React, { useContext, useEffect, useState } from 'react'
+import { CartActionContext } from '../../../contexts/CartProvider'
+import InputQuantify from '../../DetailProduct/DetailInfo/InputQuantify'
+import { caculateThanhTien } from '../../../utils'
+import { MIN_SOLUONG, MAX_SOLUONG } from '../../../constant'
 
 /**
- * 
- * @param {Object} param
- * @param {import('../../../contexts/CartProvider').CartItem} param.item 
- * @returns 
+ * @typedef {Object} CartItemProps
+ * @property {import('../../../constant').CartItem} item
+ */
+
+/**
+ *
+ * @param {import('react').PropsWithChildren<CartItemProps>} props
+ * @returns
  */
 export default function CartItem({ item }) {
-  const { changeQuantify, removeProduct } = useContext(CartActionContext);
+  const { changeQuantify, removeProduct } = useContext(CartActionContext)
 
   const [thanhTien, setThanhTien] = useState(() =>
     caculateThanhTien(item.product.price, item.quantify)
-  );
+  )
 
-  const { lg } = Grid.useBreakpoint();
+  const { lg } = Grid.useBreakpoint()
 
   useEffect(() => {
-    setThanhTien(caculateThanhTien(item.product.price, item.quantify));
-  }, [item.product.price, item.quantify]);
+    setThanhTien(caculateThanhTien(item.product.price, item.quantify))
+  }, [item.product.price, item.quantify])
 
   return (
     <Row gutter={[8, 8]} style={{ alignItems: 'center' }}>
@@ -97,5 +102,6 @@ export default function CartItem({ item }) {
         </Tooltip>
       </Col>
     </Row>
-  );
+  )
 }
+

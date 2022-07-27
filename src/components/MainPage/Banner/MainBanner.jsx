@@ -1,13 +1,16 @@
+// @ts-check
 import React from "react";
 import { Link } from "react-router-dom";
 import { Autoplay, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { StyledImgContainer } from "..";
 
+/**
+ * 
+ * @param {import("react").PropsWithChildren<{ slideSrcList: string[] }>} props 
+ * @returns 
+ */
 export default function MainBanner({ slideSrcList }) {
-  if (!slideSrcList) {
-    return;
-  }
   
   return (
     <Swiper

@@ -1,3 +1,4 @@
+// @ts-check
 import {
   CheckOutlined,
   PhoneOutlined,
@@ -48,8 +49,13 @@ const Rate = styled.span`
 `;
 
 /**
- * 
- * @param {import("react").PropsWithChildren<{ category: import("../../../hooks/useApi").Category, product: import("../../../hooks/useApi").Product}>} props 
+ * @typedef {Object} ProductCardProps
+ * @property {import("../../../hooks/useApi").Category['slug']} category
+ * @property {import("../../../hooks/useApi").Product} product
+ */
+
+/**
+ * @param {import("react").PropsWithChildren<ProductCardProps>} props 
  * @returns 
  */
 export default function ProductCard({ category, product }) {
@@ -65,6 +71,10 @@ export default function ProductCard({ category, product }) {
     swiper.autoplay.start();
   }
 
+  /**
+   * 
+   * @param {import("../../../hooks/useApi").Product} product 
+   */
   function handleClickCartIcon(product) {
     addProduct(product);
   }
@@ -76,6 +86,7 @@ export default function ProductCard({ category, product }) {
       cover={
         <Link  to={`/${category}/${product.sku}`}>
           <img
+            // @ts-ignore
             style={{ width: "100%", aspectRatio: 1 / 1 }}
             src={product.imgSrc}
             alt=""

@@ -1,6 +1,38 @@
+// @ts-check
+
+/** ========= Type Define ========= */
+
 /**
  * @typedef {{type: string, value: number}} DiscountInfo
  */
+
+/**
+ * @typedef {Object} CartItem
+ * @property {import("../hooks/useApi").Product} product
+ * @property {number} quantify
+ */
+
+/**
+ * @typedef {CartItem[]} Cart
+ */
+
+/** ========= Type Define ========= */
+
+/**
+ * @type {string[]}
+ */
+export const initGallerySrc = []
+
+/**
+ * @type {Cart}
+ */
+export const initCart = []
+
+/**
+ * @type {DiscountInfo | null}
+ */
+export const initDiscountInfo = null
+
 /**
  * @type {import("../hooks/useApi").Showroom[]}
  */
@@ -29,22 +61,22 @@ export const initProducts = []
 /**
  * @type {number}
  */
-export const MIN_SOLUONG = 1;
+export const MIN_SOLUONG = 1
 
 /**
  * @type {number}
  */
-export const MAX_SOLUONG = 99;
+export const MAX_SOLUONG = 99
 
 /**
  * @type {string}
  */
-export const KEY_LOCAL_STORAGE_CART = "KEY_CART";
+export const KEY_LOCAL_STORAGE_CART = 'KEY_CART'
 
 /**
  * @type {string}
  */
-export const API_URL = "http://localhost:4000";
+export const API_URL = 'http://localhost:4000'
 
 /**
  * @type {{[key: string]: DiscountInfo}}
@@ -54,4 +86,4 @@ export const discountMapping = {
     type: 'rate',
     value: 0.9,
   },
-};
+}

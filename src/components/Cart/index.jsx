@@ -1,3 +1,4 @@
+// @ts-check
 import { Space, Typography } from 'antd';
 import React, { useContext } from 'react';
 import styled from 'styled-components';

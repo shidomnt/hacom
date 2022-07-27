@@ -1,3 +1,5 @@
+// @ts-check
+
 import React, { useEffect, useState } from "react";
 import { Autoplay, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -6,6 +8,21 @@ import useApi from "../../../hooks/useApi";
 import Loading from "../../Loading";
 import { initProducts } from "../../../constant";
 
+/**
+ * @typedef {Object} SlideShowProps
+ * @property {React.ReactNode=} title
+ * @property {import("../../../hooks/useApi").Category['slug']} category
+ * @property {string=} query
+ * @property {number=} slidesPerView
+ * @property {number=} spaceBetween
+ * @property {React.ReactNode=} button
+ * @property {*=} breakpoints
+ */
+
+/**
+ * @param {import("react").PropsWithChildren<SlideShowProps>} props 
+ * @returns 
+ */
 const SlideShow = ({
   title,
   category: categorySlug,

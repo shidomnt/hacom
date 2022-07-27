@@ -1,5 +1,10 @@
+// @ts-check
+
 import axios from 'axios'
 import { API_URL } from '../constant'
+import React from 'react'
+
+/** ========= Type Define ========= */
 
 /**
  * @typedef {{[key: string]: string}} ThongSoKiThuat
@@ -69,10 +74,12 @@ import { API_URL } from '../constant'
  * @typedef {{[key: Category['slug']]: SideBarContentChild[]}} SideBarContent
  */
 
+/** ========= Type Define ========= */
+
 /**
  *
  * @param {string} url
- * @param {() => void} onError
+ * @param {(error: any) => void} onError
  * @returns
  */
 async function callApi(url, onError = () => {}) {
@@ -88,57 +95,57 @@ async function callApi(url, onError = () => {}) {
  *
  * @param {Object} param
  * @param {string} param.searchValue
- * @param {string} param.category
- * @param {number} param.limit
- * @returns {Promise<import('axios').AxiosResponse<Product[]>>}
+ * @param {string=} param.category
+ * @param {number=} param.limit
+ * @returns {Promise<import('axios').AxiosResponse<Product[]> | undefined>}
  */
 async function getAutoCompleteProduct({
   searchValue,
   category = 'Laptop,Tablet,Mobile',
-  limit = 3
+  limit = 3,
 }) {
   return await callApi(`/${category}?q=${searchValue}&_limit=${limit}`)
 }
 
 /**
- * 
- * @param {string} categorySlug 
- * @param {string} id 
- * @returns {Promise<import('axios').AxiosResponse<Product>>}
+ *
+ * @param {string} categorySlug
+ * @param {string} id
+ * @returns {Promise<import('axios').AxiosResponse<Product> | undefined>}
  */
 async function getProduct(categorySlug, id) {
   return await callApi(`/${categorySlug}/${id}`)
 }
 
 /**
- * 
- * @returns {Promise<import('axios').AxiosResponse<Showroom[]>>}
+ *
+ * @returns {Promise<import('axios').AxiosResponse<Showroom[]> | undefined>}
  */
 async function getShowRooms() {
   return await callApi('/showrooms')
 }
 
 /**
- * 
- * @returns {Promise<import('axios').AxiosResponse<Category[]>>}
+ *
+ * @returns {Promise<import('axios').AxiosResponse<Category[]> | undefined>}
  */
 async function getCategories() {
   return await callApi(`/categories`)
 }
 
 /**
- * 
- * @param {string} categorySlug 
- * @param {string} query 
- * @returns {Promise<import('axios').AxiosResponse<Product[]>>}
+ *
+ * @param {string} categorySlug
+ * @param {string} query
+ * @returns {Promise<import('axios').AxiosResponse<Product[]> | undefined>}
  */
 async function getProductsByCategory(categorySlug, query = '') {
   return await callApi(`/${categorySlug}` + query)
 }
 
 /**
- * 
- * @returns {Promise<import('axios').AxiosResponse<SideBarContent>>}
+ *
+ * @returns {Promise<import('axios').AxiosResponse<SideBarContent> | undefined>}
  */
 async function getSideBarContent() {
   return await callApi('/sidebar_content')
@@ -241,3 +248,4 @@ export default function useApi() {
     getListCollection,
   }
 }
+

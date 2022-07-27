@@ -1,3 +1,4 @@
+// @ts-check
 import React from 'react';
 import { Typography } from 'antd';
 import styled from 'styled-components';
@@ -27,10 +28,14 @@ const Wrapper = styled.div`
 `;
 
 /**
+ * @typedef {Object} ShowroomCardHeaderProps 
+ * @property {import('../../../hooks/useApi').Showroom} showroom
+ * @property {number} index
+ */
+
+/**
  * 
- * @param {Object} props 
- * @param {import('../../../hooks/useApi').Showroom} props.showroom
- * @param {number} props.index
+ * @param {import('react').PropsWithChildren<ShowroomCardHeaderProps>} props 
  * @returns 
  */
 const ShowroomCardHeader = ({ showroom, index }) => {

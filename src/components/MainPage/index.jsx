@@ -1,3 +1,5 @@
+// @ts-check
+
 import React, { useEffect, useState } from 'react'
 import { Col, Row } from 'antd'
 import SideBar from './SideBar'
@@ -39,7 +41,7 @@ export default function Content() {
       if (response) {
         setCategories(response.data)
       } else {
-        setCategories(null)
+        setCategories([])
       }
     })()
   }, [getCategories])

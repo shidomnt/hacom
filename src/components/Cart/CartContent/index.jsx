@@ -1,3 +1,4 @@
+// @ts-check
 import { Button, Checkbox, Col, Grid, Row, Tooltip, Typography } from 'antd'
 import React, { useContext, useState } from 'react'
 import styled from 'styled-components'

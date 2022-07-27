@@ -1,3 +1,4 @@
+// @ts-check
 import {
   Button,
   Col,
@@ -83,6 +84,17 @@ const StyledInput = styled(Input)`
   }
 `;
 
+/**
+ * @typedef {Object} SignModalProps
+ * @property {boolean} visible
+ * @property {(e: React.MouseEvent<HTMLElement, MouseEvent>) => void} onCancel
+ */
+
+/**
+ * 
+ * @param {import('react').PropsWithChildren<SignModalProps>} props 
+ * @returns 
+ */
 export default function SignModal({ visible, onCancel }) {
   return (
     <StyledModal

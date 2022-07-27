@@ -1,3 +1,4 @@
+// @ts-check
 import { Button, Col, Grid, Row } from 'antd';
 import React, { useState } from 'react';
 import SlideShow from '../SlideShow';

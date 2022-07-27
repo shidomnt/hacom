@@ -1,3 +1,4 @@
+// @ts-check
 import { Button, Image, Space, Typography } from 'antd';
 import React from 'react';
 import { Link } from 'react-router-dom';

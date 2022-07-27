@@ -1,3 +1,4 @@
+// @ts-check
 import { Collapse } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
@@ -6,9 +7,12 @@ import ShowroomInfo from './ShowroomInfo';
 const Wrapper = styled.div``;
 
 /**
- * 
- * @param {Object} props 
- * @param {import('../../../hooks/useApi').Showroom[]} props.showrooms 
+ * @typedef {Object} ListShowroomCollapseProps
+ * @property {import('../../../hooks/useApi').Showroom[]} showrooms
+ */
+
+/**
+ * @param {import('react').PropsWithChildren<ListShowroomCollapseProps>} props 
  * @returns 
  */
 export default function ListShowroomCollapse({ showrooms }) {

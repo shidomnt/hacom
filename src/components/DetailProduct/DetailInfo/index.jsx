@@ -1,3 +1,4 @@
+// @ts-check
 import { Col, Divider, List, Row, Typography } from 'antd';
 import React, { useContext } from 'react';
 import styled from 'styled-components';

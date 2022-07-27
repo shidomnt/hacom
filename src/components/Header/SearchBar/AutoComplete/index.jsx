@@ -1,7 +1,9 @@
+// @ts-check
 import { Col, Image, Row, Typography } from 'antd'
 import React, { useDeferredValue, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
+import { initProducts } from '../../../../constant'
 import useApi from '../../../../hooks/useApi'
 import EmptySearch from './EmptySearch'
 
@@ -35,12 +37,18 @@ const AutoCompleteWrapper = styled.div`
 `
 
 /**
+ * @typedef {Object} AutoCompleteProps
+ * @property {boolean} visible
+ * @property {string} searchValue
+ */
+
+/**
  *
- * @param {import('react').PropsWithChildren<{visible: boolean, searchValue: string}>} props
+ * @param {import('react').PropsWithChildren<AutoCompleteProps>} props
  * @returns
  */
 export default function AutoComplete({ visible, searchValue, children }) {
-  const [autoCompleteProducts, setAutoCompleteProducts] = useState([])
+  const [autoCompleteProducts, setAutoCompleteProducts] = useState(initProducts)
 
   const { getAutoCompleteProduct } = useApi()
 

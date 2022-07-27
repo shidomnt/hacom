@@ -1,3 +1,4 @@
+// @ts-check
 import { Col, Divider, Row, Typography } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -71,7 +72,7 @@ export default function ThongSoKiThuat() {
                       <Typography.Text strong>{thongso}</Typography.Text>
                     </Col>
                     <Col span={16}>
-                      <Typography.Text ellipsis={{ width: '100%' }}>
+                      <Typography.Text>
                         {product.tskt[thongso]}
                       </Typography.Text>
                     </Col>

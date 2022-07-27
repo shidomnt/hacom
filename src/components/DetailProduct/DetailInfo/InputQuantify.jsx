@@ -1,6 +1,8 @@
+// @ts-check
 import { InputNumber } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
+import { MAX_SOLUONG, MIN_SOLUONG } from '../../../constant';
 
 const Wrapper = styled.span`
   & {
@@ -18,22 +20,40 @@ const Wrapper = styled.span`
 `;
 
 /**
+ * @template ValuteType
+ * @typedef {Object} InputQuantifyProps
+ * @property {React.MouseEventHandler<HTMLDivElement>} props.onClickMinus
+ * @property {React.MouseEventHandler<HTMLDivElement>} props.onClickAdd
+ * @property {number=} min
+ * @property {number=} max
+ * @property {ValuteType} value
+ * @property {(value: ValuteType) => void} onChange
+ * @property {boolean=} controls
+ */
+
+/**
  * 
- * @param {Object} props
- * @param {Object} props.onChange
- * @param {Object} props.onClickMinus
- * @param {Object} props.onClickAdd
+ * @param {import('react').PropsWithChildren<InputQuantifyProps<number>>} props
  * @returns 
  */
+
 export default function InputQuantify({
   onClickMinus,
   onClickAdd,
-  ...props
+  min = MIN_SOLUONG,
+  max = MAX_SOLUONG,
+  value,
+  onChange,
+  controls = false
 }) {
   return (
     <Wrapper>
       <InputNumber
-        {...props}
+        max={max}
+        min={min}
+        value={value}
+        onChange={onChange}
+        controls={controls}
         addonBefore={
           <div className="controller-btn minus" onClick={onClickMinus}>
             -
