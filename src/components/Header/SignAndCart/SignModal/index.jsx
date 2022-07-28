@@ -9,11 +9,11 @@ import {
   Row,
   Space,
   Typography,
-} from 'antd';
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import CloseButton from './CloseButton';
+} from 'antd'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+import CloseButton from './CloseButton'
 
 const StyledModal = styled(Modal)`
   & {
@@ -23,6 +23,11 @@ const StyledModal = styled(Modal)`
       .ant-modal-close {
         top: -24px;
         right: -24px;
+        .ant-modal-close-x {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
       }
       .ant-modal-body {
         padding: 0;
@@ -54,14 +59,14 @@ const StyledModal = styled(Modal)`
       }
     }
   }
-`;
+`
 
 const StyledMainContent = styled.div`
   & {
     height: 100%;
     padding: 32px;
   }
-`;
+`
 
 const StyledButton = styled(Button)`
   & {
@@ -74,7 +79,7 @@ const StyledButton = styled(Button)`
     height: unset;
     font-size: 18px;
   }
-`;
+`
 
 const StyledInput = styled(Input)`
   & {
@@ -82,7 +87,7 @@ const StyledInput = styled(Input)`
     border-bottom: solid 1px #d7d7d7;
     font-size: 24px;
   }
-`;
+`
 
 /**
  * @typedef {Object} SignModalProps
@@ -91,9 +96,9 @@ const StyledInput = styled(Input)`
  */
 
 /**
- * 
- * @param {import('react').PropsWithChildren<SignModalProps>} props 
- * @returns 
+ *
+ * @param {import('react').PropsWithChildren<SignModalProps>} props
+ * @returns
  */
 export default function SignModal({ visible, onCancel }) {
   return (
@@ -161,5 +166,5 @@ export default function SignModal({ visible, onCancel }) {
         </Col>
       </Row>
     </StyledModal>
-  );
+  )
 }
