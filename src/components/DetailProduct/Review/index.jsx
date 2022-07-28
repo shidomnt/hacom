@@ -1,11 +1,11 @@
 // @ts-check
-import { Button, Divider, Image, Typography } from 'antd';
-import React, { useState } from 'react';
-import { useContext } from 'react';
-import styled from 'styled-components';
-import { ProductContext } from '../';
+import { Button, Divider, Image, Typography } from 'antd'
+import React, { useState } from 'react'
+import { useContext } from 'react'
+import styled from 'styled-components'
+import { ProductContext } from '../'
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div``
 
 const ContentWrapper = styled.div`
   & {
@@ -22,7 +22,7 @@ const ContentWrapper = styled.div`
       }
     }
   }
-`;
+`
 
 const ButtonExpandWrapper = styled.div`
   & {
@@ -39,19 +39,20 @@ const ButtonExpandWrapper = styled.div`
       margin-right: 10px;
     }
   }
-`;
+`
 
 export default function Review() {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false)
 
-  const { product } = useContext(ProductContext);
+  const { product } = useContext(ProductContext)
 
-  const { danhgia } = product;
+  const { danhgia } = product
 
   function handleClickExpandBtn() {
-    setIsExpanded(!isExpanded);
-    
+    setIsExpanded(!isExpanded)
   }
+
+  console.log(danhgia);
 
   return (
     <Wrapper>
@@ -78,23 +79,26 @@ export default function Review() {
             </div>
           ))}
         </div>
-        <ButtonExpandWrapper>
-          <Button
-            type='primary'
-            className='expand-btn'
-            onClick={() => handleClickExpandBtn()}
-            icon={
-              isExpanded ? (
-                <i className="fa-solid fa-angle-up"></i>
-              ) : (
-                <i className="fa-solid fa-angle-down"></i>
-              )
-            }
-          >
-            {isExpanded ? 'Thu nhỏ' : 'Xem thêm'}
-          </Button>
-        </ButtonExpandWrapper>
+        {!!danhgia.title.slice(1).length && (
+          <ButtonExpandWrapper>
+            <Button
+              type="primary"
+              className="expand-btn"
+              onClick={() => handleClickExpandBtn()}
+              icon={
+                isExpanded ? (
+                  <i className="fa-solid fa-angle-up"></i>
+                ) : (
+                  <i className="fa-solid fa-angle-down"></i>
+                )
+              }
+            >
+              {isExpanded ? 'Thu nhỏ' : 'Xem thêm'}
+            </Button>
+          </ButtonExpandWrapper>
+        )}
       </ContentWrapper>
     </Wrapper>
-  );
+  )
 }
+
