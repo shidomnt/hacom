@@ -28,7 +28,7 @@ const Wrapper = styled.div`
       width: 100%;
       padding: 8px 16px;
       height: unset;
-      background-color: #243a76;
+      background-color: var(--primary-color);
     }
   }
 `

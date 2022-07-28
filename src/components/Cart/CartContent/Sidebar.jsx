@@ -93,7 +93,7 @@ export default function Sidebar({ checkedList }) {
               />
               <Button
                 onClick={handleSetDiscountInfo}
-                style={{ backgroundColor: '#243a76' }}
+                style={{ backgroundColor: 'var(--primary-color)' }}
                 type="primary"
               >
                 Áp dụng

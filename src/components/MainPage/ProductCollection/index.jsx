@@ -18,16 +18,16 @@ const StyledTitle = styled.div`
 `;
 
 const StyledButton = styled(Button)`
-  background-color: #243a76;
+  background-color: var(--primary-color);
   border-radius: 4px;
   font-size: 13px;
 `;
 
 const CollectionProduct = () => {
   const { xl } = Grid.useBreakpoint();
-  
+
   const { getListCollection } = useApi();
-  
+
   const [listCollection] = useState(() => getListCollection());
 
   return (
@@ -41,7 +41,7 @@ const CollectionProduct = () => {
               button={
                 <StyledButton size="large" type="primary" block>
                   <Link to={`/${collection.categorySlug}`}>
-                  Xem tất cả sản phẩm
+                    Xem tất cả sản phẩm
                   </Link>
                 </StyledButton>
               }

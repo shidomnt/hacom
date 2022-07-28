@@ -34,18 +34,18 @@ const SlideShow = ({
 }) => {
   const [products, setProducts] = useState(initProducts);
 
-  const { getProductByCategory } = useApi();
+  const { getProductsByCategory } = useApi();
 
   useEffect(() => {
     (async () => {
-      const response = await getProductByCategory(categorySlug, query);
+      const response = await getProductsByCategory(categorySlug, query);
       if (response) {
         setProducts(response.data);
       } else {
         setProducts([]);
       }
     })();
-  }, [categorySlug, getProductByCategory, query]);
+  }, [categorySlug, getProductsByCategory, query]);
 
   return !!products.length ? (
     <React.Fragment>

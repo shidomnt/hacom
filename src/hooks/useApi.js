@@ -1,8 +1,8 @@
 // @ts-check
 
-import axios from 'axios'
-import { API_URL } from '../constant'
-import React from 'react'
+import axios from 'axios';
+import { API_URL } from '../constant';
+import React from 'react';
 
 /** ========= Type Define ========= */
 
@@ -77,17 +77,16 @@ import React from 'react'
 /** ========= Type Define ========= */
 
 /**
- *
  * @param {string} url
  * @param {(error: any) => void} onError
- * @returns
+ * @returns 
  */
 async function callApi(url, onError = () => {}) {
   try {
-    const response = await axios.get(API_URL + url)
-    return response
+    const response = await axios.get(API_URL + url);
+    return response;
   } catch (e) {
-    onError(e)
+    onError(e);
   }
 }
 
@@ -104,7 +103,7 @@ async function getAutoCompleteProduct({
   category = 'Laptop,Tablet,Mobile',
   limit = 3,
 }) {
-  return await callApi(`/${category}?q=${searchValue}&_limit=${limit}`)
+  return await callApi(`/${category}?q=${searchValue}&_limit=${limit}`);
 }
 
 /**
@@ -114,7 +113,7 @@ async function getAutoCompleteProduct({
  * @returns {Promise<import('axios').AxiosResponse<Product> | undefined>}
  */
 async function getProduct(categorySlug, id) {
-  return await callApi(`/${categorySlug}/${id}`)
+  return await callApi(`/${categorySlug}/${id}`);
 }
 
 /**
@@ -122,7 +121,7 @@ async function getProduct(categorySlug, id) {
  * @returns {Promise<import('axios').AxiosResponse<Showroom[]> | undefined>}
  */
 async function getShowRooms() {
-  return await callApi('/showrooms')
+  return await callApi('/showrooms');
 }
 
 /**
@@ -130,7 +129,15 @@ async function getShowRooms() {
  * @returns {Promise<import('axios').AxiosResponse<Category[]> | undefined>}
  */
 async function getCategories() {
-  return await callApi(`/categories`)
+  return await callApi(`/categories`);
+}
+
+/**
+ * @param {Category['slug']} slug
+ * @returns {Promise<import('axios').AxiosResponse<Category[]> | undefined>}
+ */
+async function getCategoryBySlug(slug) {
+  return await callApi(`/categories?slug=${slug}`);
 }
 
 /**
@@ -140,7 +147,7 @@ async function getCategories() {
  * @returns {Promise<import('axios').AxiosResponse<Product[]> | undefined>}
  */
 async function getProductsByCategory(categorySlug, query = '') {
-  return await callApi(`/${categorySlug}` + query)
+  return await callApi(`/${categorySlug}` + query);
 }
 
 /**
@@ -148,7 +155,7 @@ async function getProductsByCategory(categorySlug, query = '') {
  * @returns {Promise<import('axios').AxiosResponse<SideBarContent> | undefined>}
  */
 async function getSideBarContent() {
-  return await callApi('/sidebar_content')
+  return await callApi('/sidebar_content');
 }
 
 function getSideBarMappingIcon() {
@@ -170,8 +177,8 @@ function getSideBarMappingIcon() {
     <i className="fa-solid fa-shop"></i>,
     <i className="fa-solid fa-hard-drive"></i>,
     <i className="fa-solid fa-wifi"></i>,
-  ]
-  return iconMapping
+  ];
+  return iconMapping;
 }
 
 function getBannerList() {
@@ -181,32 +188,32 @@ function getBannerList() {
     'https://hanoicomputercdn.com/media/banner/04_Jul5d448b2e204aa778e135c23f1c6b3d30.jpg',
     'https://hanoicomputercdn.com/media/banner/07_Julf2510bcf29fb56683fba210e2ba14815.jpg',
     'https://hanoicomputercdn.com/media/banner/09_Juldeb6f9166ebe1f5064d0671eeb038b04.png',
-  ]
+  ];
 
   const rightSlideBannerSrcList = [
     'https://i.ytimg.com/vi/W0uuq13u4MY/hq720.jpg',
     'https://hanoicomputercdn.com/media/banner/16_Jul4a47a0db6e60853dedfcfdf08a5ca249.png',
-  ]
+  ];
 
   const bottomSlideBannerSrcList = [
     'https://hanoicomputercdn.com/media/banner/16_Julfb5c81ed3a220004b71069645f112867.png',
     'https://hanoicomputercdn.com/media/banner/16_Jul10fb15c77258a991b0028080a64fb42d.png',
     'https://hanoicomputercdn.com/media/banner/16_Jul09dd8c2662b96ce14928333f055c5580.png',
-  ]
+  ];
 
   const underSlideBannerSrcList = [
     'https://hanoicomputercdn.com/media/banner/16_Jul8266e4bfeda1bd42d8f9794eb4ea0a13.png',
     'https://hanoicomputercdn.com/media/banner/16_Julf19c9085129709ee14d013be869df69b.png',
     'https://hanoicomputercdn.com/media/banner/16_Jul9eb9cd58b9ea5e04c890326b5c1f471f.png',
     'https://hanoicomputercdn.com/media/banner/16_Jul602e8f042f463dc47ebfdf6a94ed5a6d.png',
-  ]
+  ];
 
   return {
     slideSrcList,
     rightSlideBannerSrcList,
     bottomSlideBannerSrcList,
     underSlideBannerSrcList,
-  }
+  };
 }
 
 function getListCollection() {
@@ -231,21 +238,21 @@ function getListCollection() {
       categorySlug: 'Loa,TaiNghe,Mic,Webcam',
       title: 'VỰA KHÔNG GIAN RIÊNG TƯ ĐEO VÀO LÀ LẮC LƯ',
     },
-  ]
-  return listCollection
+  ];
+  return listCollection;
 }
 
 export default function useApi() {
   return {
     getProduct,
     getCategories,
-    getProductByCategory: getProductsByCategory,
+    getProductsByCategory,
     getBannerList,
     getSideBarMappingIcon,
     getSideBarContent,
     getShowRooms,
     getAutoCompleteProduct,
     getListCollection,
-  }
+    getCategoryBySlug
+  };
 }
-

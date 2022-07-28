@@ -7,7 +7,6 @@ import {
 import { Card, Col, Row, Space, Typography } from "antd";
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { useSwiper } from "swiper/react";
 import { Link } from "react-router-dom";
 import { CartActionContext } from "../../../contexts/CartProvider";
 
@@ -59,17 +58,8 @@ const Rate = styled.span`
  * @returns 
  */
 export default function ProductCard({ category, product }) {
-  const swiper = useSwiper();
   
   const { addProduct } = useContext(CartActionContext);
-
-  function handleMouseEnter() {
-    swiper.autoplay.stop();
-  }
-
-  function handleMouseLeave() {
-    swiper.autoplay.start();
-  }
 
   /**
    * 
@@ -81,8 +71,6 @@ export default function ProductCard({ category, product }) {
 
   return product && (
     <StyledCard
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       cover={
         <Link  to={`/${category}/${product.sku}`}>
           <img

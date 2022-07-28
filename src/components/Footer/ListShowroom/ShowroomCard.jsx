@@ -12,7 +12,7 @@ const StyledCard = styled(Card)`
       margin: 0;
       padding: 0;
       border: none;
-      background-color: #243a76;
+      background-color: var(--primary-color);
       color: white;
       font-size: 13px;
       text-transform: uppercase;
