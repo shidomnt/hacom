@@ -1,71 +1,71 @@
 // @ts-check
-import { discountMapping } from "../constant";
+import { discountMapping } from '../constant'
 
 /**
- * 
- * @param {string} stringPrice 
- * @returns 
+ *
+ * @param {string} stringPrice
+ * @returns
  */
 export const formatStringPriceToNumber = (stringPrice) =>
-  Number(stringPrice.split(".").join(""));
+  Number(stringPrice.split('.').join(''))
 
 /**
- * 
- * @param {number} thanhTienNumber 
- * @returns 
+ *
+ * @param {number} thanhTienNumber
+ * @returns
  */
 export const formatNumberPriceToString = (thanhTienNumber) => {
-  const thanhTienArrayReverse = thanhTienNumber.toString().split("").reverse();
-  let thanhTienArrayFormated = [];
+  const thanhTienArrayReverse = thanhTienNumber.toString().split('').reverse()
+  let thanhTienArrayFormated = []
   while (thanhTienArrayReverse.length) {
-    const string = thanhTienArrayReverse.splice(0, 3).reverse().join("");
-    thanhTienArrayFormated.unshift(string);
+    const string = thanhTienArrayReverse.splice(0, 3).reverse().join('')
+    thanhTienArrayFormated.unshift(string)
   }
-  const thanhTienStringFormated = thanhTienArrayFormated.join(".");
-  return thanhTienStringFormated;
-};
+  const thanhTienStringFormated = thanhTienArrayFormated.join('.')
+  return thanhTienStringFormated
+}
 
 /**
- * 
- * @param {string} price 
- * @param {number} quantify 
- * @returns 
+ *
+ * @param {string} price
+ * @param {number} quantify
+ * @returns
  */
 export const caculateThanhTien = (price, quantify) => {
-  const thanhTienNumber = formatStringPriceToNumber(price) * quantify;
-  return formatNumberPriceToString(thanhTienNumber);
-};
+  const thanhTienNumber = formatStringPriceToNumber(price) * quantify
+  return formatNumberPriceToString(thanhTienNumber)
+}
 
 /**
- * 
- * @param {import("../constant").DiscountInfo} discountInfo 
- * @returns 
+ *
+ * @param {import("../constant").DiscountInfo} discountInfo
+ * @returns
  */
 export const displayDiscountInfo = (discountInfo) => {
   switch (discountInfo.type) {
-    case "rate":
-      return `${discountInfo.value * 100}%`;
+    case 'rate':
+      return `${discountInfo.value * 100}%`
     default:
-      throw new Error("Discount type khong hop le");
+      throw new Error('Discount type khong hop le')
   }
-};
+}
 
 /**
- * 
- * @param {string} discountCode 
- * @returns 
+ *
+ * @param {string} discountCode
+ * @returns
  */
-export const checkDiscountCode = (discountCode = "") => {
-  discountCode = discountCode.toUpperCase();
+export const checkDiscountCode = (discountCode = '') => {
+  discountCode = discountCode.toUpperCase()
   if (Object.keys(discountMapping).includes(discountCode)) {
     return {
       discount: discountMapping[discountCode],
-    };
+    }
   }
   return {
     discount: null,
-  };
-};
+  }
+}
 
 export const getItem = (label, key, icon, children, type) => {
   return {
@@ -74,20 +74,30 @@ export const getItem = (label, key, icon, children, type) => {
     children,
     label,
     type,
-  };
-};
+  }
+}
 
 /**
- * 
- * @param {import("../constant").DiscountInfo} discountInfo 
- * @param {number} cost 
- * @returns 
+ *
+ * @param {import("../constant").DiscountInfo} discountInfo
+ * @param {number} cost
+ * @returns
  */
 export const caculateDiscountCost = (discountInfo, cost) => {
   switch (discountInfo.type) {
-    case "rate":
-      return cost * discountInfo.value;
+    case 'rate':
+      return cost * discountInfo.value
     default:
-      throw new Error("Discount type khong hop le");
+      throw new Error('Discount type khong hop le')
   }
-};
+}
+
+/**
+ *
+ * @param {string} input
+ * @returns {string | undefined}
+ * Return string only contain digit
+ */
+export const filterInputNumber = (input) => {
+  return input.match(/\d+/g)?.join('') ?? '0'
+}

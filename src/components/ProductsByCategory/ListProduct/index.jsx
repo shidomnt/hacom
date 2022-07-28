@@ -1,13 +1,13 @@
 // @ts-check
-import { Col, Row } from 'antd';
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
-import { initProducts } from '../../../constant';
-import useApi from '../../../hooks/useApi';
-import Loading from '../../Loading';
-import ProductCard from '../../MainPage/ProductCard';
-import TopFilter from './TopFilter';
+import { Col, Row } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { useParams, useSearchParams } from 'react-router-dom'
+import styled from 'styled-components'
+import { initProducts } from '../../../constant'
+import useApi from '../../../hooks/useApi'
+import Loading from '../../Loading'
+import ProductCard from '../../MainPage/ProductCard'
+import TopFilter from './TopFilter'
 
 const Wrapper = styled.div`
   & {
@@ -18,31 +18,37 @@ const Wrapper = styled.div`
       border-top: 1px solid #d7d7d7;
     }
   }
-`;
+`
 
 export default function ListProduct() {
-  const [products, setProducts] = useState(initProducts);
-  const [filters, setFilters] = useState([]);
+  const [products, setProducts] = useState(initProducts)
 
-  const { category } = useParams();
+  const [searchParams] = useSearchParams()
 
-  const { getProductsByCategory } = useApi();
+  const { category } = useParams()
+
+  const { getProductsByCategory } = useApi()
 
   useEffect(() => {
-    (async () => {
-      const response = await getProductsByCategory(category, '?_limit=8');
-      if (response) {
-        setProducts(response.data);
-      } else {
-        setProducts([]);
-      }
-    })();
-  }, [getProductsByCategory, category]);
+    if (category) {
+      ;(async () => {
+        const response = await getProductsByCategory(
+          category,
+          `?&_page=${searchParams.get('page') ?? 1}&_limit=8`
+        )
+        if (response) {
+          setProducts(response.data)
+        } else {
+          setProducts([])
+        }
+      })()
+    }
+  }, [getProductsByCategory, category, searchParams])
 
   return (
     <React.Fragment>
-      <TopFilter setFilters={setFilters} />
-      {!!products.length ? (
+      <TopFilter />
+      {!!products.length && category ? (
         <Wrapper>
           <Row>
             {products.map((product) => (
@@ -58,5 +64,5 @@ export default function ListProduct() {
         <Loading />
       )}
     </React.Fragment>
-  );
+  )
 }

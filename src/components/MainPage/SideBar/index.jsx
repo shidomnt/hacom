@@ -4,6 +4,7 @@ import useApi from '../../../hooks/useApi'
 import styled from 'styled-components'
 import SideBarPopover from './SideBarPopover'
 import { initCategories, initSideBarContent } from '../../../constant'
+import { Link } from 'react-router-dom'
 
 const Wrapper = styled.div`
   & {
@@ -41,6 +42,9 @@ const StyledCategoryWrapper = styled.div`
         border-left: 11px solid #333a71;
         position: absolute;
         right: -26px;
+      }
+      a {
+        color: inherit;
       }
       i {
         margin-right: 4px;
@@ -97,7 +101,9 @@ export default function SideBar() {
       {categories.map((category, index) => (
         <StyledCategoryWrapper key={category.id}>
           <div className="category-name">
-            {iconMapping[index]} {category.name}
+            <Link to={`/${category.slug}`}>
+              {iconMapping[index]} {category.name}
+            </Link>
           </div>
           {sideBarContent && (
             <SideBarPopover

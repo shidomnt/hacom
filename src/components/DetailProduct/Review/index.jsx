@@ -52,8 +52,6 @@ export default function Review() {
     setIsExpanded(!isExpanded)
   }
 
-  console.log(danhgia);
-
   return (
     <Wrapper>
       <Typography.Title level={4}>Đánh giá {product.name}</Typography.Title>
@@ -101,4 +99,3 @@ export default function Review() {
     </Wrapper>
   )
 }
-
