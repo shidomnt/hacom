@@ -14,7 +14,7 @@ const Wrapper = styled.div`
         align-items: center;
         background-color: #fbfbfb;
         .ant-card-head-title {
-          font-size: 15px;
+          font-size: 1.5rem;
           .card-title {
             border-radius: inherit;
           }
@@ -28,19 +28,19 @@ const Wrapper = styled.div`
           width: 100%;
         }
         .card-content-item {
-          font-size: 12px;
+          font-size: 1.2rem;
           color: #444444;
           display: flex;
           align-items: center;
           i {
-            font-size: 5px;
+            font-size: 0.5rem;
             transform: translate(0, 1px);
             margin-right: 8px;
           }
           line-height: 26px;
         }
         .list-showroom {
-          font-size: 12px;
+          font-size: 1.2rem;
           max-height: 165px;
           overflow-y: scroll;
           overflow-x: hidden;

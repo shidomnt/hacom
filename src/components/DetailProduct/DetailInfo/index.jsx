@@ -9,7 +9,7 @@ import ThanhToan from './ThanhToan'
 
 const Wrapper = styled.div`
   & {
-    font-size: 12px;
+    font-size: 1.2rem;
     .color-288ad6 {
       color: #288ad6;
     }
@@ -19,14 +19,14 @@ const Wrapper = styled.div`
       padding-left: 6px;
       padding-top: 6px;
       i {
-        font-size: 8px;
+        font-size: 0.8rem;
         margin-right: 4px;
         transform: translate(0, -1px);
       }
     }
     .summary {
       .title {
-        font-size: 14px;
+        font-size: 1.4rem;
       }
     }
   }
@@ -92,11 +92,10 @@ export default function DetailInfo() {
         <Col span={24}>
           <Gift uudai={product.uudai.slice(1)} />
         </Col>
-        <Col span={24} xxl={24} xl={24} lg={24} md={24} sm={0} xs={0}>
+        <Col span={24}>
           <ThanhToan />
         </Col>
       </Row>
     </Wrapper>
   )
 }
-

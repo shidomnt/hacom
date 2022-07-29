@@ -1,13 +1,13 @@
 // @ts-check
-import { Typography } from 'antd';
-import React from 'react';
-import styled from 'styled-components';
+import { Typography } from 'antd'
+import React from 'react'
+import styled from 'styled-components'
 
 const Wrapper = styled.div`
   & {
     .showroom-info {
       margin: 6px 0;
-      font-size: 12px;
+      font-size: 1.2rem;
       a {
         color: red;
       }
@@ -16,16 +16,16 @@ const Wrapper = styled.div`
       }
     }
   }
-`;
+`
 
 /**
- * @typedef {Object} ShowroomInfoProps 
+ * @typedef {Object} ShowroomInfoProps
  * @property {import('../../../hooks/useApi').Showroom} showroom
  */
 
 /**
- * @param {import('react').PropsWithChildren<ShowroomInfoProps>} props 
- * @returns 
+ * @param {import('react').PropsWithChildren<ShowroomInfoProps>} props
+ * @returns
  */
 export default function ShowroomInfo({ showroom }) {
   return (
@@ -69,5 +69,5 @@ export default function ShowroomInfo({ showroom }) {
         </div>
       )}
     </Wrapper>
-  );
+  )
 }

@@ -27,14 +27,14 @@ const SidebarContentWrapper = styled.div`
 `
 
 const StyledNonExpandableTitle = styled.div`
-  font-size: 11px;
+  font-size: 1.1rem;
   color: red;
   margin-bottom: 6px;
 `
 
 const StyledExpandableTitle = styled.div`
   & {
-    font-size: 12px;
+    font-size: 1.2rem;
     color: #333;
     margin-bottom: 4px;
     a {
@@ -165,7 +165,8 @@ export default function SideBarPopover({ className, listContent }) {
                               to="/Laptop,Tablet,Mobile/LTAC791"
                               key={index}
                             >
-                              {(typeof childLevelTwo === 'string') && childLevelTwo}
+                              {typeof childLevelTwo === 'string' &&
+                                childLevelTwo}
                             </Link>
                           ))}
                         </div>

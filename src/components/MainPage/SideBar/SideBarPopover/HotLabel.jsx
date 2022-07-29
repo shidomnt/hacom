@@ -1,11 +1,11 @@
 // @ts-check
 import React from 'react'
-import styled from 'styled-components';
+import styled from 'styled-components'
 const StyledHot = styled.span`
   & {
     position: relative;
     span {
-      font-size: 9px;
+      font-size: 0.9rem;
       background: #ed1b24;
       color: #fff;
       padding: 0 5px;
@@ -37,10 +37,8 @@ const StyledHot = styled.span`
       }
     }
   }
-`;
+`
 
-export default function HotLabel({children}) {
-  return (
-    <StyledHot>{children}</StyledHot>
-  )
+export default function HotLabel({ children }) {
+  return <StyledHot>{children}</StyledHot>
 }

@@ -27,7 +27,7 @@ const StyledCategoryWrapper = styled.div`
   & {
     .category-name {
       height: calc(500px / 17);
-      font-size: 12px;
+      font-size: 1.2rem;
       padding-left: 5px;
       display: flex;
       align-items: center;

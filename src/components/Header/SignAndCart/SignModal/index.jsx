@@ -33,7 +33,7 @@ const StyledModal = styled(Modal)`
         padding: 0;
       }
       .modal-sign-icon {
-        font-size: 40px;
+        font-size: 4rem;
         cursor: pointer;
       }
       .sign-modal-wrap-image {
@@ -77,7 +77,7 @@ const StyledButton = styled(Button)`
     padding-top: 8px;
     padding-bottom: 8px;
     height: unset;
-    font-size: 18px;
+    font-size: 1.8rem;
   }
 `
 
@@ -85,7 +85,7 @@ const StyledInput = styled(Input)`
   & {
     border: none;
     border-bottom: solid 1px #d7d7d7;
-    font-size: 24px;
+    font-size: 2.4rem;
   }
 `
 

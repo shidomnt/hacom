@@ -1,12 +1,12 @@
 // @ts-check
-import React from 'react';
-import { Typography } from 'antd';
-import styled from 'styled-components';
+import React from 'react'
+import { Typography } from 'antd'
+import styled from 'styled-components'
 
 const Wrapper = styled.div`
   & {
     .title-index {
-      font-size: 16px;
+      font-size: 1.6rem;
       padding: 4px 16px;
       background-color: #ed1b24;
       border-top-left-radius: 5px;
@@ -25,18 +25,18 @@ const Wrapper = styled.div`
       color: inherit;
     }
   }
-`;
+`
 
 /**
- * @typedef {Object} ShowroomCardHeaderProps 
+ * @typedef {Object} ShowroomCardHeaderProps
  * @property {import('../../../hooks/useApi').Showroom} showroom
  * @property {number} index
  */
 
 /**
- * 
- * @param {import('react').PropsWithChildren<ShowroomCardHeaderProps>} props 
- * @returns 
+ *
+ * @param {import('react').PropsWithChildren<ShowroomCardHeaderProps>} props
+ * @returns
  */
 const ShowroomCardHeader = ({ showroom, index }) => {
   return (
@@ -53,7 +53,7 @@ const ShowroomCardHeader = ({ showroom, index }) => {
         </Typography.Text>
       </div>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default ShowroomCardHeader;
+export default ShowroomCardHeader

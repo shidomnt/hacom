@@ -1,9 +1,8 @@
 // @ts-check
-import React from "react";
-import { Link } from "react-router-dom";
-import './style.css'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-const data = [1, 2, 3, 4];
+const data = [1, 2, 3, 4]
 
 export default function SubNavItem() {
   return (
@@ -20,5 +19,5 @@ export default function SubNavItem() {
         </li>
       ))}
     </ul>
-  );
+  )
 }

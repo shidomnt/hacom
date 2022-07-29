@@ -1,3 +1,4 @@
+// @ts-check
 import { Divider, Typography } from 'antd'
 import React, { useState } from 'react'
 import styled from 'styled-components'
@@ -14,9 +15,10 @@ const StyledTitle = styled(Typography.Title)`
 const StyledChildrenWrapper = styled.div`
   & {
     padding: 12px 8px 0;
-    font-size: 12px;
+    font-size: 1.2rem;
     overflow: hidden;
-    transition: 1s linear;
+    transition: 0.3s ease;
+    margin-bottom: 16px;
   }
 `
 
@@ -39,7 +41,7 @@ export default function Collapse({ header, children }) {
         {header}
       </StyledTitle>
       <Divider style={{ margin: 0 }} type="horizontal" />
-      <StyledChildrenWrapper style={{ maxHeight: collapse ? 0 : '15em' }}>
+      <StyledChildrenWrapper style={{ maxHeight: collapse ? 0 : '100em' }}>
         {children}
       </StyledChildrenWrapper>
     </Wrapper>

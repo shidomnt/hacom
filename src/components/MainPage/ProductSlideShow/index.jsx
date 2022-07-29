@@ -1,9 +1,9 @@
 // @ts-check
-import { Col, Row } from "antd";
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import SlideShow from "../SlideShow";
+import { Col, Row } from 'antd'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+import SlideShow from '../SlideShow'
 
 const Title = styled.div`
   & {
@@ -13,14 +13,14 @@ const Title = styled.div`
     padding: 10px 16px;
     .title {
       text-transform: uppercase;
-      font-size: 22px;
+      font-size: 2.2rem;
     }
     .more {
       color: inherit;
       text-decoration: none;
     }
   }
-`;
+`
 
 const breakPoints = {
   1600: {
@@ -38,10 +38,10 @@ const breakPoints = {
   576: {
     slidesPerView: 2,
   },
-  360: {
-    slidesPerView: 1,
+  0: {
+    slidesPerView: 2,
   },
-};
+}
 
 /**
  * @typedef {Object} ProductSlideShowProps
@@ -49,14 +49,14 @@ const breakPoints = {
  */
 
 /**
- * @param {import("react").PropsWithChildren<ProductSlideShowProps>} props 
- * @returns 
+ * @param {import("react").PropsWithChildren<ProductSlideShowProps>} props
+ * @returns
  */
 function ProductSlideShow({ categories }) {
   return (
     <Row gutter={[0, 12]}>
       {categories.slice(0, 4).map((category) => (
-        <Col span={24} key={category.id} style={{ backgroundColor: "white" }}>
+        <Col span={24} key={category.id} style={{ backgroundColor: 'white' }}>
           <SlideShow
             category={category.slug}
             title={
@@ -74,7 +74,7 @@ function ProductSlideShow({ categories }) {
         </Col>
       ))}
     </Row>
-  );
+  )
 }
 
-export default ProductSlideShow;
+export default ProductSlideShow

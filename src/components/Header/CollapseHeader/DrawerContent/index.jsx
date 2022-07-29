@@ -1,27 +1,27 @@
 // @ts-check
-import { Space } from 'antd';
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { Space } from 'antd'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 import DanhMucSanPham from './DanhMucSanPham'
 
 const Wrapper = styled.div`
   & {
-    font-size: 14px;
+    font-size: 1.4rem;
     color: #333333;
     i {
       min-width: 40px;
       padding: 8px 12px;
       text-align: center;
       color: #888;
-      font-size: 16px;
+      font-size: 1.6rem;
     }
     .ant-space-vertical {
       width: 100%;
       .ant-space-item {
         .login {
           i {
-            font-size: 36px;
+            font-size: 3.6rem;
           }
         }
         & > div {
@@ -34,7 +34,7 @@ const Wrapper = styled.div`
       color: inherit;
     }
   }
-`;
+`
 
 export default function DrawerContent() {
   return (
@@ -77,5 +77,5 @@ export default function DrawerContent() {
         </Link>
       </Space>
     </Wrapper>
-  );
+  )
 }

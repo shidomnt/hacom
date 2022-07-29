@@ -1,4 +1,5 @@
-import { Col, Input, Row, Select, Space, Typography } from 'antd'
+// @ts-check
+import { Col, Grid, Input, Row, Select, Space, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import styled from 'styled-components'
@@ -30,12 +31,16 @@ export default function Filter() {
     searchParams.get('stock') ?? DEFAULT
   )
 
+  const { xl, lg } = Grid.useBreakpoint()
+
   const [costFilter, setCostFilter] = useState({
     min: '200.000',
     max: '5.000.000',
   })
 
-  const { getShowRooms } = useApi()
+  const { getShowRooms, getKhoangGia } = useApi()
+
+  const [khoangGia] = useState(() => getKhoangGia())
 
   useEffect(() => {
     ;(async () => {
@@ -74,8 +79,8 @@ export default function Filter() {
 
   return (
     <Wrapper>
-      <Row gutter={[16, 16]}>
-        <Col span={5}>
+      <Row gutter={[8, 8]}>
+        <Col span={5} xxl={5} xl={5} lg={5} md={8} sm={8} xs={8}>
           <Select
             onChange={(value) => setStockStatus(value)}
             value={stockStatus}
@@ -95,28 +100,41 @@ export default function Filter() {
               ))}
           </Select>
         </Col>
-        <Col span={11}>
-          <div className="top-filter-price">
-            <Space direction="horizontal" size="small">
-              <Typography.Text style={{ fontSize: '12px' }}>
-                Lọc theo giá tiền:
-              </Typography.Text>
-              <Input
-                suffix="₫"
-                value={costFilter.min}
-                onChange={(event) => handleSetCost(event, 'min')}
-              />
-              {'-'}
-              <Input
-                suffix="₫"
-                value={costFilter.max}
-                onChange={(event) => handleSetCost(event, 'max')}
-              />
-            </Space>
-          </div>
+        <Col span={11} xxl={11} xl={11} lg={11} md={8} sm={8} xs={8}>
+          {lg ? (
+            <div className="top-filter-price">
+              <Space direction="horizontal" size="small">
+                {xl && (
+                  <Typography.Text style={{ fontSize: '12px' }}>
+                    Lọc theo giá tiền:
+                  </Typography.Text>
+                )}
+
+                <Input
+                  suffix="₫"
+                  value={costFilter.min}
+                  onChange={(event) => handleSetCost(event, 'min')}
+                />
+                {'-'}
+                <Input
+                  suffix="₫"
+                  value={costFilter.max}
+                  onChange={(event) => handleSetCost(event, 'max')}
+                />
+              </Space>
+            </div>
+          ) : (
+            <Select defaultValue="default" style={{ width: '100%' }}>
+              <Select.Option value="default">Khoảng giá</Select.Option>
+              {khoangGia.map((gia) => (
+                <Select.Option key={gia} value={gia}>
+                  {gia}
+                </Select.Option>
+              ))}
+            </Select>
+          )}
         </Col>
       </Row>
     </Wrapper>
   )
 }
-

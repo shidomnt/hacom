@@ -1,7 +1,7 @@
 // @ts-check
-import React from 'react';
+import React from 'react'
 import { Card } from 'antd'
-import styled from 'styled-components';
+import styled from 'styled-components'
 import ShowroomCardHeader from './ShowroomCardHeader'
 import ShowroomInfo from './ShowroomInfo'
 
@@ -14,7 +14,7 @@ const StyledCard = styled(Card)`
       border: none;
       background-color: var(--primary-color);
       color: white;
-      font-size: 13px;
+      font-size: 1.3rem;
       text-transform: uppercase;
       border-radius: 5px;
       * {
@@ -28,19 +28,19 @@ const StyledCard = styled(Card)`
       padding: 0;
     }
   }
-`;
+`
 
 /**
- * @typedef {Object} ShowroomCardProps 
+ * @typedef {Object} ShowroomCardProps
  * @property {import('../../../hooks/useApi').Showroom} showroom
  * @property {number} index
  */
 
 /**
- * @param {import('react').PropsWithChildren<ShowroomCardProps>} props 
- * @returns 
+ * @param {import('react').PropsWithChildren<ShowroomCardProps>} props
+ * @returns
  */
-export default function ShowroomCard({showroom, index}) {
+export default function ShowroomCard({ showroom, index }) {
   return (
     <StyledCard
       title={<ShowroomCardHeader showroom={showroom} index={index} />}
@@ -48,5 +48,5 @@ export default function ShowroomCard({showroom, index}) {
     >
       <ShowroomInfo showroom={showroom} />
     </StyledCard>
-  );
+  )
 }

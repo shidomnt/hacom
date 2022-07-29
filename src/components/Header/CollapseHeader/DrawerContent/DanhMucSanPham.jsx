@@ -61,8 +61,12 @@ export default function DanhMucSanPham() {
         const listItem = itemsOfCategory.map((item) => {
           const listSubitem = item.childs.map((child) => {
             return getItem(
-              <Link to="/">{(typeof child === 'string') ? child : child.title}</Link>,
-              `${category.slug}-${item.title}-${(typeof child === 'string') ? child : child.title}`
+              <Link to="/">
+                {typeof child === 'string' ? child : child.title}
+              </Link>,
+              `${category.slug}-${item.title}-${
+                typeof child === 'string' ? child : child.title
+              }`
             )
           })
           return getItem(
@@ -92,7 +96,7 @@ export default function DanhMucSanPham() {
 
   return (
     <React.Fragment>
-      {categories.length && sideBarContent && (
+      {!!categories.length && sideBarContent && (
         <StyledMenu mode="inline" items={items} />
       )}
     </React.Fragment>

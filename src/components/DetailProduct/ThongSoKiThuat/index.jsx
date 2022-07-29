@@ -1,12 +1,12 @@
 // @ts-check
-import { Col, Divider, Row, Typography } from 'antd';
-import React, { useContext, useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { ProductContext } from '../';
+import { Col, Divider, Row, Typography } from 'antd'
+import React, { useContext, useEffect, useState } from 'react'
+import styled from 'styled-components'
+import { ProductContext } from '../'
 
 const Wrapper = styled.div`
   & {
-    font-size: 12px;
+    font-size: 1.2rem;
     .ant-typography {
       margin: 0;
     }
@@ -20,20 +20,20 @@ const Wrapper = styled.div`
       }
     }
   }
-`;
+`
 
 export default function ThongSoKiThuat() {
-  const [isPC, setIsPC] = useState(false);
-  const { product } = useContext(ProductContext);
+  const [isPC, setIsPC] = useState(false)
+  const { product } = useContext(ProductContext)
 
   useEffect(() => {
-    const pattern = /^PC/;
+    const pattern = /^PC/
     if (pattern.test(product.sku)) {
-      setIsPC(true);
+      setIsPC(true)
     } else {
-      setIsPC(false);
+      setIsPC(false)
     }
-  }, [product]);
+  }, [product])
 
   return (
     <Wrapper>
@@ -44,10 +44,12 @@ export default function ThongSoKiThuat() {
           {isPC && (
             <Row gutter={6}>
               <Col span={19}>
-                <Typography.Title className='text-center' level={5}>Tên sản phẩm</Typography.Title>
+                <Typography.Title className="text-center" level={5}>
+                  Tên sản phẩm
+                </Typography.Title>
               </Col>
               <Col span={5}>
-                <Typography.Title  level={5}>Bảo hành</Typography.Title>
+                <Typography.Title level={5}>Bảo hành</Typography.Title>
               </Col>
             </Row>
           )}
@@ -61,9 +63,7 @@ export default function ThongSoKiThuat() {
                       <Typography.Text strong>{thongso}</Typography.Text>
                     </Col>
                     <Col span={5}>
-                      <Typography.Text>
-                        {product.tskt[thongso]}
-                      </Typography.Text>
+                      <Typography.Text>{product.tskt[thongso]}</Typography.Text>
                     </Col>
                   </Row>
                 ) : (
@@ -72,9 +72,7 @@ export default function ThongSoKiThuat() {
                       <Typography.Text strong>{thongso}</Typography.Text>
                     </Col>
                     <Col span={16}>
-                      <Typography.Text>
-                        {product.tskt[thongso]}
-                      </Typography.Text>
+                      <Typography.Text>{product.tskt[thongso]}</Typography.Text>
                     </Col>
                   </Row>
                 )}
@@ -83,5 +81,5 @@ export default function ThongSoKiThuat() {
         </div>
       )}
     </Wrapper>
-  );
+  )
 }

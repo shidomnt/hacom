@@ -18,14 +18,14 @@ const Wrapper = styled.div`
     .price {
       color: #bf081f;
       display: inline;
-      font-size: 27px;
+      font-size: 2.7rem;
     }
     .max-price {
-      font-size: 16px;
+      font-size: 1.6rem;
     }
     .discount {
       color: #bf081f;
-      font-size: 14px;
+      font-size: 1.4rem;
     }
   }
 `
@@ -66,4 +66,3 @@ export default function Price() {
     </Wrapper>
   )
 }
-

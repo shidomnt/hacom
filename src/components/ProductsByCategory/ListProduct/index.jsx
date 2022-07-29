@@ -5,11 +5,12 @@ import { useParams, useSearchParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { initProducts } from '../../../constant'
 import useApi from '../../../hooks/useApi'
+import { sortProductHandler } from '../../../utils'
 import Loading from '../../Loading'
 import ProductCard from '../../MainPage/ProductCard'
 import TopFilter from './FilterAndSort'
 
-const Wrapper = styled.div`
+const ListProductWrapper = styled.div`
   & {
     background-color: white;
     border-bottom: 1px solid #d7d7d7;
@@ -49,21 +50,31 @@ export default function ListProduct() {
     <React.Fragment>
       <TopFilter />
       {!!products.length && category ? (
-        <Wrapper>
+        <ListProductWrapper>
           <Row>
-            {products.map((product) => (
-              <Col span={6} key={product.id}>
-                <div className="product-by-category-card-wrap">
-                  <ProductCard category={category} product={product} />
-                </div>
-              </Col>
-            ))}
+            {products
+              .sort(sortProductHandler?.[searchParams.get('sort') ?? 'default'])
+              .map((product) => (
+                <Col
+                  span={6}
+                  xxl={6}
+                  xl={6}
+                  lg={8}
+                  md={8}
+                  sm={12}
+                  xs={12}
+                  key={product.id}
+                >
+                  <div className="product-by-category-card-wrap">
+                    <ProductCard category={category} product={product} />
+                  </div>
+                </Col>
+              ))}
           </Row>
-        </Wrapper>
+        </ListProductWrapper>
       ) : (
         <Loading />
       )}
     </React.Fragment>
   )
 }
-

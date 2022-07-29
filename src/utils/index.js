@@ -101,3 +101,20 @@ export const caculateDiscountCost = (discountInfo, cost) => {
 export const filterInputNumber = (input) => {
   return input.match(/\d+/g)?.join('') ?? '0'
 }
+
+/**
+ * @type {Record<string, ((prev: import('../hooks/useApi').Product, next: import('../hooks/useApi').Product) => number) | undefined>}
+ */
+export const sortProductHandler = {
+  default: undefined,
+  'price-desc': (productPrev, productNext) => {
+    const prevPrice = formatStringPriceToNumber(productPrev.price)
+    const nextPrice = formatStringPriceToNumber(productNext.price)
+    return nextPrice - prevPrice
+  },
+  'price-asc': (productPrev, productNext) => {
+    const prevPrice = formatStringPriceToNumber(productPrev.price)
+    const nextPrice = formatStringPriceToNumber(productNext.price)
+    return prevPrice - nextPrice
+  },
+}

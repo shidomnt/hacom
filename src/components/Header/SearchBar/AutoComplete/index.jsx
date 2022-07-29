@@ -29,7 +29,7 @@ const AutoCompleteWrapper = styled.div`
     padding: 10px;
     z-index: 99;
     border-radius: 2px;
-    font-size: 12px;
+    font-size: 1.2rem;
     animation: ${autoCompleteSlideIn} 0.2s linear;
     max-height: 300px;
     overflow-y: auto;
@@ -121,4 +121,3 @@ export default function AutoComplete({ visible, searchValue, children }) {
     </Wrapper>
   )
 }
-

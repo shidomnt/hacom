@@ -1,11 +1,11 @@
 // @ts-check
-import { Col, Drawer, Image, Row } from 'antd';
-import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { CartContext } from '../../../contexts/CartProvider';
-import SearchBar from './SearchBar';
-import DrawerContent from './DrawerContent';
+import { Col, Drawer, Image, Row } from 'antd'
+import React, { useContext, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+import { CartContext } from '../../../contexts/CartProvider'
+import SearchBar from './SearchBar'
+import DrawerContent from './DrawerContent'
 
 const Wrapper = styled.div`
   & {
@@ -28,7 +28,7 @@ const Wrapper = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 24px;
+      font-size: 2.4rem;
       cursor: pointer;
     }
     .cart-wrap {
@@ -39,7 +39,7 @@ const Wrapper = styled.div`
         background-color: #fce101;
         padding: 0 6px;
         border-radius: 50%;
-        font-size: 12px;
+        font-size: 1.2rem;
         top: 0px;
         right: -12px;
       }
@@ -48,7 +48,7 @@ const Wrapper = styled.div`
       text-align: center;
     }
   }
-`;
+`
 
 const StyledDrawer = styled(Drawer)`
   & {
@@ -60,31 +60,31 @@ const StyledDrawer = styled(Drawer)`
       padding: 0;
     }
   }
-`;
+`
 
 export default function CollapseHeader() {
-  const { cart } = useContext(CartContext);
-  const [hideLogo, setHideLogo] = useState(false);
+  const { cart } = useContext(CartContext)
+  const [hideLogo, setHideLogo] = useState(false)
 
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false)
 
   const handleToggleDrawer = () => {
-    setDrawerOpen((prev) => !prev);
-  };
+    setDrawerOpen((prev) => !prev)
+  }
 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY >= 50) {
-        setHideLogo(true);
+        setHideLogo(true)
       } else {
-        setHideLogo(false);
+        setHideLogo(false)
       }
-    };
-    window.addEventListener('scroll', handleScroll);
+    }
+    window.addEventListener('scroll', handleScroll)
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   return (
     <header className="header" style={{ height: 'calc(48px + 32px)' }}>
@@ -118,9 +118,9 @@ export default function CollapseHeader() {
                 <div className="logo-wrap">
                   <Link to="/" className="header__buttom--top-logo">
                     <Image
-                    preview={false}
+                      preview={false}
                       style={{ height: '40px' }}
-                      src="https://hanoicomputercdn.com/media/lib/19-02-2022/logo-hacomtrangch.png"
+                      src="/assets/img/logo-hacomtrangch.png"
                       alt="logo"
                       className="header__buttom--top-logo-img"
                     />
@@ -145,5 +145,5 @@ export default function CollapseHeader() {
         )}
       </Wrapper>
     </header>
-  );
+  )
 }
