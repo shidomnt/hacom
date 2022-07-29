@@ -91,3 +91,30 @@ export const discountMapping = {
     value: 0.9,
   },
 }
+
+/**
+ * @type {{title: string, sortType: string}[]}
+ */
+export const sortBtns = [
+  {
+    title: 'Hàng Mới',
+    sortType: 'new',
+  },
+  {
+    title: 'Xem Nhiều',
+    sortType: 'view',
+  },
+  {
+    title: 'Giá Giảm Nhiều',
+    sortType: 'price-off',
+  },
+  {
+    title: 'Giá Tăng Dần',
+    sortType: 'price-asc',
+  },
+  {
+    title: 'Giá Giảm Dần',
+    sortType: 'price-desc',
+  },
+]
+

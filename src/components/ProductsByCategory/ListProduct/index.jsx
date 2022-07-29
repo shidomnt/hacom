@@ -7,7 +7,7 @@ import { initProducts } from '../../../constant'
 import useApi from '../../../hooks/useApi'
 import Loading from '../../Loading'
 import ProductCard from '../../MainPage/ProductCard'
-import TopFilter from './TopFilter'
+import TopFilter from './FilterAndSort'
 
 const Wrapper = styled.div`
   & {
@@ -66,3 +66,4 @@ export default function ListProduct() {
     </React.Fragment>
   )
 }
+
