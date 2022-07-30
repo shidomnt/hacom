@@ -59,7 +59,7 @@ export default function Review() {
       <ContentWrapper className={isExpanded ? 'expanded' : ''}>
         <div className="content-danhgia">
           {danhgia.title.slice(1).map((title, index) => (
-            <div key={title}>
+            <div key={`${title}-${index}`}>
               <Typography.Title level={5}>{title}</Typography.Title>
               {danhgia.img?.[index] && (
                 <React.Fragment>

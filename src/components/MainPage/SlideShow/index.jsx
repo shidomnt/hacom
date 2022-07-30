@@ -1,12 +1,12 @@
 // @ts-check
 
-import React, { useEffect, useState } from "react";
-import { Autoplay, Navigation } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import ProductCard from "../ProductCard";
-import useApi from "../../../hooks/useApi";
-import Loading from "../../Loading";
-import { initProducts } from "../../../constant";
+import React, { useEffect, useState } from 'react'
+import { Autoplay, Navigation } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import ProductCard from '../ProductCard'
+import useApi from '../../../hooks/useApi'
+import Loading from '../../Loading'
+import { initProducts } from '../../../constant'
 
 /**
  * @typedef {Object} SlideShowProps
@@ -20,32 +20,32 @@ import { initProducts } from "../../../constant";
  */
 
 /**
- * @param {import("react").PropsWithChildren<SlideShowProps>} props 
- * @returns 
+ * @param {import("react").PropsWithChildren<SlideShowProps>} props
+ * @returns
  */
 const SlideShow = ({
   title,
   category: categorySlug,
-  query = "?_limit=3",
+  query = '?limit=3',
   slidesPerView = 1,
   spaceBetween = 10,
   button = null,
   breakpoints = {},
 }) => {
-  const [products, setProducts] = useState(initProducts);
+  const [products, setProducts] = useState(initProducts)
 
-  const { getProductsByCategory } = useApi();
+  const { getProductsByCategory } = useApi()
 
   useEffect(() => {
-    (async () => {
-      const response = await getProductsByCategory(categorySlug, query);
+    ;(async () => {
+      const response = await getProductsByCategory(categorySlug, query)
       if (response) {
-        setProducts(response.data);
+        setProducts(response.data)
       } else {
-        setProducts([]);
+        setProducts([])
       }
-    })();
-  }, [categorySlug, getProductsByCategory, query]);
+    })()
+  }, [categorySlug, getProductsByCategory, query])
 
   return !!products.length ? (
     <React.Fragment>
@@ -67,11 +67,11 @@ const SlideShow = ({
           </SwiperSlide>
         ))}
       </Swiper>
-      {button && <div style={{ marginTop: "16px" }}>{button}</div>}
+      {button && <div style={{ marginTop: '16px' }}>{button}</div>}
     </React.Fragment>
   ) : (
     <Loading />
-  );
-};
+  )
+}
 
-export default React.memo(SlideShow);
+export default React.memo(SlideShow)

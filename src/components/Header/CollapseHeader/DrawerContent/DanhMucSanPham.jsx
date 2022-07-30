@@ -3,7 +3,7 @@ import { Menu } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { initCategories, initSideBarContent } from '../../../../constant'
+import { initSideBarContent } from '../../../../constant'
 import useApi from '../../../../hooks/useApi'
 import { getItem } from '../../../../utils/'
 
@@ -16,11 +16,9 @@ const StyledMenu = styled(Menu)`
 `
 
 export default function DanhMucSanPham() {
-  const { getCategories, getSideBarContent, getSideBarMappingIcon } = useApi()
+  const { getSideBarContent, getSideBarMappingIcon } = useApi()
 
   const [mappingIcon] = useState(() => getSideBarMappingIcon())
-
-  const [categories, setCategories] = useState(initCategories)
 
   const [sideBarContent, setSideBarContent] = useState(initSideBarContent)
 
@@ -34,17 +32,6 @@ export default function DanhMucSanPham() {
 
   useEffect(() => {
     ;(async () => {
-      const response = await getCategories()
-      if (response) {
-        setCategories(response.data)
-      } else {
-        setCategories([])
-      }
-    })()
-  }, [getCategories])
-
-  useEffect(() => {
-    ;(async () => {
       const response = await getSideBarContent()
       if (response) {
         setSideBarContent(response.data)
@@ -55,13 +42,15 @@ export default function DanhMucSanPham() {
   }, [getSideBarContent])
 
   useEffect(() => {
-    if (categories.length && sideBarContent) {
-      const listCategory = categories.map((category, index) => {
-        const itemsOfCategory = sideBarContent[category.slug]
+    if (sideBarContent) {
+      const listCategory = sideBarContent.map((catalog, index) => {
+        const category = catalog.category
+        /** @type {import('../../../../hooks/useApi').SideBarContentChild[]} */
+        const itemsOfCategory = catalog.content
         const listItem = itemsOfCategory.map((item) => {
-          const listSubitem = item.childs.map((child) => {
+          const listSubitem = item.children.map((child) => {
             return getItem(
-              <Link to="/">
+              <Link to="/Laptop,Tablet,Mobile" reloadDocument>
                 {typeof child === 'string' ? child : child.title}
               </Link>,
               `${category.slug}-${item.title}-${
@@ -70,7 +59,7 @@ export default function DanhMucSanPham() {
             )
           })
           return getItem(
-            <Link to="/">{item.title}</Link>,
+            <Link to="#">{item.title}</Link>,
             `${category.slug}-${item.title}`,
             null,
             listSubitem
@@ -92,13 +81,11 @@ export default function DanhMucSanPham() {
         ),
       ])
     }
-  }, [categories, sideBarContent, mappingIcon])
+  }, [sideBarContent, mappingIcon])
 
   return (
     <React.Fragment>
-      {!!categories.length && sideBarContent && (
-        <StyledMenu mode="inline" items={items} />
-      )}
+      {sideBarContent && <StyledMenu mode="inline" items={items} />}
     </React.Fragment>
   )
 }

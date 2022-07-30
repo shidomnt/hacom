@@ -1,11 +1,11 @@
 // @ts-check
-import React, { useContext, useEffect, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import  { Thumbs, Navigation } from 'swiper';
-import styled from 'styled-components';
-import { ProductContext } from '..';
-import { Col, Image, Row } from 'antd';
-import { initGallerySrc } from '../../../constant';
+import React, { useContext, useEffect, useState } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Thumbs, Navigation } from 'swiper'
+import styled from 'styled-components'
+import { ProductContext } from '..'
+import { Col, Image, Row } from 'antd'
+import { initGallerySrc } from '../../../constant'
 
 const Wrapper = styled.div`
   & {
@@ -14,17 +14,17 @@ const Wrapper = styled.div`
       border: 1px solid #333;
     }
   }
-`;
+`
 
 export default function SlideGallery() {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const [gallery, setGallery] = useState(initGallerySrc);
+  const [thumbsSwiper, setThumbsSwiper] = useState(null)
+  const [gallery, setGallery] = useState(initGallerySrc)
 
-  const { product } = useContext(ProductContext);
+  const { product } = useContext(ProductContext)
 
   useEffect(() => {
-    setGallery([product.imgSrc, ...product.gallery]);
-  }, [product]);
+    setGallery([product.imgSrc, ...product.gallery])
+  }, [product])
 
   return (
     <Wrapper>
@@ -65,5 +65,5 @@ export default function SlideGallery() {
         </Col>
       </Row>
     </Wrapper>
-  );
+  )
 }

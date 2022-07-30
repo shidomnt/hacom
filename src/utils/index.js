@@ -27,12 +27,12 @@ export const formatNumberPriceToString = (thanhTienNumber) => {
 
 /**
  *
- * @param {string} price
+ * @param {number} price
  * @param {number} quantify
  * @returns
  */
 export const caculateThanhTien = (price, quantify) => {
-  const thanhTienNumber = formatStringPriceToNumber(price) * quantify
+  const thanhTienNumber = price * quantify
   return formatNumberPriceToString(thanhTienNumber)
 }
 
@@ -108,13 +108,21 @@ export const filterInputNumber = (input) => {
 export const sortProductHandler = {
   default: undefined,
   'price-desc': (productPrev, productNext) => {
-    const prevPrice = formatStringPriceToNumber(productPrev.price)
-    const nextPrice = formatStringPriceToNumber(productNext.price)
+    const prevPrice = productPrev.price
+    const nextPrice = productNext.price
     return nextPrice - prevPrice
   },
   'price-asc': (productPrev, productNext) => {
-    const prevPrice = formatStringPriceToNumber(productPrev.price)
-    const nextPrice = formatStringPriceToNumber(productNext.price)
+    const prevPrice = productPrev.price
+    const nextPrice = productNext.price
     return prevPrice - nextPrice
   },
+}
+
+/**
+ *
+ * @param {import('../hooks/useApi').Product} product
+ */
+export const caculateDiscountRate = (product) => {
+  return Math.floor((product.price / product.maxPrice) * 100)
 }

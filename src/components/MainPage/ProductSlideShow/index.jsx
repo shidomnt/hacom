@@ -56,7 +56,7 @@ function ProductSlideShow({ categories }) {
   return (
     <Row gutter={[0, 12]}>
       {categories.slice(0, 4).map((category) => (
-        <Col span={24} key={category.id} style={{ backgroundColor: 'white' }}>
+        <Col span={24} key={category._id} style={{ backgroundColor: 'white' }}>
           <SlideShow
             category={category.slug}
             title={
@@ -68,7 +68,7 @@ function ProductSlideShow({ categories }) {
               </Title>
             }
             slidesPerView={5}
-            query="?_limit=7"
+            query="?limit=7"
             breakpoints={breakPoints}
           />
         </Col>

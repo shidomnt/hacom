@@ -13,7 +13,7 @@ import {
 import React, { useContext, useEffect, useState } from 'react'
 import { CartActionContext } from '../../../contexts/CartProvider'
 import InputQuantify from '../../DetailProduct/DetailInfo/InputQuantify'
-import { caculateThanhTien } from '../../../utils'
+import { caculateThanhTien, formatNumberPriceToString } from '../../../utils'
 import { MIN_SOLUONG, MAX_SOLUONG } from '../../../constant'
 
 /**
@@ -29,9 +29,9 @@ import { MIN_SOLUONG, MAX_SOLUONG } from '../../../constant'
 export default function CartItem({ item }) {
   const { changeQuantify, removeProduct } = useContext(CartActionContext)
 
-  const [thanhTien, setThanhTien] = useState(() =>
-    caculateThanhTien(item.product.price, item.quantify)
-  )
+  const [thanhTien, setThanhTien] = useState(() => {
+    return caculateThanhTien(item.product.price, item.quantify)
+  })
 
   const { lg } = Grid.useBreakpoint()
 
@@ -60,12 +60,12 @@ export default function CartItem({ item }) {
       <Col span={5}>
         <Space direction="horizontal">
           <Typography.Text strong>
-            {item.product.price}
+            {formatNumberPriceToString(item.product.price)}
             <sup>₫</sup>
           </Typography.Text>
           {item.product.maxPrice && lg && (
             <Typography.Text delete>
-              {item.product.maxPrice}
+              {formatNumberPriceToString(item.product.maxPrice)}
               <sup>₫</sup>
             </Typography.Text>
           )}
@@ -104,4 +104,3 @@ export default function CartItem({ item }) {
     </Row>
   )
 }
-

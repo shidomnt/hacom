@@ -41,7 +41,7 @@ const ProductContext = createContext()
 export default function DetailProduct() {
   const [product, setProduct] = useState(initProduct)
 
-  const { category, id } = useParams()
+  const { id } = useParams()
 
   const navigate = useNavigate()
 
@@ -49,8 +49,8 @@ export default function DetailProduct() {
 
   useEffect(() => {
     ;(async () => {
-      if (category && id) {
-        const response = await getProduct(category, id)
+      if (id) {
+        const response = await getProduct(id)
         if (response) {
           setProduct(response.data)
         } else {
@@ -59,7 +59,7 @@ export default function DetailProduct() {
         }
       }
     })()
-  }, [getProduct, category, id, navigate])
+  }, [getProduct, id, navigate])
 
   return (
     <React.Fragment>
@@ -140,4 +140,3 @@ export default function DetailProduct() {
 }
 
 export { ProductContext }
-

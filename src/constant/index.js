@@ -39,4 +39,4 @@ export const KEY_LOCAL_STORAGE_CART = 'KEY_CART'
 /**
  * @type {string}
  */
-export const API_URL = 'http://localhost:4000'
+export const API_URL = 'http://localhost:5000'

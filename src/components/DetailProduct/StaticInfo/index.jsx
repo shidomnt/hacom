@@ -124,7 +124,7 @@ export default function StaticInfo() {
     /** @type {Set<string>} */
     const result = new Set()
     showrooms.forEach((showroom) => {
-      result.add(showroom.thanhpho)
+      result.add(showroom.city)
     })
     return Array.from(result)
   }, [showrooms])
@@ -168,16 +168,16 @@ export default function StaticInfo() {
                 dataSource={showrooms.filter((showroom) =>
                   filterShowrooms === 'default'
                     ? true
-                    : filterShowrooms === showroom.thanhpho
+                    : filterShowrooms === showroom.city
                 )}
                 renderItem={(showroom) => (
                   <li className="item-showroom">
                     <Typography.Text ellipsis={true}>
-                      {showroom.dienthoaiban && (
+                      {showroom.landline && (
                         <React.Fragment>
                           <span className="dienthoaiban">
                             <i className="fa-solid fa-phone"></i>{' '}
-                            {showroom.dienthoaiban}
+                            {showroom.landline}
                           </span>
                         </React.Fragment>
                       )}

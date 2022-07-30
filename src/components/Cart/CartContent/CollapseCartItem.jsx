@@ -13,6 +13,7 @@ import React, { useContext } from 'react'
 import { CartActionContext } from '../../../contexts/CartProvider'
 import InputQuantify from '../../DetailProduct/DetailInfo/InputQuantify'
 import { MAX_SOLUONG, MIN_SOLUONG } from '../../../constant'
+import { formatNumberPriceToString } from '../../../utils'
 
 /**
  * @typedef {Object} CollapseCartItemProps
@@ -64,7 +65,7 @@ export default function CollapseCartItem({ item }) {
                   textAlign: 'center',
                 }}
               >
-                {item.product.price}
+                {formatNumberPriceToString(item.product.price)}
                 <sup>₫</sup>
               </Typography.Text>
               <InputQuantify
@@ -87,4 +88,3 @@ export default function CollapseCartItem({ item }) {
     </Row>
   )
 }
-

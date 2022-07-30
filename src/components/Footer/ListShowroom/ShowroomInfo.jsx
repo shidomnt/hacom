@@ -38,7 +38,7 @@ export default function ShowroomInfo({ showroom }) {
       )}
       {
         <div className="showroom-info">
-          <a href={showroom.map} target="_blank" rel="noreferrer">
+          <a href={showroom.googleMapUrl} target="_blank" rel="noreferrer">
             <i className="fa-solid fa-map-location-dot"></i>
             Xem bản đồ đường đi
           </a>
@@ -47,7 +47,7 @@ export default function ShowroomInfo({ showroom }) {
       {showroom.phone && (
         <div className="showroom-info">
           <i className="fa-solid fa-phone"></i>
-          Tel: {showroom.phone} - {showroom.dienthoaiban}
+          Tel: {showroom.phone} - {showroom.landline}
         </div>
       )}
       {showroom.baohanh && (

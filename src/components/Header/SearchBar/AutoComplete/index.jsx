@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
 import { initProducts } from '../../../../constant'
 import useApi from '../../../../hooks/useApi'
+import { formatNumberPriceToString } from '../../../../utils'
 import EmptySearch from './EmptySearch'
 
 const autoCompleteSlideIn = keyframes`
@@ -30,6 +31,10 @@ const AutoCompleteWrapper = styled.div`
     z-index: 99;
     border-radius: 2px;
     font-size: 1.2rem;
+    border-radius: 4px;
+    &::-webkit-scrollbar {
+      display: none;
+    }
     animation: ${autoCompleteSlideIn} 0.2s linear;
     max-height: 300px;
     overflow-y: auto;
@@ -83,9 +88,9 @@ export default function AutoComplete({ visible, searchValue, children }) {
         <AutoCompleteWrapper>
           {!!autoCompleteProducts.length ? (
             autoCompleteProducts.map((product) => (
-              <div className="autocomplete-row-wrap">
-                <Row key={product.id} gutter={[6, 6]}>
-                  <Col span={3} xs={6}>
+              <div key={product.id} className="autocomplete-row-wrap">
+                <Row gutter={[6, 6]}>
+                  <Col span={3} xxl={3} xl={3} lg={3} md={3} sm={3} xs={6}>
                     <Link
                       reloadDocument
                       to={`/Laptop,Tablet,Mobile/${product.id}`}
@@ -93,7 +98,15 @@ export default function AutoComplete({ visible, searchValue, children }) {
                       <Image preview={false} src={product.imgSrc} alt="" />
                     </Link>
                   </Col>
-                  <Col span={21} xs={18}>
+                  <Col
+                    span={21}
+                    xxl={21}
+                    xl={21}
+                    lg={21}
+                    md={21}
+                    sm={21}
+                    xs={18}
+                  >
                     <Link
                       reloadDocument
                       to={`/Laptop,Tablet,Mobile/${product.id}`}
@@ -106,7 +119,7 @@ export default function AutoComplete({ visible, searchValue, children }) {
                       </Typography.Paragraph>
                     </Link>
                     <Typography.Text strong>
-                      {product.price}
+                      {formatNumberPriceToString(product.price)}
                       <sup>₫</sup>
                     </Typography.Text>
                   </Col>

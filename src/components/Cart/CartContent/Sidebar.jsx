@@ -1,15 +1,14 @@
 // @ts-check
-import { Button, Col, Divider, Input, Row, Typography } from 'antd';
-import React, { useContext, useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { CartActionContext, CartContext } from '../../../contexts/CartProvider';
+import { Button, Col, Divider, Input, Row, Typography } from 'antd'
+import React, { useContext, useEffect, useState } from 'react'
+import styled from 'styled-components'
+import { CartActionContext, CartContext } from '../../../contexts/CartProvider'
 import {
   caculateDiscountCost,
   checkDiscountCode,
   displayDiscountInfo,
   formatNumberPriceToString,
-  formatStringPriceToNumber,
-} from '../../../utils';
+} from '../../../utils'
 
 const Wrapper = styled.div`
   & {
@@ -29,7 +28,7 @@ const Wrapper = styled.div`
       margin: 12px 0;
     }
   }
-`;
+`
 
 /**
  * @typedef {Object} SidebarProps
@@ -38,45 +37,44 @@ const Wrapper = styled.div`
 
 /**
  * @param {import('react').PropsWithChildren<SidebarProps>} props
- * @returns 
+ * @returns
  */
 export default function Sidebar({ checkedList }) {
-  const [cost, setCost] = useState(0);
-  const [discountCode, setDisCountCode] = useState('');
-  const [discountCost, setDiscountCost] = useState(0);
+  const [cost, setCost] = useState(0)
+  const [discountCode, setDisCountCode] = useState('')
+  const [discountCost, setDiscountCost] = useState(0)
 
-  const { cart, discountInfo } = useContext(CartContext);
-  const { setDiscountInfo } = useContext(CartActionContext);
+  const { cart, discountInfo } = useContext(CartContext)
+  const { setDiscountInfo } = useContext(CartActionContext)
 
   useEffect(() => {
     const selectedItems = cart.filter((item) =>
       checkedList.includes(item.product.id)
-    );
+    )
     const cost = selectedItems.reduce((accumulator, item) => {
-      const price =
-        formatStringPriceToNumber(item.product.price) * item.quantify;
-      return accumulator + price;
-    }, 0);
-    setCost(cost);
-  }, [cart, checkedList]);
+      const price = item.product.price * item.quantify
+      return accumulator + price
+    }, 0)
+    setCost(cost)
+  }, [cart, checkedList])
 
   useEffect(() => {
     if (discountInfo) {
-      const result = caculateDiscountCost(discountInfo, cost);
-      setDiscountCost(result);
+      const result = caculateDiscountCost(discountInfo, cost)
+      setDiscountCost(result)
     } else {
-      setDiscountCost(0);
+      setDiscountCost(0)
     }
-  }, [discountInfo, cost]);
+  }, [discountInfo, cost])
 
   function handleSetDiscountInfo() {
-    const result = checkDiscountCode(discountCode);
+    const result = checkDiscountCode(discountCode)
     if (!result.discount) {
-      alert('Ma giam gia khong hop le!');
-      setDiscountInfo(null);
+      alert('Ma giam gia khong hop le!')
+      setDiscountInfo(null)
     } else {
-      alert('Ap dung ma giam gia thanh cong!');
-      setDiscountInfo(result.discount);
+      alert('Ap dung ma giam gia thanh cong!')
+      setDiscountInfo(result.discount)
     }
   }
 
@@ -140,5 +138,5 @@ export default function Sidebar({ checkedList }) {
         </Col>
       </Row>
     </Wrapper>
-  );
+  )
 }

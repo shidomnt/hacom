@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import useApi from '../../../hooks/useApi'
 import styled from 'styled-components'
 import SideBarPopover from './SideBarPopover'
-import { initCategories, initSideBarContent } from '../../../constant'
+import { initSideBarContent } from '../../../constant'
 import { Link } from 'react-router-dom'
 
 const Wrapper = styled.div`
@@ -67,23 +67,11 @@ const StyledCategoryWrapper = styled.div`
 `
 
 export default function SideBar() {
-  const [categories, setCategories] = useState(initCategories)
   const [sideBarContent, setSideBarContent] = useState(initSideBarContent)
 
-  const { getCategories, getSideBarMappingIcon, getSideBarContent } = useApi()
+  const { getSideBarMappingIcon, getSideBarContent } = useApi()
 
   const [iconMapping] = useState(() => getSideBarMappingIcon())
-
-  useEffect(() => {
-    ;(async () => {
-      const response = await getCategories()
-      if (response) {
-        setCategories(response.data)
-      } else {
-        setCategories([])
-      }
-    })()
-  }, [getCategories])
 
   useEffect(() => {
     ;(async () => {
@@ -98,21 +86,17 @@ export default function SideBar() {
 
   return (
     <Wrapper>
-      {categories.map((category, index) => (
-        <StyledCategoryWrapper key={category.id}>
-          <div className="category-name">
-            <Link to={`/${category.slug}`}>
-              {iconMapping[index]} {category.name}
-            </Link>
-          </div>
-          {sideBarContent && (
-            <SideBarPopover
-              className="popover"
-              listContent={sideBarContent[category.slug]}
-            />
-          )}
-        </StyledCategoryWrapper>
-      ))}
+      {sideBarContent &&
+        sideBarContent.map((catalog, index) => (
+          <StyledCategoryWrapper key={catalog.category._id}>
+            <div className="category-name">
+              <Link to={`/${catalog.category.slug}`}>
+                {iconMapping[index]} {catalog.category.name}
+              </Link>
+            </div>
+            <SideBarPopover className="popover" listContent={catalog.content} />
+          </StyledCategoryWrapper>
+        ))}
     </Wrapper>
   )
 }

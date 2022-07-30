@@ -35,7 +35,7 @@ export default function ListProduct() {
       ;(async () => {
         const response = await getProductsByCategory(
           category,
-          `?&_page=${searchParams.get('page') ?? 1}&_limit=8`
+          `?&_page=${searchParams.get('page') ?? 1}&limit=8`
         )
         if (response) {
           setProducts(response.data)

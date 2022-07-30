@@ -1,8 +1,8 @@
 // @ts-check
-import { InputNumber } from 'antd';
-import React from 'react';
-import styled from 'styled-components';
-import { MAX_SOLUONG, MIN_SOLUONG } from '../../../constant';
+import { InputNumber } from 'antd'
+import React from 'react'
+import styled from 'styled-components'
+import { MAX_SOLUONG, MIN_SOLUONG } from '../../../constant'
 
 const Wrapper = styled.span`
   & {
@@ -17,7 +17,7 @@ const Wrapper = styled.span`
       width: 104px;
     }
   }
-`;
+`
 
 /**
  * @template ValuteType
@@ -32,9 +32,9 @@ const Wrapper = styled.span`
  */
 
 /**
- * 
+ *
  * @param {import('react').PropsWithChildren<InputQuantifyProps<number>>} props
- * @returns 
+ * @returns
  */
 
 export default function InputQuantify({
@@ -44,7 +44,7 @@ export default function InputQuantify({
   max = MAX_SOLUONG,
   value,
   onChange,
-  controls = false
+  controls = false,
 }) {
   return (
     <Wrapper>
@@ -66,5 +66,5 @@ export default function InputQuantify({
         }
       />
     </Wrapper>
-  );
+  )
 }

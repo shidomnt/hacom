@@ -31,7 +31,7 @@ export const initProduct = null
 export const initCategories = []
 
 /**
- * @type {import("../hooks/useApi").SideBarContent | null}
+ * @type {import("../hooks/useApi").SideBarContent[] | null}
  */
 export const initSideBarContent = null
 

@@ -47,7 +47,7 @@ const ShowroomCardHeader = ({ showroom, index }) => {
       <div className="title-text">
         <Typography.Text strong>
           {showroom.name}
-          {showroom.isNew && (
+          {showroom.moikhaitruong && (
             <span className="moi-khai-truong"> - Mới khai trương</span>
           )}
         </Typography.Text>

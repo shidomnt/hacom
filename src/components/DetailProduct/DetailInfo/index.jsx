@@ -42,18 +42,16 @@ export default function DetailInfo() {
       <Row gutter={[12, 12]}>
         <Col span={24}>
           <Typography.Text>
-            Mã SP: <span className="color-288ad6">{product.sku}</span>
+            Mã SP: <span className="color-288ad6">{product.id}</span>
           </Typography.Text>
           <Divider type="vertical" />
           <Typography.Text>
             Đánh giá:{' '}
             <img
-              src={`https://hacom.vn/media/lib/star_${product.rate
-                .split('')
-                .slice(1, -1)}.png`}
+              src={`https://hacom.vn/media/lib/star_${product.rate}.png`}
               alt=""
             />{' '}
-            <span className="color-288ad6">{product.rate.slice(1, -1)}</span>
+            <span className="color-288ad6">{product.rate}</span>
           </Typography.Text>
           {!xs && (
             <React.Fragment>

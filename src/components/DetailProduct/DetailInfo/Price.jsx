@@ -3,6 +3,7 @@ import { Divider, Grid, Space, Typography } from 'antd'
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { ProductContext } from '..'
+import { caculateDiscountRate, formatNumberPriceToString } from '../../../utils'
 
 const Wrapper = styled.div`
   & {
@@ -40,25 +41,27 @@ export default function Price() {
       <Space direction={'vertical'}>
         <div>
           <Typography.Title className="price" level={4}>
-            {product.price}
+            {formatNumberPriceToString(product.price)}
             <sup>₫</sup>
           </Typography.Title>
           {!xs && (
             <React.Fragment>
               <Divider type="vertical" />
               <Typography.Text className="max-price" delete>
-                {product.maxPrice}
+                {formatNumberPriceToString(product.maxPrice)}
                 <sup>₫</sup>
               </Typography.Text>
               <Divider type="vertical" />
               <Typography.Text className="discount">
-                {product.discount}
+                {`(Tiết kiệm ${caculateDiscountRate(product)}%)`}
               </Typography.Text>
             </React.Fragment>
           )}
         </div>
         <div>
-          <div className="chip">{product.vat}</div>
+          <div className="chip">{`Giá ${
+            product.vat ? 'đã' : 'chưa'
+          } có VAT`}</div>
           <Divider type="vertical" />
           <div className="chip">{product.baohanh}</div>
         </div>

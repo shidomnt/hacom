@@ -9,6 +9,7 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { CartActionContext } from '../../../contexts/CartProvider'
+import { caculateDiscountRate, formatNumberPriceToString } from '../../../utils'
 
 const StyledCard = styled(Card)`
   & {
@@ -75,7 +76,7 @@ export default function ProductCard({ category, product }) {
     product && (
       <StyledCard
         cover={
-          <Link to={`/${category}/${product.sku}`}>
+          <Link to={`/${category}/${product.id}`}>
             <img
               // @ts-ignore
               style={{ width: '100%', aspectRatio: 1 / 1 }}
@@ -89,15 +90,13 @@ export default function ProductCard({ category, product }) {
         <Row>
           <Col span={12}>
             <img
-              src={`https://hacom.vn/media/lib/star_${product.rate
-                .split('')
-                .slice(1, -1)}.png`}
+              src={`https://hacom.vn/media/lib/star_${product.rate}.png`}
               alt=""
             />{' '}
-            <Rate>{product.rate}</Rate>
+            <Rate>({product.rate})</Rate>
           </Col>
           <Col span={12} style={{ textAlign: 'right' }}>
-            <StyledSkuCode>MÃ: {product.sku}</StyledSkuCode>
+            <StyledSkuCode>MÃ: {product.id}</StyledSkuCode>
           </Col>
         </Row>
         <div className="titleContainer">
@@ -109,7 +108,7 @@ export default function ProductCard({ category, product }) {
             ellipsis={{ rows: xs ? 2 : 3 }}
           >
             <Link
-              to={`/${category}/${product.sku}`}
+              to={`/${category}/${product.id}`}
               style={{ color: '#333333' }}
             >
               {product.name}
@@ -123,13 +122,13 @@ export default function ProductCard({ category, product }) {
           >
             {product.maxPrice && (
               <>
-                {product.maxPrice} <DonVi>₫</DonVi>
+                {formatNumberPriceToString(product.maxPrice)} <DonVi>₫</DonVi>
               </>
             )}
           </Typography.Text>{' '}
           {!xs && (
             <Typography.Text style={{ fontSize: '1.2rem', color: '#d82a29' }}>
-              {product.discount}
+              {`(Tiết kiệm ${caculateDiscountRate(product)}%)`}
             </Typography.Text>
           )}
         </div>{' '}
@@ -137,26 +136,22 @@ export default function ProductCard({ category, product }) {
           strong
           style={{ fontSize: '2.2rem', fontWeight: 'bold' }}
         >
-          {product.price}
+          {formatNumberPriceToString(product.price)}
           <DonVi>₫</DonVi>
         </Typography.Text>
         <Row align="middle">
           <Col span={12}>
             <Typography.Text
               style={{
-                color: product.action === 'Còn hàng' ? '#2cc067' : '#0074da',
+                color: product.stockStatus ? '#2cc067' : '#0074da',
               }}
             >
-              {product.action === 'Còn hàng' ? (
-                <CheckOutlined />
-              ) : (
-                <PhoneOutlined />
-              )}
-              {product.action}
+              {product.stockStatus ? <CheckOutlined /> : <PhoneOutlined />}{' '}
+              {product.stockStatus ? 'Còn hàng' : 'Liên hệ'}
             </Typography.Text>
           </Col>
           <Col span={12} style={{ textAlign: 'right' }}>
-            {product.action === 'Còn hàng' && (
+            {product.stockStatus && (
               <StyledCartIcon onClick={() => handleClickCartIcon(product)}>
                 <ShoppingCartOutlined />
               </StyledCartIcon>

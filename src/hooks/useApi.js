@@ -16,7 +16,7 @@ import {
 /** ========= Type Define ========= */
 
 /**
- * @typedef {{[key: string]: string}} ThongSoKiThuat
+ * @typedef {Record<string, string>} ThongSoKiThuat
  */
 
 /**
@@ -33,42 +33,41 @@ import {
 /**
  * @typedef {Object} Product
  * @property {string} id
- * @property {Url} url
+ * @property {Url} originalUrl
  * @property {string} imgSrc
- * @property {string} rate
+ * @property {number} rate
  * @property {string} sku
  * @property {string} name
- * @property {string} maxPrice
- * @property {string} discount
- * @property {string} price
- * @property {string} action
+ * @property {number} maxPrice
+ * @property {number} price
+ * @property {boolean} stockStatus
  * @property {ThongSoKiThuat} tskt
  * @property {string[]} tssp
  * @property {string[]} uudai
  * @property {Url[]} gallery
  * @property {string} baohanh
- * @property {string} vat
+ * @property {boolean} vat
  * @property {DanhGia} danhgia
  */
 
 /**
  * @typedef {Object} Showroom
+ * @property {string} _id
  * @property {string} name
  * @property {string} diachi
- * @property {Url} img
- * @property {Url} map
+ * @property {Url} googleMapUrl
  * @property {string} phone
  * @property {string=} baohanh
  * @property {string} email
  * @property {string} openTime
- * @property {string} thanhpho
- * @property {string=} dienthoaiban
- * @property {boolean=} isNew
+ * @property {string} city
+ * @property {string=} landline
+ * @property {boolean=} moikhaitruong
  */
 
 /**
  * @typedef {Object} Category
- * @property {string} id
+ * @property {string} _id
  * @property {string} name
  * @property {string} slug
  */
@@ -76,11 +75,14 @@ import {
 /**
  * @typedef {Object} SideBarContentChild
  * @property {string} title
- * @property {(SideBarContentChild | string)[]} childs
+ * @property {(SideBarContentChild | string)[]} children
  */
 
 /**
- * @typedef {{[key: Category['slug']]: SideBarContentChild[]}} SideBarContent
+ * @typedef {Object} SideBarContent
+ * @property {string} _id
+ * @property {Category} category
+ * @property {SideBarContentChild[]} content
  */
 
 /** ========= Type Define ========= */
@@ -107,22 +109,18 @@ async function callApi(url, onError = () => {}) {
  * @param {number=} param.limit
  * @returns {Promise<import('axios').AxiosResponse<Product[]> | undefined>}
  */
-async function getAutoCompleteProduct({
-  searchValue,
-  category = 'Laptop,Tablet,Mobile',
-  limit = 3,
-}) {
-  return await callApi(`/${category}?q=${searchValue}&_limit=${limit}`)
+async function getAutoCompleteProduct({ searchValue, limit = 3 }) {
+  return await callApi(`/products?name=${searchValue}&limit=${limit}`)
 }
 
 /**
  *
- * @param {string} categorySlug
  * @param {string} id
  * @returns {Promise<import('axios').AxiosResponse<Product> | undefined>}
  */
-async function getProduct(categorySlug, id) {
-  return await callApi(`/${categorySlug}/${id}`)
+async function getProduct(id) {
+  const result = await callApi(`/products/${id}`)
+  return result
 }
 
 /**
@@ -130,7 +128,8 @@ async function getProduct(categorySlug, id) {
  * @returns {Promise<import('axios').AxiosResponse<Showroom[]> | undefined>}
  */
 async function getShowRooms() {
-  return await callApi('/showrooms')
+  const result = await callApi('/showrooms')
+  return result
 }
 
 /**
@@ -138,7 +137,8 @@ async function getShowRooms() {
  * @returns {Promise<import('axios').AxiosResponse<Category[]> | undefined>}
  */
 async function getCategories() {
-  return await callApi(`/categories`)
+  const result = await callApi(`/categories`)
+  return result
 }
 
 /**
@@ -146,7 +146,8 @@ async function getCategories() {
  * @returns {Promise<import('axios').AxiosResponse<Category[]> | undefined>}
  */
 async function getCategoryBySlug(slug) {
-  return await callApi(`/categories?slug=${slug}`)
+  const result = await callApi(`/categories?slug=${slug}`)
+  return result
 }
 
 /**
@@ -156,15 +157,17 @@ async function getCategoryBySlug(slug) {
  * @returns {Promise<import('axios').AxiosResponse<Product[]> | undefined>}
  */
 async function getProductsByCategory(categorySlug, query = '') {
-  return await callApi(`/${categorySlug}` + query)
+  const result = await callApi(`/products?categorySlug=${categorySlug}`)
+  return result
 }
 
 /**
  *
- * @returns {Promise<import('axios').AxiosResponse<SideBarContent> | undefined>}
+ * @returns {Promise<import('axios').AxiosResponse<SideBarContent[]> | undefined>}
  */
 async function getSideBarContent() {
-  return await callApi('/sidebar_content')
+  const result = await callApi('/catalogs')
+  return result
 }
 
 function getBrandList(categorySlug = '') {

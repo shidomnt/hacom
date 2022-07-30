@@ -145,22 +145,22 @@ export default function SideBarPopover({ className, listContent }) {
               <StyledNonExpandableTitle>
                 {checkHot(content.title)}
               </StyledNonExpandableTitle>
-              {content.childs.map((child, index) => (
+              {content.children.map((child, index) => (
                 <StyledExpandableTitle key={index}>
                   {!(typeof child === 'string') ? (
                     <StyledSubMenuWrapper>
                       <Link to="/" className="title-child">
                         {checkHot(child.title)}{' '}
-                        {!!child.childs.length && (
+                        {!!child.children.length && (
                           <i
                             style={{ fontSize: '8px' }}
                             className="fa-solid fa-angle-right"
                           ></i>
                         )}
                       </Link>
-                      {!!child.childs.length && (
+                      {!!child.children.length && (
                         <div className="sidebar-submenu">
-                          {child.childs.map((childLevelTwo, index) => (
+                          {child.children.map((childLevelTwo, index) => (
                             <Link
                               to="/Laptop,Tablet,Mobile/LTAC791"
                               key={index}
