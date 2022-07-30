@@ -1,6 +1,6 @@
 // @ts-check
 
-import axios from 'axios'
+import axios from 'axios';
 import {
   API_URL,
   bottomSlideBannerSrcList,
@@ -11,7 +11,7 @@ import {
   rightSlideBannerSrcList,
   slideSrcList,
   underSlideBannerSrcList,
-} from '../constant'
+} from '../constant';
 
 /** ========= Type Define ========= */
 
@@ -94,10 +94,10 @@ import {
  */
 async function callApi(url, onError = () => {}) {
   try {
-    const response = await axios.get(API_URL + url)
-    return response
+    const response = await axios.get(API_URL + url);
+    return response;
   } catch (e) {
-    onError(e)
+    onError(e);
   }
 }
 
@@ -110,7 +110,7 @@ async function callApi(url, onError = () => {}) {
  * @returns {Promise<import('axios').AxiosResponse<Product[]> | undefined>}
  */
 async function getAutoCompleteProduct({ searchValue, limit = 3 }) {
-  return await callApi(`/products?name=${searchValue}&limit=${limit}`)
+  return await callApi(`/products?name=${searchValue}&limit=${limit}`);
 }
 
 /**
@@ -119,8 +119,8 @@ async function getAutoCompleteProduct({ searchValue, limit = 3 }) {
  * @returns {Promise<import('axios').AxiosResponse<Product> | undefined>}
  */
 async function getProduct(id) {
-  const result = await callApi(`/products/${id}`)
-  return result
+  const result = await callApi(`/products/${id}`);
+  return result;
 }
 
 /**
@@ -128,8 +128,8 @@ async function getProduct(id) {
  * @returns {Promise<import('axios').AxiosResponse<Showroom[]> | undefined>}
  */
 async function getShowRooms() {
-  const result = await callApi('/showrooms')
-  return result
+  const result = await callApi('/showrooms');
+  return result;
 }
 
 /**
@@ -137,8 +137,8 @@ async function getShowRooms() {
  * @returns {Promise<import('axios').AxiosResponse<Category[]> | undefined>}
  */
 async function getCategories() {
-  const result = await callApi(`/categories`)
-  return result
+  const result = await callApi(`/categories`);
+  return result;
 }
 
 /**
@@ -146,23 +146,23 @@ async function getCategories() {
  * @returns {Promise<import('axios').AxiosResponse<Category[]> | undefined>}
  */
 async function getCategoryBySlug(slug) {
-  const result = await callApi(`/categories?slug=${slug}`)
-  return result
+  const result = await callApi(`/categories?slug=${slug}`);
+  return result;
 }
 
 /**
  *
  * @param {string} categorySlug
- * @param {{ limit?: number, page?: number }} query
+ * @param {{ limit?: number, page?: number, stockStatus?: string, priceRange?: string }} query
  * @returns {Promise<import('axios').AxiosResponse<Product[]> | undefined>}
  */
 async function getProductsByCategory(categorySlug, query) {
-  let url = `/products?categorySlug=${categorySlug}`
+  let url = `/products?categorySlug=${categorySlug}`;
   Object.keys(query).forEach((key) => {
-    url = url.concat(`&${key}=${query[key]}`)
-  })
-  const result = await callApi(url)
-  return result
+    url = url.concat(`&${key}=${query[key]}`);
+  });
+  const result = await callApi(url);
+  return result;
 }
 
 /**
@@ -170,16 +170,16 @@ async function getProductsByCategory(categorySlug, query) {
  * @returns {Promise<import('axios').AxiosResponse<SideBarContent[]> | undefined>}
  */
 async function getSideBarContent() {
-  const result = await callApi('/catalogs')
-  return result
+  const result = await callApi('/catalogs');
+  return result;
 }
 
 function getBrandList(categorySlug = '') {
-  return brandList
+  return brandList;
 }
 
 function getSideBarMappingIcon() {
-  return iconMapping
+  return iconMapping;
 }
 
 function getBannerList() {
@@ -188,15 +188,15 @@ function getBannerList() {
     rightSlideBannerSrcList,
     bottomSlideBannerSrcList,
     underSlideBannerSrcList,
-  }
+  };
 }
 
 function getListCollection() {
-  return listCollection
+  return listCollection;
 }
 
 function getKhoangGia() {
-  return khoangGia
+  return khoangGia;
 }
 
 export default function useApi() {
@@ -213,5 +213,5 @@ export default function useApi() {
     getCategoryBySlug,
     getBrandList,
     getKhoangGia,
-  }
+  };
 }

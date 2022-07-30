@@ -1,14 +1,14 @@
 // @ts-check
-import { Col, Row } from 'antd'
-import React, { useEffect, useState } from 'react'
-import { useParams, useSearchParams } from 'react-router-dom'
-import styled from 'styled-components'
-import { initProducts } from '../../../constant'
-import useApi from '../../../hooks/useApi'
-import { sortProductHandler } from '../../../utils'
-import Loading from '../../Loading'
-import ProductCard from '../../MainPage/ProductCard'
-import TopFilter from './FilterAndSort'
+import { Col, Row } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { useParams, useSearchParams } from 'react-router-dom';
+import styled from 'styled-components';
+import { initProducts } from '../../../constant';
+import useApi from '../../../hooks/useApi';
+import { sortProductHandler } from '../../../utils';
+import Loading from '../../Loading';
+import ProductCard from '../../MainPage/ProductCard';
+import TopFilter from './FilterAndSort';
 
 const ListProductWrapper = styled.div`
   & {
@@ -19,32 +19,40 @@ const ListProductWrapper = styled.div`
       border-top: 1px solid #d7d7d7;
     }
   }
-`
+`;
 
 export default function ListProduct() {
-  const [products, setProducts] = useState(initProducts)
+  const [products, setProducts] = useState(initProducts);
 
-  const [searchParams] = useSearchParams()
+  const [searchParams] = useSearchParams();
 
-  const { category } = useParams()
+  const { category } = useParams();
 
-  const { getProductsByCategory } = useApi()
+  const { getProductsByCategory } = useApi();
 
   useEffect(() => {
     if (category) {
-      ;(async () => {
+      (async () => {
+        const filterObj = {};
+        if (searchParams.get('stockStatus')) {
+          filterObj.stockStatus = searchParams.get('stockStatus');
+        }
+        if (searchParams.get('price')) {
+          filterObj.priceRange = searchParams.get('price');
+        }
         const response = await getProductsByCategory(category, {
           page: Number(searchParams.get('page') ?? 1),
           limit: 8,
-        })
+          ...filterObj
+        });
         if (response) {
-          setProducts(response.data)
+          setProducts(response.data);
         } else {
-          setProducts([])
+          setProducts([]);
         }
-      })()
+      })();
     }
-  }, [getProductsByCategory, category, searchParams])
+  }, [getProductsByCategory, category, searchParams]);
 
   return (
     <React.Fragment>
@@ -76,5 +84,5 @@ export default function ListProduct() {
         <Loading />
       )}
     </React.Fragment>
-  )
+  );
 }

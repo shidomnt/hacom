@@ -1,11 +1,15 @@
 // @ts-check
-import { Col, Grid, Input, Row, Select, Space, Typography } from 'antd'
-import React, { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
-import styled from 'styled-components'
-import { initShowrooms } from '../../../../constant'
-import useApi from '../../../../hooks/useApi'
-import { filterInputNumber, formatNumberPriceToString } from '../../../../utils'
+import { Button, Col, Grid, Input, Row, Select, Space, Typography } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import styled from 'styled-components';
+import { initShowrooms } from '../../../../constant';
+import useApi from '../../../../hooks/useApi';
+import {
+  filterInputNumber,
+  formatNumberPriceToString,
+  formatStringPriceToNumber,
+} from '../../../../utils';
 
 const Wrapper = styled.div`
   & {
@@ -13,7 +17,7 @@ const Wrapper = styled.div`
       display: flex;
       align-items: center;
       .ant-input {
-        width: 100px;
+        width: 80px;
         text-align: right;
       }
     }
@@ -21,47 +25,57 @@ const Wrapper = styled.div`
       width: 100%;
     }
   }
-`
-const DEFAULT = 'default'
+`;
+const DEFAULT = 'default';
 
 export default function Filter() {
-  const [searchParams, setSearchParams] = useSearchParams()
-  const [listShowroom, setListShowroom] = useState(initShowrooms)
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [listShowroom, setListShowroom] = useState(initShowrooms);
   const [stockStatus, setStockStatus] = useState(
     searchParams.get('stock') ?? DEFAULT
-  )
+  );
 
-  const { xl, lg } = Grid.useBreakpoint()
+  const { xl, lg } = Grid.useBreakpoint();
 
   const [costFilter, setCostFilter] = useState({
     min: '200.000',
     max: '5.000.000',
-  })
+  });
 
-  const { getShowRooms, getKhoangGia } = useApi()
+  const { getShowRooms, getKhoangGia } = useApi();
 
-  const [khoangGia] = useState(() => getKhoangGia())
+  const [khoangGia] = useState(() => getKhoangGia());
 
   useEffect(() => {
-    ;(async () => {
-      const response = await getShowRooms()
+    (async () => {
+      const response = await getShowRooms();
       if (response) {
-        setListShowroom(response.data)
+        setListShowroom(response.data);
       } else {
-        setListShowroom(initShowrooms)
+        setListShowroom(initShowrooms);
       }
-    })()
-  }, [getShowRooms])
+    })();
+  }, [getShowRooms]);
 
   useEffect(() => {
     if (stockStatus === 'con-hang') {
-      searchParams.set('stock', 'con-hang')
-      setSearchParams(searchParams)
+      searchParams.set('stockStatus', 'con-hang');
+      setSearchParams(searchParams);
     } else {
-      searchParams.delete('stock')
-      setSearchParams(searchParams)
+      searchParams.delete('stockStatus');
+      setSearchParams(searchParams);
     }
-  }, [stockStatus, setSearchParams, searchParams])
+  }, [stockStatus, setSearchParams, searchParams]);
+
+  const handleFilterPrice = () => {
+    searchParams.set(
+      'price',
+      `${formatStringPriceToNumber(costFilter.min)}-${formatStringPriceToNumber(
+        costFilter.max
+      )}`
+    );
+    setSearchParams(searchParams);
+  };
 
   /**
    *
@@ -74,8 +88,8 @@ export default function Filter() {
       [type]: formatNumberPriceToString(
         Number(filterInputNumber(event.target.value))
       ),
-    }))
-  }
+    }));
+  };
 
   return (
     <Wrapper>
@@ -121,6 +135,7 @@ export default function Filter() {
                   value={costFilter.max}
                   onChange={(event) => handleSetCost(event, 'max')}
                 />
+                <Button onClick={() => handleFilterPrice()}>Lọc</Button>
               </Space>
             </div>
           ) : (
@@ -136,5 +151,5 @@ export default function Filter() {
         </Col>
       </Row>
     </Wrapper>
-  )
+  );
 }
