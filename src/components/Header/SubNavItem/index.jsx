@@ -2,19 +2,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const data = [1, 2, 3, 4]
-
-export default function SubNavItem() {
+export default function SubNavItem({ content }) {
   return (
     <ul className="header__subnav-item">
       <li>
-        <h3 className="header__subnav-title">HỖ TRỢ KHÁCH HÀNG</h3>
+        <h3 className="header__subnav-title">{content.title}</h3>
       </li>
-      {data.map((key) => (
-        <li key={key}>
+      {content.policies.map((policy) => (
+        <li key={policy}>
           <Link to="#" className="header__subnav-link">
             <i className="fa-solid fa-check" />
-            Hướng dẫn mua hàng trực tuyến
+            {policy}
           </Link>
         </li>
       ))}

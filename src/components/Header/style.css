@@ -303,7 +303,7 @@
   z-index: 999;
   box-shadow: 1px 1px 15px rgb(0 0 0 / 15%);
   display: none;
-  animation: slideInFromBottom 0.1s linear;
+  animation: slideInFromBottom 0.3s linear;
 }
 .header__subnav.brand {
   width: 650px;
@@ -326,14 +326,13 @@
   justify-content: space-between;
   flex-wrap: wrap;
   flex: 1;
+  padding: 16px;
 }
 .header__subnav-item {
   width: calc((100% - 12px) / 4);
   list-style: none;
-  padding: 16px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 .header__subnav-title {
   font-size: 1.3rem;
@@ -350,10 +349,11 @@
 }
 .header__subnav-link {
   font-size: 1.2rem;
-  color: rgba(0, 0, 0, 0.45);
+  color: #333;
   display: block;
-  padding: 10px 0;
+  padding: 3px 0;
   text-decoration: none;
+  font-weight: normal;
 }
 .header__subnav-link i {
   color: #222;

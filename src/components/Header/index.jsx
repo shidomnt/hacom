@@ -1,30 +1,33 @@
 // @ts-check
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import ModalItem from './ModalItem';
-import SubNavItem from './SubNavItem';
-import SearchBar from './SearchBar';
-import { Col, Row } from 'antd';
-import SignAndCart from './SignAndCart';
-import StickyHeader from './StickyHeader';
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import ModalItem from './ModalItem'
+import SubNavItem from './SubNavItem'
+import SearchBar from './SearchBar'
+import { Col, Row } from 'antd'
+import SignAndCart from './SignAndCart'
+import StickyHeader from './StickyHeader'
 import './style.css'
+import { headerSubNavData } from '../../constant'
 
 export default function Header() {
-  const [displayStickyHeader, setDisplayStickyHeader] = useState(false);
+  const [displayStickyHeader, setDisplayStickyHeader] = useState(false)
+
+  const [subNavData] = useState(() => headerSubNavData)
 
   useEffect(() => {
     const handleSroll = () => {
       if (window.scrollY >= 550) {
-        setDisplayStickyHeader(true);
+        setDisplayStickyHeader(true)
       } else {
-        setDisplayStickyHeader(false);
+        setDisplayStickyHeader(false)
       }
-    };
-    window.addEventListener('scroll', handleSroll);
+    }
+    window.addEventListener('scroll', handleSroll)
     return () => {
-      window.removeEventListener('scroll', handleSroll);
-    };
-  }, []);
+      window.removeEventListener('scroll', handleSroll)
+    }
+  }, [])
 
   return (
     <React.Fragment>
@@ -247,10 +250,9 @@ export default function Header() {
                       {/* submenu chích sách - hướng dẫn */}
                       <div className="header__subnav">
                         <div className="header__subnav--list">
-                          <SubNavItem />
-                          <SubNavItem />
-                          <SubNavItem />
-                          <SubNavItem />
+                          {subNavData.map((content) => (
+                            <SubNavItem key={content.title} content={content} />
+                          ))}
                         </div>
                       </div>
                     </div>
@@ -264,7 +266,7 @@ export default function Header() {
                         <div className="header__subnav-header">
                           <h4>Thương hiệu nổi bật</h4>
                           <Link to="/" className="header__subnav-brand-link">
-                            Xem tất cả
+                            <span style={{ marginRight: 5 }}>Xem tất cả</span>
                             <i className="fa-solid fa-arrow-right" />
                           </Link>
                         </div>
@@ -381,5 +383,5 @@ export default function Header() {
         </div>
       </header>
     </React.Fragment>
-  );
+  )
 }

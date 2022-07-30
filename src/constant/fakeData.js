@@ -143,3 +143,41 @@ export const khoangGia = [
   '50 Triệu - 60 Triệu',
   'Trên 60 Triệu',
 ]
+
+export const headerSubNavData = [
+  {
+    title: 'Hỗ trợ khách hàng',
+    policies: [
+      'Hướng dẫn mua hàng trực tuyến',
+      'Hướng dẫn thanh toán',
+      'Hướng dẫn mua hàng trả góp',
+      'Tra cứu hóa đơn điện tử',
+      'Tra cứu sản phẩm gửi bảo hành',
+      'Gửi yêu cầu bảo hành',
+      'Biểu mẫu hợp đồng',
+      'Góp ý, khiếu nại',
+    ],
+  },
+  {
+    title: 'Chính sách chung',
+    policies: [
+      'Chính sách chung',
+      'Bảo mật thông tin khách hàng',
+      'Chính sách hàng chính hãng',
+      'Chính sách giao hàng',
+      'Chính sách bảo hành',
+      'Chính sách cho doanh nghiệp',
+      'Chính sách nhập lại tính phí',
+    ],
+  },
+  { title: 'Thông tin khuyến mại', policies: ['Thông tin khuyến mại'] },
+  {
+    title: 'Thông tin HACOM',
+    policies: [
+      'Giới thiệu HACOM',
+      'Tuyển dụng',
+      'Tin tức công nghệ',
+      'Liên hệ hợp tác kinh doanh',
+    ],
+  },
+]
