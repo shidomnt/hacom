@@ -39,7 +39,7 @@ const SlideShow = ({
   useEffect(() => {
     ;(async () => {
       const response = await getProductsByCategory(categorySlug, {
-        limit: 3,
+        limit,
       })
       if (response) {
         setProducts(response.data)
