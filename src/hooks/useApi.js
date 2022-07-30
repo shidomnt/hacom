@@ -36,7 +36,6 @@ import {
  * @property {Url} originalUrl
  * @property {string} imgSrc
  * @property {number} rate
- * @property {string} sku
  * @property {string} name
  * @property {number} maxPrice
  * @property {number} price

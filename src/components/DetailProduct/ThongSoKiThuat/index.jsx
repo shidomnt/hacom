@@ -28,7 +28,7 @@ export default function ThongSoKiThuat() {
 
   useEffect(() => {
     const pattern = /^PC/
-    if (pattern.test(product.sku)) {
+    if (pattern.test(product.id)) {
       setIsPC(true)
     } else {
       setIsPC(false)
@@ -38,7 +38,7 @@ export default function ThongSoKiThuat() {
   return (
     <Wrapper>
       <Typography.Title level={4}>Thông số kỹ thuật</Typography.Title>
-      {!!Object.keys(product.tskt).length && (
+      {product?.tskt && !!Object.keys(product.tskt).length && (
         <div>
           <Divider type="horizontal" />
           {isPC && (
