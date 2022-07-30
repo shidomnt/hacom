@@ -153,11 +153,13 @@ async function getCategoryBySlug(slug) {
 /**
  *
  * @param {string} categorySlug
- * @param {string} query
+ * @param {{ limit?: number, page?: number }} query
  * @returns {Promise<import('axios').AxiosResponse<Product[]> | undefined>}
  */
-async function getProductsByCategory(categorySlug, query = '') {
-  const result = await callApi(`/products?categorySlug=${categorySlug}`)
+async function getProductsByCategory(categorySlug, query) {
+  const result = await callApi(
+    `/products?categorySlug=${categorySlug}&page=${query.page}&limit=${query.limit}`
+  )
   return result
 }
 

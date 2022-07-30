@@ -12,7 +12,7 @@ import { initProducts } from '../../../constant'
  * @typedef {Object} SlideShowProps
  * @property {React.ReactNode=} title
  * @property {import("../../../hooks/useApi").Category['slug']} category
- * @property {string=} query
+ * @property {{ limit?: number, page?: number }=} query
  * @property {number=} slidesPerView
  * @property {number=} spaceBetween
  * @property {React.ReactNode=} button
@@ -26,7 +26,7 @@ import { initProducts } from '../../../constant'
 const SlideShow = ({
   title,
   category: categorySlug,
-  query = '?limit=3',
+  query = { limit: 3 },
   slidesPerView = 1,
   spaceBetween = 10,
   button = null,
