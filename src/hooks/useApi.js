@@ -40,7 +40,7 @@ import {
  * @property {number} maxPrice
  * @property {number} price
  * @property {boolean} stockStatus
- * @property {ThongSoKiThuat} tskt
+ * @property {ThongSoKiThuat | null} tskt
  * @property {string[]} tssp
  * @property {string[]} uudai
  * @property {Url[]} gallery

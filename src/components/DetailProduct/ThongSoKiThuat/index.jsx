@@ -38,7 +38,7 @@ export default function ThongSoKiThuat() {
   return (
     <Wrapper>
       <Typography.Title level={4}>Thông số kỹ thuật</Typography.Title>
-      {product?.tskt && !!Object.keys(product.tskt).length && (
+      {product?.tskt && (
         <div>
           <Divider type="horizontal" />
           {isPC && (
@@ -63,7 +63,9 @@ export default function ThongSoKiThuat() {
                       <Typography.Text strong>{thongso}</Typography.Text>
                     </Col>
                     <Col span={5}>
-                      <Typography.Text>{product.tskt[thongso]}</Typography.Text>
+                      <Typography.Text>
+                        {product?.tskt?.[thongso]}
+                      </Typography.Text>
                     </Col>
                   </Row>
                 ) : (
@@ -72,7 +74,9 @@ export default function ThongSoKiThuat() {
                       <Typography.Text strong>{thongso}</Typography.Text>
                     </Col>
                     <Col span={16}>
-                      <Typography.Text>{product.tskt[thongso]}</Typography.Text>
+                      <Typography.Text>
+                        {product?.tskt?.[thongso]}
+                      </Typography.Text>
                     </Col>
                   </Row>
                 )}
