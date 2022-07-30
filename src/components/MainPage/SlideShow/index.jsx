@@ -12,7 +12,7 @@ import { initProducts } from '../../../constant'
  * @typedef {Object} SlideShowProps
  * @property {React.ReactNode=} title
  * @property {import("../../../hooks/useApi").Category['slug']} category
- * @property {{ limit?: number, page?: number }=} query
+ * @property {number=} limit
  * @property {number=} slidesPerView
  * @property {number=} spaceBetween
  * @property {React.ReactNode=} button
@@ -26,7 +26,7 @@ import { initProducts } from '../../../constant'
 const SlideShow = ({
   title,
   category: categorySlug,
-  query = { limit: 3 },
+  limit = 3,
   slidesPerView = 1,
   spaceBetween = 10,
   button = null,
@@ -38,14 +38,16 @@ const SlideShow = ({
 
   useEffect(() => {
     ;(async () => {
-      const response = await getProductsByCategory(categorySlug, query)
+      const response = await getProductsByCategory(categorySlug, {
+        limit: 3,
+      })
       if (response) {
         setProducts(response.data)
       } else {
         setProducts([])
       }
     })()
-  }, [categorySlug, getProductsByCategory, query])
+  }, [categorySlug, getProductsByCategory, limit])
 
   return !!products.length ? (
     <React.Fragment>

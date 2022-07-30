@@ -157,9 +157,11 @@ async function getCategoryBySlug(slug) {
  * @returns {Promise<import('axios').AxiosResponse<Product[]> | undefined>}
  */
 async function getProductsByCategory(categorySlug, query) {
-  const result = await callApi(
-    `/products?categorySlug=${categorySlug}&page=${query.page}&limit=${query.limit}`
-  )
+  let url = `/products?categorySlug=${categorySlug}`
+  Object.keys(query).forEach((key) => {
+    url = url.concat(`&${key}=${query[key]}`)
+  })
+  const result = await callApi(url)
   return result
 }
 

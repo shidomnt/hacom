@@ -21,6 +21,8 @@
 export * from './fakeData'
 export * from './stateInit'
 
+export * from './signState'
+
 /**
  * @type {number}
  */

@@ -1,19 +1,16 @@
 // @ts-check
-import {
-  Button,
-  Col,
-  Divider,
-  Image,
-  Input,
-  Modal,
-  Row,
-  Space,
-  Typography,
-} from 'antd'
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { Button, Col, Image, Input, Modal, Row, Typography } from 'antd'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import {
+  SIGNIN_WITH_EMAIL,
+  SIGNIN_WITH_PHONE,
+  SIGNUP_WITH_EMAIL,
+} from '../../../../constant'
 import CloseButton from './CloseButton'
+import SignupWithEmail from './SignupWithEmail'
+import SignWithEmail from './SignWithEmail'
+import SignWithPhoneNumber from './SignWithPhoneNumber'
 
 const StyledModal = styled(Modal)`
   & {
@@ -68,7 +65,7 @@ const StyledMainContent = styled.div`
   }
 `
 
-const StyledButton = styled(Button)`
+export const StyledButton = styled(Button)`
   & {
     width: 100%;
     border-radius: 4px;
@@ -78,10 +75,11 @@ const StyledButton = styled(Button)`
     padding-bottom: 8px;
     height: unset;
     font-size: 1.8rem;
+    font-weight: 500;
   }
 `
 
-const StyledInput = styled(Input)`
+export const StyledInput = styled(Input)`
   & {
     border: none;
     border-bottom: solid 1px #d7d7d7;
@@ -101,6 +99,10 @@ const StyledInput = styled(Input)`
  * @returns
  */
 export default function SignModal({ visible, onCancel }) {
+  const [state, setState] = useState(() => SIGNIN_WITH_PHONE)
+
+  // console.log(state)
+
   return (
     <StyledModal
       visible={visible}
@@ -111,44 +113,17 @@ export default function SignModal({ visible, onCancel }) {
       closeIcon={<CloseButton />}
     >
       <Row>
-        <Col flex="auto">
+        <Col span={15}>
           <StyledMainContent>
-            <Space direction="vertical" size="large" style={{ width: '100%' }}>
-              <Typography.Title style={{ margin: 0 }} level={4}>
-                Xin chào
-              </Typography.Title>
-              <Typography.Text>Đăng nhập hoặc Tạo tài khoản</Typography.Text>
-              <StyledInput placeholder="Số điện thoại" />
-              <StyledButton>Tiếp tục</StyledButton>
-              <div style={{ textAlign: 'center' }}>
-                <Link to="/">Đăng nhập bằng email</Link>
-              </div>
-              <Divider
-                style={{ color: '#787878', margin: 0 }}
-                type="horizontal"
-                orientation="center"
-              >
-                Hoặc tiếp tục bằng
-              </Divider>
-              <Space
-                style={{ width: '100%', justifyContent: 'center' }}
-                direction="horizontal"
-                size="large"
-              >
-                <i className="fa-brands fa-facebook modal-sign-icon"></i>
-                <i className="fa-brands fa-google modal-sign-icon"></i>
-              </Space>
-              <div
-                style={{
-                  textAlign: 'center',
-                  color: '#787878',
-                  fontSize: '11px',
-                }}
-              >
-                Bằng việc tiếp tục, bạn đã chấp nhận{' '}
-                <Link to="/">điều khoản sử dụng</Link>
-              </div>
-            </Space>
+            {state === SIGNIN_WITH_PHONE && (
+              <SignWithPhoneNumber setState={setState} />
+            )}
+            {state === SIGNIN_WITH_EMAIL && (
+              <SignWithEmail setState={setState} />
+            )}
+            {state === SIGNUP_WITH_EMAIL && (
+              <SignupWithEmail setState={setState} />
+            )}
           </StyledMainContent>
         </Col>
         <Col span={9}>

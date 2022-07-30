@@ -68,7 +68,7 @@ function ProductSlideShow({ categories }) {
               </Title>
             }
             slidesPerView={5}
-            query={{ limit: 7 }}
+            limit={7}
             breakpoints={breakPoints}
           />
         </Col>
