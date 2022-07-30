@@ -15,6 +15,7 @@ import { CartActionContext } from '../../../contexts/CartProvider'
 import InputQuantify from '../../DetailProduct/DetailInfo/InputQuantify'
 import { caculateThanhTien, formatNumberPriceToString } from '../../../utils'
 import { MIN_SOLUONG, MAX_SOLUONG } from '../../../constant'
+import { Link } from 'react-router-dom'
 
 /**
  * @typedef {Object} CartItemProps
@@ -40,17 +41,23 @@ export default function CartItem({ item }) {
   }, [item.product.price, item.quantify])
 
   return (
-    <Row gutter={[8, 8]} style={{ alignItems: 'center' }}>
+    <Row gutter={[8, 8]} align="middle">
       <Col span={1}>
         <Checkbox value={item.product.id} />
       </Col>
       <Col span={9}>
-        <Row gutter={[6, 6]}>
+        <Row gutter={[8, 8]} align="middle">
           <Col span={7}>
-            <Image src={item.product.imgSrc} alt="" preview={false} />
+            <Link to={`/${item.product.category.slug}/${item.product.id}`}>
+              <Image src={item.product.imgSrc} alt="" preview={false} />
+            </Link>
           </Col>
           <Col span={17}>
-            <Typography.Paragraph>{item.product.name}</Typography.Paragraph>
+            <Link to={`/${item.product.category.slug}/${item.product.id}`}>
+              <Typography.Paragraph ellipsis={{ rows: 3 }}>
+                {item.product.name}
+              </Typography.Paragraph>
+            </Link>
             <Typography.Text>
               Mã SP: <Typography.Text strong>{item.product.id}</Typography.Text>
             </Typography.Text>

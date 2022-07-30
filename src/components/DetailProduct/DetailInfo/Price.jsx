@@ -44,7 +44,7 @@ export default function Price() {
             {formatNumberPriceToString(product.price)}
             <sup>₫</sup>
           </Typography.Title>
-          {!xs && (
+          {!xs && !!product.maxPrice && (
             <React.Fragment>
               <Divider type="vertical" />
               <Typography.Text className="max-price" delete>

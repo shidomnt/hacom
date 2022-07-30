@@ -14,6 +14,7 @@ import { CartActionContext } from '../../../contexts/CartProvider'
 import InputQuantify from '../../DetailProduct/DetailInfo/InputQuantify'
 import { MAX_SOLUONG, MIN_SOLUONG } from '../../../constant'
 import { formatNumberPriceToString } from '../../../utils'
+import { Link } from 'react-router-dom'
 
 /**
  * @typedef {Object} CollapseCartItemProps
@@ -28,12 +29,14 @@ export default function CollapseCartItem({ item }) {
   const { changeQuantify, removeProduct } = useContext(CartActionContext)
 
   return (
-    <Row gutter={[8, 8]} style={{ alignItems: 'center' }}>
+    <Row gutter={[8, 8]} align="middle">
       <Col span={1}>
         <Checkbox value={item.product.id} />
       </Col>
       <Col span={4}>
-        <Image src={item.product.imgSrc} alt="" preview={false} />
+        <Link to={`/${item.product.category.slug}/${item.product.id}`}>
+          <Image src={item.product.imgSrc} alt="" preview={false} />
+        </Link>
       </Col>
       <Col span={19}>
         <Space style={{ width: '100%' }} direction="vertical">

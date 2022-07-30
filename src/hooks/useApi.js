@@ -38,6 +38,7 @@ import {
  * @property {number} rate
  * @property {string} name
  * @property {number} maxPrice
+ * @property {Category} category
  * @property {number} price
  * @property {boolean} stockStatus
  * @property {ThongSoKiThuat | null} tskt
