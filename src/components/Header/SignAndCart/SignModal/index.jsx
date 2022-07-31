@@ -1,16 +1,16 @@
 // @ts-check
-import { Button, Col, Image, Input, Modal, Row, Typography } from 'antd'
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import { Button, Col, Image, Input, Modal, Row, Typography } from "antd";
+import React, { useState } from "react";
+import styled from "styled-components";
 import {
   SIGNIN_WITH_EMAIL,
   SIGNIN_WITH_PHONE,
   SIGNUP_WITH_EMAIL,
-} from '../../../../constant'
-import CloseButton from './CloseButton'
-import SignupWithEmail from './SignupWithEmail'
-import SignWithEmail from './SignWithEmail'
-import SignWithPhoneNumber from './SignWithPhoneNumber'
+} from "../../../../constant";
+import CloseButton from "./CloseButton";
+import SignupWithEmail from "./SignupWithEmail";
+import SigninWithEmail from "./SigninWithEmail";
+import SigninWithPhoneNumber from "./SigninWithPhoneNumber";
 
 const StyledModal = styled(Modal)`
   & {
@@ -56,14 +56,14 @@ const StyledModal = styled(Modal)`
       }
     }
   }
-`
+`;
 
 const StyledMainContent = styled.div`
   & {
     height: 100%;
     padding: 32px;
   }
-`
+`;
 
 export const StyledButton = styled(Button)`
   & {
@@ -77,7 +77,7 @@ export const StyledButton = styled(Button)`
     font-size: 1.8rem;
     font-weight: 500;
   }
-`
+`;
 
 export const StyledInput = styled(Input)`
   & {
@@ -85,7 +85,7 @@ export const StyledInput = styled(Input)`
     border-bottom: solid 1px #d7d7d7;
     font-size: 2.4rem;
   }
-`
+`;
 
 /**
  * @typedef {Object} SignModalProps
@@ -99,7 +99,7 @@ export const StyledInput = styled(Input)`
  * @returns
  */
 export default function SignModal({ visible, onCancel }) {
-  const [state, setState] = useState(() => SIGNIN_WITH_PHONE)
+  const [state, setState] = useState(() => SIGNIN_WITH_PHONE);
 
   // console.log(state)
 
@@ -116,10 +116,10 @@ export default function SignModal({ visible, onCancel }) {
         <Col span={15}>
           <StyledMainContent>
             {state === SIGNIN_WITH_PHONE && (
-              <SignWithPhoneNumber setState={setState} />
+              <SigninWithPhoneNumber setState={setState} />
             )}
             {state === SIGNIN_WITH_EMAIL && (
-              <SignWithEmail setState={setState} />
+              <SigninWithEmail setState={setState} />
             )}
             {state === SIGNUP_WITH_EMAIL && (
               <SignupWithEmail setState={setState} />
@@ -129,7 +129,7 @@ export default function SignModal({ visible, onCancel }) {
         <Col span={9}>
           <div className="sign-modal-wrap-image">
             <Image
-              style={{ padding: '50px 46px' }}
+              style={{ padding: "50px 46px" }}
               preview={false}
               src="/assets/img/bg-pop-login-phone.png"
             />
@@ -141,5 +141,5 @@ export default function SignModal({ visible, onCancel }) {
         </Col>
       </Row>
     </StyledModal>
-  )
+  );
 }

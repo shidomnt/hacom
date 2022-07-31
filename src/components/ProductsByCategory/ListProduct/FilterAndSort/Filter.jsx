@@ -1,15 +1,15 @@
 // @ts-check
-import { Button, Col, Grid, Input, Row, Select, Space, Typography } from 'antd';
-import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import styled from 'styled-components';
-import { initShowrooms } from '../../../../constant';
-import useApi from '../../../../hooks/useApi';
+import { Button, Col, Grid, Input, Row, Select, Space, Typography } from "antd";
+import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import styled from "styled-components";
+import { initShowrooms } from "../../../../constant";
+import useApi from "../../../../hooks/useApi";
 import {
   filterInputNumber,
   formatNumberPriceToString,
   formatStringPriceToNumber,
-} from '../../../../utils';
+} from "../../../../utils";
 
 const Wrapper = styled.div`
   & {
@@ -26,20 +26,20 @@ const Wrapper = styled.div`
     }
   }
 `;
-const DEFAULT = 'default';
+const DEFAULT = "default";
 
 export default function Filter() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [listShowroom, setListShowroom] = useState(initShowrooms);
   const [stockStatus, setStockStatus] = useState(
-    searchParams.get('stock') ?? DEFAULT
+    searchParams.get("stock") ?? DEFAULT
   );
 
   const { xl, lg } = Grid.useBreakpoint();
 
   const [costFilter, setCostFilter] = useState({
-    min: '200.000',
-    max: '5.000.000',
+    min: "200.000",
+    max: "5.000.000",
   });
 
   const { getShowRooms, getKhoangGia } = useApi();
@@ -58,18 +58,18 @@ export default function Filter() {
   }, [getShowRooms]);
 
   useEffect(() => {
-    if (stockStatus === 'con-hang') {
-      searchParams.set('stockStatus', 'con-hang');
+    if (stockStatus === "con-hang") {
+      searchParams.set("stockStatus", "con-hang");
       setSearchParams(searchParams);
     } else {
-      searchParams.delete('stockStatus');
+      searchParams.delete("stockStatus");
       setSearchParams(searchParams);
     }
   }, [stockStatus, setSearchParams, searchParams]);
 
   const handleFilterPrice = () => {
     searchParams.set(
-      'price',
+      "priceRange",
       `${formatStringPriceToNumber(costFilter.min)}-${formatStringPriceToNumber(
         costFilter.max
       )}`
@@ -89,6 +89,19 @@ export default function Filter() {
         Number(filterInputNumber(event.target.value))
       ),
     }));
+  };
+
+  /**
+   *
+   * @param {string} value
+   */
+  const handleChangeKhoangGia = (value) => {
+    if (value === "default") {
+      searchParams.delete("priceRange");
+    } else {
+      searchParams.set("priceRange", value);
+    }
+    setSearchParams(searchParams);
   };
 
   return (
@@ -119,7 +132,7 @@ export default function Filter() {
             <div className="top-filter-price">
               <Space direction="horizontal" size="small">
                 {xl && (
-                  <Typography.Text style={{ fontSize: '12px' }}>
+                  <Typography.Text style={{ fontSize: "12px" }}>
                     Lọc theo giá tiền:
                   </Typography.Text>
                 )}
@@ -127,23 +140,35 @@ export default function Filter() {
                 <Input
                   suffix="₫"
                   value={costFilter.min}
-                  onChange={(event) => handleSetCost(event, 'min')}
+                  onChange={(event) => handleSetCost(event, "min")}
                 />
-                {'-'}
+                {"-"}
                 <Input
                   suffix="₫"
                   value={costFilter.max}
-                  onChange={(event) => handleSetCost(event, 'max')}
+                  onChange={(event) => handleSetCost(event, "max")}
                 />
                 <Button onClick={() => handleFilterPrice()}>Lọc</Button>
               </Space>
             </div>
           ) : (
-            <Select defaultValue="default" style={{ width: '100%' }}>
+            <Select
+              defaultValue="default"
+              style={{ width: "100%" }}
+              value={searchParams.get("priceRange") ?? "default"}
+              onChange={handleChangeKhoangGia}
+            >
               <Select.Option value="default">Khoảng giá</Select.Option>
               {khoangGia.map((gia) => (
-                <Select.Option key={gia} value={gia}>
-                  {gia}
+                <Select.Option
+                  key={gia.label}
+                  value={`${gia.priceRange.min
+                    .toString()
+                    .padEnd(8, "0")}-${gia.priceRange.max
+                    .toString()
+                    .padEnd(8, "0")}`}
+                >
+                  {gia.label}
                 </Select.Option>
               ))}
             </Select>

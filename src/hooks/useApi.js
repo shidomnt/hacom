@@ -1,6 +1,6 @@
 // @ts-check
 
-import axios from 'axios';
+import axios from "axios";
 import {
   API_URL,
   bottomSlideBannerSrcList,
@@ -11,7 +11,7 @@ import {
   rightSlideBannerSrcList,
   slideSrcList,
   underSlideBannerSrcList,
-} from '../constant';
+} from "../constant";
 
 /** ========= Type Define ========= */
 
@@ -128,7 +128,7 @@ async function getProduct(id) {
  * @returns {Promise<import('axios').AxiosResponse<Showroom[]> | undefined>}
  */
 async function getShowRooms() {
-  const result = await callApi('/showrooms');
+  const result = await callApi("/showrooms");
   return result;
 }
 
@@ -152,16 +152,29 @@ async function getCategoryBySlug(slug) {
 
 /**
  *
- * @param {string} categorySlug
+ * @param {Category['slug']} categorySlug
  * @param {{ limit?: number, page?: number, stockStatus?: string, priceRange?: string }} query
  * @returns {Promise<import('axios').AxiosResponse<Product[]> | undefined>}
  */
 async function getProductsByCategory(categorySlug, query) {
-  let url = `/products?categorySlug=${categorySlug}`;
+  const url = new URL("/products", API_URL);
+  url.searchParams.set("categorySlug", categorySlug);
   Object.keys(query).forEach((key) => {
-    url = url.concat(`&${key}=${query[key]}`);
+    url.searchParams.set(key, query[key]);
   });
-  const result = await callApi(url);
+  const result = await callApi(url.pathname + url.search);
+  return result;
+}
+
+/**
+ *
+ * @param {Category['slug']} categorySlug
+ * @returns {Promise<import("axios").AxiosResponse<number> | undefined>}
+ */
+async function getProductCountByCategory(categorySlug) {
+  const url = new URL("/products/count", API_URL);
+  url.searchParams.set("categorySlug", categorySlug);
+  const result = await callApi(url.pathname + url.search);
   return result;
 }
 
@@ -170,11 +183,11 @@ async function getProductsByCategory(categorySlug, query) {
  * @returns {Promise<import('axios').AxiosResponse<SideBarContent[]> | undefined>}
  */
 async function getSideBarContent() {
-  const result = await callApi('/catalogs');
+  const result = await callApi("/catalogs");
   return result;
 }
 
-function getBrandList(categorySlug = '') {
+function getBrandList(categorySlug = "") {
   return brandList;
 }
 
@@ -213,5 +226,6 @@ export default function useApi() {
     getCategoryBySlug,
     getBrandList,
     getKhoangGia,
+    getProductCountByCategory,
   };
 }

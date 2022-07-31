@@ -18,27 +18,17 @@
 
 /** ========= End Type Define ========= */
 
-export * from './fakeData'
-export * from './stateInit'
+export * from "./fakeData";
+export * from "./stateInit";
 
-export * from './signState'
+export * from "./signState";
 
-/**
- * @type {number}
- */
-export const MIN_SOLUONG = 1
+export const MIN_SOLUONG = 1;
 
-/**
- * @type {number}
- */
-export const MAX_SOLUONG = 99
+export const MAX_SOLUONG = 99;
 
-/**
- * @type {string}
- */
-export const KEY_LOCAL_STORAGE_CART = 'KEY_CART'
+export const KEY_LOCAL_STORAGE_CART = "KEY_CART";
 
-/**
- * @type {string}
- */
-export const API_URL = 'http://localhost:5000'
+export const API_URL = "http://localhost:5000";
+
+export const DEFAULT_PAGE_SIZE = 8;

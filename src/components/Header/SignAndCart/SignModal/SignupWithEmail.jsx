@@ -1,9 +1,9 @@
-import React from 'react'
-import { Space, Button, Typography } from 'antd'
-import styled from 'styled-components'
-import { StyledButton, StyledInput } from '.'
-import { StyledInputPassword } from './SignWithEmail'
-import { SIGNIN_WITH_PHONE } from '../../../../constant'
+import React from "react";
+import { Space, Button, Typography } from "antd";
+import styled from "styled-components";
+import { StyledButton, StyledInput } from ".";
+import { StyledInputPassword } from "./SigninWithEmail";
+import { SIGNIN_WITH_PHONE } from "../../../../constant";
 
 const Wrapper = styled.div`
   & {
@@ -13,7 +13,7 @@ const Wrapper = styled.div`
     .signup-email-space {
     }
   }
-`
+`;
 
 export default function SignupWithEmail({ setState }) {
   return (
@@ -22,14 +22,14 @@ export default function SignupWithEmail({ setState }) {
         direction="vertical"
         size="middle"
         className="signup-email-space"
-        style={{ width: '100%' }}
+        style={{ width: "100%" }}
       >
         <div>
-          <Button type="text" onClick={() => setState(SIGNIN_WITH_PHONE)}>
-            <i className="fa-solid fa-angle-left"></i>
-          </Button>
-        </div>
-        <div>
+          <div>
+            <Button type="text" onClick={() => setState(SIGNIN_WITH_PHONE)}>
+              <i className="fa-solid fa-angle-left"></i>
+            </Button>
+          </div>
           <Typography.Title level={3}>Tạo tài khoản</Typography.Title>
         </div>
         <div>
@@ -57,5 +57,5 @@ export default function SignupWithEmail({ setState }) {
         <StyledButton>Tạo tài khoản</StyledButton>
       </Space>
     </Wrapper>
-  )
+  );
 }

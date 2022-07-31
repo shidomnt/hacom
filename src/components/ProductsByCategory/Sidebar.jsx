@@ -1,11 +1,11 @@
 // @ts-check
-import { Checkbox, Col, Row, Typography } from 'antd'
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-import { initCategories } from '../../constant'
-import useApi from '../../hooks/useApi'
-import Collapse from './Collapse'
+import { Col, Radio, Row, Typography } from "antd";
+import React, { useEffect, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import styled from "styled-components";
+import { initCategories } from "../../constant";
+import useApi from "../../hooks/useApi";
+import Collapse from "./Collapse";
 
 const Wrapper = styled.div`
   & {
@@ -29,24 +29,35 @@ const Wrapper = styled.div`
       }
     }
   }
-`
+`;
 
 export default function Sidebar() {
-  const { getBrandList, getCategories, getKhoangGia } = useApi()
-  const [brandList] = useState(() => getBrandList())
-  const [khoangGia] = useState(() => getKhoangGia())
-  const [categories, setCategories] = useState(initCategories)
+  const { getBrandList, getCategories, getKhoangGia } = useApi();
+  const [brandList] = useState(() => getBrandList());
+  const [listKhoangGia] = useState(() => getKhoangGia());
+  const [categories, setCategories] = useState(initCategories);
+
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    ;(async () => {
-      const response = await getCategories()
+    (async () => {
+      const response = await getCategories();
       if (response) {
-        setCategories(response.data)
+        setCategories(response.data);
       } else {
-        setCategories(initCategories)
+        setCategories(initCategories);
       }
-    })()
-  }, [getCategories])
+    })();
+  }, [getCategories]);
+
+  /**
+   *
+   * @param {import("antd").RadioChangeEvent} event
+   */
+  const handleChangeKhoangGia = (event) => {
+    searchParams.set("priceRange", event.target.value);
+    setSearchParams(searchParams);
+  };
 
   return (
     <Wrapper>
@@ -63,24 +74,42 @@ export default function Sidebar() {
           </div>
         ))}
       </Collapse>
-      <Collapse header="Hãng sản xuất">
-        <Row gutter={[16, 16]}>
-          {brandList.map((brand) => (
-            <Col key={brand.name} span={12}>
-              <Checkbox style={{ fontSize: '12px' }}>{brand.name}</Checkbox>
-            </Col>
-          ))}
-        </Row>
-      </Collapse>
       <Collapse header="Khoảng giá">
-        <Row gutter={[16, 16]}>
-          {khoangGia.map((gia) => (
-            <Col span={24} key={gia}>
-              <Checkbox style={{ fontSize: '12px' }}>{gia}</Checkbox>
-            </Col>
-          ))}
-        </Row>
+        <Radio.Group
+          value={searchParams.get("priceRange") ?? ""}
+          onChange={handleChangeKhoangGia}
+        >
+          <Row gutter={[16, 16]}>
+            {listKhoangGia.map((gia) => (
+              <Col span={24} key={gia.label}>
+                <Radio
+                  style={{ fontSize: "12px" }}
+                  value={`${gia.priceRange.min
+                    .toString()
+                    .padEnd(8, "0")}-${gia.priceRange.max
+                    .toString()
+                    .padEnd(8, "0")}`}
+                >
+                  {gia.label}
+                </Radio>
+              </Col>
+            ))}
+          </Row>
+        </Radio.Group>
+      </Collapse>
+      <Collapse header="Hãng sản xuất">
+        <Radio.Group>
+          <Row gutter={[16, 16]}>
+            {brandList.map((brand) => (
+              <Col key={brand.name} span={12}>
+                <Radio style={{ fontSize: "12px" }} value={brand.name}>
+                  {brand.name}
+                </Radio>
+              </Col>
+            ))}
+          </Row>
+        </Radio.Group>
       </Collapse>
     </Wrapper>
-  )
+  );
 }

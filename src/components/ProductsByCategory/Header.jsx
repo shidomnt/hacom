@@ -1,9 +1,9 @@
 // @ts-check
-import { Typography } from 'antd'
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import styled from 'styled-components'
-import useApi from '../../hooks/useApi'
+import { Typography } from "antd";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import styled from "styled-components";
+import useApi from "../../hooks/useApi";
 
 const Wrapper = styled.div`
   & {
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
       &::before {
         position: absolute;
         width: 130%;
-        content: '';
+        content: "";
         height: 2px;
         background-color: var(--color);
         bottom: 0;
@@ -26,30 +26,30 @@ const Wrapper = styled.div`
       }
     }
   }
-`
+`;
 
 export default function Header() {
-  const [categoryName, setCategoryName] = useState('')
+  const [categoryName, setCategoryName] = useState("");
 
-  const { category } = useParams()
-  const { getCategoryBySlug } = useApi()
+  const { category } = useParams();
+  const { getCategoryBySlug } = useApi();
 
   useEffect(() => {
     if (category) {
-      ;(async () => {
-        const response = await getCategoryBySlug(category)
+      (async () => {
+        const response = await getCategoryBySlug(category);
         if (response) {
-          setCategoryName(response.data[0].name)
+          setCategoryName(response.data[0].name);
         } else {
-          setCategoryName('')
+          setCategoryName("");
         }
-      })()
+      })();
     }
-  }, [category, getCategoryBySlug])
+  }, [category, getCategoryBySlug]);
 
   return (
     <Wrapper>
       <Typography.Title level={3}>{categoryName}</Typography.Title>
     </Wrapper>
-  )
+  );
 }
