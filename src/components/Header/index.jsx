@@ -1,14 +1,14 @@
 // @ts-check
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import ModalItem from "./ModalItem";
-import SubNavItem from "./SubNavItem";
-import SearchBar from "./SearchBar";
-import { Col, Row } from "antd";
-import SignAndCart from "./SignAndCart";
-import StickyHeader from "./StickyHeader";
-import "./style.css";
-import { headerSubNavData } from "../../constant";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import ModalItem from './ModalItem';
+import SubNavItem from './SubNavItem';
+import SearchBar from './SearchBar';
+import { Col, Row } from 'antd';
+import SignAndCart from './SignAndCart';
+import StickyHeader from './StickyHeader';
+import './style.css';
+import { headerSubNavData, listBrandImgSrc } from '../../constant';
 
 export default function Header() {
   const [displayStickyHeader, setDisplayStickyHeader] = useState(false);
@@ -23,9 +23,9 @@ export default function Header() {
         setDisplayStickyHeader(false);
       }
     };
-    window.addEventListener("scroll", handleSroll);
+    window.addEventListener('scroll', handleSroll);
     return () => {
-      window.removeEventListener("scroll", handleSroll);
+      window.removeEventListener('scroll', handleSroll);
     };
   }, []);
 
@@ -271,90 +271,19 @@ export default function Header() {
                           </Link>
                         </div>
                         <div className="header__subnav--list">
-                          <ul className="header__subnav-item">
-                            <li>
-                              <Link to="/" className="header__subnav-link">
-                                <img src="/assets/img/asus.jpg" alt="" />
-                              </Link>
-                            </li>
-                          </ul>
-                          <ul className="header__subnav-item">
-                            <li>
-                              <Link to="/" className="header__subnav-link">
-                                <img src="/assets/img/dell.jpg" alt="" />
-                              </Link>
-                            </li>
-                          </ul>
-                          <ul className="header__subnav-item">
-                            <li>
-                              <Link to="/" className="header__subnav-link">
-                                <img src="/assets/img/msi.jpg" alt="" />
-                              </Link>
-                            </li>
-                          </ul>
-                          <ul className="header__subnav-item">
-                            <li>
-                              <Link to="/" className="header__subnav-link">
-                                <img src="/assets/img/hp.jpg" alt="" />
-                              </Link>
-                            </li>
-                          </ul>
-                          <ul className="header__subnav-item">
-                            <li>
-                              <Link to="/" className="header__subnav-link">
-                                <img src="/assets/img/acer.jpg" alt="" />
-                              </Link>
-                            </li>
-                          </ul>
-                          <ul className="header__subnav-item">
-                            <li>
-                              <Link to="/" className="header__subnav-link">
-                                <img src="/assets/img/intel.png" alt="" />
-                              </Link>
-                            </li>
-                          </ul>
-                          <ul className="header__subnav-item">
-                            <li>
-                              <Link to="/" className="header__subnav-link">
-                                <img src="/assets/img/amd.jpg" alt="" />
-                              </Link>
-                            </li>
-                          </ul>
-                          <ul className="header__subnav-item">
-                            <li>
-                              <Link to="/" className="header__subnav-link">
-                                <img src="/assets/img/lenovo.jpg" alt="" />
-                              </Link>
-                            </li>
-                          </ul>
-                          <ul className="header__subnav-item">
-                            <li>
-                              <Link to="/" className="header__subnav-link">
-                                <img src="/assets/img/gigabyte.jpg" alt="" />
-                              </Link>
-                            </li>
-                          </ul>
-                          <ul className="header__subnav-item">
-                            <li>
-                              <Link to="/" className="header__subnav-link">
-                                <img src="/assets/img/microsoft.jpg" alt="" />
-                              </Link>
-                            </li>
-                          </ul>
-                          <ul className="header__subnav-item">
-                            <li>
-                              <Link to="/" className="header__subnav-link">
-                                <img src="/assets/img/lg.jpg" alt="" />
-                              </Link>
-                            </li>
-                          </ul>
-                          <ul className="header__subnav-item">
-                            <li>
-                              <Link to="/" className="header__subnav-link">
-                                <img src="/assets/img/samsung.jpg" alt="" />
-                              </Link>
-                            </li>
-                          </ul>
+                          <Row gutter={[8, 8]} align="middle">
+                            {listBrandImgSrc.map((src) => (
+                              <Col span={6} key={src}>
+                                <Link
+                                  to="/Laptop,Tablet,Mobile"
+                                  className="header__subnav-link"
+                                  style={{ textAlign: 'center' }}
+                                >
+                                  <img src={src} alt="" />
+                                </Link>
+                              </Col>
+                            ))}
+                          </Row>
                         </div>
                       </div>
                     </div>

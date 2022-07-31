@@ -1,8 +1,8 @@
 // @ts-check
-import { Button, Image, Space, Typography } from "antd";
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { Button, Image, Space, Typography } from 'antd';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   & {

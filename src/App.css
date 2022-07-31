@@ -15,14 +15,6 @@ html {
   line-height: 1.6rem;
 }
 /* main */
-@keyframes gradient {
-  0% {
-    background-position: 100% 100%;
-  }
-  100% {
-    background-position: -33% 100%;
-  }
-}
 .btn-primary {
   background: repeating-linear-gradient(90deg, red 0, #00f 50%, red 100%);
   background-repeat: repeat-x;

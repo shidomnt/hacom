@@ -1,12 +1,12 @@
 // @ts-check
-import React, { createContext, useCallback, useEffect, useState } from "react";
+import React, { createContext, useCallback, useEffect, useState } from 'react';
 import {
   MAX_SOLUONG,
   MIN_SOLUONG,
   KEY_LOCAL_STORAGE_CART,
   initDiscountInfo,
   initCart,
-} from "../../constant";
+} from '../../constant';
 
 /** ========= Type Define ========= */
 
@@ -83,7 +83,7 @@ export default function CartProvider({ children }) {
       const isExisted = cart.find((item) => item.product.id === product.id);
 
       if (isExisted) {
-        return window.alert("San pham da co trong gio hang!");
+        return window.alert('San pham da co trong gio hang!');
       }
 
       setCart((prevCart) => [
@@ -93,7 +93,7 @@ export default function CartProvider({ children }) {
           quantify,
         },
       ]);
-      window.alert("Them vao gio hang thanh cong!");
+      window.alert('Them vao gio hang thanh cong!');
     },
     [cart]
   );
@@ -127,7 +127,7 @@ export default function CartProvider({ children }) {
      * @type {RemoveProduct}
      */
     (productId) => {
-      if (productId === "all") {
+      if (productId === 'all') {
         setCart([]);
       }
       setCart((prevCart) =>

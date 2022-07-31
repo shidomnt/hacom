@@ -9,13 +9,13 @@ import {
   Space,
   Tooltip,
   Typography,
-} from "antd";
-import React, { useContext, useEffect, useState } from "react";
-import { CartActionContext } from "../../../contexts/CartProvider";
-import InputQuantify from "../../DetailProduct/DetailInfo/InputQuantify";
-import { caculateThanhTien, formatNumberPriceToString } from "../../../utils";
-import { MIN_SOLUONG, MAX_SOLUONG } from "../../../constant";
-import { Link } from "react-router-dom";
+} from 'antd';
+import React, { useContext, useEffect, useState } from 'react';
+import { CartActionContext } from '../../../contexts/CartProvider';
+import InputQuantify from '../../DetailProduct/DetailInfo/InputQuantify';
+import { calculateThanhTien, formatNumberPriceToString } from '../../../utils';
+import { MIN_SOLUONG, MAX_SOLUONG } from '../../../constant';
+import { Link } from 'react-router-dom';
 
 /**
  * @typedef {Object} CartItemProps
@@ -29,15 +29,26 @@ import { Link } from "react-router-dom";
  */
 export default function CartItem({ item }) {
   const { changeQuantify, removeProduct } = useContext(CartActionContext);
+  const [quantify, setQuantify] = useState(item.quantify);
 
   const [thanhTien, setThanhTien] = useState(() => {
-    return caculateThanhTien(item.product.price, item.quantify);
+    return calculateThanhTien(item.product.price, item.quantify);
   });
 
   const { lg } = Grid.useBreakpoint();
 
   useEffect(() => {
-    setThanhTien(caculateThanhTien(item.product.price, item.quantify));
+    if (quantify < MIN_SOLUONG) {
+      setQuantify(MIN_SOLUONG);
+    }
+    if (quantify > MAX_SOLUONG) {
+      setQuantify(MAX_SOLUONG);
+    }
+    changeQuantify(item.product.id, quantify);
+  }, [quantify, changeQuantify, item.product.id]);
+
+  useEffect(() => {
+    setThanhTien(calculateThanhTien(item.product.price, item.quantify));
   }, [item.product.price, item.quantify]);
 
   return (
@@ -80,19 +91,17 @@ export default function CartItem({ item }) {
       </Col>
       <Col span={4}>
         <InputQuantify
-          value={item.quantify}
+          value={quantify}
           min={MIN_SOLUONG}
           max={MAX_SOLUONG}
           controls={false}
-          onChange={(value) => changeQuantify(item.product.id, value)}
-          onClickAdd={() => changeQuantify(item.product.id, item.quantify + 1)}
-          onClickMinus={() =>
-            changeQuantify(item.product.id, item.quantify - 1)
-          }
+          onChange={(value) => setQuantify(value)}
+          onClickAdd={() => setQuantify((quantify) => quantify + 1)}
+          onClickMinus={() => setQuantify((quantify) => quantify - 1)}
         />
       </Col>
       <Col span={4}>
-        <Typography.Title level={5} style={{ margin: 0, color: "red" }}>
+        <Typography.Title level={5} style={{ margin: 0, color: 'red' }}>
           {thanhTien}
           <sup>₫</sup>
         </Typography.Title>

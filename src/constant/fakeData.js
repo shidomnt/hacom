@@ -1,10 +1,14 @@
 /**
- * @type {{[key: string]: DiscountInfo}}
+ * @type {{[key: string]: import(".").DiscountInfo}}
  */
 export const discountMapping = {
   CDNBK: {
-    type: "rate",
-    value: 0.9,
+    type: 'rate',
+    value: 0.67,
+  },
+  ITECH: {
+    type: 'rate',
+    value: 0.99,
   },
 };
 
@@ -13,74 +17,74 @@ export const discountMapping = {
  */
 export const sortBtns = [
   {
-    title: "Hàng Mới",
-    sortType: "new",
+    title: 'Hàng Mới',
+    sortType: 'new',
   },
   {
-    title: "Xem Nhiều",
-    sortType: "view",
+    title: 'Xem Nhiều',
+    sortType: 'view',
   },
   {
-    title: "Giá Giảm Nhiều",
-    sortType: "price-off",
+    title: 'Giá Giảm Nhiều',
+    sortType: 'price-off',
   },
   {
-    title: "Giá Tăng Dần",
-    sortType: "price-asc",
+    title: 'Giá Tăng Dần',
+    sortType: 'price-asc',
   },
   {
-    title: "Giá Giảm Dần",
-    sortType: "price-desc",
+    title: 'Giá Giảm Dần',
+    sortType: 'price-desc',
   },
 ];
 
 export const listCollection = [
   {
     id: 1,
-    categorySlug: "Laptop,Tablet,Mobile",
-    title: "MÁY TÍNH CHO GAME THỦ HACOM LUÔN SẴN ĐỦ",
+    categorySlug: 'Laptop,Tablet,Mobile',
+    title: 'MÁY TÍNH CHO GAME THỦ HACOM LUÔN SẴN ĐỦ',
   },
   {
     id: 2,
-    categorySlug: "PhuKienLaptop,PC,Mobile",
-    title: "TRƯỚC MẶT SẠCH SẼ KHÔNG GIAN LUÔN ĐẸP ĐẼ",
+    categorySlug: 'PhuKienLaptop,PC,Mobile',
+    title: 'TRƯỚC MẶT SẠCH SẼ KHÔNG GIAN LUÔN ĐẸP ĐẼ',
   },
   {
     id: 3,
-    categorySlug: "PCVanPhong,AIO,MiniPC",
-    title: "TẤT CẢ TRONG MỘT ALL IN ONE, MINI PC, LÀ SỐ 1",
+    categorySlug: 'PCVanPhong,AIO,MiniPC',
+    title: 'TẤT CẢ TRONG MỘT ALL IN ONE, MINI PC, LÀ SỐ 1',
   },
   {
     id: 4,
-    categorySlug: "Loa,TaiNghe,Mic,Webcam",
-    title: "VỰA KHÔNG GIAN RIÊNG TƯ ĐEO VÀO LÀ LẮC LƯ",
+    categorySlug: 'Loa,TaiNghe,Mic,Webcam',
+    title: 'VỰA KHÔNG GIAN RIÊNG TƯ ĐEO VÀO LÀ LẮC LƯ',
   },
 ];
 
 export const slideSrcList = [
-  "https://hanoicomputercdn.com/media/banner/30_Jun5f554fbfc506240d24abb33881ee5a78.jpg",
-  "https://hanoicomputercdn.com/media/banner/01_Julae73d3b3f05f8253fbe4d8c483c609ec.png",
-  "https://hanoicomputercdn.com/media/banner/04_Jul5d448b2e204aa778e135c23f1c6b3d30.jpg",
-  "https://hanoicomputercdn.com/media/banner/07_Julf2510bcf29fb56683fba210e2ba14815.jpg",
-  "https://hanoicomputercdn.com/media/banner/09_Juldeb6f9166ebe1f5064d0671eeb038b04.png",
+  'https://hanoicomputercdn.com/media/banner/30_Jun5f554fbfc506240d24abb33881ee5a78.jpg',
+  'https://hanoicomputercdn.com/media/banner/01_Julae73d3b3f05f8253fbe4d8c483c609ec.png',
+  'https://hanoicomputercdn.com/media/banner/04_Jul5d448b2e204aa778e135c23f1c6b3d30.jpg',
+  'https://hanoicomputercdn.com/media/banner/07_Julf2510bcf29fb56683fba210e2ba14815.jpg',
+  'https://hanoicomputercdn.com/media/banner/09_Juldeb6f9166ebe1f5064d0671eeb038b04.png',
 ];
 
 export const rightSlideBannerSrcList = [
-  "https://i.ytimg.com/vi/W0uuq13u4MY/hq720.jpg",
-  "https://hanoicomputercdn.com/media/banner/16_Jul4a47a0db6e60853dedfcfdf08a5ca249.png",
+  'https://i.ytimg.com/vi/W0uuq13u4MY/hq720.jpg',
+  'https://hanoicomputercdn.com/media/banner/16_Jul4a47a0db6e60853dedfcfdf08a5ca249.png',
 ];
 
 export const bottomSlideBannerSrcList = [
-  "https://hanoicomputercdn.com/media/banner/16_Julfb5c81ed3a220004b71069645f112867.png",
-  "https://hanoicomputercdn.com/media/banner/16_Jul10fb15c77258a991b0028080a64fb42d.png",
-  "https://hanoicomputercdn.com/media/banner/16_Jul09dd8c2662b96ce14928333f055c5580.png",
+  'https://hanoicomputercdn.com/media/banner/16_Julfb5c81ed3a220004b71069645f112867.png',
+  'https://hanoicomputercdn.com/media/banner/16_Jul10fb15c77258a991b0028080a64fb42d.png',
+  'https://hanoicomputercdn.com/media/banner/16_Jul09dd8c2662b96ce14928333f055c5580.png',
 ];
 
 export const underSlideBannerSrcList = [
-  "https://hanoicomputercdn.com/media/banner/16_Jul8266e4bfeda1bd42d8f9794eb4ea0a13.png",
-  "https://hanoicomputercdn.com/media/banner/16_Julf19c9085129709ee14d013be869df69b.png",
-  "https://hanoicomputercdn.com/media/banner/16_Jul9eb9cd58b9ea5e04c890326b5c1f471f.png",
-  "https://hanoicomputercdn.com/media/banner/16_Jul602e8f042f463dc47ebfdf6a94ed5a6d.png",
+  'https://hanoicomputercdn.com/media/banner/16_Jul8266e4bfeda1bd42d8f9794eb4ea0a13.png',
+  'https://hanoicomputercdn.com/media/banner/16_Julf19c9085129709ee14d013be869df69b.png',
+  'https://hanoicomputercdn.com/media/banner/16_Jul9eb9cd58b9ea5e04c890326b5c1f471f.png',
+  'https://hanoicomputercdn.com/media/banner/16_Jul602e8f042f463dc47ebfdf6a94ed5a6d.png',
 ];
 
 export const iconMapping = [
@@ -105,28 +109,28 @@ export const iconMapping = [
 
 export const brandList = [
   {
-    name: "ASUS",
+    name: 'ASUS',
   },
   {
-    name: "DELL",
+    name: 'DELL',
   },
   {
-    name: "GIGABYTE",
+    name: 'GIGABYTE',
   },
   {
-    name: "HACOM",
+    name: 'HACOM',
   },
   {
-    name: "HNC",
+    name: 'HNC',
   },
   {
-    name: "INTEL",
+    name: 'INTEL',
   },
   {
-    name: "LENOVO",
+    name: 'LENOVO',
   },
   {
-    name: "MSI",
+    name: 'MSI',
   },
 ];
 
@@ -135,70 +139,70 @@ export const brandList = [
  */
 export const khoangGia = [
   {
-    label: "Dưới 10 Triệu",
+    label: 'Dưới 10 Triệu',
     priceRange: {
       min: 0,
       max: 10,
     },
   },
   {
-    label: "10 Triệu - 15 Triệu",
+    label: '10 Triệu - 15 Triệu',
     priceRange: {
       min: 10,
       max: 15,
     },
   },
   {
-    label: "15 Triệu - 20 Triệu",
+    label: '15 Triệu - 20 Triệu',
     priceRange: {
       min: 15,
       max: 20,
     },
   },
   {
-    label: "20 Triệu - 25 Triệu",
+    label: '20 Triệu - 25 Triệu',
     priceRange: {
       min: 20,
       max: 25,
     },
   },
   {
-    label: "25 Triệu - 30 Triệu",
+    label: '25 Triệu - 30 Triệu',
     priceRange: {
       min: 25,
       max: 30,
     },
   },
   {
-    label: "30 Triệu - 35 Triệu",
+    label: '30 Triệu - 35 Triệu',
     priceRange: {
       min: 30,
       max: 35,
     },
   },
   {
-    label: "35 Triệu - 40 Triệu",
+    label: '35 Triệu - 40 Triệu',
     priceRange: {
       min: 35,
       max: 40,
     },
   },
   {
-    label: "40 Triệu - 45 Triệu",
+    label: '40 Triệu - 45 Triệu',
     priceRange: {
       min: 40,
       max: 45,
     },
   },
   {
-    label: "45 Triệu - 50 Triệu",
+    label: '45 Triệu - 50 Triệu',
     priceRange: {
       min: 45,
       max: 50,
     },
   },
   {
-    label: "Trên 60 Triệu",
+    label: 'Trên 60 Triệu',
     priceRange: {
       min: 60,
       max: Infinity,
@@ -208,38 +212,53 @@ export const khoangGia = [
 
 export const headerSubNavData = [
   {
-    title: "Hỗ trợ khách hàng",
+    title: 'Hỗ trợ khách hàng',
     policies: [
-      "Hướng dẫn mua hàng trực tuyến",
-      "Hướng dẫn thanh toán",
-      "Hướng dẫn mua hàng trả góp",
-      "Tra cứu hóa đơn điện tử",
-      "Tra cứu sản phẩm gửi bảo hành",
-      "Gửi yêu cầu bảo hành",
-      "Biểu mẫu hợp đồng",
-      "Góp ý, khiếu nại",
+      'Hướng dẫn mua hàng trực tuyến',
+      'Hướng dẫn thanh toán',
+      'Hướng dẫn mua hàng trả góp',
+      'Tra cứu hóa đơn điện tử',
+      'Tra cứu sản phẩm gửi bảo hành',
+      'Gửi yêu cầu bảo hành',
+      'Biểu mẫu hợp đồng',
+      'Góp ý, khiếu nại',
     ],
   },
   {
-    title: "Chính sách chung",
+    title: 'Chính sách chung',
     policies: [
-      "Chính sách chung",
-      "Bảo mật thông tin khách hàng",
-      "Chính sách hàng chính hãng",
-      "Chính sách giao hàng",
-      "Chính sách bảo hành",
-      "Chính sách cho doanh nghiệp",
-      "Chính sách nhập lại tính phí",
+      'Chính sách chung',
+      'Bảo mật thông tin khách hàng',
+      'Chính sách hàng chính hãng',
+      'Chính sách giao hàng',
+      'Chính sách bảo hành',
+      'Chính sách cho doanh nghiệp',
+      'Chính sách nhập lại tính phí',
     ],
   },
-  { title: "Thông tin khuyến mại", policies: ["Thông tin khuyến mại"] },
+  { title: 'Thông tin khuyến mại', policies: ['Thông tin khuyến mại'] },
   {
-    title: "Thông tin HACOM",
+    title: 'Thông tin HACOM',
     policies: [
-      "Giới thiệu HACOM",
-      "Tuyển dụng",
-      "Tin tức công nghệ",
-      "Liên hệ hợp tác kinh doanh",
+      'Giới thiệu HACOM',
+      'Tuyển dụng',
+      'Tin tức công nghệ',
+      'Liên hệ hợp tác kinh doanh',
     ],
   },
+];
+
+export const listBrandImgSrc = [
+  '/assets/img/asus.jpg',
+  '/assets/img/dell.jpg',
+  '/assets/img/msi.jpg',
+  '/assets/img/hp.jpg',
+  '/assets/img/acer.jpg',
+  '/assets/img/intel.png',
+  '/assets/img/amd.jpg',
+  '/assets/img/lenovo.jpg',
+  '/assets/img/gigabyte.jpg',
+  '/assets/img/microsoft.jpg',
+  '/assets/img/lg.jpg',
+  '/assets/img/samsung.jpg',
 ];

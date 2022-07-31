@@ -1,9 +1,9 @@
-import React from "react";
-import { Space, Button, Typography } from "antd";
-import styled from "styled-components";
-import { StyledButton, StyledInput } from ".";
-import { StyledInputPassword } from "./SigninWithEmail";
-import { SIGNIN_WITH_PHONE } from "../../../../constant";
+import React from 'react';
+import { Space, Button, Typography } from 'antd';
+import styled from 'styled-components';
+import { StyledButton, StyledInput } from '.';
+import { StyledInputPassword } from './SigninWithEmail';
+import { SIGNIN_WITH_PHONE } from '../../../../constant';
 
 const Wrapper = styled.div`
   & {
@@ -22,7 +22,7 @@ export default function SignupWithEmail({ setState }) {
         direction="vertical"
         size="middle"
         className="signup-email-space"
-        style={{ width: "100%" }}
+        style={{ width: '100%' }}
       >
         <div>
           <div>

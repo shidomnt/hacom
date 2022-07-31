@@ -1,8 +1,8 @@
 // @ts-check
-import { Collapse } from "antd";
-import React from "react";
-import styled from "styled-components";
-import ShowroomInfo from "./ShowroomInfo";
+import { Collapse } from 'antd';
+import React from 'react';
+import styled from 'styled-components';
+import ShowroomInfo from './ShowroomInfo';
 
 const Wrapper = styled.div``;
 

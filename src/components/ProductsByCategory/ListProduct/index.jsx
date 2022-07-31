@@ -1,14 +1,14 @@
 // @ts-check
-import { Col, Row } from "antd";
-import React, { useEffect, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
-import styled from "styled-components";
-import { initProducts } from "../../../constant";
-import useApi from "../../../hooks/useApi";
-import { sortProductHandler } from "../../../utils";
-import Loading from "../../Loading";
-import ProductCard from "../../MainPage/ProductCard";
-import TopFilter from "./FilterAndSort";
+import { Col, Row } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { useParams, useSearchParams } from 'react-router-dom';
+import styled from 'styled-components';
+import { initProducts } from '../../../constant';
+import useApi from '../../../hooks/useApi';
+import { sortProductHandler } from '../../../utils';
+import Loading from '../../Loading';
+import ProductCard from '../../MainPage/ProductCard';
+import TopFilter from './FilterAndSort';
 
 const ListProductWrapper = styled.div`
   & {
@@ -34,16 +34,16 @@ export default function ListProduct() {
     if (category) {
       (async () => {
         const filterObj = {};
-        const stockStatusQuery = searchParams.get("stockStatus");
+        const stockStatusQuery = searchParams.get('stockStatus');
         if (stockStatusQuery) {
           filterObj.stockStatus = stockStatusQuery;
         }
-        const priceRangeQuery = searchParams.get("priceRange");
+        const priceRangeQuery = searchParams.get('priceRange');
         if (priceRangeQuery) {
           filterObj.priceRange = priceRangeQuery;
         }
         const response = await getProductsByCategory(category, {
-          page: Number(searchParams.get("page") ?? 1),
+          page: Number(searchParams.get('page') ?? 1),
           limit: 8,
           ...filterObj,
         });
@@ -63,7 +63,7 @@ export default function ListProduct() {
         <ListProductWrapper>
           <Row>
             {products
-              .sort(sortProductHandler?.[searchParams.get("sort") ?? "default"])
+              .sort(sortProductHandler?.[searchParams.get('sort') ?? 'default'])
               .map((product) => (
                 <Col
                   span={6}

@@ -3,16 +3,16 @@ import {
   CheckOutlined,
   PhoneOutlined,
   ShoppingCartOutlined,
-} from "@ant-design/icons";
-import { Card, Col, Grid, Row, Typography } from "antd";
-import React, { useContext } from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { CartActionContext } from "../../../contexts/CartProvider";
+} from '@ant-design/icons';
+import { Card, Col, Grid, Row, Typography } from 'antd';
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { CartActionContext } from '../../../contexts/CartProvider';
 import {
-  caculateDiscountRate,
+  calculateDiscountRate,
   formatNumberPriceToString,
-} from "../../../utils";
+} from '../../../utils';
 
 const StyledCard = styled(Card)`
   & {
@@ -82,7 +82,7 @@ export default function ProductCard({ category, product }) {
           <Link to={`/${category}/${product.id}`}>
             <img
               // @ts-ignore
-              style={{ width: "100%", aspectRatio: 1 / 1 }}
+              style={{ width: '100%', aspectRatio: 1 / 1 }}
               src={product.imgSrc}
               alt=""
             />
@@ -95,10 +95,10 @@ export default function ProductCard({ category, product }) {
             <img
               src={`https://hacom.vn/media/lib/star_${product.rate}.png`}
               alt=""
-            />{" "}
+            />{' '}
             <Rate>({product.rate})</Rate>
           </Col>
-          <Col span={12} style={{ textAlign: "right" }}>
+          <Col span={12} style={{ textAlign: 'right' }}>
             <StyledSkuCode>MÃ: {product.id}</StyledSkuCode>
           </Col>
         </Row>
@@ -106,13 +106,13 @@ export default function ProductCard({ category, product }) {
           <Typography.Title
             level={5}
             style={{
-              fontSize: "1.2rem",
+              fontSize: '1.2rem',
             }}
             ellipsis={{ rows: xs ? 2 : 3 }}
           >
             <Link
               to={`/${category}/${product.id}`}
-              style={{ color: "#333333" }}
+              style={{ color: '#333333' }}
             >
               {product.name}
             </Link>
@@ -121,23 +121,23 @@ export default function ProductCard({ category, product }) {
         <div>
           <Typography.Text
             delete
-            style={{ fontSize: "1.5rem", color: "#666666" }}
+            style={{ fontSize: '1.5rem', color: '#666666' }}
           >
-            {product.maxPrice && (
-              <>
+            {!!product.maxPrice && (
+              <span>
                 {formatNumberPriceToString(product.maxPrice)} <DonVi>₫</DonVi>
-              </>
+              </span>
             )}
-          </Typography.Text>{" "}
-          {!xs && (
-            <Typography.Text style={{ fontSize: "1.2rem", color: "#d82a29" }}>
-              {`(Tiết kiệm ${caculateDiscountRate(product)}%)`}
+          </Typography.Text>{' '}
+          {!xs && !!product.maxPrice && (
+            <Typography.Text style={{ fontSize: '1.2rem', color: '#d82a29' }}>
+              {`(Tiết kiệm ${calculateDiscountRate(product)}%)`}
             </Typography.Text>
           )}
-        </div>{" "}
+        </div>{' '}
         <Typography.Text
           strong
-          style={{ fontSize: "2.2rem", fontWeight: "bold" }}
+          style={{ fontSize: '2.2rem', fontWeight: 'bold' }}
         >
           {formatNumberPriceToString(product.price)}
           <DonVi>₫</DonVi>
@@ -146,14 +146,14 @@ export default function ProductCard({ category, product }) {
           <Col span={12}>
             <Typography.Text
               style={{
-                color: product.stockStatus ? "#2cc067" : "#0074da",
+                color: product.stockStatus ? '#2cc067' : '#0074da',
               }}
             >
-              {product.stockStatus ? <CheckOutlined /> : <PhoneOutlined />}{" "}
-              {product.stockStatus ? "Còn hàng" : "Liên hệ"}
+              {product.stockStatus ? <CheckOutlined /> : <PhoneOutlined />}{' '}
+              {product.stockStatus ? 'Còn hàng' : 'Liên hệ'}
             </Typography.Text>
           </Col>
-          <Col span={12} style={{ textAlign: "right" }}>
+          <Col span={12} style={{ textAlign: 'right' }}>
             {product.stockStatus && (
               <StyledCartIcon onClick={() => handleClickCartIcon(product)}>
                 <ShoppingCartOutlined />

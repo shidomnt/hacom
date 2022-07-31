@@ -1,18 +1,18 @@
 // @ts-check
-import { Col, Divider, Row, Typography } from "antd";
-import React, { createContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import styled from "styled-components";
-import useApi from "../../hooks/useApi";
-import CustomBreadcrumb from "../CustomBreadcrumb";
-import Loading from "../Loading";
-import DetailInfo from "./DetailInfo";
-import SlideGallery from "./SlideGallery";
-import StaticInfo from "./StaticInfo";
-import Review from "./Review";
-import ThongSoKiThuat from "./ThongSoKiThuat";
-import Helmet from "react-helmet";
-import { initProduct } from "../../constant";
+import { Col, Divider, Row, Typography } from 'antd';
+import React, { createContext, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import styled from 'styled-components';
+import useApi from '../../hooks/useApi';
+import CustomBreadcrumb from '../CustomBreadcrumb';
+import Loading from '../Loading';
+import DetailInfo from './DetailInfo';
+import SlideGallery from './SlideGallery';
+import StaticInfo from './StaticInfo';
+import Review from './Review';
+import ThongSoKiThuat from './ThongSoKiThuat';
+import Helmet from 'react-helmet';
+import { initProduct } from '../../constant';
 
 const StyledDetailProductWrapper = styled.div`
   & {
@@ -55,7 +55,7 @@ export default function DetailProduct() {
           setProduct(response.data);
         } else {
           setProduct(null);
-          navigate("/");
+          navigate('/');
         }
       }
     })();

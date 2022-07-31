@@ -1,8 +1,8 @@
 // @ts-check
-import { Breadcrumb } from "antd";
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import styled from "styled-components";
+import { Breadcrumb } from 'antd';
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   padding: 10px 0;
@@ -17,14 +17,14 @@ const StyledBreadcrumb = styled(Breadcrumb)`
 `;
 
 const pathMapping = {
-  cart: "Giỏ hàng",
+  cart: 'Giỏ hàng',
 };
 
 export default function CustomBreadcrumb() {
   const location = useLocation();
-  const pathSnippets = location.pathname.split("/").filter((i) => i);
+  const pathSnippets = location.pathname.split('/').filter((i) => i);
   const extraBreadcrumbItems = pathSnippets.map((pathSnippet, index) => {
-    const url = `/${pathSnippets.slice(0, index + 1).join("/")}`;
+    const url = `/${pathSnippets.slice(0, index + 1).join('/')}`;
     return (
       <Breadcrumb.Item key={url}>
         <Link to={url}>{pathMapping[pathSnippet] || pathSnippet}</Link>
@@ -44,7 +44,7 @@ export default function CustomBreadcrumb() {
       <StyledBreadcrumb
         separator={
           <i
-            style={{ fontSize: "10px" }}
+            style={{ fontSize: '10px' }}
             className="fa-solid fa-angle-right"
           ></i>
         }

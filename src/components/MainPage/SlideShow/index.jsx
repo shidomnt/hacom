@@ -1,12 +1,12 @@
 // @ts-check
 
-import React, { useEffect, useState } from "react";
-import { Autoplay, Navigation } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import ProductCard from "../ProductCard";
-import useApi from "../../../hooks/useApi";
-import Loading from "../../Loading";
-import { initProducts } from "../../../constant";
+import React, { useEffect, useState } from 'react';
+import { Autoplay, Navigation } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import ProductCard from '../ProductCard';
+import useApi from '../../../hooks/useApi';
+import Loading from '../../Loading';
+import { initProducts } from '../../../constant';
 
 /**
  * @typedef {Object} SlideShowProps
@@ -69,7 +69,7 @@ const SlideShow = ({
           </SwiperSlide>
         ))}
       </Swiper>
-      {button && <div style={{ marginTop: "16px" }}>{button}</div>}
+      {button && <div style={{ marginTop: '16px' }}>{button}</div>}
     </React.Fragment>
   ) : (
     <Loading />

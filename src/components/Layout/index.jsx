@@ -1,11 +1,11 @@
-import { Grid } from "antd";
-import React, { useEffect } from "react";
-import { Outlet, useLocation } from "react-router-dom";
-import styled from "styled-components";
-import Footer from "../Footer";
+import { Grid } from 'antd';
+import React, { useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
+import styled from 'styled-components';
+import Footer from '../Footer';
 // @ts-check
-import Header from "../Header";
-import CollapseHeader from "../Header/CollapseHeader";
+import Header from '../Header';
+import CollapseHeader from '../Header/CollapseHeader';
 
 const Content = styled.div`
   padding: 8px 0 32px;

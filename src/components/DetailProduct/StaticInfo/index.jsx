@@ -1,9 +1,9 @@
 // @ts-check
-import { Card, Col, List, Row, Select, Space, Typography } from "antd";
-import React, { useEffect, useMemo, useState } from "react";
-import styled from "styled-components";
-import { initShowrooms } from "../../../constant";
-import useApi from "../../../hooks/useApi";
+import { Card, Col, List, Row, Select, Space, Typography } from 'antd';
+import React, { useEffect, useMemo, useState } from 'react';
+import styled from 'styled-components';
+import { initShowrooms } from '../../../constant';
+import useApi from '../../../hooks/useApi';
 
 const Wrapper = styled.div`
   & {
@@ -63,7 +63,7 @@ const Wrapper = styled.div`
             position: relative;
             margin-right: 9px;
             &::before {
-              content: "";
+              content: '';
               display: block;
               width: 4px;
               height: 4px;
@@ -83,30 +83,30 @@ const Wrapper = styled.div`
 
 const data = [
   {
-    title: "YÊN TÂM MUA HÀNG",
+    title: 'YÊN TÂM MUA HÀNG',
     content: [
-      "Uy tín 20 năm xây dựng và phát triển",
-      "Sản phẩm chính hãng 100%",
-      "Trả góp lãi suất 0% toàn bộ giỏ hàng",
-      "Trả bảo hành tận nơi sử dụng",
-      "Bảo hành tận nơi cho doanh nghiệp",
-      "Vệ sinh miễn phí trọn đời PC, Laptop",
-      "Miễn phí quẹt thẻ",
+      'Uy tín 20 năm xây dựng và phát triển',
+      'Sản phẩm chính hãng 100%',
+      'Trả góp lãi suất 0% toàn bộ giỏ hàng',
+      'Trả bảo hành tận nơi sử dụng',
+      'Bảo hành tận nơi cho doanh nghiệp',
+      'Vệ sinh miễn phí trọn đời PC, Laptop',
+      'Miễn phí quẹt thẻ',
     ],
   },
   {
-    title: "MIỄN PHÍ GIAO HÀNG",
+    title: 'MIỄN PHÍ GIAO HÀNG',
     content: [
-      "Giao hàng siêu tốc trong 2h",
-      "Giao hàng miễn phí toàn quốc",
-      "Nhận hàng và thanh toán tại nhà (ship COD)",
+      'Giao hàng siêu tốc trong 2h',
+      'Giao hàng miễn phí toàn quốc',
+      'Nhận hàng và thanh toán tại nhà (ship COD)',
     ],
   },
 ];
 
 export default function StaticInfo() {
   const [showrooms, setShowrooms] = useState(initShowrooms);
-  const [filterShowrooms, setFilterShowrooms] = useState("default");
+  const [filterShowrooms, setFilterShowrooms] = useState('default');
   const { getShowRooms } = useApi();
 
   useEffect(() => {
@@ -141,7 +141,7 @@ export default function StaticInfo() {
               </Typography.Text>
             }
           >
-            <Space direction="vertical" style={{ width: "100%" }}>
+            <Space direction="vertical" style={{ width: '100%' }}>
               <Row gutter={8}>
                 <Col span={12}>
                   <Select
@@ -166,7 +166,7 @@ export default function StaticInfo() {
               <List
                 className="list-showroom"
                 dataSource={showrooms.filter((showroom) =>
-                  filterShowrooms === "default"
+                  filterShowrooms === 'default'
                     ? true
                     : filterShowrooms === showroom.city
                 )}
@@ -176,7 +176,7 @@ export default function StaticInfo() {
                       {showroom.landline && (
                         <React.Fragment>
                           <span className="dienthoaiban">
-                            <i className="fa-solid fa-phone"></i>{" "}
+                            <i className="fa-solid fa-phone"></i>{' '}
                             {showroom.landline}
                           </span>
                         </React.Fragment>

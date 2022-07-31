@@ -1,8 +1,8 @@
 // @ts-check
-import { InputNumber } from "antd";
-import React from "react";
-import styled from "styled-components";
-import { MAX_SOLUONG, MIN_SOLUONG } from "../../../constant";
+import { InputNumber } from 'antd';
+import React from 'react';
+import styled from 'styled-components';
+import { MAX_SOLUONG, MIN_SOLUONG } from '../../../constant';
 
 const Wrapper = styled.span`
   & {

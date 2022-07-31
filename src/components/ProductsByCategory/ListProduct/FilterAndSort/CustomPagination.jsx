@@ -1,9 +1,9 @@
-import { Pagination } from "antd";
-import React, { useEffect, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
-import styled from "styled-components";
-import { DEFAULT_PAGE_SIZE } from "../../../../constant";
-import useApi from "../../../../hooks/useApi";
+import { Pagination } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { useParams, useSearchParams } from 'react-router-dom';
+import styled from 'styled-components';
+import { DEFAULT_PAGE_SIZE } from '../../../../constant';
+import useApi from '../../../../hooks/useApi';
 
 const Wrapper = styled.div`
   & {
@@ -29,7 +29,7 @@ const Wrapper = styled.div`
 export default function CustomPagination() {
   const [productCount, setProductCount] = useState(DEFAULT_PAGE_SIZE);
   const [searchParams, setSearchParams] = useSearchParams({
-    page: "1",
+    page: '1',
   });
 
   const { getProductCountByCategory } = useApi();
@@ -39,7 +39,16 @@ export default function CustomPagination() {
   useEffect(() => {
     (async () => {
       if (category) {
-        const response = await getProductCountByCategory(category);
+        const filterObj = {};
+        const stockStatusQuery = searchParams.get('stockStatus');
+        if (stockStatusQuery) {
+          filterObj.stockStatus = stockStatusQuery;
+        }
+        const priceRangeQuery = searchParams.get('priceRange');
+        if (priceRangeQuery) {
+          filterObj.priceRange = priceRangeQuery;
+        }
+        const response = await getProductCountByCategory(category, filterObj);
         if (response) {
           setProductCount(response.data);
         } else {
@@ -47,21 +56,21 @@ export default function CustomPagination() {
         }
       }
     })();
-  }, [getProductCountByCategory, category]);
+  }, [getProductCountByCategory, category, searchParams]);
 
   /**
    *
    * @param {number} page
    */
   const handleChangePage = (page) => {
-    searchParams.set("page", String(page));
+    searchParams.set('page', String(page));
     setSearchParams(searchParams);
   };
 
   return (
     <Wrapper>
       <Pagination
-        current={Number(searchParams.get("page")) ?? 1}
+        current={Number(searchParams.get('page')) ?? 1}
         onChange={handleChangePage}
         className="top-filter-pagination"
         defaultCurrent={1}

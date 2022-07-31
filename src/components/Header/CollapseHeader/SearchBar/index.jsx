@@ -1,8 +1,8 @@
 // @ts-check
-import { Input } from "antd";
-import React, { useState } from "react";
-import styled from "styled-components";
-import AutoComplete from "../../SearchBar/AutoComplete";
+import { Input } from 'antd';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import AutoComplete from '../../SearchBar/AutoComplete';
 
 const Wrapper = styled.div`
   & {
@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 `;
 
 export default function SearchBar() {
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
 
   const [autoComplete, setAutoComplete] = useState(false);
 

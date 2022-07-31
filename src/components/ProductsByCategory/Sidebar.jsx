@@ -1,11 +1,11 @@
 // @ts-check
-import { Col, Radio, Row, Typography } from "antd";
-import React, { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
-import styled from "styled-components";
-import { initCategories } from "../../constant";
-import useApi from "../../hooks/useApi";
-import Collapse from "./Collapse";
+import { Col, Radio, Row, Typography } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
+import styled from 'styled-components';
+import { initCategories } from '../../constant';
+import useApi from '../../hooks/useApi';
+import Collapse from './Collapse';
 
 const Wrapper = styled.div`
   & {
@@ -55,7 +55,7 @@ export default function Sidebar() {
    * @param {import("antd").RadioChangeEvent} event
    */
   const handleChangeKhoangGia = (event) => {
-    searchParams.set("priceRange", event.target.value);
+    searchParams.set('priceRange', event.target.value);
     setSearchParams(searchParams);
   };
 
@@ -76,19 +76,19 @@ export default function Sidebar() {
       </Collapse>
       <Collapse header="Khoảng giá">
         <Radio.Group
-          value={searchParams.get("priceRange") ?? ""}
+          value={searchParams.get('priceRange') ?? ''}
           onChange={handleChangeKhoangGia}
         >
           <Row gutter={[16, 16]}>
             {listKhoangGia.map((gia) => (
               <Col span={24} key={gia.label}>
                 <Radio
-                  style={{ fontSize: "12px" }}
+                  style={{ fontSize: '12px' }}
                   value={`${gia.priceRange.min
                     .toString()
-                    .padEnd(8, "0")}-${gia.priceRange.max
+                    .padEnd(8, '0')}-${gia.priceRange.max
                     .toString()
-                    .padEnd(8, "0")}`}
+                    .padEnd(8, '0')}`}
                 >
                   {gia.label}
                 </Radio>
@@ -102,7 +102,7 @@ export default function Sidebar() {
           <Row gutter={[16, 16]}>
             {brandList.map((brand) => (
               <Col key={brand.name} span={12}>
-                <Radio style={{ fontSize: "12px" }} value={brand.name}>
+                <Radio style={{ fontSize: '12px' }} value={brand.name}>
                   {brand.name}
                 </Radio>
               </Col>

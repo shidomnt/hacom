@@ -1,16 +1,16 @@
 // @ts-check
-import { Button, Col, Image, Input, Modal, Row, Typography } from "antd";
-import React, { useState } from "react";
-import styled from "styled-components";
+import { Button, Col, Image, Input, Modal, Row, Typography } from 'antd';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 import {
   SIGNIN_WITH_EMAIL,
   SIGNIN_WITH_PHONE,
   SIGNUP_WITH_EMAIL,
-} from "../../../../constant";
-import CloseButton from "./CloseButton";
-import SignupWithEmail from "./SignupWithEmail";
-import SigninWithEmail from "./SigninWithEmail";
-import SigninWithPhoneNumber from "./SigninWithPhoneNumber";
+} from '../../../../constant';
+import CloseButton from './CloseButton';
+import SignupWithEmail from './SignupWithEmail';
+import SigninWithEmail from './SigninWithEmail';
+import SigninWithPhoneNumber from './SigninWithPhoneNumber';
 
 const StyledModal = styled(Modal)`
   & {
@@ -129,7 +129,7 @@ export default function SignModal({ visible, onCancel }) {
         <Col span={9}>
           <div className="sign-modal-wrap-image">
             <Image
-              style={{ padding: "50px 46px" }}
+              style={{ padding: '50px 46px' }}
               preview={false}
               src="/assets/img/bg-pop-login-phone.png"
             />

@@ -1,11 +1,11 @@
 // @ts-check
-import { Button, Checkbox, Col, Grid, Row, Tooltip, Typography } from "antd";
-import React, { useContext, useState } from "react";
-import styled from "styled-components";
-import { CartActionContext, CartContext } from "../../../contexts/CartProvider";
-import CartItem from "./CartItem";
-import Sidebar from "./Sidebar";
-import CollapseCartItem from "./CollapseCartItem";
+import { Button, Checkbox, Col, Grid, Row, Tooltip, Typography } from 'antd';
+import React, { useContext, useState } from 'react';
+import styled from 'styled-components';
+import { CartActionContext, CartContext } from '../../../contexts/CartProvider';
+import CartItem from './CartItem';
+import Sidebar from './Sidebar';
+import CollapseCartItem from './CollapseCartItem';
 
 const Wrapper = styled.div`
   & {
@@ -85,7 +85,7 @@ export default function CartContent() {
                       title="Xóa toàn bộ giỏ hàng"
                     >
                       <Button
-                        onClick={() => removeProduct("all")}
+                        onClick={() => removeProduct('all')}
                         className="cart-remove-btn"
                         type="text"
                       >

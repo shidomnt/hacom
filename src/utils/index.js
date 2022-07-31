@@ -1,5 +1,5 @@
 // @ts-check
-import { discountMapping } from "../constant";
+import { discountMapping } from '../constant';
 
 /**
  *
@@ -7,7 +7,7 @@ import { discountMapping } from "../constant";
  * @returns
  */
 export const formatStringPriceToNumber = (stringPrice) =>
-  Number(stringPrice.split(".").join(""));
+  Number(stringPrice.split('.').join(''));
 
 /**
  *
@@ -15,13 +15,13 @@ export const formatStringPriceToNumber = (stringPrice) =>
  * @returns
  */
 export const formatNumberPriceToString = (thanhTienNumber) => {
-  const thanhTienArrayReverse = thanhTienNumber.toString().split("").reverse();
+  const thanhTienArrayReverse = thanhTienNumber.toString().split('').reverse();
   let thanhTienArrayFormated = [];
   while (thanhTienArrayReverse.length) {
-    const string = thanhTienArrayReverse.splice(0, 3).reverse().join("");
+    const string = thanhTienArrayReverse.splice(0, 3).reverse().join('');
     thanhTienArrayFormated.unshift(string);
   }
-  const thanhTienStringFormated = thanhTienArrayFormated.join(".");
+  const thanhTienStringFormated = thanhTienArrayFormated.join('.');
   return thanhTienStringFormated;
 };
 
@@ -31,7 +31,7 @@ export const formatNumberPriceToString = (thanhTienNumber) => {
  * @param {number} quantify
  * @returns
  */
-export const caculateThanhTien = (price, quantify) => {
+export const calculateThanhTien = (price, quantify) => {
   const thanhTienNumber = price * quantify;
   return formatNumberPriceToString(thanhTienNumber);
 };
@@ -43,10 +43,10 @@ export const caculateThanhTien = (price, quantify) => {
  */
 export const displayDiscountInfo = (discountInfo) => {
   switch (discountInfo.type) {
-    case "rate":
+    case 'rate':
       return `${discountInfo.value * 100}%`;
     default:
-      throw new Error("Discount type khong hop le");
+      throw new Error('Discount type khong hop le');
   }
 };
 
@@ -55,7 +55,7 @@ export const displayDiscountInfo = (discountInfo) => {
  * @param {string} discountCode
  * @returns
  */
-export const checkDiscountCode = (discountCode = "") => {
+export const checkDiscountCode = (discountCode = '') => {
   discountCode = discountCode.toUpperCase();
   if (Object.keys(discountMapping).includes(discountCode)) {
     return {
@@ -83,12 +83,12 @@ export const getItem = (label, key, icon, children, type) => {
  * @param {number} cost
  * @returns
  */
-export const caculateDiscountCost = (discountInfo, cost) => {
+export const calculateDiscountCost = (discountInfo, cost) => {
   switch (discountInfo.type) {
-    case "rate":
-      return cost * discountInfo.value;
+    case 'rate':
+      return Math.floor(cost * discountInfo.value);
     default:
-      throw new Error("Discount type khong hop le");
+      throw new Error('Discount type khong hop le');
   }
 };
 
@@ -99,7 +99,7 @@ export const caculateDiscountCost = (discountInfo, cost) => {
  * Return string only contain digit
  */
 export const filterInputNumber = (input) => {
-  return input.match(/\d+/g)?.join("") ?? "0";
+  return input.match(/\d+/g)?.join('') ?? '0';
 };
 
 /**
@@ -107,12 +107,12 @@ export const filterInputNumber = (input) => {
  */
 export const sortProductHandler = {
   default: undefined,
-  "price-desc": (productPrev, productNext) => {
+  'price-desc': (productPrev, productNext) => {
     const prevPrice = productPrev.price;
     const nextPrice = productNext.price;
     return nextPrice - prevPrice;
   },
-  "price-asc": (productPrev, productNext) => {
+  'price-asc': (productPrev, productNext) => {
     const prevPrice = productPrev.price;
     const nextPrice = productNext.price;
     return prevPrice - nextPrice;
@@ -123,6 +123,9 @@ export const sortProductHandler = {
  *
  * @param {import('../hooks/useApi').Product} product
  */
-export const caculateDiscountRate = (product) => {
+export const calculateDiscountRate = (product) => {
+  if (!product.maxPrice) {
+    return product.maxPrice;
+  }
   return Math.floor((product.price / product.maxPrice) * 100);
 };

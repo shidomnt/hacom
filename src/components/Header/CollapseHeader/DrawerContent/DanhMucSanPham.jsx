@@ -1,11 +1,11 @@
 // @ts-check
-import { Menu } from "antd";
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { initSideBarContent } from "../../../../constant";
-import useApi from "../../../../hooks/useApi";
-import { getItem } from "../../../../utils/";
+import { Menu } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { initSideBarContent } from '../../../../constant';
+import useApi from '../../../../hooks/useApi';
+import { getItem } from '../../../../utils/';
 
 const StyledMenu = styled(Menu)`
   & {
@@ -24,8 +24,8 @@ export default function DanhMucSanPham() {
 
   const [items, setItems] = useState(() => [
     getItem(
-      "Danh mục sản phẩm",
-      "Danh mục sản phẩm",
+      'Danh mục sản phẩm',
+      'Danh mục sản phẩm',
       <i className="fa-solid fa-bars"></i>
     ),
   ]);
@@ -51,10 +51,10 @@ export default function DanhMucSanPham() {
           const listSubitem = item.children.map((child) => {
             return getItem(
               <Link to="/Laptop,Tablet,Mobile" reloadDocument>
-                {typeof child === "string" ? child : child.title}
+                {typeof child === 'string' ? child : child.title}
               </Link>,
               `${category.slug}-${item.title}-${
-                typeof child === "string" ? child : child.title
+                typeof child === 'string' ? child : child.title
               }`
             );
           });
@@ -74,8 +74,8 @@ export default function DanhMucSanPham() {
       });
       setItems([
         getItem(
-          "Danh mục sản phẩm",
-          "Danh mục sản phẩm",
+          'Danh mục sản phẩm',
+          'Danh mục sản phẩm',
           <i className="fa-solid fa-bars"></i>,
           listCategory
         ),

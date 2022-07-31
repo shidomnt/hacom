@@ -1,11 +1,11 @@
 // @ts-check
-import React, { useContext, useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Thumbs, Navigation } from "swiper";
-import styled from "styled-components";
-import { ProductContext } from "..";
-import { Col, Image, Row } from "antd";
-import { initGallerySrc } from "../../../constant";
+import React, { useContext, useEffect, useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Thumbs, Navigation } from 'swiper';
+import styled from 'styled-components';
+import { ProductContext } from '..';
+import { Col, Image, Row } from 'antd';
+import { initGallerySrc } from '../../../constant';
 
 const Wrapper = styled.div`
   & {

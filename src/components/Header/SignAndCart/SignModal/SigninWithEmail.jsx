@@ -1,8 +1,8 @@
-import React from "react";
-import { Space, Button, Typography, Input } from "antd";
-import styled from "styled-components";
-import { StyledButton, StyledInput } from ".";
-import { SIGNIN_WITH_PHONE } from "../../../../constant";
+import React from 'react';
+import { Space, Button, Typography, Input } from 'antd';
+import styled from 'styled-components';
+import { StyledButton, StyledInput } from '.';
+import { SIGNIN_WITH_PHONE } from '../../../../constant';
 
 const Wrapper = styled.div`
   & {
@@ -25,7 +25,7 @@ export const StyledInputPassword = styled(Input.Password)`
 export default function SigninWithEmail({ setState }) {
   return (
     <Wrapper>
-      <Space direction="vertical" size="large" style={{ width: "100%" }}>
+      <Space direction="vertical" size="large" style={{ width: '100%' }}>
         <div>
           <div>
             <Button type="text" onClick={() => setState(SIGNIN_WITH_PHONE)}>
@@ -38,7 +38,7 @@ export default function SigninWithEmail({ setState }) {
           </Typography.Text>
         </div>
         <div>
-          <Space direction="vertical" size="middle" style={{ width: "100%" }}>
+          <Space direction="vertical" size="middle" style={{ width: '100%' }}>
             <StyledInput className="font-size-2" placeholder="abc@gmail.com" />
             <StyledInputPassword
               className="font-size-2"

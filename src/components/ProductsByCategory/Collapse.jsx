@@ -1,7 +1,7 @@
 // @ts-check
-import { Divider, Typography } from "antd";
-import React, { useState } from "react";
-import styled from "styled-components";
+import { Divider, Typography } from 'antd';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
 const Wrapper = styled.div``;
 
@@ -41,7 +41,7 @@ export default function Collapse({ header, children }) {
         {header}
       </StyledTitle>
       <Divider style={{ margin: 0 }} type="horizontal" />
-      <StyledChildrenWrapper style={{ maxHeight: collapse ? 0 : "100em" }}>
+      <StyledChildrenWrapper style={{ maxHeight: collapse ? 0 : '100em' }}>
         {children}
       </StyledChildrenWrapper>
     </Wrapper>

@@ -1,9 +1,9 @@
 // @ts-check
-import { Button, Divider, Image, Typography } from "antd";
-import React, { useState } from "react";
-import { useContext } from "react";
-import styled from "styled-components";
-import { ProductContext } from "../";
+import { Button, Divider, Image, Typography } from 'antd';
+import React, { useState } from 'react';
+import { useContext } from 'react';
+import styled from 'styled-components';
+import { ProductContext } from '../';
 
 const Wrapper = styled.div``;
 
@@ -56,7 +56,7 @@ export default function Review() {
     <Wrapper>
       <Typography.Title level={4}>Đánh giá {product.name}</Typography.Title>
       <Divider type="horizontal" />
-      <ContentWrapper className={isExpanded ? "expanded" : ""}>
+      <ContentWrapper className={isExpanded ? 'expanded' : ''}>
         <div className="content-danhgia">
           {danhgia.title.slice(1).map((title, index) => (
             <div key={`${title}-${index}`}>
@@ -91,7 +91,7 @@ export default function Review() {
                 )
               }
             >
-              {isExpanded ? "Thu nhỏ" : "Xem thêm"}
+              {isExpanded ? 'Thu nhỏ' : 'Xem thêm'}
             </Button>
           </ButtonExpandWrapper>
         )}

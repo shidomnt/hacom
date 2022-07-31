@@ -1,7 +1,7 @@
 // @ts-check
-import React from "react";
-import { Typography } from "antd";
-import styled from "styled-components";
+import React from 'react';
+import { Typography } from 'antd';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   & {

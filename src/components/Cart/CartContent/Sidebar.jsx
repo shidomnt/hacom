@@ -1,14 +1,14 @@
 // @ts-check
-import { Button, Col, Divider, Input, Row, Typography } from "antd";
-import React, { useContext, useEffect, useState } from "react";
-import styled from "styled-components";
-import { CartActionContext, CartContext } from "../../../contexts/CartProvider";
+import { Button, Col, Divider, Input, Row, Typography } from 'antd';
+import React, { useContext, useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { CartActionContext, CartContext } from '../../../contexts/CartProvider';
 import {
-  caculateDiscountCost,
+  calculateDiscountCost,
   checkDiscountCode,
   displayDiscountInfo,
   formatNumberPriceToString,
-} from "../../../utils";
+} from '../../../utils';
 
 const Wrapper = styled.div`
   & {
@@ -41,8 +41,9 @@ const Wrapper = styled.div`
  */
 export default function Sidebar({ checkedList }) {
   const [cost, setCost] = useState(0);
-  const [discountCode, setDisCountCode] = useState("");
+  const [discountCode, setDisCountCode] = useState('');
   const [discountCost, setDiscountCost] = useState(0);
+  const [thanhTien, setThanhTien] = useState(0);
 
   const { cart, discountInfo } = useContext(CartContext);
   const { setDiscountInfo } = useContext(CartActionContext);
@@ -60,20 +61,24 @@ export default function Sidebar({ checkedList }) {
 
   useEffect(() => {
     if (discountInfo) {
-      const result = caculateDiscountCost(discountInfo, cost);
+      const result = calculateDiscountCost(discountInfo, cost);
       setDiscountCost(result);
     } else {
       setDiscountCost(0);
     }
   }, [discountInfo, cost]);
 
+  useEffect(() => {
+    setThanhTien(cost - discountCost);
+  }, [cost, discountCost]);
+
   function handleSetDiscountInfo() {
     const result = checkDiscountCode(discountCode);
     if (!result.discount) {
-      alert("Ma giam gia khong hop le!");
+      alert('Ma giam gia khong hop le!');
       setDiscountInfo(null);
     } else {
-      alert("Ap dung ma giam gia thanh cong!");
+      alert('Ap dung ma giam gia thanh cong!');
       setDiscountInfo(result.discount);
     }
   }
@@ -91,7 +96,7 @@ export default function Sidebar({ checkedList }) {
               />
               <Button
                 onClick={handleSetDiscountInfo}
-                style={{ backgroundColor: "var(--primary-color)" }}
+                style={{ backgroundColor: 'var(--primary-color)' }}
                 type="primary"
               >
                 Áp dụng
@@ -122,12 +127,12 @@ export default function Sidebar({ checkedList }) {
             <Divider type="horizontal" />
             <div className="cart-sidebar-row">
               <Typography.Text>Thành tiền</Typography.Text>
-              <Typography.Title style={{ color: "red", margin: 0 }} level={5}>
-                {formatNumberPriceToString(cost - discountCost)}
+              <Typography.Title style={{ color: 'red', margin: 0 }} level={5}>
+                {formatNumberPriceToString(thanhTien)}
                 <sup>₫</sup>
               </Typography.Title>
             </div>
-            <div style={{ textAlign: "right" }}>(Đã bao gồm VAT nếu có)</div>
+            <div style={{ textAlign: 'right' }}>(Đã bao gồm VAT nếu có)</div>
             <Divider type="horizontal" />
           </div>
         </Col>

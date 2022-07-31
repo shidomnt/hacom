@@ -1,9 +1,9 @@
 // @ts-check
-import React from "react";
-import { Link } from "react-router-dom";
-import { Autoplay, Navigation } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { StyledImgContainer } from "..";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Autoplay, Navigation } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { StyledImgContainer } from '..';
 
 /**
  *
@@ -18,7 +18,7 @@ export default function MainBanner({ slideSrcList }) {
       modules={[Navigation, Autoplay]}
       navigation
       autoplay={{ delay: 8000 }}
-      style={{ borderRadius: "6px" }}
+      style={{ borderRadius: '6px' }}
       loop={true}
     >
       {slideSrcList.map((src) => (

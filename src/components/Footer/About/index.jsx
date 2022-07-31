@@ -1,7 +1,7 @@
 // @ts-check
-import React from "react";
-import { Row, Col } from "antd";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Row, Col } from 'antd';
+import { Link } from 'react-router-dom';
 
 const About = () => {
   return (
@@ -39,7 +39,7 @@ const About = () => {
               <i className="fa-brands fa-youtube-square ytb" />
             </Link>
             <Link to="#" className="footer__buttom-link">
-              {" "}
+              {' '}
               <i className="fa-brands fa-instagram-square ins" />
             </Link>
           </li>

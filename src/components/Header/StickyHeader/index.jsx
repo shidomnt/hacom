@@ -1,10 +1,10 @@
 // @ts-check
-import { Col, Popover, Row } from "antd";
-import React from "react";
-import styled from "styled-components";
-import SideBar from "../../MainPage/SideBar";
-import SearchBar from "../SearchBar";
-import SignAndCart from "../SignAndCart";
+import { Col, Popover, Row } from 'antd';
+import React from 'react';
+import styled from 'styled-components';
+import SideBar from '../../MainPage/SideBar';
+import SearchBar from '../SearchBar';
+import SignAndCart from '../SignAndCart';
 
 const Wrapper = styled.div`
   & {
@@ -51,9 +51,9 @@ export default function StickyHeader() {
             <SearchBar />
           </Col>
           <Col span={7}>
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
               <div
-                style={{ width: "fit-content" }}
+                style={{ width: 'fit-content' }}
                 className="header__buttom--top-nav-hostsing"
               >
                 <SignAndCart />

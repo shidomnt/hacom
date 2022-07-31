@@ -1,10 +1,10 @@
 // @ts-check
-import React, { useEffect, useState } from "react";
-import useApi from "../../../hooks/useApi";
-import styled from "styled-components";
-import SideBarPopover from "./SideBarPopover";
-import { initSideBarContent } from "../../../constant";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import useApi from '../../../hooks/useApi';
+import styled from 'styled-components';
+import SideBarPopover from './SideBarPopover';
+import { initSideBarContent } from '../../../constant';
+import { Link } from 'react-router-dom';
 
 const Wrapper = styled.div`
   & {
@@ -36,7 +36,7 @@ const StyledCategoryWrapper = styled.div`
       position: relative;
       z-index: 10;
       &::before {
-        content: "";
+        content: '';
         display: none;
         border: 15px solid transparent;
         border-left: 11px solid #333a71;

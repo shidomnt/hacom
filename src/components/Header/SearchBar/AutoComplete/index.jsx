@@ -1,12 +1,12 @@
 // @ts-check
-import { Col, Image, Row, Typography } from "antd";
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import styled, { keyframes } from "styled-components";
-import { initProducts } from "../../../../constant";
-import useApi from "../../../../hooks/useApi";
-import { formatNumberPriceToString } from "../../../../utils";
-import EmptySearch from "./EmptySearch";
+import { Col, Image, Row, Typography } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import styled, { keyframes } from 'styled-components';
+import { initProducts } from '../../../../constant';
+import useApi from '../../../../hooks/useApi';
+import { formatNumberPriceToString } from '../../../../utils';
+import EmptySearch from './EmptySearch';
 
 const autoCompleteSlideIn = keyframes`
   0% {transform: translateY(10%);opacity: 0;}
@@ -85,7 +85,7 @@ export default function AutoComplete({ visible, searchValue, children }) {
   return (
     <Wrapper>
       {children}
-      {visible && (
+      {visible && searchValue && (
         <AutoCompleteWrapper>
           {!!autoCompleteProducts.length ? (
             autoCompleteProducts.map((product) => (

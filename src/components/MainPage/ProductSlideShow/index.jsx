@@ -1,9 +1,9 @@
 // @ts-check
-import { Col, Row } from "antd";
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import SlideShow from "../SlideShow";
+import { Col, Row } from 'antd';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import SlideShow from '../SlideShow';
 
 const Title = styled.div`
   & {
@@ -56,7 +56,7 @@ function ProductSlideShow({ categories }) {
   return (
     <Row gutter={[0, 12]}>
       {categories.slice(0, 4).map((category) => (
-        <Col span={24} key={category._id} style={{ backgroundColor: "white" }}>
+        <Col span={24} key={category._id} style={{ backgroundColor: 'white' }}>
           <SlideShow
             category={category.slug}
             title={

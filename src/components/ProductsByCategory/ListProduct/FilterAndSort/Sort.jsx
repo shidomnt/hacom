@@ -1,10 +1,10 @@
 // @ts-check
-import { Button, Col, Grid, Row, Select, Space } from "antd";
-import React from "react";
-import { useSearchParams } from "react-router-dom";
-import styled from "styled-components";
-import { sortBtns } from "../../../../constant";
-import CustomPagination from "./CustomPagination";
+import { Button, Col, Grid, Row, Select, Space } from 'antd';
+import React from 'react';
+import { useSearchParams } from 'react-router-dom';
+import styled from 'styled-components';
+import { sortBtns } from '../../../../constant';
+import CustomPagination from './CustomPagination';
 
 const Wrapper = styled.div`
   & {
@@ -38,13 +38,13 @@ export default function Sort() {
                   <Button
                     key={button.sortType}
                     onClick={(event) => {
-                      searchParams.set("sort", button.sortType);
+                      searchParams.set('sort', button.sortType);
                       setSearchParams(searchParams);
                     }}
                     className={`top-filter-sort-btn ${
-                      searchParams.get("sort") === button.sortType
-                        ? "active"
-                        : ""
+                      searchParams.get('sort') === button.sortType
+                        ? 'active'
+                        : ''
                     }`}
                     type="dashed"
                   >
@@ -54,7 +54,7 @@ export default function Sort() {
               })}
             </Space>
           ) : (
-            <Select defaultValue="default" style={{ width: "100%" }}>
+            <Select defaultValue="default" style={{ width: '100%' }}>
               <Select.Option value="default">Thứ tự sản phẩm</Select.Option>
               {sortBtns.map((button) => {
                 return (

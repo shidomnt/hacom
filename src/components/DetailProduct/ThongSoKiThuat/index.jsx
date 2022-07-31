@@ -1,8 +1,8 @@
 // @ts-check
-import { Col, Divider, Row, Typography } from "antd";
-import React, { useContext, useEffect, useState } from "react";
-import styled from "styled-components";
-import { ProductContext } from "../";
+import { Col, Divider, Row, Typography } from 'antd';
+import React, { useContext, useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { ProductContext } from '../';
 
 const Wrapper = styled.div`
   & {

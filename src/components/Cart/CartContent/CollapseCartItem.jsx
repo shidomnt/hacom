@@ -8,13 +8,13 @@ import {
   Space,
   Tooltip,
   Typography,
-} from "antd";
-import React, { useContext } from "react";
-import { CartActionContext } from "../../../contexts/CartProvider";
-import InputQuantify from "../../DetailProduct/DetailInfo/InputQuantify";
-import { MAX_SOLUONG, MIN_SOLUONG } from "../../../constant";
-import { formatNumberPriceToString } from "../../../utils";
-import { Link } from "react-router-dom";
+} from 'antd';
+import React, { useContext } from 'react';
+import { CartActionContext } from '../../../contexts/CartProvider';
+import InputQuantify from '../../DetailProduct/DetailInfo/InputQuantify';
+import { MAX_SOLUONG, MIN_SOLUONG } from '../../../constant';
+import { formatNumberPriceToString } from '../../../utils';
+import { Link } from 'react-router-dom';
 
 /**
  * @typedef {Object} CollapseCartItemProps
@@ -39,7 +39,7 @@ export default function CollapseCartItem({ item }) {
         </Link>
       </Col>
       <Col span={19}>
-        <Space style={{ width: "100%" }} direction="vertical">
+        <Space style={{ width: '100%' }} direction="vertical">
           <Row>
             <Col span={23}>
               <Typography.Text ellipsis={true}>
@@ -63,9 +63,9 @@ export default function CollapseCartItem({ item }) {
               <Typography.Text
                 strong
                 style={{
-                  display: "block",
-                  minWidth: "100px",
-                  textAlign: "center",
+                  display: 'block',
+                  minWidth: '100px',
+                  textAlign: 'center',
                 }}
               >
                 {formatNumberPriceToString(item.product.price)}

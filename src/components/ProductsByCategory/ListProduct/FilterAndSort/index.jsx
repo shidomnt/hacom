@@ -1,9 +1,9 @@
 // @ts-check
-import { Col, Row } from "antd";
-import React from "react";
-import styled from "styled-components";
-import Filter from "./Filter";
-import Sort from "./Sort";
+import { Col, Row } from 'antd';
+import React from 'react';
+import styled from 'styled-components';
+import Filter from './Filter';
+import Sort from './Sort';
 
 const Wrapper = styled.div`
   & {

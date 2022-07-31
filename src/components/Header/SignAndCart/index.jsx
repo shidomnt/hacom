@@ -1,9 +1,9 @@
 // @ts-check
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
-import { CartContext } from "../../../contexts/CartProvider";
-import SignOtherPlatform from "./SignOtherPlatform";
-import SignModal from "./SignModal";
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { CartContext } from '../../../contexts/CartProvider';
+import SignOtherPlatform from './SignOtherPlatform';
+import SignModal from './SignModal';
 
 export default function SignAndCart() {
   const { cart } = useContext(CartContext);
@@ -50,7 +50,7 @@ export default function SignAndCart() {
         </div>
       </div>
       <div className="header__buttom--top-nav-hostsing-item">
-        <Link to="/cart" style={{ display: "flex", color: "inherit" }}>
+        <Link to="/cart" style={{ display: 'flex', color: 'inherit' }}>
           <i className="fa-solid fa-bag-shopping header__buttom--top-nav-hostsing-icon">
             <span className="cart__price">{cart.length}</span>
           </i>
