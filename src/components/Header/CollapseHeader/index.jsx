@@ -1,11 +1,11 @@
 // @ts-check
-import { Col, Drawer, Image, Row } from 'antd'
-import React, { useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-import { CartContext } from '../../../contexts/CartProvider'
-import SearchBar from './SearchBar'
-import DrawerContent from './DrawerContent'
+import { Col, Drawer, Image, Row } from "antd";
+import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { CartContext } from "../../../contexts/CartProvider";
+import SearchBar from "./SearchBar";
+import DrawerContent from "./DrawerContent";
 
 const Wrapper = styled.div`
   & {
@@ -48,7 +48,7 @@ const Wrapper = styled.div`
       text-align: center;
     }
   }
-`
+`;
 
 const StyledDrawer = styled(Drawer)`
   & {
@@ -60,34 +60,34 @@ const StyledDrawer = styled(Drawer)`
       padding: 0;
     }
   }
-`
+`;
 
 export default function CollapseHeader() {
-  const { cart } = useContext(CartContext)
-  const [hideLogo, setHideLogo] = useState(false)
+  const { cart } = useContext(CartContext);
+  const [hideLogo, setHideLogo] = useState(false);
 
-  const [drawerOpen, setDrawerOpen] = useState(false)
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const handleToggleDrawer = () => {
-    setDrawerOpen((prev) => !prev)
-  }
+    setDrawerOpen((prev) => !prev);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY >= 50) {
-        setHideLogo(true)
+        setHideLogo(true);
       } else {
-        setHideLogo(false)
+        setHideLogo(false);
       }
-    }
-    window.addEventListener('scroll', handleScroll)
+    };
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <header className="header" style={{ height: 'calc(48px + 32px)' }}>
+    <header className="header" style={{ height: "calc(48px + 32px)" }}>
       <Wrapper>
         <div className="row-wrap">
           <Row gutter={[8, 8]} align="middle">
@@ -119,7 +119,7 @@ export default function CollapseHeader() {
                   <Link to="/" className="header__buttom--top-logo">
                     <Image
                       preview={false}
-                      style={{ height: '40px' }}
+                      style={{ height: "40px" }}
                       src="/assets/img/logo-hacomtrangch.png"
                       alt="logo"
                       className="header__buttom--top-logo-img"
@@ -130,7 +130,7 @@ export default function CollapseHeader() {
             </Col>
             <Col span={1}>
               <div className="icon-wrap cart-wrap">
-                <Link to="/cart" style={{ color: 'inherit' }}>
+                <Link to="/cart" style={{ color: "inherit" }}>
                   <i className="fa-solid fa-cart-shopping"></i>
                 </Link>
                 <span className="cart-soluong">{cart.length}</span>
@@ -145,5 +145,5 @@ export default function CollapseHeader() {
         )}
       </Wrapper>
     </header>
-  )
+  );
 }

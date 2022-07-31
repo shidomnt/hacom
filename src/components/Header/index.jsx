@@ -1,33 +1,33 @@
 // @ts-check
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import ModalItem from './ModalItem'
-import SubNavItem from './SubNavItem'
-import SearchBar from './SearchBar'
-import { Col, Row } from 'antd'
-import SignAndCart from './SignAndCart'
-import StickyHeader from './StickyHeader'
-import './style.css'
-import { headerSubNavData } from '../../constant'
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import ModalItem from "./ModalItem";
+import SubNavItem from "./SubNavItem";
+import SearchBar from "./SearchBar";
+import { Col, Row } from "antd";
+import SignAndCart from "./SignAndCart";
+import StickyHeader from "./StickyHeader";
+import "./style.css";
+import { headerSubNavData } from "../../constant";
 
 export default function Header() {
-  const [displayStickyHeader, setDisplayStickyHeader] = useState(false)
+  const [displayStickyHeader, setDisplayStickyHeader] = useState(false);
 
-  const [subNavData] = useState(() => headerSubNavData)
+  const [subNavData] = useState(() => headerSubNavData);
 
   useEffect(() => {
     const handleSroll = () => {
       if (window.scrollY >= 550) {
-        setDisplayStickyHeader(true)
+        setDisplayStickyHeader(true);
       } else {
-        setDisplayStickyHeader(false)
+        setDisplayStickyHeader(false);
       }
-    }
-    window.addEventListener('scroll', handleSroll)
+    };
+    window.addEventListener("scroll", handleSroll);
     return () => {
-      window.removeEventListener('scroll', handleSroll)
-    }
-  }, [])
+      window.removeEventListener("scroll", handleSroll);
+    };
+  }, []);
 
   return (
     <React.Fragment>
@@ -383,5 +383,5 @@ export default function Header() {
         </div>
       </header>
     </React.Fragment>
-  )
+  );
 }

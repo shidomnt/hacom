@@ -1,9 +1,9 @@
 // @ts-check
-import { Col, Row } from 'antd'
-import React from 'react'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-import SlideShow from '../SlideShow'
+import { Col, Row } from "antd";
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import SlideShow from "../SlideShow";
 
 const Title = styled.div`
   & {
@@ -20,7 +20,7 @@ const Title = styled.div`
       text-decoration: none;
     }
   }
-`
+`;
 
 const breakPoints = {
   1600: {
@@ -41,7 +41,7 @@ const breakPoints = {
   0: {
     slidesPerView: 2,
   },
-}
+};
 
 /**
  * @typedef {Object} ProductSlideShowProps
@@ -56,7 +56,7 @@ function ProductSlideShow({ categories }) {
   return (
     <Row gutter={[0, 12]}>
       {categories.slice(0, 4).map((category) => (
-        <Col span={24} key={category._id} style={{ backgroundColor: 'white' }}>
+        <Col span={24} key={category._id} style={{ backgroundColor: "white" }}>
           <SlideShow
             category={category.slug}
             title={
@@ -74,7 +74,7 @@ function ProductSlideShow({ categories }) {
         </Col>
       ))}
     </Row>
-  )
+  );
 }
 
-export default ProductSlideShow
+export default ProductSlideShow;

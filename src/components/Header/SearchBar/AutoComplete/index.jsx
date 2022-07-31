@@ -1,23 +1,23 @@
 // @ts-check
-import { Col, Image, Row, Typography } from 'antd'
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import styled, { keyframes } from 'styled-components'
-import { initProducts } from '../../../../constant'
-import useApi from '../../../../hooks/useApi'
-import { formatNumberPriceToString } from '../../../../utils'
-import EmptySearch from './EmptySearch'
+import { Col, Image, Row, Typography } from "antd";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import styled, { keyframes } from "styled-components";
+import { initProducts } from "../../../../constant";
+import useApi from "../../../../hooks/useApi";
+import { formatNumberPriceToString } from "../../../../utils";
+import EmptySearch from "./EmptySearch";
 
 const autoCompleteSlideIn = keyframes`
   0% {transform: translateY(10%);opacity: 0;}
 100% {transform: translateY(0%); opacity: 1;}
-`
+`;
 
 const Wrapper = styled.div`
   & {
     position: relative;
   }
-`
+`;
 
 const AutoCompleteWrapper = styled.div`
   & {
@@ -43,7 +43,7 @@ const AutoCompleteWrapper = styled.div`
       border-bottom: 1px solid #f4f4f4;
     }
   }
-`
+`;
 
 /**
  * @typedef {Object} AutoCompleteProps
@@ -57,29 +57,30 @@ const AutoCompleteWrapper = styled.div`
  * @returns
  */
 export default function AutoComplete({ visible, searchValue, children }) {
-  const [autoCompleteProducts, setAutoCompleteProducts] = useState(initProducts)
+  const [autoCompleteProducts, setAutoCompleteProducts] =
+    useState(initProducts);
 
-  const { getAutoCompleteProduct } = useApi()
+  const { getAutoCompleteProduct } = useApi();
 
   useEffect(() => {
-    let idSetTimeOut
+    let idSetTimeOut;
     if (searchValue) {
       idSetTimeOut = setTimeout(async () => {
         const response = await getAutoCompleteProduct({
           searchValue: searchValue,
           limit: 6,
-        })
+        });
         if (response) {
-          setAutoCompleteProducts(response.data)
+          setAutoCompleteProducts(response.data);
         } else {
-          setAutoCompleteProducts([])
+          setAutoCompleteProducts([]);
         }
-      }, 500)
+      }, 500);
     }
     return () => {
-      clearTimeout(idSetTimeOut)
-    }
-  }, [searchValue, getAutoCompleteProduct])
+      clearTimeout(idSetTimeOut);
+    };
+  }, [searchValue, getAutoCompleteProduct]);
 
   return (
     <Wrapper>
@@ -132,5 +133,5 @@ export default function AutoComplete({ visible, searchValue, children }) {
         </AutoCompleteWrapper>
       )}
     </Wrapper>
-  )
+  );
 }

@@ -1,6 +1,6 @@
 // @ts-check
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 const StyledHot = styled.span`
   & {
     position: relative;
@@ -15,7 +15,7 @@ const StyledHot = styled.span`
       position: absolute;
       left: calc(100% + 4px);
       &:before {
-        content: '';
+        content: "";
         display: block;
         border: 7px solid transparent;
         border-right-color: #ed1b24;
@@ -25,7 +25,7 @@ const StyledHot = styled.span`
         bottom: 0;
       }
       &:after {
-        content: '';
+        content: "";
         display: block;
         border-top: 7px solid #ed1b24;
         border-right: 7px solid transparent;
@@ -37,8 +37,8 @@ const StyledHot = styled.span`
       }
     }
   }
-`
+`;
 
 export default function HotLabel({ children }) {
-  return <StyledHot>{children}</StyledHot>
+  return <StyledHot>{children}</StyledHot>;
 }

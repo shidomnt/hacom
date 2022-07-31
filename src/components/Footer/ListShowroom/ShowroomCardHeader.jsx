@@ -1,7 +1,7 @@
 // @ts-check
-import React from 'react'
-import { Typography } from 'antd'
-import styled from 'styled-components'
+import React from "react";
+import { Typography } from "antd";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   & {
@@ -25,7 +25,7 @@ const Wrapper = styled.div`
       color: inherit;
     }
   }
-`
+`;
 
 /**
  * @typedef {Object} ShowroomCardHeaderProps
@@ -53,7 +53,7 @@ const ShowroomCardHeader = ({ showroom, index }) => {
         </Typography.Text>
       </div>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default ShowroomCardHeader
+export default ShowroomCardHeader;

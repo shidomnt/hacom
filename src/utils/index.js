@@ -1,5 +1,5 @@
 // @ts-check
-import { discountMapping } from '../constant'
+import { discountMapping } from "../constant";
 
 /**
  *
@@ -7,7 +7,7 @@ import { discountMapping } from '../constant'
  * @returns
  */
 export const formatStringPriceToNumber = (stringPrice) =>
-  Number(stringPrice.split('.').join(''))
+  Number(stringPrice.split(".").join(""));
 
 /**
  *
@@ -15,15 +15,15 @@ export const formatStringPriceToNumber = (stringPrice) =>
  * @returns
  */
 export const formatNumberPriceToString = (thanhTienNumber) => {
-  const thanhTienArrayReverse = thanhTienNumber.toString().split('').reverse()
-  let thanhTienArrayFormated = []
+  const thanhTienArrayReverse = thanhTienNumber.toString().split("").reverse();
+  let thanhTienArrayFormated = [];
   while (thanhTienArrayReverse.length) {
-    const string = thanhTienArrayReverse.splice(0, 3).reverse().join('')
-    thanhTienArrayFormated.unshift(string)
+    const string = thanhTienArrayReverse.splice(0, 3).reverse().join("");
+    thanhTienArrayFormated.unshift(string);
   }
-  const thanhTienStringFormated = thanhTienArrayFormated.join('.')
-  return thanhTienStringFormated
-}
+  const thanhTienStringFormated = thanhTienArrayFormated.join(".");
+  return thanhTienStringFormated;
+};
 
 /**
  *
@@ -32,9 +32,9 @@ export const formatNumberPriceToString = (thanhTienNumber) => {
  * @returns
  */
 export const caculateThanhTien = (price, quantify) => {
-  const thanhTienNumber = price * quantify
-  return formatNumberPriceToString(thanhTienNumber)
-}
+  const thanhTienNumber = price * quantify;
+  return formatNumberPriceToString(thanhTienNumber);
+};
 
 /**
  *
@@ -43,29 +43,29 @@ export const caculateThanhTien = (price, quantify) => {
  */
 export const displayDiscountInfo = (discountInfo) => {
   switch (discountInfo.type) {
-    case 'rate':
-      return `${discountInfo.value * 100}%`
+    case "rate":
+      return `${discountInfo.value * 100}%`;
     default:
-      throw new Error('Discount type khong hop le')
+      throw new Error("Discount type khong hop le");
   }
-}
+};
 
 /**
  *
  * @param {string} discountCode
  * @returns
  */
-export const checkDiscountCode = (discountCode = '') => {
-  discountCode = discountCode.toUpperCase()
+export const checkDiscountCode = (discountCode = "") => {
+  discountCode = discountCode.toUpperCase();
   if (Object.keys(discountMapping).includes(discountCode)) {
     return {
       discount: discountMapping[discountCode],
-    }
+    };
   }
   return {
     discount: null,
-  }
-}
+  };
+};
 
 export const getItem = (label, key, icon, children, type) => {
   return {
@@ -74,8 +74,8 @@ export const getItem = (label, key, icon, children, type) => {
     children,
     label,
     type,
-  }
-}
+  };
+};
 
 /**
  *
@@ -85,12 +85,12 @@ export const getItem = (label, key, icon, children, type) => {
  */
 export const caculateDiscountCost = (discountInfo, cost) => {
   switch (discountInfo.type) {
-    case 'rate':
-      return cost * discountInfo.value
+    case "rate":
+      return cost * discountInfo.value;
     default:
-      throw new Error('Discount type khong hop le')
+      throw new Error("Discount type khong hop le");
   }
-}
+};
 
 /**
  *
@@ -99,30 +99,30 @@ export const caculateDiscountCost = (discountInfo, cost) => {
  * Return string only contain digit
  */
 export const filterInputNumber = (input) => {
-  return input.match(/\d+/g)?.join('') ?? '0'
-}
+  return input.match(/\d+/g)?.join("") ?? "0";
+};
 
 /**
  * @type {Record<string, ((prev: import('../hooks/useApi').Product, next: import('../hooks/useApi').Product) => number) | undefined>}
  */
 export const sortProductHandler = {
   default: undefined,
-  'price-desc': (productPrev, productNext) => {
-    const prevPrice = productPrev.price
-    const nextPrice = productNext.price
-    return nextPrice - prevPrice
+  "price-desc": (productPrev, productNext) => {
+    const prevPrice = productPrev.price;
+    const nextPrice = productNext.price;
+    return nextPrice - prevPrice;
   },
-  'price-asc': (productPrev, productNext) => {
-    const prevPrice = productPrev.price
-    const nextPrice = productNext.price
-    return prevPrice - nextPrice
+  "price-asc": (productPrev, productNext) => {
+    const prevPrice = productPrev.price;
+    const nextPrice = productNext.price;
+    return prevPrice - nextPrice;
   },
-}
+};
 
 /**
  *
  * @param {import('../hooks/useApi').Product} product
  */
 export const caculateDiscountRate = (product) => {
-  return Math.floor((product.price / product.maxPrice) * 100)
-}
+  return Math.floor((product.price / product.maxPrice) * 100);
+};

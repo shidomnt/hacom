@@ -1,18 +1,18 @@
 // @ts-check
 
-import React, { useEffect, useState } from 'react'
-import { Col, Row } from 'antd'
-import SideBar from './SideBar'
-import CollectionProduct from './ProductCollection'
-import useApi from '../../hooks/useApi'
-import styled from 'styled-components'
-import ProductSlideShow from './ProductSlideShow'
-import { Helmet } from 'react-helmet'
-import MainBanner from './Banner/MainBanner'
-import RightBanner from './Banner/RightBanner'
-import BottomBanner from './Banner/BottomBanner'
-import UnderBanner from './Banner/UnderBanner'
-import { initCategories } from '../../constant'
+import React, { useEffect, useState } from "react";
+import { Col, Row } from "antd";
+import SideBar from "./SideBar";
+import CollectionProduct from "./ProductCollection";
+import useApi from "../../hooks/useApi";
+import styled from "styled-components";
+import ProductSlideShow from "./ProductSlideShow";
+import { Helmet } from "react-helmet";
+import MainBanner from "./Banner/MainBanner";
+import RightBanner from "./Banner/RightBanner";
+import BottomBanner from "./Banner/BottomBanner";
+import UnderBanner from "./Banner/UnderBanner";
+import { initCategories } from "../../constant";
 
 const StyledImgContainer = styled.div`
   & {
@@ -21,30 +21,30 @@ const StyledImgContainer = styled.div`
       width: 100%;
     }
   }
-`
+`;
 
 export default function Content() {
-  const [categories, setCategories] = useState(initCategories)
-  const { getCategories, getBannerList } = useApi()
-  const [bannerList] = useState(() => getBannerList())
+  const [categories, setCategories] = useState(initCategories);
+  const { getCategories, getBannerList } = useApi();
+  const [bannerList] = useState(() => getBannerList());
 
   const {
     slideSrcList,
     rightSlideBannerSrcList,
     bottomSlideBannerSrcList,
     underSlideBannerSrcList,
-  } = bannerList
+  } = bannerList;
 
   useEffect(() => {
-    ;(async () => {
-      const response = await getCategories()
+    (async () => {
+      const response = await getCategories();
       if (response) {
-        setCategories(response.data)
+        setCategories(response.data);
       } else {
-        setCategories([])
+        setCategories([]);
       }
-    })()
-  }, [getCategories])
+    })();
+  }, [getCategories]);
 
   return (
     <React.Fragment>
@@ -69,7 +69,7 @@ export default function Content() {
                       sm={24}
                       md={24}
                       xs={24}
-                      style={{ display: 'flex', alignItems: 'center' }}
+                      style={{ display: "flex", alignItems: "center" }}
                     >
                       <MainBanner slideSrcList={slideSrcList} />
                     </Col>
@@ -102,7 +102,7 @@ export default function Content() {
         </Col>
       </Row>
     </React.Fragment>
-  )
+  );
 }
 
-export { StyledImgContainer }
+export { StyledImgContainer };

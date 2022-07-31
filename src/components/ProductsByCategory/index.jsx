@@ -1,11 +1,11 @@
 // @ts-check
-import { Col, Row } from 'antd'
-import React from 'react'
-import CustomBreadcrumb from '../CustomBreadcrumb'
-import Header from './Header'
-import Banner from './Banner'
-import Sidebar from './Sidebar'
-import ListProduct from './ListProduct'
+import { Col, Row } from "antd";
+import React from "react";
+import CustomBreadcrumb from "../CustomBreadcrumb";
+import Header from "./Header";
+import Banner from "./Banner";
+import Sidebar from "./Sidebar";
+import ListProduct from "./ListProduct";
 
 export default function ProductsByCategory() {
   return (
@@ -30,5 +30,5 @@ export default function ProductsByCategory() {
         </Col>
       </Row>
     </React.Fragment>
-  )
+  );
 }

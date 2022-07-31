@@ -1,11 +1,11 @@
 // @ts-check
-import { Button, Divider, Image, Typography } from 'antd'
-import React, { useState } from 'react'
-import { useContext } from 'react'
-import styled from 'styled-components'
-import { ProductContext } from '../'
+import { Button, Divider, Image, Typography } from "antd";
+import React, { useState } from "react";
+import { useContext } from "react";
+import styled from "styled-components";
+import { ProductContext } from "../";
 
-const Wrapper = styled.div``
+const Wrapper = styled.div``;
 
 const ContentWrapper = styled.div`
   & {
@@ -22,7 +22,7 @@ const ContentWrapper = styled.div`
       }
     }
   }
-`
+`;
 
 const ButtonExpandWrapper = styled.div`
   & {
@@ -39,24 +39,24 @@ const ButtonExpandWrapper = styled.div`
       margin-right: 10px;
     }
   }
-`
+`;
 
 export default function Review() {
-  const [isExpanded, setIsExpanded] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(false);
 
-  const { product } = useContext(ProductContext)
+  const { product } = useContext(ProductContext);
 
-  const { danhgia } = product
+  const { danhgia } = product;
 
   function handleClickExpandBtn() {
-    setIsExpanded(!isExpanded)
+    setIsExpanded(!isExpanded);
   }
 
   return (
     <Wrapper>
       <Typography.Title level={4}>Đánh giá {product.name}</Typography.Title>
       <Divider type="horizontal" />
-      <ContentWrapper className={isExpanded ? 'expanded' : ''}>
+      <ContentWrapper className={isExpanded ? "expanded" : ""}>
         <div className="content-danhgia">
           {danhgia.title.slice(1).map((title, index) => (
             <div key={`${title}-${index}`}>
@@ -91,11 +91,11 @@ export default function Review() {
                 )
               }
             >
-              {isExpanded ? 'Thu nhỏ' : 'Xem thêm'}
+              {isExpanded ? "Thu nhỏ" : "Xem thêm"}
             </Button>
           </ButtonExpandWrapper>
         )}
       </ContentWrapper>
     </Wrapper>
-  )
+  );
 }

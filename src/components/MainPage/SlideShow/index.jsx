@@ -1,12 +1,12 @@
 // @ts-check
 
-import React, { useEffect, useState } from 'react'
-import { Autoplay, Navigation } from 'swiper'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import ProductCard from '../ProductCard'
-import useApi from '../../../hooks/useApi'
-import Loading from '../../Loading'
-import { initProducts } from '../../../constant'
+import React, { useEffect, useState } from "react";
+import { Autoplay, Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import ProductCard from "../ProductCard";
+import useApi from "../../../hooks/useApi";
+import Loading from "../../Loading";
+import { initProducts } from "../../../constant";
 
 /**
  * @typedef {Object} SlideShowProps
@@ -32,22 +32,22 @@ const SlideShow = ({
   button = null,
   breakpoints = {},
 }) => {
-  const [products, setProducts] = useState(initProducts)
+  const [products, setProducts] = useState(initProducts);
 
-  const { getProductsByCategory } = useApi()
+  const { getProductsByCategory } = useApi();
 
   useEffect(() => {
-    ;(async () => {
+    (async () => {
       const response = await getProductsByCategory(categorySlug, {
         limit,
-      })
+      });
       if (response) {
-        setProducts(response.data)
+        setProducts(response.data);
       } else {
-        setProducts([])
+        setProducts([]);
       }
-    })()
-  }, [categorySlug, getProductsByCategory, limit])
+    })();
+  }, [categorySlug, getProductsByCategory, limit]);
 
   return !!products.length ? (
     <React.Fragment>
@@ -69,11 +69,11 @@ const SlideShow = ({
           </SwiperSlide>
         ))}
       </Swiper>
-      {button && <div style={{ marginTop: '16px' }}>{button}</div>}
+      {button && <div style={{ marginTop: "16px" }}>{button}</div>}
     </React.Fragment>
   ) : (
     <Loading />
-  )
-}
+  );
+};
 
-export default React.memo(SlideShow)
+export default React.memo(SlideShow);

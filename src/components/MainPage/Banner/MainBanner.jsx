@@ -6,12 +6,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { StyledImgContainer } from "..";
 
 /**
- * 
- * @param {import("react").PropsWithChildren<{ slideSrcList: string[] }>} props 
- * @returns 
+ *
+ * @param {import("react").PropsWithChildren<{ slideSrcList: string[] }>} props
+ * @returns
  */
 export default function MainBanner({ slideSrcList }) {
-  
   return (
     <Swiper
       spaceBetween={10}

@@ -1,9 +1,9 @@
 // @ts-check
-import { Space } from 'antd'
-import React from 'react'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-import DanhMucSanPham from './DanhMucSanPham'
+import { Space } from "antd";
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import DanhMucSanPham from "./DanhMucSanPham";
 
 const Wrapper = styled.div`
   & {
@@ -34,7 +34,7 @@ const Wrapper = styled.div`
       color: inherit;
     }
   }
-`
+`;
 
 export default function DrawerContent() {
   return (
@@ -77,5 +77,5 @@ export default function DrawerContent() {
         </Link>
       </Space>
     </Wrapper>
-  )
+  );
 }

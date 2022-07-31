@@ -5,12 +5,11 @@ import { Link } from "react-router-dom";
 import { StyledImgContainer } from "..";
 
 /**
- * 
- * @param {import("react").PropsWithChildren<{ rightSlideBannerSrcList: string[] }>} props 
- * @returns 
+ *
+ * @param {import("react").PropsWithChildren<{ rightSlideBannerSrcList: string[] }>} props
+ * @returns
  */
 export default function RightBanner({ rightSlideBannerSrcList }) {
-
   return (
     <Row gutter={[6, 6]}>
       {rightSlideBannerSrcList.map((src) => (

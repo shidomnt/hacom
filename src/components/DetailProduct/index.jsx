@@ -1,18 +1,18 @@
 // @ts-check
-import { Col, Divider, Row, Typography } from 'antd'
-import React, { createContext, useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import styled from 'styled-components'
-import useApi from '../../hooks/useApi'
-import CustomBreadcrumb from '../CustomBreadcrumb'
-import Loading from '../Loading'
-import DetailInfo from './DetailInfo'
-import SlideGallery from './SlideGallery'
-import StaticInfo from './StaticInfo'
-import Review from './Review'
-import ThongSoKiThuat from './ThongSoKiThuat'
-import Helmet from 'react-helmet'
-import { initProduct } from '../../constant'
+import { Col, Divider, Row, Typography } from "antd";
+import React, { createContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import styled from "styled-components";
+import useApi from "../../hooks/useApi";
+import CustomBreadcrumb from "../CustomBreadcrumb";
+import Loading from "../Loading";
+import DetailInfo from "./DetailInfo";
+import SlideGallery from "./SlideGallery";
+import StaticInfo from "./StaticInfo";
+import Review from "./Review";
+import ThongSoKiThuat from "./ThongSoKiThuat";
+import Helmet from "react-helmet";
+import { initProduct } from "../../constant";
 
 const StyledDetailProductWrapper = styled.div`
   & {
@@ -25,7 +25,7 @@ const StyledDetailProductWrapper = styled.div`
       margin: 12px 0;
     }
   }
-`
+`;
 
 /**
  * @typedef {Object} ProductContextType
@@ -36,30 +36,30 @@ const StyledDetailProductWrapper = styled.div`
  * @type {React.Context<ProductContextType>}
  */
 // @ts-ignore
-const ProductContext = createContext()
+const ProductContext = createContext();
 
 export default function DetailProduct() {
-  const [product, setProduct] = useState(initProduct)
+  const [product, setProduct] = useState(initProduct);
 
-  const { id } = useParams()
+  const { id } = useParams();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const { getProduct } = useApi()
+  const { getProduct } = useApi();
 
   useEffect(() => {
-    ;(async () => {
+    (async () => {
       if (id) {
-        const response = await getProduct(id)
+        const response = await getProduct(id);
         if (response) {
-          setProduct(response.data)
+          setProduct(response.data);
         } else {
-          setProduct(null)
-          navigate('/')
+          setProduct(null);
+          navigate("/");
         }
       }
-    })()
-  }, [getProduct, id, navigate])
+    })();
+  }, [getProduct, id, navigate]);
 
   return (
     <React.Fragment>
@@ -136,7 +136,7 @@ export default function DetailProduct() {
         <Loading />
       )}
     </React.Fragment>
-  )
+  );
 }
 
-export { ProductContext }
+export { ProductContext };

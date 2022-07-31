@@ -1,8 +1,8 @@
 // @ts-check
-import { Button, Image, Space, Typography } from 'antd';
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { Button, Image, Space, Typography } from "antd";
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   & {
@@ -24,7 +24,7 @@ const StyledButton = styled(Button)`
     padding: 8px 36px;
     height: unset;
   }
-`
+`;
 
 export default function EmptyCart() {
   return (
@@ -34,7 +34,9 @@ export default function EmptyCart() {
         <Typography.Text>
           Không có sản phẩm nào trong giỏ hàng của bạn
         </Typography.Text>
-        <StyledButton><Link to='/' >Tiếp tục mua sắm</Link></StyledButton>
+        <StyledButton>
+          <Link to="/">Tiếp tục mua sắm</Link>
+        </StyledButton>
       </Space>
     </Wrapper>
   );

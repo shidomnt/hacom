@@ -1,9 +1,12 @@
 // @ts-check
-import { Divider, Grid, Space, Typography } from 'antd'
-import React, { useContext } from 'react'
-import styled from 'styled-components'
-import { ProductContext } from '..'
-import { caculateDiscountRate, formatNumberPriceToString } from '../../../utils'
+import { Divider, Grid, Space, Typography } from "antd";
+import React, { useContext } from "react";
+import styled from "styled-components";
+import { ProductContext } from "..";
+import {
+  caculateDiscountRate,
+  formatNumberPriceToString,
+} from "../../../utils";
 
 const Wrapper = styled.div`
   & {
@@ -29,16 +32,16 @@ const Wrapper = styled.div`
       font-size: 1.4rem;
     }
   }
-`
+`;
 
 export default function Price() {
-  const { product } = useContext(ProductContext)
+  const { product } = useContext(ProductContext);
 
-  const { xs } = Grid.useBreakpoint()
+  const { xs } = Grid.useBreakpoint();
 
   return (
     <Wrapper>
-      <Space direction={'vertical'}>
+      <Space direction={"vertical"}>
         <div>
           <Typography.Title className="price" level={4}>
             {formatNumberPriceToString(product.price)}
@@ -60,12 +63,12 @@ export default function Price() {
         </div>
         <div>
           <div className="chip">{`Giá ${
-            product.vat ? 'đã' : 'chưa'
+            product.vat ? "đã" : "chưa"
           } có VAT`}</div>
           <Divider type="vertical" />
           <div className="chip">{product.baohanh}</div>
         </div>
       </Space>
     </Wrapper>
-  )
+  );
 }

@@ -1,11 +1,11 @@
 // @ts-check
-import { Col, Divider, Grid, List, Row, Typography } from 'antd'
-import React, { useContext } from 'react'
-import styled from 'styled-components'
-import { ProductContext } from '..'
-import Gift from './Gift'
-import Price from './Price'
-import ThanhToan from './ThanhToan'
+import { Col, Divider, Grid, List, Row, Typography } from "antd";
+import React, { useContext } from "react";
+import styled from "styled-components";
+import { ProductContext } from "..";
+import Gift from "./Gift";
+import Price from "./Price";
+import ThanhToan from "./ThanhToan";
 
 const Wrapper = styled.div`
   & {
@@ -30,12 +30,12 @@ const Wrapper = styled.div`
       }
     }
   }
-`
+`;
 
 export default function DetailInfo() {
-  const { product } = useContext(ProductContext)
+  const { product } = useContext(ProductContext);
 
-  const { xs } = Grid.useBreakpoint()
+  const { xs } = Grid.useBreakpoint();
 
   return (
     <Wrapper>
@@ -46,11 +46,11 @@ export default function DetailInfo() {
           </Typography.Text>
           <Divider type="vertical" />
           <Typography.Text>
-            Đánh giá:{' '}
+            Đánh giá:{" "}
             <img
               src={`https://hacom.vn/media/lib/star_${product.rate}.png`}
               alt=""
-            />{' '}
+            />{" "}
             <span className="color-288ad6">{product.rate}</span>
           </Typography.Text>
           {!xs && (
@@ -95,5 +95,5 @@ export default function DetailInfo() {
         </Col>
       </Row>
     </Wrapper>
-  )
+  );
 }

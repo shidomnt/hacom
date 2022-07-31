@@ -1,7 +1,7 @@
 // @ts-check
-import { Card, Typography } from 'antd'
-import React from 'react'
-import styled from 'styled-components'
+import { Card, Typography } from "antd";
+import React from "react";
+import styled from "styled-components";
 
 const StyledCard = styled(Card)`
   & {
@@ -32,7 +32,7 @@ const StyledCard = styled(Card)`
       }
     }
   }
-`
+`;
 
 /**
  * @typedef {Object} GiftProps
@@ -48,25 +48,25 @@ export default function Gift({ uudai }) {
     <StyledCard
       title={
         <Typography.Text className="card-title" strong>
-          {' '}
+          {" "}
           <i className="fa-solid fa-gift"></i> Quà tặng và ưu đãi kèm theo
         </Typography.Text>
       }
     >
       {uudai.map((chitietuudai, index) => {
-        if (chitietuudai[0] !== '+') {
+        if (chitietuudai[0] !== "+") {
           return (
             <Typography.Title key={index} className="title" level={5}>
               {chitietuudai}
             </Typography.Title>
-          )
+          );
         }
         return (
           <div key={index} className="content">
             {chitietuudai}
           </div>
-        )
+        );
       })}
     </StyledCard>
-  )
+  );
 }

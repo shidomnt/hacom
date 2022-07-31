@@ -9,13 +9,13 @@ import {
   Space,
   Tooltip,
   Typography,
-} from 'antd'
-import React, { useContext, useEffect, useState } from 'react'
-import { CartActionContext } from '../../../contexts/CartProvider'
-import InputQuantify from '../../DetailProduct/DetailInfo/InputQuantify'
-import { caculateThanhTien, formatNumberPriceToString } from '../../../utils'
-import { MIN_SOLUONG, MAX_SOLUONG } from '../../../constant'
-import { Link } from 'react-router-dom'
+} from "antd";
+import React, { useContext, useEffect, useState } from "react";
+import { CartActionContext } from "../../../contexts/CartProvider";
+import InputQuantify from "../../DetailProduct/DetailInfo/InputQuantify";
+import { caculateThanhTien, formatNumberPriceToString } from "../../../utils";
+import { MIN_SOLUONG, MAX_SOLUONG } from "../../../constant";
+import { Link } from "react-router-dom";
 
 /**
  * @typedef {Object} CartItemProps
@@ -28,17 +28,17 @@ import { Link } from 'react-router-dom'
  * @returns
  */
 export default function CartItem({ item }) {
-  const { changeQuantify, removeProduct } = useContext(CartActionContext)
+  const { changeQuantify, removeProduct } = useContext(CartActionContext);
 
   const [thanhTien, setThanhTien] = useState(() => {
-    return caculateThanhTien(item.product.price, item.quantify)
-  })
+    return caculateThanhTien(item.product.price, item.quantify);
+  });
 
-  const { lg } = Grid.useBreakpoint()
+  const { lg } = Grid.useBreakpoint();
 
   useEffect(() => {
-    setThanhTien(caculateThanhTien(item.product.price, item.quantify))
-  }, [item.product.price, item.quantify])
+    setThanhTien(caculateThanhTien(item.product.price, item.quantify));
+  }, [item.product.price, item.quantify]);
 
   return (
     <Row gutter={[8, 8]} align="middle">
@@ -92,7 +92,7 @@ export default function CartItem({ item }) {
         />
       </Col>
       <Col span={4}>
-        <Typography.Title level={5} style={{ margin: 0, color: 'red' }}>
+        <Typography.Title level={5} style={{ margin: 0, color: "red" }}>
           {thanhTien}
           <sup>₫</sup>
         </Typography.Title>
@@ -109,5 +109,5 @@ export default function CartItem({ item }) {
         </Tooltip>
       </Col>
     </Row>
-  )
+  );
 }

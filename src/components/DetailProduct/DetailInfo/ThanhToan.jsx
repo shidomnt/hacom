@@ -1,12 +1,12 @@
 // @ts-check
-import { Button, Col, Row, Typography } from 'antd'
-import React, { useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import styled from 'styled-components'
-import { ProductContext } from '..'
-import { CartActionContext } from '../../../contexts/CartProvider'
-import InputQuantify from './InputQuantify'
-import { MAX_SOLUONG, MIN_SOLUONG } from '../../../constant'
+import { Button, Col, Row, Typography } from "antd";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { ProductContext } from "..";
+import { CartActionContext } from "../../../contexts/CartProvider";
+import InputQuantify from "./InputQuantify";
+import { MAX_SOLUONG, MIN_SOLUONG } from "../../../constant";
 
 const Wrapper = styled.div`
   & {
@@ -21,7 +21,7 @@ const Wrapper = styled.div`
       font-size: 1.5rem;
     }
   }
-`
+`;
 
 const StyledButton = styled.button`
   & {
@@ -46,24 +46,24 @@ const StyledButton = styled.button`
   &.secondary {
     background-color: #2b7cea;
   }
-`
+`;
 
 export default function ThanhToan() {
-  const [soluong, setSoluong] = useState(1)
+  const [soluong, setSoluong] = useState(1);
 
-  const { product } = useContext(ProductContext)
-  const { addProduct } = useContext(CartActionContext)
+  const { product } = useContext(ProductContext);
+  const { addProduct } = useContext(CartActionContext);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (soluong < MIN_SOLUONG) {
-      setSoluong(MIN_SOLUONG)
+      setSoluong(MIN_SOLUONG);
     }
     if (soluong > MAX_SOLUONG) {
-      setSoluong(MAX_SOLUONG)
+      setSoluong(MAX_SOLUONG);
     }
-  }, [soluong])
+  }, [soluong]);
 
   /**
    * @param {import('../../../hooks/useApi').Product} product
@@ -71,11 +71,11 @@ export default function ThanhToan() {
    * @param {boolean} redirect
    */
   const handleAddProductToCart = (product, quantify, redirect = false) => {
-    addProduct(product, quantify)
+    addProduct(product, quantify);
     if (redirect) {
-      navigate('/cart')
+      navigate("/cart");
     }
-  }
+  };
 
   return (
     <Wrapper>
@@ -84,7 +84,7 @@ export default function ThanhToan() {
           <Row align="middle" gutter={[16, 16]}>
             <Col span={5} xxl={5} xl={5} lg={5} md={5} sm={5} xs={0}>
               <Typography.Text className="input-label" strong>
-                Số lượng:{' '}
+                Số lượng:{" "}
               </Typography.Text>
             </Col>
             <Col span={7} xxl={7} xl={7} lg={7} md={7} sm={7} xs={9}>
@@ -147,5 +147,5 @@ export default function ThanhToan() {
         </Col>
       </Row>
     </Wrapper>
-  )
+  );
 }

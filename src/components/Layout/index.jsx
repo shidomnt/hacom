@@ -1,13 +1,11 @@
 import { Grid } from "antd";
-import React, {
-  useEffect,
-} from "react";
+import React, { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Footer from "../Footer";
 // @ts-check
 import Header from "../Header";
-import CollapseHeader from '../Header/CollapseHeader'
+import CollapseHeader from "../Header/CollapseHeader";
 
 const Content = styled.div`
   padding: 8px 0 32px;
@@ -15,8 +13,7 @@ const Content = styled.div`
 `;
 
 export default function Layout() {
-
-  const {xl} = Grid.useBreakpoint();
+  const { xl } = Grid.useBreakpoint();
 
   const { pathname } = useLocation();
 

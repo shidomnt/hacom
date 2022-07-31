@@ -5,12 +5,11 @@ import { Link } from "react-router-dom";
 import { StyledImgContainer } from "..";
 
 /**
- * 
- * @param {import("react").PropsWithChildren<{ bottomSlideBannerSrcList: string[] }>} props 
- * @returns 
+ *
+ * @param {import("react").PropsWithChildren<{ bottomSlideBannerSrcList: string[] }>} props
+ * @returns
  */
 export default function BottomBanner({ bottomSlideBannerSrcList }) {
-
   return (
     <Row gutter={6}>
       {bottomSlideBannerSrcList.map((src) => (

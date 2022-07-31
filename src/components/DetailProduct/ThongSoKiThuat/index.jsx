@@ -1,8 +1,8 @@
 // @ts-check
-import { Col, Divider, Row, Typography } from 'antd'
-import React, { useContext, useEffect, useState } from 'react'
-import styled from 'styled-components'
-import { ProductContext } from '../'
+import { Col, Divider, Row, Typography } from "antd";
+import React, { useContext, useEffect, useState } from "react";
+import styled from "styled-components";
+import { ProductContext } from "../";
 
 const Wrapper = styled.div`
   & {
@@ -20,20 +20,20 @@ const Wrapper = styled.div`
       }
     }
   }
-`
+`;
 
 export default function ThongSoKiThuat() {
-  const [isPC, setIsPC] = useState(false)
-  const { product } = useContext(ProductContext)
+  const [isPC, setIsPC] = useState(false);
+  const { product } = useContext(ProductContext);
 
   useEffect(() => {
-    const pattern = /^PC/
+    const pattern = /^PC/;
     if (pattern.test(product.id)) {
-      setIsPC(true)
+      setIsPC(true);
     } else {
-      setIsPC(false)
+      setIsPC(false);
     }
-  }, [product])
+  }, [product]);
 
   return (
     <Wrapper>
@@ -85,5 +85,5 @@ export default function ThongSoKiThuat() {
         </div>
       )}
     </Wrapper>
-  )
+  );
 }

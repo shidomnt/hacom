@@ -1,6 +1,6 @@
 // @ts-check
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function SubNavItem({ content }) {
   return (
@@ -17,5 +17,5 @@ export default function SubNavItem({ content }) {
         </li>
       ))}
     </ul>
-  )
+  );
 }

@@ -1,9 +1,9 @@
 // @ts-check
-import React from 'react'
-import { Card } from 'antd'
-import styled from 'styled-components'
-import ShowroomCardHeader from './ShowroomCardHeader'
-import ShowroomInfo from './ShowroomInfo'
+import React from "react";
+import { Card } from "antd";
+import styled from "styled-components";
+import ShowroomCardHeader from "./ShowroomCardHeader";
+import ShowroomInfo from "./ShowroomInfo";
 
 const StyledCard = styled(Card)`
   & {
@@ -28,7 +28,7 @@ const StyledCard = styled(Card)`
       padding: 0;
     }
   }
-`
+`;
 
 /**
  * @typedef {Object} ShowroomCardProps
@@ -48,5 +48,5 @@ export default function ShowroomCard({ showroom, index }) {
     >
       <ShowroomInfo showroom={showroom} />
     </StyledCard>
-  )
+  );
 }

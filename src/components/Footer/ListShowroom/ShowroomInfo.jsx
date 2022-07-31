@@ -1,7 +1,7 @@
 // @ts-check
-import { Typography } from 'antd'
-import React from 'react'
-import styled from 'styled-components'
+import { Typography } from "antd";
+import React from "react";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   & {
@@ -16,7 +16,7 @@ const Wrapper = styled.div`
       }
     }
   }
-`
+`;
 
 /**
  * @typedef {Object} ShowroomInfoProps
@@ -69,5 +69,5 @@ export default function ShowroomInfo({ showroom }) {
         </div>
       )}
     </Wrapper>
-  )
+  );
 }

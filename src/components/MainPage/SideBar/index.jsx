@@ -1,10 +1,10 @@
 // @ts-check
-import React, { useEffect, useState } from 'react'
-import useApi from '../../../hooks/useApi'
-import styled from 'styled-components'
-import SideBarPopover from './SideBarPopover'
-import { initSideBarContent } from '../../../constant'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import useApi from "../../../hooks/useApi";
+import styled from "styled-components";
+import SideBarPopover from "./SideBarPopover";
+import { initSideBarContent } from "../../../constant";
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
   & {
@@ -21,7 +21,7 @@ const Wrapper = styled.div`
       display: none;
     }
   }
-`
+`;
 
 const StyledCategoryWrapper = styled.div`
   & {
@@ -36,7 +36,7 @@ const StyledCategoryWrapper = styled.div`
       position: relative;
       z-index: 10;
       &::before {
-        content: '';
+        content: "";
         display: none;
         border: 15px solid transparent;
         border-left: 11px solid #333a71;
@@ -64,25 +64,25 @@ const StyledCategoryWrapper = styled.div`
       }
     }
   }
-`
+`;
 
 export default function SideBar() {
-  const [sideBarContent, setSideBarContent] = useState(initSideBarContent)
+  const [sideBarContent, setSideBarContent] = useState(initSideBarContent);
 
-  const { getSideBarMappingIcon, getSideBarContent } = useApi()
+  const { getSideBarMappingIcon, getSideBarContent } = useApi();
 
-  const [iconMapping] = useState(() => getSideBarMappingIcon())
+  const [iconMapping] = useState(() => getSideBarMappingIcon());
 
   useEffect(() => {
-    ;(async () => {
-      const response = await getSideBarContent()
+    (async () => {
+      const response = await getSideBarContent();
       if (response) {
-        setSideBarContent(response.data)
+        setSideBarContent(response.data);
       } else {
-        setSideBarContent(null)
+        setSideBarContent(null);
       }
-    })()
-  }, [getSideBarContent])
+    })();
+  }, [getSideBarContent]);
 
   return (
     <Wrapper>
@@ -98,5 +98,5 @@ export default function SideBar() {
           </StyledCategoryWrapper>
         ))}
     </Wrapper>
-  )
+  );
 }

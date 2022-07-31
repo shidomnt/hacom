@@ -1,9 +1,9 @@
 // @ts-check
-import { Col, Row } from 'antd'
-import React from 'react'
-import styled from 'styled-components'
-import Filter from './Filter'
-import Sort from './Sort'
+import { Col, Row } from "antd";
+import React from "react";
+import styled from "styled-components";
+import Filter from "./Filter";
+import Sort from "./Sort";
 
 const Wrapper = styled.div`
   & {
@@ -14,7 +14,7 @@ const Wrapper = styled.div`
       background-color: #f2f2f2;
     }
   }
-`
+`;
 
 export default function TopFilter() {
   return (
@@ -30,5 +30,5 @@ export default function TopFilter() {
         </Row>
       </div>
     </Wrapper>
-  )
+  );
 }

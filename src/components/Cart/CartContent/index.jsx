@@ -1,11 +1,11 @@
 // @ts-check
-import { Button, Checkbox, Col, Grid, Row, Tooltip, Typography } from 'antd'
-import React, { useContext, useState } from 'react'
-import styled from 'styled-components'
-import { CartActionContext, CartContext } from '../../../contexts/CartProvider'
-import CartItem from './CartItem'
-import Sidebar from './Sidebar'
-import CollapseCartItem from './CollapseCartItem'
+import { Button, Checkbox, Col, Grid, Row, Tooltip, Typography } from "antd";
+import React, { useContext, useState } from "react";
+import styled from "styled-components";
+import { CartActionContext, CartContext } from "../../../contexts/CartProvider";
+import CartItem from "./CartItem";
+import Sidebar from "./Sidebar";
+import CollapseCartItem from "./CollapseCartItem";
 
 const Wrapper = styled.div`
   & {
@@ -31,31 +31,31 @@ const Wrapper = styled.div`
       background-color: var(--primary-color);
     }
   }
-`
+`;
 
 export default function CartContent() {
-  const { cart } = useContext(CartContext)
-  const { removeProduct } = useContext(CartActionContext)
+  const { cart } = useContext(CartContext);
+  const { removeProduct } = useContext(CartActionContext);
   const [checkedList, setCheckedList] = useState(() => {
     /** @type {import('../../../hooks/useApi').Product['id'][]} */
-    const init = []
-    return init
-  })
-  const [checkAll, setCheckAll] = useState(false)
+    const init = [];
+    return init;
+  });
+  const [checkAll, setCheckAll] = useState(false);
 
-  const { md } = Grid.useBreakpoint()
+  const { md } = Grid.useBreakpoint();
 
   const handleChangeCheckAll = (event) => {
     setCheckedList(
       event.target.checked ? cart.map((item) => item.product.id) : []
-    )
-    setCheckAll(event.target.checked)
-  }
+    );
+    setCheckAll(event.target.checked);
+  };
 
   const handleChangeCheckedList = (list) => {
-    setCheckedList(list)
-    setCheckAll(list.length === cart.length)
-  }
+    setCheckedList(list);
+    setCheckAll(list.length === cart.length);
+  };
 
   return (
     <Wrapper>
@@ -85,7 +85,7 @@ export default function CartContent() {
                       title="Xóa toàn bộ giỏ hàng"
                     >
                       <Button
-                        onClick={() => removeProduct('all')}
+                        onClick={() => removeProduct("all")}
                         className="cart-remove-btn"
                         type="text"
                       >
@@ -125,5 +125,5 @@ export default function CartContent() {
         </Col>
       </Row>
     </Wrapper>
-  )
+  );
 }

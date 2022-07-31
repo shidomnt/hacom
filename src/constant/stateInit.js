@@ -3,41 +3,41 @@
 /**
  * @type {string[]}
  */
-export const initGallerySrc = []
+export const initGallerySrc = [];
 
 /**
  * @type {import(".").Cart}
  */
-export const initCart = []
+export const initCart = [];
 
 /**
  * @type {import(".").DiscountInfo | null}
  */
-export const initDiscountInfo = null
+export const initDiscountInfo = null;
 
 /**
  * @type {import("../hooks/useApi").Showroom[]}
  */
-export const initShowrooms = []
+export const initShowrooms = [];
 
 /**
  * @type {import("../hooks/useApi").Product | null}
  */
-export const initProduct = null
+export const initProduct = null;
 
 /**
  * @type {import("../hooks/useApi").Category[]}
  */
-export const initCategories = []
+export const initCategories = [];
 
 /**
  * @type {import("../hooks/useApi").SideBarContent[] | null}
  */
-export const initSideBarContent = null
+export const initSideBarContent = null;
 
 /**
  * @type {import("../hooks/useApi").Product[]}
  */
-export const initProducts = []
+export const initProducts = [];
 
 /** ========= End State Init ========= */

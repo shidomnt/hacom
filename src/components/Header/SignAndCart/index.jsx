@@ -2,8 +2,8 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../../contexts/CartProvider";
-import SignOtherPlatform from './SignOtherPlatform'
-import SignModal from './SignModal'
+import SignOtherPlatform from "./SignOtherPlatform";
+import SignModal from "./SignModal";
 
 export default function SignAndCart() {
   const { cart } = useContext(CartContext);
@@ -28,12 +28,18 @@ export default function SignAndCart() {
           <div className="use__submenu">
             <ul className="use__submenu--list">
               <li>
-                <span onClick={handleShowModal} className="use__submenu--list-link">
+                <span
+                  onClick={handleShowModal}
+                  className="use__submenu--list-link"
+                >
                   <span>Đăng nhập</span>
                 </span>
               </li>
               <li>
-                <span onClick={handleShowModal} className="use__submenu--list-link">
+                <span
+                  onClick={handleShowModal}
+                  className="use__submenu--list-link"
+                >
                   <span>Đăng ký</span>
                 </span>
               </li>
