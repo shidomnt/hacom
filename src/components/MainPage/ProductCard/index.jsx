@@ -118,23 +118,25 @@ export default function ProductCard({ category, product }) {
             </Link>
           </Typography.Title>
         </div>
-        <div>
-          <Typography.Text
-            delete
-            style={{ fontSize: '1.5rem', color: '#666666' }}
-          >
-            {!!product.maxPrice && (
-              <span>
-                {formatNumberPriceToString(product.maxPrice)} <DonVi>₫</DonVi>
-              </span>
+        {!!product.maxPrice && (
+          <div>
+            <Typography.Text
+              delete
+              style={{ fontSize: '1.5rem', color: '#666666' }}
+            >
+              {
+                <span>
+                  {formatNumberPriceToString(product.maxPrice)} <DonVi>₫</DonVi>
+                </span>
+              }
+            </Typography.Text>{' '}
+            {!xs && (
+              <Typography.Text style={{ fontSize: '1.2rem', color: '#d82a29' }}>
+                {`(Tiết kiệm ${calculateDiscountRate(product)}%)`}
+              </Typography.Text>
             )}
-          </Typography.Text>{' '}
-          {!xs && !!product.maxPrice && (
-            <Typography.Text style={{ fontSize: '1.2rem', color: '#d82a29' }}>
-              {`(Tiết kiệm ${calculateDiscountRate(product)}%)`}
-            </Typography.Text>
-          )}
-        </div>{' '}
+          </div>
+        )}
         <Typography.Text
           strong
           style={{ fontSize: '2.2rem', fontWeight: 'bold' }}
