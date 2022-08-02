@@ -2,7 +2,7 @@
 import { Card, Col, List, Row, Select, Space, Typography } from 'antd';
 import React, { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
-import { initShowrooms } from '../../../constant';
+import { initShowrooms, staticInfoFakeData } from '../../../constant';
 import useApi from '../../../hooks/useApi';
 
 const Wrapper = styled.div`
@@ -80,29 +80,6 @@ const Wrapper = styled.div`
     }
   }
 `;
-
-const data = [
-  {
-    title: 'YÊN TÂM MUA HÀNG',
-    content: [
-      'Uy tín 20 năm xây dựng và phát triển',
-      'Sản phẩm chính hãng 100%',
-      'Trả góp lãi suất 0% toàn bộ giỏ hàng',
-      'Trả bảo hành tận nơi sử dụng',
-      'Bảo hành tận nơi cho doanh nghiệp',
-      'Vệ sinh miễn phí trọn đời PC, Laptop',
-      'Miễn phí quẹt thẻ',
-    ],
-  },
-  {
-    title: 'MIỄN PHÍ GIAO HÀNG',
-    content: [
-      'Giao hàng siêu tốc trong 2h',
-      'Giao hàng miễn phí toàn quốc',
-      'Nhận hàng và thanh toán tại nhà (ship COD)',
-    ],
-  },
-];
 
 export default function StaticInfo() {
   const [showrooms, setShowrooms] = useState(initShowrooms);
@@ -189,7 +166,7 @@ export default function StaticInfo() {
             </Space>
           </Card>
         </Col>
-        {data.map((cardInfo) => (
+        {staticInfoFakeData.map((cardInfo) => (
           <Col
             key={cardInfo.title}
             span={24}

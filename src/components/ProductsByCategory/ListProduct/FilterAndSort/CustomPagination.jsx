@@ -77,7 +77,6 @@ export default function CustomPagination() {
         defaultPageSize={DEFAULT_PAGE_SIZE}
         total={productCount}
         showSizeChanger={false}
-        responsive={true}
         size="small"
         showPrevNextJumpers={false}
         showTitle={false}

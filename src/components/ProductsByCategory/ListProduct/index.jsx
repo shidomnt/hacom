@@ -3,6 +3,7 @@ import { Col, Empty, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { DEFAULT_PAGE_SIZE } from '../../../constant';
 import useApi from '../../../hooks/useApi';
 import { sortProductHandler } from '../../../utils';
 import Loading from '../../Loading';
@@ -48,7 +49,7 @@ export default function ListProduct() {
         }
         const response = await getProductsByCategory(category, {
           page: Number(searchParams.get('page') ?? 1),
-          limit: 8,
+          limit: DEFAULT_PAGE_SIZE,
           ...filterObj,
         });
         if (response) {

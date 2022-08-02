@@ -134,6 +134,29 @@ export const brandList = [
   },
 ];
 
+export const staticInfoFakeData = [
+  {
+    title: 'YÊN TÂM MUA HÀNG',
+    content: [
+      'Uy tín 20 năm xây dựng và phát triển',
+      'Sản phẩm chính hãng 100%',
+      'Trả góp lãi suất 0% toàn bộ giỏ hàng',
+      'Trả bảo hành tận nơi sử dụng',
+      'Bảo hành tận nơi cho doanh nghiệp',
+      'Vệ sinh miễn phí trọn đời PC, Laptop',
+      'Miễn phí quẹt thẻ',
+    ],
+  },
+  {
+    title: 'MIỄN PHÍ GIAO HÀNG',
+    content: [
+      'Giao hàng siêu tốc trong 2h',
+      'Giao hàng miễn phí toàn quốc',
+      'Nhận hàng và thanh toán tại nhà (ship COD)',
+    ],
+  },
+];
+
 /**
  * @type {{ label: string, priceRange: { min: number, max: number } }[]}
  */
