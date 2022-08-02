@@ -3,7 +3,7 @@ import { Col, Image, Row, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
-import { initProducts } from '../../../../constant';
+import { AUTO_COMPLETE_SIZE, initProducts } from '../../../../constant';
 import useApi from '../../../../hooks/useApi';
 import { formatNumberPriceToString } from '../../../../utils';
 import EmptySearch from './EmptySearch';
@@ -68,7 +68,7 @@ export default function AutoComplete({ visible, searchValue, children }) {
       idSetTimeOut = setTimeout(async () => {
         const response = await getAutoCompleteProduct({
           searchValue: searchValue,
-          limit: 6,
+          limit: AUTO_COMPLETE_SIZE,
         });
         if (response) {
           setAutoCompleteProducts(response.data);

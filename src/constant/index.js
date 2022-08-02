@@ -50,3 +50,5 @@ export const KEY_LOCAL_STORAGE_CART = 'KEY_CART';
 export const API_URL = 'http://localhost:5000';
 
 export const DEFAULT_PAGE_SIZE = 12;
+
+export const AUTO_COMPLETE_SIZE = 6;
