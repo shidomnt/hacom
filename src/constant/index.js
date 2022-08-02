@@ -47,7 +47,7 @@ export const MAX_SOLUONG = 99;
 
 export const KEY_LOCAL_STORAGE_CART = 'KEY_CART';
 
-export const API_URL = 'http://localhost:5000';
+export const API_URL = 'https://hacom123.herokuapp.com';
 
 export const DEFAULT_PAGE_SIZE = 12;
 
