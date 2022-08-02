@@ -31,6 +31,11 @@ const ButtonExpandWrapper = styled.div`
     bottom: 0;
     left: 0;
     right: 0;
+    .expand-btn {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+      border-radius: 6px;
+    }
     background-image: linear-gradient(
       rgba(255, 255, 255, 0),
       rgb(255, 255, 255)

@@ -1,4 +1,5 @@
 // @ts-check
+import { message } from 'antd';
 import React, { createContext, useCallback, useEffect, useState } from 'react';
 import {
   MAX_SOLUONG,
@@ -83,7 +84,11 @@ export default function CartProvider({ children }) {
       const isExisted = cart.find((item) => item.product.id === product.id);
 
       if (isExisted) {
-        return window.alert('San pham da co trong gio hang!');
+        message.error({
+          content: 'Sản phẩm đã có trong giỏ hàng!',
+          className: 'custom-message',
+        });
+        return;
       }
 
       setCart((prevCart) => [
@@ -93,7 +98,10 @@ export default function CartProvider({ children }) {
           quantify,
         },
       ]);
-      window.alert('Them vao gio hang thanh cong!');
+      message.success({
+        content: 'Thêm vào giỏ hàng thành công!',
+        className: 'custom-message',
+      });
     },
     [cart]
   );
@@ -127,12 +135,19 @@ export default function CartProvider({ children }) {
      * @type {RemoveProduct}
      */
     (productId) => {
+      let messageContent = 'Đã xóa sản phẩm khỏi giỏ hàng!';
       if (productId === 'all') {
         setCart([]);
+        messageContent = 'Đã xóa tất cả sản phẩm khỏi giỏ hàng!';
+      } else {
+        setCart((prevCart) =>
+          prevCart.filter((item) => item.product.id !== productId)
+        );
       }
-      setCart((prevCart) =>
-        prevCart.filter((item) => item.product.id !== productId)
-      );
+      message.success({
+        content: messageContent,
+        className: 'custom-message',
+      });
     },
     []
   );

@@ -262,3 +262,65 @@ export const listBrandImgSrc = [
   '/assets/img/lg.jpg',
   '/assets/img/samsung.jpg',
 ];
+
+/**
+ * @type {import(".").Comment[]}
+ */
+export const listCommentFake = [
+  {
+    _id: '641239asdasddas',
+    author: {
+      avatarSrc: '',
+      name: 'Đỗ Quốc Hưng',
+    },
+    content: 'Cuối tháng này đã có chưa ạ',
+    createdAt: '23/2/2022 13:58',
+    reply: [
+      {
+        _id: '912321ddasdsadsa',
+        author: {
+          avatarSrc: 'https://hacom.vn/media/lib/hnc_40x.png',
+          name: 'HACOM',
+          nameTag: 'HACOM Care',
+        },
+        content: `Dạ bên em sắp về hàng anh nhé.
+        Khi nào có hàng Website sẽ cập nhật ạ.
+        Thông tin đến anh.`,
+        createdAt: '23/2/2022 18:21',
+      },
+    ],
+  },
+  {
+    _id: '6412ad39asdas',
+    author: {
+      avatarSrc: '',
+      name: 'Đỗ Quốc Hưng',
+    },
+    content: 'Khi nào máy này về vậy ạ?',
+    createdAt: '23/2/2022 13:58',
+    reply: [
+      {
+        _id: '9123asd21dsadsa',
+        author: {
+          name: 'HACOM',
+          nameTag: 'HACOM Care',
+          avatarSrc: 'https://hacom.vn/media/lib/hnc_40x.png',
+        },
+        content: `Dạ hiện tại bên em chưa có lịch về hàng cụ thể ạ.
+        Khi nào có trang web sẽ cập nhật thông tin anh nhé.`,
+        createdAt: '10/2/2022 11:4',
+      },
+      {
+        _id: 'dasdasdasd',
+        author: {
+          name: 'HACOM',
+          nameTag: 'HACOM Care',
+          avatarSrc: 'https://hacom.vn/media/lib/hnc_40x.png',
+        },
+        content: `Dạ hiện tại bên em chưa có lịch về hàng cụ thể ạ.
+        Khi nào có trang web sẽ cập nhật thông tin anh nhé.`,
+        createdAt: '10/2/2022 11:4',
+      },
+    ],
+  },
+];

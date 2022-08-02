@@ -73,6 +73,9 @@ export default function DetailInfo() {
             </Typography.Text>
             <List
               className="thongso-sp"
+              locale={{
+                emptyText: 'Chưa có thông số của sản phẩm này :(',
+              }}
               dataSource={product.tssp
                 .map((ts) => ts.trim())
                 .filter((v) => !!v)}

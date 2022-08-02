@@ -52,98 +52,17 @@ export default function Header() {
                 <div className="header__modal-wrapper">
                   <div className="header__modal-title">
                     <span className="header__modal-title-item header__modal-active">
-                      hỗ trợ tại hà nội/toàn quốc
-                    </span>
-                    <span className="header__modal-title-item">
-                      hỗ trợ tại hải phòng
-                    </span>
-                    <span className="header__modal-title-item">
-                      hỗ trợ tại bắc ninh
-                    </span>
-                    <span className="header__modal-title-item">
-                      hỗ trợ tại bắc giang
+                      Khách cá nhân
                     </span>
                   </div>
                   <div className="header__modal-content">
-                    {/* Hà Nội/ALL */}
+                    {/* ALL */}
                     <div className="header__modal-pane modal-pane-active">
                       <div className="header__modal-hours">
                         <span>BÁN HÀNG ONLINE (8h - 24h hàng ngày)</span>
                       </div>
                       <div className="header__modal-body">
                         <ModalItem />
-                        <ModalItem />
-                        <ModalItem />
-                      </div>
-                    </div>
-                    {/* Hải Phòng */}
-                    <div className="header__modal-pane">
-                      <div className="header__modal-hours">
-                        <span>BÁN HÀNG ONLINE (8h - 21h30 hàng ngày)</span>
-                      </div>
-                      <div className="header__modal-body">
-                        <div className="header__modal-item">
-                          <span className="header__modal-item-title">
-                            Bán hàng online
-                          </span>
-                          <ul className="header__modal-item-content">
-                            <li className="header__modal-item-content-list">
-                              <span className="text__blue"> </span>
-                              <span className="text__red" />
-                              <span>
-                                Tel: 1900 1903 (máy lẻ 25387) - (022) 58830013
-                              </span>
-                            </li>
-                          </ul>
-                        </div>
-                        <ModalItem />
-                        <ModalItem />
-                      </div>
-                    </div>
-                    {/* BẮC NINH  */}
-                    <div className="header__modal-pane">
-                      <div className="header__modal-hours">
-                        <span>BÁN HÀNG ONLINE (8h - 18h30 hàng ngày)</span>
-                      </div>
-                      <div className="header__modal-body">
-                        <div className="header__modal-item">
-                          <span className="header__modal-item-title">
-                            Bán hàng online
-                          </span>
-                          <ul className="header__modal-item-content">
-                            <li className="header__modal-item-content-list">
-                              <span className="text__blue"> </span>
-                              <span className="text__red" />
-                              <span>
-                                Tel: 1900 1903 (máy lẻ 25387) - (022) 58830013
-                              </span>
-                            </li>
-                          </ul>
-                        </div>
-                        <ModalItem />
-                        <ModalItem />
-                      </div>
-                    </div>
-                    {/* BẮC GIANG  */}
-                    <div className="header__modal-pane">
-                      <div className="header__modal-hours">
-                        <span>BÁN HÀNG ONLINE (8h - 21h30 hàng ngày)</span>
-                      </div>
-                      <div className="header__modal-body">
-                        <div className="header__modal-item">
-                          <span className="header__modal-item-title">
-                            Bán hàng online
-                          </span>
-                          <ul className="header__modal-item-content">
-                            <li className="header__modal-item-content-list">
-                              <span className="text__blue"> </span>
-                              <span className="text__red" />
-                              <span>
-                                Tel: 1900 1903 (máy lẻ 25387) - (022) 58830013
-                              </span>
-                            </li>
-                          </ul>
-                        </div>
                         <ModalItem />
                         <ModalItem />
                       </div>
@@ -186,6 +105,28 @@ export default function Header() {
                 <i className="fa-solid fa-phone header__top--item-icon" />
                 Bán hàng - TPHCM
               </span>
+              <div className="header__modal">
+                <div className="header__modal-wrapper">
+                  <div className="header__modal-title">
+                    <span className="header__modal-title-item header__modal-active">
+                      Bán hàng - TPHCM
+                    </span>
+                  </div>
+                  <div className="header__modal-content">
+                    {/* Bán hàng - TPHCM */}
+                    <div className="header__modal-pane modal-pane-active">
+                      <div className="header__modal-hours">
+                        <span>BÁN HÀNG ONLINE (8h - 24h hàng ngày)</span>
+                      </div>
+                      <div className="header__modal-body">
+                        <ModalItem />
+                        <ModalItem />
+                        <ModalItem />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="header__top--nav">
               <Link to="/" className="header__top--item">

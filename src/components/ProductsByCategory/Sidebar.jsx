@@ -1,7 +1,7 @@
 // @ts-check
 import { Col, Radio, Row, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { initCategories } from '../../constant';
 import useApi from '../../hooks/useApi';
@@ -27,6 +27,14 @@ const Wrapper = styled.div`
         min-width: 16px;
         font-size: 1rem;
       }
+      &.active {
+        font-size: 1.3rem;
+        color: var(--primary-color);
+        * {
+          color: inherit;
+          font-size: inherit;
+        }
+      }
     }
   }
 `;
@@ -36,6 +44,8 @@ export default function Sidebar() {
   const [brandList] = useState(() => getBrandList());
   const [listKhoangGia] = useState(() => getKhoangGia());
   const [categories, setCategories] = useState(initCategories);
+
+  const { category: categoryParam } = useParams();
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -64,7 +74,12 @@ export default function Sidebar() {
       <div className="products-by-category-sidebar-header">Lọc sản phẩm</div>
       <Collapse header="Danh mục">
         {categories.map((category) => (
-          <div key={category.slug} className="category-link-wrap">
+          <div
+            key={category.slug}
+            className={`category-link-wrap ${
+              categoryParam === category.slug ? 'active' : ''
+            }`}
+          >
             <Link to={`/${category.slug}`}>
               <Typography.Text strong>
                 <i className="fa-solid fa-angles-right"></i>

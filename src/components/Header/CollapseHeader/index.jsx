@@ -46,6 +46,7 @@ const Wrapper = styled.div`
     }
     .logo-wrap {
       text-align: center;
+      height: 40px;
     }
   }
 `;
@@ -100,6 +101,7 @@ export default function CollapseHeader() {
                 )}
               </div>
               <StyledDrawer
+                width="100%"
                 visible={drawerOpen}
                 placement="left"
                 closable={false}
@@ -119,7 +121,7 @@ export default function CollapseHeader() {
                   <Link to="/" className="header__buttom--top-logo">
                     <Image
                       preview={false}
-                      style={{ height: '40px' }}
+                      style={{ height: '34px' }}
                       src="/assets/img/logo-hacomtrangch.png"
                       alt="logo"
                       className="header__buttom--top-logo-img"

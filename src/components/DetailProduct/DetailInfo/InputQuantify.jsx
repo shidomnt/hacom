@@ -15,6 +15,9 @@ const Wrapper = styled.span`
     }
     .ant-input-number-group-wrapper {
       width: 104px;
+      .ant-input-number-group-addon {
+        cursor: pointer;
+      }
     }
   }
 `;

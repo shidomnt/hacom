@@ -1,9 +1,8 @@
 // @ts-check
-import { Col, Row } from 'antd';
+import { Col, Empty, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { initProducts } from '../../../constant';
 import useApi from '../../../hooks/useApi';
 import { sortProductHandler } from '../../../utils';
 import Loading from '../../Loading';
@@ -21,8 +20,13 @@ const ListProductWrapper = styled.div`
   }
 `;
 
+/**
+ * @type {import('../../../hooks/useApi').Product[] | null}
+ */
+const initState = null;
+
 export default function ListProduct() {
-  const [products, setProducts] = useState(initProducts);
+  const [products, setProducts] = useState(initState);
 
   const [searchParams] = useSearchParams();
 
@@ -56,6 +60,10 @@ export default function ListProduct() {
     }
   }, [getProductsByCategory, category, searchParams]);
 
+  if (!products) {
+    return <Loading />;
+  }
+
   return (
     <React.Fragment>
       <TopFilter />
@@ -83,7 +91,7 @@ export default function ListProduct() {
           </Row>
         </ListProductWrapper>
       ) : (
-        <Loading />
+        <Empty description="Không có sản phẩm nào phù hợp :(" />
       )}
     </React.Fragment>
   );

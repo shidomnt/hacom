@@ -50,7 +50,7 @@ export default function SlideGallery() {
             // @ts-ignore
             onSwiper={setThumbsSwiper}
             spaceBetween={5}
-            slidesPerView={3}
+            slidesPerView={5}
             watchSlidesProgress={true}
             modules={[Thumbs]}
             centeredSlides={true}

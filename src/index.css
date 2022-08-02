@@ -23,6 +23,12 @@ code {
   margin: auto;
 }
 
+.custom-message {
+  position: absolute;
+  top: 60px;
+  right: 0;
+}
+
 @keyframes slideIn {
   from {
     transform: translate(0, -100%);

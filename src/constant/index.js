@@ -16,6 +16,23 @@
  * @typedef {CartItem[]} Cart
  */
 
+/**
+ * @typedef {Object} User
+ * @property {string} _id
+ * @property {string} name
+ * @property {string} avatarSrc
+ * @property {string} nameTag
+ */
+
+/**
+ * @typedef {Object} Comment
+ * @property {string} _id
+ * @property {User} author
+ * @property {string} content
+ * @property {string} createdAt
+ * @property {(Omit<Comment, 'reply'>)[] | null} reply
+ */
+
 /** ========= End Type Define ========= */
 
 export * from './fakeData';
