@@ -127,5 +127,5 @@ export const calculateDiscountRate = (product) => {
   if (!product.maxPrice) {
     return product.maxPrice;
   }
-  return Math.floor((product.price / product.maxPrice) * 100);
+  return 100 - Math.floor((product.price / product.maxPrice) * 100);
 };
