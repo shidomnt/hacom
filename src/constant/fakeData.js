@@ -57,7 +57,7 @@ export const listCollection = [
   {
     id: 4,
     categorySlug: 'Loa,TaiNghe,Mic,Webcam',
-    title: 'VỰA KHÔNG GIAN RIÊNG TƯ ĐEO VÀO LÀ LẮC LƯ',
+    title: 'VỰA KHÔNG GIAN RIÊNG TƯ NGHE VÀO LÀ LẮC LƯ',
   },
 ];
 
@@ -89,22 +89,22 @@ export const underSlideBannerSrcList = [
 
 export const iconMapping = [
   <i className="fa-solid fa-laptop"></i>,
+  <i className="fa-solid fa-hard-drive"></i>,
   <i className="fa-solid fa-laptop"></i>,
   <i className="fa-solid fa-server"></i>,
   <i className="fa-solid fa-desktop"></i>,
-  <i className="fa-brands fa-usb"></i>,
+  <i className="fa-solid fa-headset"></i>,
   <i className="fa-solid fa-desktop"></i>,
   <i className="fa-solid fa-desktop"></i>,
   <i className="fa-solid fa-tv"></i>,
-  <i className="fa-solid fa-headset"></i>,
   <i className="fa-solid fa-gamepad"></i>,
   <i className="fa-solid fa-fax"></i>,
   <i className="fa-solid fa-print"></i>,
   <i className="fa-solid fa-print"></i>,
   <i className="fa-solid fa-fax"></i>,
-  <i className="fa-solid fa-shop"></i>,
-  <i className="fa-solid fa-hard-drive"></i>,
   <i className="fa-solid fa-wifi"></i>,
+  <i className="fa-solid fa-shop"></i>,
+  <i className="fa-brands fa-usb"></i>,
 ];
 
 export const brandList = [
@@ -290,6 +290,16 @@ export const listBrandImgSrc = [
  * @type {import(".").Comment[]}
  */
 export const listCommentFake = [
+  {
+    _id: '1231sdsada2',
+    author: {
+      avatarSrc: '',
+      name: 'Quân',
+    },
+    content: 'Cấu hình này quá ngon so với tầm giá rồi',
+    createdAt: '30/7/2022 8:24',
+    reply: [],
+  },
   {
     _id: '641239asdasddas',
     author: {

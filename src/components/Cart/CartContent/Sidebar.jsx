@@ -1,5 +1,5 @@
 // @ts-check
-import { Button, Col, Divider, Input, Row, Typography } from 'antd';
+import { Button, Col, Divider, Input, message, Row, Typography } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { CartActionContext, CartContext } from '../../../contexts/CartProvider';
@@ -73,13 +73,21 @@ export default function Sidebar({ checkedList }) {
   }, [cost, discountCost]);
 
   function handleSetDiscountInfo() {
-    const result = checkDiscountCode(discountCode);
-    if (!result.discount) {
-      alert('Ma giam gia khong hop le!');
-      setDiscountInfo(null);
-    } else {
-      alert('Ap dung ma giam gia thanh cong!');
-      setDiscountInfo(result.discount);
+    if (discountCode) {
+      const result = checkDiscountCode(discountCode);
+      if (!result.discount) {
+        message.error({
+          content: 'Mã giảm giá không hợp lệ!',
+          className: 'custom-message',
+        });
+        setDiscountInfo(null);
+      } else {
+        message.success({
+          content: 'Áp dụng mã giảm giá thành công!',
+          className: 'custom-message',
+        });
+        setDiscountInfo(result.discount);
+      }
     }
   }
 
@@ -93,6 +101,7 @@ export default function Sidebar({ checkedList }) {
                 placeholder="Mã giảm giá/ Quà tặng"
                 value={discountCode}
                 onChange={(e) => setDisCountCode(e.target.value.toUpperCase())}
+                onPressEnter={handleSetDiscountInfo}
               />
               <Button
                 onClick={handleSetDiscountInfo}
@@ -133,7 +142,6 @@ export default function Sidebar({ checkedList }) {
               </Typography.Title>
             </div>
             <div style={{ textAlign: 'right' }}>(Đã bao gồm VAT nếu có)</div>
-            <Divider type="horizontal" />
           </div>
         </Col>
         <Col span={24}>

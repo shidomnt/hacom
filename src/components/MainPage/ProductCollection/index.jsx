@@ -5,6 +5,7 @@ import SlideShow from '../SlideShow';
 import styled from 'styled-components';
 import useApi from '../../../hooks/useApi';
 import { Link } from 'react-router-dom';
+import { COLLECTION_PRODUCT_SLIDE_SHOW_SIZE } from '../../../constant';
 
 const Wrapper = styled.div`
   padding: 30px 25px 15px;
@@ -39,6 +40,7 @@ const CollectionProduct = () => {
             <SlideShow
               category={collection.categorySlug}
               title={<StyledTitle>{collection.title}</StyledTitle>}
+              limit={COLLECTION_PRODUCT_SLIDE_SHOW_SIZE}
               button={
                 <StyledButton size="large" type="primary" block>
                   <Link to={`/${collection.categorySlug}`}>

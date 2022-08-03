@@ -33,6 +33,7 @@ const StyledCard = styled(Card)`
 const StyledCartIcon = styled.span`
   font-size: 2rem;
   cursor: pointer;
+  padding: 2px 8px;
 `;
 
 const StyledSkuCode = styled.span`
