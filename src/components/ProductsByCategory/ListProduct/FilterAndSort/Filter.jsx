@@ -3,7 +3,11 @@ import { Button, Col, Grid, Input, Row, Select, Space, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { initShowrooms } from '../../../../constant';
+import {
+  DEFAULT_FILTER_MAX_PRICE,
+  DEFAULT_FILTER_MIN_PRICE,
+  initShowrooms,
+} from '../../../../constant';
 import useApi from '../../../../hooks/useApi';
 import {
   filterInputNumber,
@@ -34,12 +38,15 @@ export default function Filter() {
   const [stockStatus, setStockStatus] = useState(
     searchParams.get('stock') ?? DEFAULT
   );
+  const [showroomLocation, setShowroomLocation] = useState(
+    searchParams.get('showroom') ?? DEFAULT
+  );
 
   const { xl, lg } = Grid.useBreakpoint();
 
   const [costFilter, setCostFilter] = useState({
-    min: '200.000',
-    max: '5.000.000',
+    min: DEFAULT_FILTER_MIN_PRICE,
+    max: DEFAULT_FILTER_MAX_PRICE,
   });
 
   const { getShowRooms, getKhoangGia } = useApi();
@@ -58,14 +65,22 @@ export default function Filter() {
   }, [getShowRooms]);
 
   useEffect(() => {
-    if (stockStatus === 'con-hang') {
-      searchParams.set('stockStatus', 'con-hang');
-      setSearchParams(searchParams);
-    } else {
+    if (stockStatus === DEFAULT) {
       searchParams.delete('stockStatus');
-      setSearchParams(searchParams);
+    } else {
+      searchParams.set('stockStatus', stockStatus);
     }
+    setSearchParams(searchParams);
   }, [stockStatus, setSearchParams, searchParams]);
+
+  useEffect(() => {
+    if (showroomLocation === DEFAULT) {
+      searchParams.delete('showroom');
+    } else {
+      searchParams.set('showroom', showroomLocation);
+    }
+    setSearchParams(searchParams);
+  }, [showroomLocation, setSearchParams, searchParams]);
 
   const handleFilterPrice = () => {
     searchParams.set(
@@ -117,11 +132,14 @@ export default function Filter() {
           </Select>
         </Col>
         <Col span={8}>
-          <Select defaultValue={DEFAULT}>
+          <Select
+            value={showroomLocation}
+            onChange={(value) => setShowroomLocation(value)}
+          >
             <Select.Option value={DEFAULT}>Tất cả kho</Select.Option>
             {!!listShowroom.length &&
               listShowroom.map((showroom) => (
-                <Select.Option key={showroom.diachi} value={showroom.diachi}>
+                <Select.Option key={showroom._id} value={showroom._id}>
                   {showroom.diachi}
                 </Select.Option>
               ))}

@@ -32,16 +32,31 @@ const About = () => {
             </Link>
           </li>
           <li className="footer__social">
-            <Link to="#" className="footer__buttom-link">
+            <a
+              href="https://www.facebook.com/www.hacom.vn"
+              target="_blank"
+              rel="noreferrer"
+              className="footer__buttom-link"
+            >
               <i className="fa-brands fa-facebook-square fb" />
-            </Link>
-            <Link to="#" className="footer__buttom-link">
+            </a>
+            <a
+              href="https://www.youtube.com/c/HACOMchannel"
+              target="_blank"
+              rel="noreferrer"
+              className="footer__buttom-link"
+            >
               <i className="fa-brands fa-youtube-square ytb" />
-            </Link>
-            <Link to="#" className="footer__buttom-link">
+            </a>
+            <a
+              href="https://www.instagram.com/hacom.vn/"
+              target="_blank"
+              rel="noreferrer"
+              className="footer__buttom-link"
+            >
               {' '}
               <i className="fa-brands fa-instagram-square ins" />
-            </Link>
+            </a>
           </li>
         </ul>
       </Col>

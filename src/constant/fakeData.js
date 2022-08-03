@@ -13,7 +13,11 @@ export const discountMapping = {
 };
 
 /**
- * @type {{title: string, sortType: string}[]}
+ * @typedef {{title: string, sortType: string}} SortButtons
+ */
+
+/**
+ * @type {SortButtons[]}
  */
 export const sortBtns = [
   {
@@ -85,6 +89,13 @@ export const underSlideBannerSrcList = [
   'https://hanoicomputercdn.com/media/banner/16_Julf19c9085129709ee14d013be869df69b.png',
   'https://hanoicomputercdn.com/media/banner/16_Jul9eb9cd58b9ea5e04c890326b5c1f471f.png',
   'https://hanoicomputercdn.com/media/banner/16_Jul602e8f042f463dc47ebfdf6a94ed5a6d.png',
+];
+
+export const getProductsByCategoryBannerSrcList = [
+  'https://hanoicomputercdn.com/media/banner/01_Jul1cb93447d1dc7161d16a1c39b133baa8.png',
+  'https://hanoicomputercdn.com/media/banner/20_Jul1cb93447d1dc7161d16a1c39b133baa8.png',
+  'https://hanoicomputercdn.com/media/banner/01_Jul9bf8252a2264102f94be60509fc86d12.png',
+  'https://hanoicomputercdn.com/media/banner/20_Jun33e29acbaa0100ff0cb519ca0bd2e784.jpg',
 ];
 
 export const iconMapping = [

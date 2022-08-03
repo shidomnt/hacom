@@ -13,8 +13,8 @@ export default function ModalItem() {
             <span className="text__blue">
               <i className="fa-solid fa-comment-dots" />
               Zalo
-            </span>
-            <span className="text__red">098xxxxxxx</span>
+            </span>{' '}
+            <span className="text__red">0981145239</span>{' '}
             <span> Mr Duy (Tản nhiệt, Cooling)</span>
           </li>
         ))}
