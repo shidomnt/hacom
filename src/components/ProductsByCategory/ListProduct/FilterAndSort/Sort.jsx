@@ -6,19 +6,19 @@ import styled from 'styled-components';
 import { sortBtns } from '../../../../constant';
 import CustomPagination from './CustomPagination';
 
-const Wrapper = styled.div`
+const Wrapper = styled.div``;
+
+export const TopFilterSortButton = styled(Button)`
   & {
-    .top-filter-sort-btn {
-      border-color: var(--primary-color);
-      color: var(--primary-color);
-      background-color: white;
-      font-weight: 500;
-      font-size: 1.2rem;
-      &:hover,
-      &.active {
-        color: white;
-        background-color: var(--primary-color);
-      }
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background-color: white;
+    font-weight: 500;
+    font-size: 1.2rem;
+    &:hover,
+    &.active {
+      color: white;
+      background-color: var(--primary-color);
     }
   }
 `;
@@ -26,6 +26,20 @@ const Wrapper = styled.div`
 export default function Sort() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { lg } = Grid.useBreakpoint();
+
+  /**
+   *
+   * @param {import('../../../../constant').SortButtons} button
+   */
+  const handleClickSortButton = (button) => {
+    const currentSort = searchParams.get('sort');
+    if (currentSort === button.sortType) {
+      searchParams.delete('sort');
+    } else {
+      searchParams.set('sort', button.sortType);
+    }
+    setSearchParams(searchParams);
+  };
 
   return (
     <Wrapper>
@@ -35,13 +49,10 @@ export default function Sort() {
             <Space direction="horizontal" size="small">
               {sortBtns.map((button) => {
                 return (
-                  <Button
+                  <TopFilterSortButton
                     key={button.sortType}
-                    onClick={(event) => {
-                      searchParams.set('sort', button.sortType);
-                      setSearchParams(searchParams);
-                    }}
-                    className={`top-filter-sort-btn ${
+                    onClick={() => handleClickSortButton(button)}
+                    className={` ${
                       searchParams.get('sort') === button.sortType
                         ? 'active'
                         : ''
@@ -49,7 +60,7 @@ export default function Sort() {
                     type="dashed"
                   >
                     {button.title}
-                  </Button>
+                  </TopFilterSortButton>
                 );
               })}
             </Space>

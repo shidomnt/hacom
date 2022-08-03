@@ -30,35 +30,22 @@ export default function CollapseCartItem({ item }) {
 
   return (
     <Row gutter={[8, 8]} align="middle">
-      <Col span={1}>
+      <Col span={1} xxl={1} xl={1} lg={1} md={1} sm={1} xs={2}>
         <Checkbox value={item.product.id} />
       </Col>
-      <Col span={4}>
+      <Col span={4} xxl={4} xl={4} lg={4} md={4} sm={4} xs={4}>
         <Link to={`/${item.product.category.slug}/${item.product.id}`}>
           <Image src={item.product.imgSrc} alt="" preview={false} />
         </Link>
       </Col>
-      <Col span={19}>
-        <Space style={{ width: '100%' }} direction="vertical">
-          <Row>
-            <Col span={23}>
-              <Typography.Text ellipsis={true}>
-                {item.product.name}
-              </Typography.Text>
-            </Col>
-            <Col span={1}>
-              <Tooltip placement="bottomRight" title="Xóa khỏi giỏ hàng">
-                <Button
-                  onClick={() => removeProduct(item.product.id)}
-                  className="cart-remove-btn"
-                  type="text"
-                >
-                  <i className="fa-solid fa-trash-can"></i>
-                </Button>
-              </Tooltip>
-            </Col>
-          </Row>
-          <div>
+      <Col span={18} xxl={18} xl={18} lg={18} md={18} sm={18} xs={16}>
+        <Row gutter={[6, 6]}>
+          <Col span={24}>
+            <Typography.Text ellipsis={true}>
+              {item.product.name}
+            </Typography.Text>
+          </Col>
+          <Col span={24}>
             <Space direction="horizontal">
               <Typography.Text
                 strong
@@ -85,8 +72,19 @@ export default function CollapseCartItem({ item }) {
                 }
               />
             </Space>
-          </div>
-        </Space>
+          </Col>
+        </Row>
+      </Col>
+      <Col span={1} xxl={1} xl={1} lg={1} md={1} sm={1} xs={2}>
+        <Tooltip placement="bottomRight" title="Xóa khỏi giỏ hàng">
+          <Button
+            onClick={() => removeProduct(item.product.id)}
+            className="cart-remove-btn"
+            type="text"
+          >
+            <i className="fa-solid fa-trash-can"></i>
+          </Button>
+        </Tooltip>
       </Col>
     </Row>
   );

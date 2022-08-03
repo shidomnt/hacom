@@ -50,6 +50,7 @@
   z-index: 999;
 }
 .header__modal-wrapper {
+  box-shadow: 0 0 10px rgb(0, 0, 0, 0.5);
   padding: 16px;
 }
 .header__modal-title {
@@ -303,7 +304,7 @@
   z-index: 999;
   box-shadow: 1px 1px 15px rgb(0 0 0 / 15%);
   display: none;
-  animation: slideInFromBottom 0.2s linear;
+  animation: slideInFromBottom 0.1s linear;
 }
 .header__subnav.brand {
   width: 650px;

@@ -206,7 +206,10 @@ export default function Header() {
                       <div className="header__subnav brand">
                         <div className="header__subnav-header">
                           <h4>Thương hiệu nổi bật</h4>
-                          <Link to="/" className="header__subnav-brand-link">
+                          <Link
+                            to="/Laptop,Tablet,Mobile"
+                            className="header__subnav-brand-link"
+                          >
                             <span style={{ marginRight: 5 }}>Xem tất cả</span>
                             <i className="fa-solid fa-arrow-right" />
                           </Link>
