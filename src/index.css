@@ -1,6 +1,18 @@
-a {
-  color: inherit;
-  text-decoration: none;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --primary-color: #243a76;
+  --btn-color: #f78d1c;
+  --text-white: #fff;
+  --text-black: #222;
+  --text-red: #ed1b24;
+}
+html {
+  font-size: 62.5%;
+  line-height: 1.6rem;
 }
 
 body {
@@ -15,6 +27,11 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 .container {

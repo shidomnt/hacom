@@ -12,7 +12,7 @@ import { initProducts } from '../../../constant';
  * @typedef {Object} SlideShowProps
  * @property {React.ReactNode=} title
  * @property {import("../../../hooks/useApi").Category['slug']} category
- * @property {number=} limit
+ * @property {number} limit
  * @property {number=} slidesPerView
  * @property {number=} spaceBetween
  * @property {React.ReactNode=} button
@@ -26,7 +26,7 @@ import { initProducts } from '../../../constant';
 const SlideShow = ({
   title,
   category: categorySlug,
-  limit = 3,
+  limit,
   slidesPerView = 1,
   spaceBetween = 10,
   button = null,

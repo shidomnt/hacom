@@ -3,6 +3,10 @@ import { Col, Row } from 'antd';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import {
+  PRODUCT_NUMBER_SLIDE_SHOW,
+  PRODUCT_SLIDE_SHOW_SIZE,
+} from '../../../constant';
 import SlideShow from '../SlideShow';
 
 const Title = styled.div`
@@ -55,7 +59,7 @@ const breakPoints = {
 function ProductSlideShow({ categories }) {
   return (
     <Row gutter={[0, 12]}>
-      {categories.slice(0, 4).map((category) => (
+      {categories.slice(0, PRODUCT_NUMBER_SLIDE_SHOW).map((category) => (
         <Col span={24} key={category._id} style={{ backgroundColor: 'white' }}>
           <SlideShow
             category={category.slug}
@@ -68,7 +72,7 @@ function ProductSlideShow({ categories }) {
               </Title>
             }
             slidesPerView={5}
-            limit={7}
+            limit={PRODUCT_SLIDE_SHOW_SIZE}
             breakpoints={breakPoints}
           />
         </Col>

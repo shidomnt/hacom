@@ -82,7 +82,9 @@ export default function CustomComment({ comment }) {
             >
               Trả lời
             </Button>
-            <ReplyComments comment={comment} />
+            {!!comment?.reply && !!comment.reply.length && (
+              <ReplyComments comment={comment} />
+            )}
             <div>
               {replyVisible && (
                 <CommentBox

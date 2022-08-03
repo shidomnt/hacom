@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import SideBarPopover from './SideBarPopover';
 import { initSideBarContent } from '../../../constant';
 import { Link } from 'react-router-dom';
+import Loading from '../../Loading';
 
 const Wrapper = styled.div`
   & {
@@ -86,7 +87,7 @@ export default function SideBar() {
 
   return (
     <Wrapper>
-      {sideBarContent &&
+      {sideBarContent ? (
         sideBarContent.map((catalog, index) => (
           <StyledCategoryWrapper key={catalog.category._id}>
             <div className="category-name">
@@ -96,7 +97,10 @@ export default function SideBar() {
             </div>
             <SideBarPopover className="popover" listContent={catalog.content} />
           </StyledCategoryWrapper>
-        ))}
+        ))
+      ) : (
+        <Loading />
+      )}
     </Wrapper>
   );
 }

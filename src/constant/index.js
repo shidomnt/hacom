@@ -52,3 +52,9 @@ export const API_URL = 'https://hacom123.herokuapp.com';
 export const DEFAULT_PAGE_SIZE = 12;
 
 export const AUTO_COMPLETE_SIZE = 6;
+
+export const PRODUCT_NUMBER_SLIDE_SHOW = 6;
+
+export const PRODUCT_SLIDE_SHOW_SIZE = 7;
+
+export const COLLECTION_PRODUCT_SLIDE_SHOW_SIZE = 3;

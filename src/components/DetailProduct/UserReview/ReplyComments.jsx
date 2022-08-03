@@ -12,7 +12,7 @@ const Wrapper = styled.div`
     border-radius: 4px;
     .reply-comment-wrap:not(:last-child) {
       margin-bottom: 16px;
-      border-bottom: 1px dashed #f8f8f8;
+      border-bottom: 1px dashed #dddddd;
     }
   }
 `;
@@ -40,7 +40,7 @@ const NameTag = styled.span`
 export default function ReplyComments({ comment }) {
   return (
     <Wrapper>
-      {!!comment.reply &&
+      {!!comment?.reply &&
         !!comment.reply.length &&
         comment.reply.map((replyComment) => (
           <div className="reply-comment-wrap" key={replyComment._id}>
