@@ -6,6 +6,8 @@ import Cart from './components/Cart';
 import Layout from './components/Layout';
 import CartProvider from './contexts/CartProvider';
 import ProductsByCategory from './components/ProductsByCategory';
+import SignupWithEmail from './components/Header/SignAndCart/SignModal/SignupWithEmail';
+import SigninWithEmail from './components/Header/SignAndCart/SignModal/SigninWithEmail';
 
 function App() {
   return (
@@ -13,12 +15,14 @@ function App() {
       <CartProvider>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route path="/" element={<MainPage />} />
+            <Route index element={<MainPage />} />
             <Route path="cart" element={<Cart />} />
             <Route path=":category">
               <Route index element={<ProductsByCategory />} />
               <Route path=":id" element={<DetailProduct />} />
             </Route>
+            <Route path="dangki" element={<SignupWithEmail />} />
+            <Route path="dangnhap" element={<SigninWithEmail />} />
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
