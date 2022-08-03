@@ -42,7 +42,15 @@ export default function DrawerContent() {
       <Space direction="vertical">
         <div className="login">
           <i className="fa-solid fa-circle-user"></i>
-          Đăng kí/ Đăng nhập
+          <Space direction="horizontal">
+            <Link reloadDocument to="/dangki">
+              Đăng kí
+            </Link>
+            /
+            <Link reloadDocument to="/dangnhap">
+              Đăng nhập
+            </Link>
+          </Space>
         </div>
         <div>
           <DanhMucSanPham />

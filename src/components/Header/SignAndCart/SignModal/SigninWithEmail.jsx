@@ -27,11 +27,13 @@ export default function SigninWithEmail({ setState }) {
     <Wrapper>
       <Space direction="vertical" size="large" style={{ width: '100%' }}>
         <div>
-          <div>
-            <Button type="text" onClick={() => setState(SIGNIN_WITH_PHONE)}>
-              <i className="fa-solid fa-angle-left"></i>
-            </Button>
-          </div>
+          {setState && (
+            <div>
+              <Button type="text" onClick={() => setState(SIGNIN_WITH_PHONE)}>
+                <i className="fa-solid fa-angle-left"></i>
+              </Button>
+            </div>
+          )}
           <Typography.Title level={3}>Đăng nhập bằng email</Typography.Title>
           <Typography.Text>
             Nhập email và mật khẩu tài khoản HACOM

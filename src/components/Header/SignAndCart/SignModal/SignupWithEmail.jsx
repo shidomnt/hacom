@@ -25,11 +25,13 @@ export default function SignupWithEmail({ setState }) {
         style={{ width: '100%' }}
       >
         <div>
-          <div>
-            <Button type="text" onClick={() => setState(SIGNIN_WITH_PHONE)}>
-              <i className="fa-solid fa-angle-left"></i>
-            </Button>
-          </div>
+          {setState && (
+            <div>
+              <Button type="text" onClick={() => setState(SIGNIN_WITH_PHONE)}>
+                <i className="fa-solid fa-angle-left"></i>
+              </Button>
+            </div>
+          )}
           <Typography.Title level={3}>Tạo tài khoản</Typography.Title>
         </div>
         <div>
