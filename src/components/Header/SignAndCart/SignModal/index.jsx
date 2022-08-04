@@ -101,8 +101,6 @@ export const StyledInput = styled(Input)`
 export default function SignModal({ visible, onCancel }) {
   const [state, setState] = useState(() => SIGNIN_WITH_PHONE);
 
-  // console.log(state)
-
   return (
     <StyledModal
       visible={visible}
