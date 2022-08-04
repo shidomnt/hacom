@@ -76,4 +76,4 @@ const SlideShow = ({
   );
 };
 
-export default React.memo(SlideShow);
+export default SlideShow;

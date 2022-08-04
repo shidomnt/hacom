@@ -37,7 +37,7 @@ export default function ListShowroom() {
       <Row gutter={[32, 32]}>
         {showrooms.map((showroom, index) => (
           <Col
-            key={showroom.name}
+            key={showroom._id}
             span={8}
             xxl={8}
             xl={8}
@@ -46,7 +46,7 @@ export default function ListShowroom() {
             sm={24}
             xs={24}
           >
-            <ShowroomCard showroom={showroom} index={index} />
+            <ShowroomCard showroom={showroom} index={index + 1} />
           </Col>
         ))}
       </Row>

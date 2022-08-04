@@ -96,8 +96,12 @@ export default function CartItem({ item }) {
           max={MAX_SOLUONG}
           controls={false}
           onChange={(value) => setQuantify(value)}
-          onClickAdd={() => setQuantify((quantify) => quantify + 1)}
-          onClickMinus={() => setQuantify((quantify) => quantify - 1)}
+          onClickAdd={() =>
+            setQuantify((quantify) => Math.min(quantify + 1, MAX_SOLUONG))
+          }
+          onClickMinus={() =>
+            setQuantify((quantify) => Math.max(quantify - 1, MIN_SOLUONG))
+          }
         />
       </Col>
       <Col span={4}>

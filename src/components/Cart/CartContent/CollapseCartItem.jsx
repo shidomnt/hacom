@@ -9,7 +9,7 @@ import {
   Tooltip,
   Typography,
 } from 'antd';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { CartActionContext } from '../../../contexts/CartProvider';
 import InputQuantify from '../../DetailProduct/DetailInfo/InputQuantify';
 import { MAX_SOLUONG, MIN_SOLUONG } from '../../../constant';
@@ -27,6 +27,17 @@ import { Link } from 'react-router-dom';
  */
 export default function CollapseCartItem({ item }) {
   const { changeQuantify, removeProduct } = useContext(CartActionContext);
+  const [quantify, setQuantify] = useState(item.quantify);
+
+  useEffect(() => {
+    if (quantify < MIN_SOLUONG) {
+      setQuantify(MIN_SOLUONG);
+    }
+    if (quantify > MAX_SOLUONG) {
+      setQuantify(MAX_SOLUONG);
+    }
+    changeQuantify(item.product.id, quantify);
+  }, [quantify, changeQuantify, item.product.id]);
 
   return (
     <Row gutter={[8, 8]} align="middle">
@@ -59,16 +70,16 @@ export default function CollapseCartItem({ item }) {
                 <sup>₫</sup>
               </Typography.Text>
               <InputQuantify
-                value={item.quantify}
+                value={quantify}
                 min={MIN_SOLUONG}
                 max={MAX_SOLUONG}
                 controls={false}
-                onChange={(value) => changeQuantify(item.product.id, value)}
+                onChange={(value) => setQuantify(value)}
                 onClickAdd={() =>
-                  changeQuantify(item.product.id, item.quantify + 1)
+                  setQuantify((quantify) => Math.min(quantify + 1, MAX_SOLUONG))
                 }
                 onClickMinus={() =>
-                  changeQuantify(item.product.id, item.quantify - 1)
+                  setQuantify((quantify) => Math.max(quantify - 1, MIN_SOLUONG))
                 }
               />
             </Space>

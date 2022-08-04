@@ -90,9 +90,15 @@ export default function ThanhToan() {
             <Col span={7} xxl={7} xl={7} lg={7} md={7} sm={7} xs={9}>
               <InputQuantify
                 value={soluong}
+                min={MIN_SOLUONG}
+                max={MAX_SOLUONG}
                 onChange={(value) => setSoluong(value)}
-                onClickMinus={() => setSoluong((prev) => prev - 1)}
-                onClickAdd={() => setSoluong((prev) => prev + 1)}
+                onClickMinus={() =>
+                  setSoluong((prev) => Math.max(prev - 1, MIN_SOLUONG))
+                }
+                onClickAdd={() =>
+                  setSoluong((prev) => Math.min(prev + 1, MAX_SOLUONG))
+                }
               />
             </Col>
             <Col span={12} xxl={12} xl={12} lg={12} md={12} sm={12} xs={15}>

@@ -48,6 +48,7 @@ const CollectionProduct = () => {
                   </Link>
                 </StyledButton>
               }
+              slidesPerView={1}
             />
           </Col>
         ))}
