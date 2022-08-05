@@ -1,5 +1,5 @@
 // @ts-check
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Col, Row } from 'antd';
 import SideBar from './SideBar';
 import CollectionProduct from './ProductCollection';
@@ -11,7 +11,6 @@ import MainBanner from './Banner/MainBanner';
 import RightBanner from './Banner/RightBanner';
 import BottomBanner from './Banner/BottomBanner';
 import UnderBanner from './Banner/UnderBanner';
-import { initCategories } from '../../constant';
 
 const StyledImgContainer = styled.div`
   & {
@@ -23,8 +22,7 @@ const StyledImgContainer = styled.div`
 `;
 
 export default function Content() {
-  const [categories, setCategories] = useState(initCategories);
-  const { getCategories, getBannerList } = useApi();
+  const { getBannerList } = useApi();
   const [bannerList] = useState(() => getBannerList());
 
   const {
@@ -33,17 +31,6 @@ export default function Content() {
     bottomSlideBannerSrcList,
     underSlideBannerSrcList,
   } = bannerList;
-
-  useEffect(() => {
-    (async () => {
-      const response = await getCategories();
-      if (response) {
-        setCategories(response.data);
-      } else {
-        setCategories([]);
-      }
-    })();
-  }, [getCategories]);
 
   return (
     <React.Fragment>
@@ -97,7 +84,7 @@ export default function Content() {
         </Col>
 
         <Col span={24}>
-          <ProductSlideShow categories={categories} />
+          <ProductSlideShow />
         </Col>
       </Row>
     </React.Fragment>

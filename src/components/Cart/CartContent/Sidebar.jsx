@@ -1,6 +1,6 @@
 // @ts-check
 import { Button, Col, Divider, Input, message, Row, Typography } from 'antd';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { CartActionContext, CartContext } from '../../../contexts/CartProvider';
 import {
@@ -42,8 +42,6 @@ const Wrapper = styled.div`
 export default function Sidebar({ checkedList }) {
   const [cost, setCost] = useState(0);
   const [discountCode, setDisCountCode] = useState('');
-  const [discountCost, setDiscountCost] = useState(0);
-  const [thanhTien, setThanhTien] = useState(0);
 
   const { cart, discountInfo } = useContext(CartContext);
   const { setDiscountInfo } = useContext(CartActionContext);
@@ -54,23 +52,26 @@ export default function Sidebar({ checkedList }) {
     );
     const cost = selectedItems.reduce((accumulator, item) => {
       const price = item.product.price * item.quantify;
+      console.log(price);
       return accumulator + price;
     }, 0);
     setCost(cost);
   }, [cart, checkedList]);
 
-  useEffect(() => {
+  const discountCost = useMemo(() => {
     if (discountInfo) {
       const result = calculateDiscountCost(discountInfo, cost);
-      setDiscountCost(result);
+      return result;
     } else {
-      setDiscountCost(0);
+      return 0;
     }
   }, [discountInfo, cost]);
 
-  useEffect(() => {
-    setThanhTien(cost - discountCost);
+  const thanhTien = useMemo(() => {
+    return cost - discountCost;
   }, [cost, discountCost]);
+
+  console.log('rerender');
 
   function handleSetDiscountInfo() {
     if (discountCode) {
