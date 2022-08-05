@@ -1,11 +1,10 @@
 // @ts-check
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Thumbs, Navigation } from 'swiper';
 import styled from 'styled-components';
 import { ProductContext } from '..';
 import { Col, Image, Row } from 'antd';
-import { initGallerySrc } from '../../../constant';
 
 const Wrapper = styled.div`
   & {
@@ -18,21 +17,14 @@ const Wrapper = styled.div`
 
 export default function SlideGallery() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const [gallery, setGallery] = useState(initGallerySrc);
 
   const { product } = useContext(ProductContext);
 
-  useEffect(() => {
-    setGallery([product.imgSrc, ...product.gallery]);
-  }, [product]);
-
-  const thumbProp = useMemo(() => {
-    return thumbsSwiper
-      ? {
-          thumbs: { swiper: thumbsSwiper },
-        }
-      : {};
-  }, [thumbsSwiper]);
+  const thumbProp = thumbsSwiper
+    ? {
+        thumbs: { swiper: thumbsSwiper },
+      }
+    : {};
 
   return (
     <Wrapper>
@@ -46,7 +38,7 @@ export default function SlideGallery() {
             {...thumbProp}
             modules={[Navigation, Thumbs]}
           >
-            {gallery.map((imgSrc) => (
+            {[product.imgSrc, ...product.gallery].map((imgSrc) => (
               <SwiperSlide key={imgSrc}>
                 <Image width="100%" src={imgSrc} alt="" />
               </SwiperSlide>
@@ -64,7 +56,7 @@ export default function SlideGallery() {
             centeredSlides={true}
             centeredSlidesBounds={true}
           >
-            {gallery.map((imgSrc) => (
+            {[product.imgSrc, ...product.gallery].map((imgSrc) => (
               <SwiperSlide key={imgSrc}>
                 <Image width="100%" preview={false} src={imgSrc} alt="" />
               </SwiperSlide>
