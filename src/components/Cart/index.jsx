@@ -6,7 +6,7 @@ import { CartContext } from '../../contexts/CartProvider';
 import CustomBreadcrumb from '../CustomBreadcrumb';
 import EmptyCart from './EmptyCart';
 import CartContent from './CartContent';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 const Wrapper = styled.div`
   .ant-typography {

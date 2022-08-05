@@ -1,5 +1,4 @@
 // @ts-check
-
 import React, { useEffect, useState } from 'react';
 import { Col, Row } from 'antd';
 import SideBar from './SideBar';
@@ -7,7 +6,7 @@ import CollectionProduct from './ProductCollection';
 import useApi from '../../hooks/useApi';
 import styled from 'styled-components';
 import ProductSlideShow from './ProductSlideShow';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import MainBanner from './Banner/MainBanner';
 import RightBanner from './Banner/RightBanner';
 import BottomBanner from './Banner/BottomBanner';

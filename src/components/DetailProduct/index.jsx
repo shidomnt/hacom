@@ -11,7 +11,7 @@ import SlideGallery from './SlideGallery';
 import StaticInfo from './StaticInfo';
 import Review from './Review';
 import ThongSoKiThuat from './ThongSoKiThuat';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { initProduct } from '../../constant';
 import UserReview from './UserReview';
 

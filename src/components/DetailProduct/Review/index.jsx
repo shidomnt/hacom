@@ -54,7 +54,7 @@ export default function Review() {
   const { danhgia } = product;
 
   function handleClickExpandBtn() {
-    setIsExpanded(!isExpanded);
+    setIsExpanded((prevIsExpanded) => !prevIsExpanded);
   }
 
   return (

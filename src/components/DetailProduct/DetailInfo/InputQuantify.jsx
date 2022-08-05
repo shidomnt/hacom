@@ -6,17 +6,19 @@ import { MAX_SOLUONG, MIN_SOLUONG } from '../../../constant';
 
 const Wrapper = styled.span`
   & {
-    .controller-btn {
-      user-select: none;
-      cursor: pointer;
-    }
-    .controller-btn.minus {
-      padding: 0 2px;
-    }
     .ant-input-number-group-wrapper {
       width: 104px;
       .ant-input-number-group-addon {
         cursor: pointer;
+        padding: 0;
+        .controller-btn {
+          user-select: none;
+          cursor: pointer;
+          padding: 4px 11px;
+        }
+        .controller-btn.minus {
+          padding: 4px 13px;
+        }
       }
     }
   }
