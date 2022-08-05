@@ -1,5 +1,5 @@
 // @ts-check
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Thumbs, Navigation } from 'swiper';
 import styled from 'styled-components';
@@ -26,6 +26,14 @@ export default function SlideGallery() {
     setGallery([product.imgSrc, ...product.gallery]);
   }, [product]);
 
+  const thumbProp = useMemo(() => {
+    return thumbsSwiper
+      ? {
+          thumbs: { swiper: thumbsSwiper },
+        }
+      : {};
+  }, [thumbsSwiper]);
+
   return (
     <Wrapper>
       <Row>
@@ -35,7 +43,7 @@ export default function SlideGallery() {
             spaceBetween={5}
             navigation={true}
             slidesPerView={1}
-            thumbs={{ swiper: thumbsSwiper }}
+            {...thumbProp}
             modules={[Navigation, Thumbs]}
           >
             {gallery.map((imgSrc) => (
