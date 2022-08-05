@@ -100,6 +100,7 @@ export default function Header() {
                 </div>
               </div>
             </div>
+            {/* Bán hàng - TPHCM */}
             <div className="header__top--nav">
               <span className="header__top--item btn-primary">
                 <i className="fa-solid fa-phone header__top--item-icon" />
@@ -131,7 +132,7 @@ export default function Header() {
             <div className="header__top--nav">
               <Link to="/" className="header__top--item">
                 <i className="fa-solid fa-shield header__top--item-icon" />
-                Tra cứu bảo hàng
+                Tra cứu bảo hành
               </Link>
             </div>
             <div className="header__top--nav">

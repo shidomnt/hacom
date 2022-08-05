@@ -1,12 +1,14 @@
 // @ts-check
 import { Col, Row } from 'antd';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import {
+  initCategories,
   PRODUCT_NUMBER_SLIDE_SHOW,
   PRODUCT_SLIDE_SHOW_SIZE,
 } from '../../../constant';
+import useApi from '../../../hooks/useApi';
 import SlideShow from '../SlideShow';
 
 const Title = styled.div`
@@ -47,16 +49,21 @@ const breakPoints = {
   },
 };
 
-/**
- * @typedef {Object} ProductSlideShowProps
- * @property {import("../../../hooks/useApi").Category[]} categories
- */
+function ProductSlideShow() {
+  const { getCategories } = useApi();
 
-/**
- * @param {import("react").PropsWithChildren<ProductSlideShowProps>} props
- * @returns
- */
-function ProductSlideShow({ categories }) {
+  const [categories, setCategories] = useState(initCategories);
+
+  useEffect(() => {
+    (async () => {
+      const response = await getCategories();
+      if (response) {
+        setCategories(response.data);
+      } else {
+        setCategories([]);
+      }
+    })();
+  }, [getCategories]);
   return (
     <Row gutter={[0, 12]}>
       {categories.slice(0, PRODUCT_NUMBER_SLIDE_SHOW).map((category) => (
