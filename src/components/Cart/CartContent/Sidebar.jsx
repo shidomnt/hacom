@@ -52,7 +52,6 @@ export default function Sidebar({ checkedList }) {
     );
     const cost = selectedItems.reduce((accumulator, item) => {
       const price = item.product.price * item.quantify;
-      console.log(price);
       return accumulator + price;
     }, 0);
     setCost(cost);
@@ -70,8 +69,6 @@ export default function Sidebar({ checkedList }) {
   const thanhTien = useMemo(() => {
     return cost - discountCost;
   }, [cost, discountCost]);
-
-  console.log('rerender');
 
   function handleSetDiscountInfo() {
     if (discountCode) {

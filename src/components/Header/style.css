@@ -50,6 +50,7 @@
   z-index: 999;
 }
 .header__modal-wrapper {
+  border-radius: 5px;
   box-shadow: 0 0 10px rgb(0, 0, 0, 0.5);
   padding: 16px;
 }
