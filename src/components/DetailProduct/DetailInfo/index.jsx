@@ -3,6 +3,7 @@ import { Col, Divider, Grid, List, Row, Typography } from 'antd';
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { ProductContext } from '..';
+import DangKiNhanThongTin from './DangKiNhanThongTin';
 import Gift from './Gift';
 import Price from './Price';
 import ThanhToan from './ThanhToan';
@@ -93,9 +94,7 @@ export default function DetailInfo() {
         <Col span={24}>
           <Gift uudai={product.uudai.slice(1)} />
         </Col>
-        <Col span={24}>
-          <ThanhToan />
-        </Col>
+        <Col span={24}>{product.stockStatus ? <ThanhToan /> : <DangKiNhanThongTin />}</Col>
       </Row>
     </Wrapper>
   );
