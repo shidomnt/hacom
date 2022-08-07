@@ -9,37 +9,27 @@ import {
   Tooltip,
   Typography,
 } from 'antd';
-import React, { useContext, useEffect, useState } from 'react';
-import { CartActionContext } from '../../../contexts/CartProvider';
-import InputQuantify from '../../DetailProduct/DetailInfo/InputQuantify';
-import { MAX_SOLUONG, MIN_SOLUONG } from '../../../constant';
-import { formatNumberPriceToString } from '../../../utils';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { MAX_SOLUONG, MIN_SOLUONG } from '../../../../constant';
+import { CartActionContext } from '../../../../contexts/CartProvider';
+import { formatNumberPriceToString } from '../../../../utils';
+import InputQuantify from '../../../DetailProduct/DetailInfo/InputQuantify';
 
 /**
  * @typedef {Object} CollapseCartItemProps
- * @property {import('../../../constant').CartItem} item
+ * @property {import('../../../../constant').CartItem} item
+ * @property {import('../../../../constant').CartItem['quantify']} quantify
+ * @property {string} thanhTien
+ * @property {import('react').Dispatch<React.SetStateAction<number>>} setQuantify
  */
 
 /**
  * @param {import('react').PropsWithChildren<CollapseCartItemProps>} props
  * @returns
  */
-export default function CollapseCartItem({ item }) {
-  const { changeQuantify, removeProduct } = useContext(CartActionContext);
-  const [quantify, setQuantify] = useState(item.quantify);
-
-  useEffect(() => {
-    if (!quantify) {
-      setQuantify(1);
-    }
-  }, [quantify]);
-
-  useEffect(() => {
-    if (quantify && quantify !== item.quantify) {
-      changeQuantify(item.product.id, quantify);
-    }
-  }, [quantify, changeQuantify, item.product.id, item.quantify]);
+export default function CollapseCartItem({ item, quantify, setQuantify }) {
+  const { removeProduct } = useContext(CartActionContext);
 
   return (
     <Row gutter={[8, 8]} align="middle">
