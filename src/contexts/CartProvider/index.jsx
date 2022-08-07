@@ -73,8 +73,12 @@ export default function CartProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(KEY_LOCAL_STORAGE_CART, JSON.stringify(cart));
+    if (cart.length) {
+      localStorage.setItem(KEY_LOCAL_STORAGE_CART, JSON.stringify(cart));
+    }
   }, [cart]);
+
+  console.log(cart);
 
   const addProduct = useCallback(
     /**
@@ -122,8 +126,10 @@ export default function CartProvider({ children }) {
           if (item.product.id !== productId) {
             return item;
           }
-          item.quantify = newQuantify;
-          return item;
+          return {
+            ...item,
+            quantify: newQuantify,
+          };
         })
       );
     },

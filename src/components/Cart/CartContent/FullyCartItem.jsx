@@ -27,29 +27,25 @@ import { Link } from 'react-router-dom';
  * @param {import('react').PropsWithChildren<CartItemProps>} props
  * @returns
  */
-export default function CartItem({ item }) {
+export default function FullyCartItem({ item }) {
   const { changeQuantify, removeProduct } = useContext(CartActionContext);
   const [quantify, setQuantify] = useState(item.quantify);
 
-  const [thanhTien, setThanhTien] = useState(() => {
-    return calculateThanhTien(item.product.price, item.quantify);
-  });
+  useEffect(() => {
+    if (!quantify) {
+      setQuantify(1);
+    }
+  }, [quantify]);
+
+  useEffect(() => {
+    if (quantify && quantify !== item.quantify) {
+      changeQuantify(item.product.id, quantify);
+    }
+  }, [quantify, changeQuantify, item.product.id, item.quantify]);
+
+  const thanhTien = calculateThanhTien(item.product.price, item.quantify);
 
   const { lg } = Grid.useBreakpoint();
-
-  useEffect(() => {
-    if (quantify < MIN_SOLUONG) {
-      setQuantify(MIN_SOLUONG);
-    }
-    if (quantify > MAX_SOLUONG) {
-      setQuantify(MAX_SOLUONG);
-    }
-    changeQuantify(item.product.id, quantify);
-  }, [quantify, changeQuantify, item.product.id]);
-
-  useEffect(() => {
-    setThanhTien(calculateThanhTien(item.product.price, item.quantify));
-  }, [item.product.price, item.quantify]);
 
   return (
     <Row gutter={[8, 8]} align="middle">

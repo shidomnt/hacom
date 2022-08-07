@@ -30,14 +30,16 @@ export default function CollapseCartItem({ item }) {
   const [quantify, setQuantify] = useState(item.quantify);
 
   useEffect(() => {
-    if (quantify < MIN_SOLUONG) {
-      setQuantify(MIN_SOLUONG);
+    if (!quantify) {
+      setQuantify(1);
     }
-    if (quantify > MAX_SOLUONG) {
-      setQuantify(MAX_SOLUONG);
+  }, [quantify]);
+
+  useEffect(() => {
+    if (quantify && quantify !== item.quantify) {
+      changeQuantify(item.product.id, quantify);
     }
-    changeQuantify(item.product.id, quantify);
-  }, [quantify, changeQuantify, item.product.id]);
+  }, [quantify, changeQuantify, item.product.id, item.quantify]);
 
   return (
     <Row gutter={[8, 8]} align="middle">

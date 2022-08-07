@@ -59,6 +59,7 @@ export default function InputQuantify({
         value={value}
         onChange={onChange}
         controls={controls}
+        defaultValue={1}
         addonBefore={
           <div className="controller-btn minus" onClick={onClickMinus}>
             -

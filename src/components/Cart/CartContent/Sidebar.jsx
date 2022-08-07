@@ -1,6 +1,6 @@
 // @ts-check
 import { Button, Col, Divider, Input, message, Row, Typography } from 'antd';
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { CartActionContext, CartContext } from '../../../contexts/CartProvider';
 import {
@@ -57,18 +57,11 @@ export default function Sidebar({ checkedList }) {
     setCost(cost);
   }, [cart, checkedList]);
 
-  const discountCost = useMemo(() => {
-    if (discountInfo) {
-      const result = calculateDiscountCost(discountInfo, cost);
-      return result;
-    } else {
-      return 0;
-    }
-  }, [discountInfo, cost]);
+  const discountCost = discountInfo
+    ? calculateDiscountCost(discountInfo, cost)
+    : 0;
 
-  const thanhTien = useMemo(() => {
-    return cost - discountCost;
-  }, [cost, discountCost]);
+  const thanhTien = cost - discountCost;
 
   function handleSetDiscountInfo() {
     if (discountCode) {

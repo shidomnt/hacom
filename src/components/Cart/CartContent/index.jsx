@@ -3,7 +3,7 @@ import { Button, Checkbox, Col, Grid, Row, Tooltip, Typography } from 'antd';
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { CartActionContext, CartContext } from '../../../contexts/CartProvider';
-import CartItem from './CartItem';
+import FullyCartItem from './FullyCartItem';
 import Sidebar from './Sidebar';
 import CollapseCartItem from './CollapseCartItem';
 
@@ -33,14 +33,13 @@ const Wrapper = styled.div`
   }
 `;
 
+/** @type {import('../../../hooks/useApi').Product['id'][]} */
+const initCheckedList = [];
+
 export default function CartContent() {
   const { cart } = useContext(CartContext);
   const { removeProduct } = useContext(CartActionContext);
-  const [checkedList, setCheckedList] = useState(() => {
-    /** @type {import('../../../hooks/useApi').Product['id'][]} */
-    const init = [];
-    return init;
-  });
+  const [checkedList, setCheckedList] = useState(initCheckedList);
   const [checkAll, setCheckAll] = useState(false);
 
   const { md } = Grid.useBreakpoint();
@@ -107,7 +106,7 @@ export default function CartContent() {
                       <Col span={24} key={item.product.id}>
                         <div className="cart-block">
                           {md ? (
-                            <CartItem item={item} />
+                            <FullyCartItem item={item} />
                           ) : (
                             <CollapseCartItem item={item} />
                           )}

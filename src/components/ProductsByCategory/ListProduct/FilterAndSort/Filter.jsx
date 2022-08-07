@@ -154,7 +154,6 @@ export default function Filter() {
                     Lọc theo giá tiền:
                   </Typography.Text>
                 )}
-
                 <Input
                   suffix="₫"
                   value={costFilter.min}
