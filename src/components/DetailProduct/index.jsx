@@ -83,17 +83,10 @@ export default function DetailProduct() {
               <Typography.Title level={4}>{product.name}</Typography.Title>
               <Divider />
               <Row gutter={16}>
-                <Col span={8} xxl={8} xl={8} lg={8} md={8} sm={24} xs={24}>
-                  <Row gutter={[12, 12]}>
-                    <Col span={24}>
-                      <SlideGallery />
-                    </Col>
-                    <Col span={0} xxl={0} xl={0} lg={0} md={24}>
-                      <StaticInfo />
-                    </Col>
-                  </Row>
+                <Col span={8} xxl={8} xl={8} lg={8} md={24} sm={24} xs={24}>
+                  <SlideGallery />
                 </Col>
-                <Col span={16} xxl={16} xl={16} lg={16} md={16} sm={24} xs={24}>
+                <Col span={16} xxl={16} xl={16} lg={16} md={24} sm={24} xs={24}>
                   <Row gutter={16}>
                     <Col
                       span={15}
@@ -106,7 +99,7 @@ export default function DetailProduct() {
                     >
                       <DetailInfo />
                     </Col>
-                    <Col span={9} xxl={9} xl={9} lg={9} md={0} sm={24} xs={24}>
+                    <Col span={9} xxl={9} xl={9} lg={9} md={24} sm={24} xs={24}>
                       <StaticInfo />
                     </Col>
                   </Row>
@@ -121,7 +114,7 @@ export default function DetailProduct() {
                 xxl={{ span: 15, order: 2 }}
                 xl={{ span: 15, order: 2 }}
                 lg={{ span: 15, order: 2 }}
-                md={{ span: 15, order: 2 }}
+                md={{ span: 24, order: 2 }}
                 sm={{ span: 24, order: 2 }}
                 xs={{ span: 24, order: 2 }}
               >
@@ -143,7 +136,7 @@ export default function DetailProduct() {
                 xxl={{ span: 9, order: 2 }}
                 xl={{ span: 9, order: 2 }}
                 lg={{ span: 9, order: 2 }}
-                md={{ span: 9, order: 2 }}
+                md={{ span: 24, order: 1 }}
                 sm={{ span: 24, order: 1 }}
                 xs={{ span: 24, order: 1 }}
               >
