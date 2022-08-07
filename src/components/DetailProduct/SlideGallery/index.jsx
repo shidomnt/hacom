@@ -20,12 +20,6 @@ export default function SlideGallery() {
 
   const { product } = useContext(ProductContext);
 
-  const thumbProp = thumbsSwiper
-    ? {
-        thumbs: { swiper: thumbsSwiper },
-      }
-    : {};
-
   return (
     <Wrapper>
       <Row>
@@ -35,7 +29,7 @@ export default function SlideGallery() {
             spaceBetween={5}
             navigation={true}
             slidesPerView={1}
-            {...thumbProp}
+            thumbs={{ swiper: thumbsSwiper }}
             modules={[Navigation, Thumbs]}
           >
             {[product.imgSrc, ...product.gallery].map((imgSrc) => (
