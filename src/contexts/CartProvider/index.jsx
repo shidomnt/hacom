@@ -78,8 +78,6 @@ export default function CartProvider({ children }) {
     }
   }, [cart]);
 
-  console.log(cart);
-
   const addProduct = useCallback(
     /**
      * @type {AddProduct}
