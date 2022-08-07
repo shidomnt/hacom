@@ -21,7 +21,7 @@ const StyledImgContainer = styled.div`
   }
 `;
 
-export default function Content() {
+export default function MainPage() {
   const { getBannerList } = useApi();
   const [bannerList] = useState(() => getBannerList());
 

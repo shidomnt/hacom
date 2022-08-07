@@ -49,7 +49,7 @@ const StyledButton = styled.button`
 `;
 
 export default function ThanhToan() {
-  const [soluong, setSoluong] = useState(1);
+  const [quantify, setQuantify] = useState(1);
 
   const { product } = useContext(ProductContext);
   const { addProduct } = useContext(CartActionContext);
@@ -57,13 +57,10 @@ export default function ThanhToan() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (soluong < MIN_SOLUONG) {
-      setSoluong(MIN_SOLUONG);
+    if (!quantify) {
+      setQuantify(1);
     }
-    if (soluong > MAX_SOLUONG) {
-      setSoluong(MAX_SOLUONG);
-    }
-  }, [soluong]);
+  }, [quantify]);
 
   /**
    * @param {import('../../../hooks/useApi').Product} product
@@ -89,20 +86,20 @@ export default function ThanhToan() {
             </Col>
             <Col span={7} xxl={7} xl={7} lg={7} md={7} sm={7} xs={9}>
               <InputQuantify
-                value={soluong}
+                value={quantify}
                 min={MIN_SOLUONG}
                 max={MAX_SOLUONG}
-                onChange={(value) => setSoluong(value)}
+                onChange={(value) => setQuantify(value)}
                 onClickMinus={() =>
-                  setSoluong((prev) => Math.max(prev - 1, MIN_SOLUONG))
+                  setQuantify((prev) => Math.max(prev - 1, MIN_SOLUONG))
                 }
                 onClickAdd={() =>
-                  setSoluong((prev) => Math.min(prev + 1, MAX_SOLUONG))
+                  setQuantify((prev) => Math.min(prev + 1, MAX_SOLUONG))
                 }
               />
             </Col>
             <Col span={12} xxl={12} xl={12} lg={12} md={12} sm={12} xs={15}>
-              <Button onClick={() => handleAddProductToCart(product, soluong)}>
+              <Button onClick={() => handleAddProductToCart(product, quantify)}>
                 <Typography.Text strong>
                   <i className="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng
                 </Typography.Text>
@@ -114,7 +111,7 @@ export default function ThanhToan() {
           <Row gutter={[16, 16]} className="button-group">
             <Col span={24}>
               <StyledButton
-                onClick={() => handleAddProductToCart(product, soluong, true)}
+                onClick={() => handleAddProductToCart(product, quantify, true)}
                 className="primary"
               >
                 <div>

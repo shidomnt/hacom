@@ -10,16 +10,19 @@ import {
   Tooltip,
   Typography,
 } from 'antd';
-import React, { useContext, useEffect, useState } from 'react';
-import { CartActionContext } from '../../../contexts/CartProvider';
-import InputQuantify from '../../DetailProduct/DetailInfo/InputQuantify';
-import { calculateThanhTien, formatNumberPriceToString } from '../../../utils';
-import { MIN_SOLUONG, MAX_SOLUONG } from '../../../constant';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { MAX_SOLUONG, MIN_SOLUONG } from '../../../../constant';
+import { CartActionContext } from '../../../../contexts/CartProvider';
+import { formatNumberPriceToString } from '../../../../utils';
+import InputQuantify from '../../../DetailProduct/DetailInfo/InputQuantify';
 
 /**
  * @typedef {Object} CartItemProps
- * @property {import('../../../constant').CartItem} item
+ * @property {import('../../../../constant').CartItem} item
+ * @property {import('../../../../constant').CartItem['quantify']} quantify
+ * @property {string} thanhTien
+ * @property {import('react').Dispatch<React.SetStateAction<number>>} setQuantify
  */
 
 /**
@@ -27,29 +30,14 @@ import { Link } from 'react-router-dom';
  * @param {import('react').PropsWithChildren<CartItemProps>} props
  * @returns
  */
-export default function CartItem({ item }) {
-  const { changeQuantify, removeProduct } = useContext(CartActionContext);
-  const [quantify, setQuantify] = useState(item.quantify);
-
-  const [thanhTien, setThanhTien] = useState(() => {
-    return calculateThanhTien(item.product.price, item.quantify);
-  });
-
+export default function FullyCartItem({
+  item,
+  quantify,
+  thanhTien,
+  setQuantify,
+}) {
+  const { removeProduct } = useContext(CartActionContext);
   const { lg } = Grid.useBreakpoint();
-
-  useEffect(() => {
-    if (quantify < MIN_SOLUONG) {
-      setQuantify(MIN_SOLUONG);
-    }
-    if (quantify > MAX_SOLUONG) {
-      setQuantify(MAX_SOLUONG);
-    }
-    changeQuantify(item.product.id, quantify);
-  }, [quantify, changeQuantify, item.product.id]);
-
-  useEffect(() => {
-    setThanhTien(calculateThanhTien(item.product.price, item.quantify));
-  }, [item.product.price, item.quantify]);
 
   return (
     <Row gutter={[8, 8]} align="middle">
