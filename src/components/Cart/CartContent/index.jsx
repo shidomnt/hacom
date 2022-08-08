@@ -74,8 +74,6 @@ export default function CartContent() {
     }
   };
 
-  console.log(checkedList);
-
   return (
     <Wrapper>
       <Row gutter={[8, 8]}>
