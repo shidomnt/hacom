@@ -27,7 +27,7 @@ import {
 
 /**
  * @callback RemoveProduct
- * @param {string | 'all'} productId
+ * @param {(import('../../hooks/useApi').Product['id'])[] | 'all'} productId
  * @return {void}
  */
 
@@ -138,14 +138,14 @@ export default function CartProvider({ children }) {
     /**
      * @type {RemoveProduct}
      */
-    (productId) => {
+    (productIds) => {
       let messageContent = 'Đã xóa sản phẩm khỏi giỏ hàng!';
-      if (productId === 'all') {
+      if (productIds === 'all') {
         setCart([]);
         messageContent = 'Đã xóa tất cả sản phẩm khỏi giỏ hàng!';
       } else {
         setCart((prevCart) =>
-          prevCart.filter((item) => item.product.id !== productId)
+          prevCart.filter((item) => !productIds.includes(item.product.id))
         );
       }
       message.success({

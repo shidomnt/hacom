@@ -81,7 +81,7 @@ export default function CollapseCartItem({ item, quantify, setQuantify }) {
       <Col span={1} xxl={1} xl={1} lg={1} md={1} sm={1} xs={2}>
         <Tooltip placement="bottomRight" title="Xóa khỏi giỏ hàng">
           <Button
-            onClick={() => removeProduct(item.product.id)}
+            onClick={() => removeProduct([item.product.id])}
             className="cart-remove-btn"
             type="text"
           >
