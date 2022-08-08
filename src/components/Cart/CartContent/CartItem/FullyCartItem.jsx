@@ -101,7 +101,7 @@ export default function FullyCartItem({
       <Col span={1}>
         <Tooltip placement="bottomRight" title="Xóa khỏi giỏ hàng">
           <Button
-            onClick={() => removeProduct(item.product.id)}
+            onClick={() => removeProduct([item.product.id])}
             className="cart-remove-btn"
             type="text"
           >

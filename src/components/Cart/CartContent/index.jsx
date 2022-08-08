@@ -1,6 +1,6 @@
 // @ts-check
 import { Button, Checkbox, Col, Row, Tooltip, Typography } from 'antd';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { CartActionContext, CartContext } from '../../../contexts/CartProvider';
 import Sidebar from './Sidebar';
@@ -41,6 +41,19 @@ export default function CartContent() {
   const [checkedList, setCheckedList] = useState(initCheckedList);
   const [checkAll, setCheckAll] = useState(false);
 
+  useEffect(() => {
+    const checkedListMayChange = cart
+      .filter((item) => checkedList.includes(item.product.id))
+      .map((item) => item.product.id);
+    if (checkedListMayChange.length !== checkedList.length) {
+      setCheckedList(checkedListMayChange);
+    }
+  }, [cart, checkedList]);
+
+  useEffect(() => {
+    setCheckAll(cart.length === checkedList.length);
+  }, [cart.length, checkedList.length]);
+
   const handleChangeCheckAll = (event) => {
     setCheckedList(
       event.target.checked ? cart.map((item) => item.product.id) : []
@@ -51,6 +64,14 @@ export default function CartContent() {
   const handleChangeCheckedList = (list) => {
     setCheckedList(list);
     setCheckAll(list.length === cart.length);
+  };
+
+  const handleDeleteAll = () => {
+    if (!checkedList.length) {
+      removeProduct('all');
+    } else {
+      removeProduct(checkedList);
+    }
   };
 
   return (
@@ -78,10 +99,12 @@ export default function CartContent() {
                   <Col span={1}>
                     <Tooltip
                       placement="bottomRight"
-                      title="Xóa toàn bộ giỏ hàng"
+                      title={`Xóa ${
+                        checkedList.length ? 'sản phẩm đã chọn khỏi' : 'toàn bộ'
+                      } giỏ hàng`}
                     >
                       <Button
-                        onClick={() => removeProduct('all')}
+                        onClick={handleDeleteAll}
                         className="cart-remove-btn"
                         type="text"
                       >
