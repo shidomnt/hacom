@@ -11,7 +11,8 @@ import {
 } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { listCommentFake } from '../../../constant';
+import { Comment } from '../../../interfaces';
+// import { listCommentFake } from '../../../constant';
 import CommentBox from './CommentBox';
 import CustomComment from './CustomComment';
 
@@ -67,7 +68,7 @@ export default function UserReview() {
   const [starValue, setStarValue] = useState(5);
   const [starHoverValue, setStarHoverValue] = useState(0);
   const [commentValue, setCommentValue] = useState('');
-  const [listComment] = useState(() => listCommentFake);
+  const [listComment] = useState<Array<Comment>>(() => []);
 
   const { xl } = Grid.useBreakpoint();
 

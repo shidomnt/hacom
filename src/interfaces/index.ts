@@ -9,6 +9,15 @@ export type Cart = Array<CartItemType>;
 
 export type MenuItem = Required<MenuProps>['items'][number];
 
+export type CreateUserDto = Pick<User, 'name' | 'email'> & {
+  password: string;
+};
+
+export interface AxiosCommonResponse {
+  success?: boolean;
+  message?: string;
+}
+
 export interface SortButton {
   title: string;
   sortType: string;
@@ -26,9 +35,22 @@ export interface CartItemType {
 
 export interface User {
   _id: string;
+
   name: string;
-  avatarSrc: string;
+
+  avatarSrc?: string;
+
   nameTag?: string;
+
+  phone?: string;
+
+  email: string;
+
+  gender?: boolean;
+
+  city?: string;
+
+  address?: string;
 }
 
 export interface Comment {
@@ -128,6 +150,11 @@ export interface CartActionContextInterface {
   removeProduct: RemoveProduct;
   changeQuantify: ChangeQuantify;
   setDiscountInfo: React.Dispatch<React.SetStateAction<DiscountInfo | null>>;
+}
+
+export interface UserContextInterface {
+  user: User | null;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
 }
 
 export interface ProductContextInterface {

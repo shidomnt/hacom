@@ -94,10 +94,6 @@ async function getProductCountByCategory(
   return result;
 }
 
-/**
- *
- * @returns {Promise<import('axios').AxiosResponse<SideBarContent[]> | undefined>}
- */
 async function getSideBarContent() {
   const result = await callApi('/catalogs');
   return result;

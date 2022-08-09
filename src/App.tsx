@@ -9,26 +9,29 @@ import ProductsByCategory from './components/ProductsByCategory';
 import SignupWithEmail from './components/Header/SignAndCart/SignModal/SignupWithEmail';
 import SigninWithEmail from './components/Header/SignAndCart/SignModal/SigninWithEmail';
 import { HelmetProvider } from 'react-helmet-async';
+import UserProvider from './contexts/UserProvider';
 
 function App() {
   return (
     <BrowserRouter>
       <HelmetProvider>
-        <CartProvider>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<MainPage />} />
-              <Route path="cart" element={<Cart />} />
-              <Route path=":category">
-                <Route index element={<ProductsByCategory />} />
-                <Route path=":id" element={<DetailProduct />} />
+        <UserProvider>
+          <CartProvider>
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<MainPage />} />
+                <Route path="cart" element={<Cart />} />
+                <Route path=":category">
+                  <Route index element={<ProductsByCategory />} />
+                  <Route path=":id" element={<DetailProduct />} />
+                </Route>
+                <Route path="dangki" element={<SignupWithEmail />} />
+                <Route path="dangnhap" element={<SigninWithEmail />} />
               </Route>
-              <Route path="dangki" element={<SignupWithEmail />} />
-              <Route path="dangnhap" element={<SigninWithEmail />} />
-            </Route>
-            <Route path="*" element={<Navigate to="/" />} />
-          </Routes>
-        </CartProvider>
+              <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
+          </CartProvider>
+        </UserProvider>
       </HelmetProvider>
     </BrowserRouter>
   );

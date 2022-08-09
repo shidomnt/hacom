@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Space, Button, Typography, Input } from 'antd';
 import styled from 'styled-components';
 import { StyledButton, StyledInput } from '.';
-import { SIGNIN_WITH_PHONE } from '../../../../constant';
+import {
+  KEY_LOCAL_STORAGE_ACCESS_TOKEN,
+  SIGNIN_WITH_PHONE,
+} from '../../../../constant';
+import { getProfile, login } from '../../../../api/userApi';
+import { UserContext } from '../../../../contexts/UserProvider';
+import { UserContextInterface } from '../../../../interfaces';
 
 const Wrapper = styled.div`
   & {
@@ -27,6 +33,42 @@ interface SignupWithEmailProps {
 }
 
 export default function SigninWithEmail({ setState }: SignupWithEmailProps) {
+  const [emailValue, setEmailValue] = useState('');
+  const [passwordValue, setPasswordValue] = useState('');
+
+  const isAllInputReady = emailValue && setEmailValue;
+
+  const { setUser } = useContext(UserContext) as UserContextInterface;
+
+  const handleSubmit = async () => {
+    if (isAllInputReady) {
+      const payload = {
+        email: emailValue,
+        password: passwordValue,
+      };
+      try {
+        const response = await login<'email'>(payload);
+        if (!response.data?.success) {
+          throw new Error('Dang nhap that bai');
+        }
+        localStorage.setItem(
+          KEY_LOCAL_STORAGE_ACCESS_TOKEN,
+          response.data.accessToken
+        );
+        const res = await getProfile();
+        if (!res.data?.success) {
+          throw new Error('Dang nhap that bai');
+        }
+        setUser(res.data.data);
+        window.alert('dang nhap thanh cong!');
+      } catch (e) {
+        if (e instanceof Error) {
+          window.alert(e.message);
+        }
+      }
+    }
+  };
+
   return (
     <Wrapper>
       <Space direction="vertical" size="large" style={{ width: '100%' }}>
@@ -45,14 +87,23 @@ export default function SigninWithEmail({ setState }: SignupWithEmailProps) {
         </div>
         <div>
           <Space direction="vertical" size="middle" style={{ width: '100%' }}>
-            <StyledInput className="font-size-2" placeholder="abc@gmail.com" />
+            <StyledInput
+              className="font-size-2"
+              placeholder="abc@gmail.com"
+              value={emailValue}
+              onChange={(event) => setEmailValue(event.target.value)}
+            />
             <StyledInputPassword
               className="font-size-2"
               placeholder="Mật khẩu"
+              value={passwordValue}
+              onChange={(event) => setPasswordValue(event.target.value)}
             />
           </Space>
         </div>
-        <StyledButton>Đăng nhập</StyledButton>
+        <StyledButton disabled={!isAllInputReady} onClick={handleSubmit}>
+          Đăng nhập
+        </StyledButton>
         <Button type="link">Quên mật khẩu?</Button>
       </Space>
     </Wrapper>
