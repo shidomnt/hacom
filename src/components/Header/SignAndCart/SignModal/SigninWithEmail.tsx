@@ -1,14 +1,17 @@
 import React, { useContext, useState } from 'react';
-import { Space, Button, Typography, Input } from 'antd';
+import { Space, Button, Typography, Input, message } from 'antd';
 import styled from 'styled-components';
 import { StyledButton, StyledInput } from '.';
 import {
-  KEY_LOCAL_STORAGE_ACCESS_TOKEN,
   SIGNIN_WITH_PHONE,
 } from '../../../../constant';
-import { getProfile, login } from '../../../../api/userApi';
-import { UserContext } from '../../../../contexts/UserProvider';
-import { UserContextInterface } from '../../../../interfaces';
+import {
+  UserActionContext,
+} from '../../../../contexts/UserProvider';
+import {
+  UserActionContextInterface,
+} from '../../../../interfaces';
+import { ModalToggleVisibleContext } from '..';
 
 const Wrapper = styled.div`
   & {
@@ -38,34 +41,21 @@ export default function SigninWithEmail({ setState }: SignupWithEmailProps) {
 
   const isAllInputReady = emailValue && setEmailValue;
 
-  const { setUser } = useContext(UserContext) as UserContextInterface;
+  const { login } = useContext(UserActionContext) as UserActionContextInterface;
 
-  const handleSubmit = async () => {
+  const setModalVisible = useContext(ModalToggleVisibleContext);
+
+  const handleSubmit = () => {
     if (isAllInputReady) {
       const payload = {
         email: emailValue,
         password: passwordValue,
       };
-      try {
-        const response = await login<'email'>(payload);
-        if (!response.data?.success) {
-          throw new Error('Dang nhap that bai');
+      login(payload, () => {
+        if (setModalVisible) {
+          setModalVisible(false);
         }
-        localStorage.setItem(
-          KEY_LOCAL_STORAGE_ACCESS_TOKEN,
-          response.data.accessToken
-        );
-        const res = await getProfile();
-        if (!res.data?.success) {
-          throw new Error('Dang nhap that bai');
-        }
-        setUser(res.data.data);
-        window.alert('dang nhap thanh cong!');
-      } catch (e) {
-        if (e instanceof Error) {
-          window.alert(e.message);
-        }
-      }
+      });
     }
   };
 

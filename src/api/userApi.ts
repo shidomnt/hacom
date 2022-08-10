@@ -1,10 +1,12 @@
 import axios from 'axios';
-import { API_URL, KEY_LOCAL_STORAGE_ACCESS_TOKEN } from '../constant';
+import { API_URL, getProtectedApiRouteOptions } from '../constant';
 import { AxiosCommonResponse, CreateUserDto, User } from '../interfaces';
+
+const url = `${API_URL}/users`;
 
 export async function register(createUserDto: CreateUserDto) {
   const response = await axios.post<AxiosCommonResponse>(
-    `${API_URL}/users/register`,
+    url + '/register',
     createUserDto
   );
   return response;
@@ -21,16 +23,11 @@ export async function login<Type extends 'email' | 'phone' = 'email'>(
 }
 
 export async function getProfile() {
-  const accessToken = localStorage.getItem(KEY_LOCAL_STORAGE_ACCESS_TOKEN);
-  const headers = {
-    Authorization: 'Bearer ' + accessToken,
-  };
+  const options = getProtectedApiRouteOptions();
 
   const response = await axios.get<AxiosCommonResponse & { data: User }>(
-    `${API_URL}/users/profile`,
-    {
-      headers,
-    }
+    url + '/profile',
+    options
   );
   return response;
 }

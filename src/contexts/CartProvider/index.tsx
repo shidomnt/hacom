@@ -3,9 +3,11 @@ import React, {
   createContext,
   PropsWithChildren,
   useCallback,
+  useContext,
   useEffect,
   useState,
 } from 'react';
+import { getCart, updateCart } from '../../api/cartApi';
 import {
   MAX_SOLUONG,
   MIN_SOLUONG,
@@ -13,13 +15,16 @@ import {
   initDiscountInfo,
   initCart,
 } from '../../constant';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 import {
   AddProduct,
   CartActionContextInterface,
   CartContextInterface,
   ChangeQuantify,
   RemoveProduct,
+  UserContextInterface,
 } from '../../interfaces';
+import { UserContext } from '../UserProvider';
 
 const CartContext = createContext<CartContextInterface | null>(null);
 
@@ -28,33 +33,62 @@ const CartActionContext = createContext<CartActionContextInterface | null>(
 );
 
 export default function CartProvider({ children }: PropsWithChildren) {
-  const [cart, setCart] = useState(initCart);
   const [discountInfo, setDiscountInfo] = useState(initDiscountInfo);
 
-  useEffect(() => {
-    const cartLocalStorage = localStorage.getItem(KEY_LOCAL_STORAGE_CART);
-    if (!cartLocalStorage) {
-      localStorage.setItem(KEY_LOCAL_STORAGE_CART, JSON.stringify([]));
-    } else {
-      setCart(JSON.parse(cartLocalStorage));
-    }
-  }, []);
+  const [cart, setCart] = useLocalStorage(initCart, KEY_LOCAL_STORAGE_CART);
+
+  const { user } = useContext(UserContext) as UserContextInterface;
 
   useEffect(() => {
-    if (cart.length) {
-      localStorage.setItem(KEY_LOCAL_STORAGE_CART, JSON.stringify(cart));
+    if (!user) {
+      setCart(initCart);
     }
-  }, [cart]);
+  }, [user, setCart]);
+
+  useEffect(() => {
+    if (user) {
+      (async () => {
+        try {
+          const response = await getCart();
+          if (response.data.success) {
+            setCart(response.data.data);
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      })();
+    }
+  }, [setCart, user]);
+
+  useEffect(() => {
+    let idTimeOut: ReturnType<typeof setTimeout>;
+    if (user) {
+      idTimeOut = setTimeout(() => {
+        (async () => {
+          try {
+            await updateCart(cart);
+          } catch (e) {
+            console.log(e);
+          }
+        })();
+      }, 1000);
+    }
+    return () => {
+      clearTimeout(idTimeOut);
+    };
+  }, [cart, user]);
 
   const addProduct = useCallback<AddProduct>(
-    (product, quantify = 1) => {
+    (product, quantify = 1, silent = false) => {
       const isExisted = cart.find((item) => item.product.id === product.id);
 
       if (isExisted) {
-        message.error({
-          content: 'Sản phẩm đã có trong giỏ hàng!',
-          className: 'custom-message',
-        });
+        if (!silent) {
+          message.error({
+            content: 'Sản phẩm đã có trong giỏ hàng!',
+            className: 'custom-message',
+          });
+        }
         return;
       }
 
@@ -65,12 +99,15 @@ export default function CartProvider({ children }: PropsWithChildren) {
           quantify,
         },
       ]);
+      if (silent) {
+        return;
+      }
       message.success({
         content: 'Thêm vào giỏ hàng thành công!',
         className: 'custom-message',
       });
     },
-    [cart]
+    [cart, setCart]
   );
 
   const changeQuantify = useCallback<ChangeQuantify>(
@@ -93,7 +130,7 @@ export default function CartProvider({ children }: PropsWithChildren) {
         })
       );
     },
-    []
+    [setCart]
   );
 
   const removeProduct = useCallback<RemoveProduct>(
@@ -115,7 +152,7 @@ export default function CartProvider({ children }: PropsWithChildren) {
         className: 'custom-message',
       });
     },
-    []
+    [setCart]
   );
 
   return (

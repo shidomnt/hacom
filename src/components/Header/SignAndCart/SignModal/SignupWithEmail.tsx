@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Space, Button, Typography } from 'antd';
+import { Space, Button, Typography, message } from 'antd';
 import styled from 'styled-components';
 import { StyledButton, StyledInput } from '.';
 import { StyledInputPassword } from './SigninWithEmail';
-import { SIGNIN_WITH_PHONE } from '../../../../constant';
+import { SIGNIN_WITH_EMAIL, SIGNIN_WITH_PHONE } from '../../../../constant';
 import { CreateUserDto } from '../../../../interfaces';
 import { register } from '../../../../api/userApi';
 
@@ -33,7 +33,7 @@ export default function SignupWithEmail({ setState }: SignupWithEmailProps) {
   const handleSubmit = async () => {
     if (isAllInputReady) {
       if (passwordValue !== confirmPasswordValue) {
-        return window.alert('Xác nhận mật khẩu không chính xác');
+        return message.error('Xác nhận mật khẩu không chính xác');
       }
       const createUserDto: CreateUserDto = {
         name: nameValue,
@@ -41,14 +41,19 @@ export default function SignupWithEmail({ setState }: SignupWithEmailProps) {
         password: passwordValue,
       };
       try {
+        const hide = message.loading('Action in progress..', 0)
         const response = await register(createUserDto);
         if (!response.data?.success) {
-          return window.alert('Tao tk that bai');
+          throw new Error('Tao tk that bai');
         }
-        window.alert('Tao tk thanh cong!');
+        hide();
+        message.success('Tao tk thanh cong!');
+        if (setState) {
+          setState(SIGNIN_WITH_EMAIL);
+        }
       } catch (e) {
         if (e instanceof Error) {
-          console.log(e.message);
+          message.error(e.message);
         }
       }
     }

@@ -3,17 +3,26 @@ import { Link } from 'react-router-dom';
 import { CartContext } from '../../../contexts/CartProvider';
 import SignOtherPlatform from './SignOtherPlatform';
 import SignModal from './SignModal';
+import { UserActionContext, UserContext } from '../../../contexts/UserProvider';
+import {
+  CartContextInterface,
+  UserActionContextInterface,
+  UserContextInterface,
+} from '../../../interfaces';
+import { KEY_LOCAL_STORAGE_ACCESS_TOKEN } from '../../../constant';
+
+const ModalToggleVisibleContext = React.createContext<React.Dispatch<
+  React.SetStateAction<boolean>
+> | null>(null);
 
 export default function SignAndCart() {
-  const cartContext = useContext(CartContext);
+  const { cart } = useContext(CartContext) as CartContextInterface;
 
   const [modalVisible, setModalVisible] = useState(false);
 
-  if (!cartContext) {
-    return null;
-  }
+  const { user } = useContext(UserContext) as UserContextInterface;
 
-  const { cart } = cartContext;
+  const { logout } = useContext(UserActionContext) as UserActionContextInterface;
 
   function handleShowModal() {
     setModalVisible(true);
@@ -23,33 +32,57 @@ export default function SignAndCart() {
     setModalVisible(false);
   }
 
+  function handleLogout() {
+    logout();
+  }
+
   return (
-    <React.Fragment>
+    <ModalToggleVisibleContext.Provider value={setModalVisible}>
       <div className="header__buttom--top-nav-hostsing-item">
         <i className="fa-solid fa-user header__buttom--top-nav-hostsing-icon" />
         <div className="header__buttom--top-nav-hostsing-content">
-          <span>Đăng ký</span>
-          <span>Đăng nhập</span>
+          {user ? (
+            <React.Fragment>
+              <span>Xin chào</span>
+              <span>{user.name}</span>
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              <span>Đăng ký</span>
+              <span>Đăng nhập</span>
+            </React.Fragment>
+          )}
           <div className="use__submenu">
-            <ul className="use__submenu--list">
-              <li>
+            {user ? (
+              <ul className="user__submenu--list">
                 <span
-                  onClick={handleShowModal}
+                  onClick={handleLogout}
                   className="use__submenu--list-link"
                 >
-                  <span>Đăng nhập</span>
+                  <span>Đăng xuất</span>
                 </span>
-              </li>
-              <li>
-                <span
-                  onClick={handleShowModal}
-                  className="use__submenu--list-link"
-                >
-                  <span>Đăng ký</span>
-                </span>
-              </li>
-              <SignOtherPlatform />
-            </ul>
+              </ul>
+            ) : (
+              <ul className="use__submenu--list">
+                <li>
+                  <span
+                    onClick={handleShowModal}
+                    className="use__submenu--list-link"
+                  >
+                    <span>Đăng nhập</span>
+                  </span>
+                </li>
+                <li>
+                  <span
+                    onClick={handleShowModal}
+                    className="use__submenu--list-link"
+                  >
+                    <span>Đăng ký</span>
+                  </span>
+                </li>
+                <SignOtherPlatform />
+              </ul>
+            )}
           </div>
           <SignModal visible={modalVisible} onCancel={handleHideModal} />
         </div>
@@ -64,6 +97,10 @@ export default function SignAndCart() {
           </div>
         </Link>
       </div>
-    </React.Fragment>
+    </ModalToggleVisibleContext.Provider>
   );
+}
+
+export {
+  ModalToggleVisibleContext
 }

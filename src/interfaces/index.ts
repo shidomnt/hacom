@@ -68,6 +68,7 @@ export interface DanhGia {
 }
 
 export interface Product {
+  _id: string;
   id: string;
   originalUrl: Url;
   imgSrc: Url;
@@ -129,7 +130,7 @@ export interface ProductQuery {
 }
 
 export interface AddProduct {
-  (product: Product, quantify?: number): void;
+  (product: Product, quantify?: number, silent?: boolean): void;
 }
 
 export interface ChangeQuantify {
@@ -159,4 +160,14 @@ export interface UserContextInterface {
 
 export interface ProductContextInterface {
   product: Product;
+}
+
+export interface LoginUserDto {
+  email: User['email'];
+  password: string;
+}
+
+export interface UserActionContextInterface {
+  login: (payload: LoginUserDto, onSuccess?: () => void) => Promise<void>;
+  logout: () => void;
 }
