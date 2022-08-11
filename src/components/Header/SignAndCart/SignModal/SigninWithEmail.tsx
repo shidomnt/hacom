@@ -1,16 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { Space, Button, Typography, Input, message } from 'antd';
+import { Space, Button, Typography, Input } from 'antd';
 import styled from 'styled-components';
 import { StyledButton, StyledInput } from '.';
-import {
-  SIGNIN_WITH_PHONE,
-} from '../../../../constant';
-import {
-  UserActionContext,
-} from '../../../../contexts/UserProvider';
-import {
-  UserActionContextInterface,
-} from '../../../../interfaces';
+import { SIGNIN_WITH_PHONE } from '../../../../constant';
+import { UserActionContext } from '../../../../contexts/UserProvider';
+import { UserActionContextInterface } from '../../../../interfaces';
 import { ModalToggleVisibleContext } from '..';
 
 const Wrapper = styled.div`

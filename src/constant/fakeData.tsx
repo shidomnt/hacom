@@ -1,4 +1,4 @@
-import { Comment, DiscountInfo, SortButton } from '../interfaces';
+import { DiscountInfo, SortButton } from '../interfaces';
 
 export const discountMapping: Record<string, DiscountInfo> = {
   CDNBK: {

@@ -41,7 +41,7 @@ export default function SignupWithEmail({ setState }: SignupWithEmailProps) {
         password: passwordValue,
       };
       try {
-        const hide = message.loading('Action in progress..', 0)
+        const hide = message.loading('Action in progress..', 0);
         const response = await register(createUserDto);
         if (!response.data?.success) {
           throw new Error('Tao tk that bai');

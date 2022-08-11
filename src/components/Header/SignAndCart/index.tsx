@@ -9,7 +9,6 @@ import {
   UserActionContextInterface,
   UserContextInterface,
 } from '../../../interfaces';
-import { KEY_LOCAL_STORAGE_ACCESS_TOKEN } from '../../../constant';
 
 const ModalToggleVisibleContext = React.createContext<React.Dispatch<
   React.SetStateAction<boolean>
@@ -22,7 +21,9 @@ export default function SignAndCart() {
 
   const { user } = useContext(UserContext) as UserContextInterface;
 
-  const { logout } = useContext(UserActionContext) as UserActionContextInterface;
+  const { logout } = useContext(
+    UserActionContext
+  ) as UserActionContextInterface;
 
   function handleShowModal() {
     setModalVisible(true);
@@ -101,6 +102,4 @@ export default function SignAndCart() {
   );
 }
 
-export {
-  ModalToggleVisibleContext
-}
+export { ModalToggleVisibleContext };
