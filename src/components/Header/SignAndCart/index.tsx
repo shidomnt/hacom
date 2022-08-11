@@ -6,20 +6,26 @@ import SignModal from './SignModal';
 import { UserActionContext, UserContext } from '../../../contexts/UserProvider';
 import {
   CartContextInterface,
+  ModalSignContextInterface,
   UserActionContextInterface,
   UserContextInterface,
 } from '../../../interfaces';
+import { SIGN_STATE } from '../../../constant';
 
-const ModalToggleVisibleContext = React.createContext<React.Dispatch<
-  React.SetStateAction<boolean>
-> | null>(null);
+const ModalSignContext = React.createContext<ModalSignContextInterface | null>(
+  null
+);
 
 export default function SignAndCart() {
   const { cart } = useContext(CartContext) as CartContextInterface;
 
+  const { user } = useContext(UserContext) as UserContextInterface;
+
   const [modalVisible, setModalVisible] = useState(false);
 
-  const { user } = useContext(UserContext) as UserContextInterface;
+  const [signState, setSignState] = useState<SIGN_STATE>(
+    () => SIGN_STATE.SIGNIN_WITH_PHONE
+  );
 
   const { logout } = useContext(
     UserActionContext
@@ -38,7 +44,13 @@ export default function SignAndCart() {
   }
 
   return (
-    <ModalToggleVisibleContext.Provider value={setModalVisible}>
+    <ModalSignContext.Provider
+      value={{
+        setModalVisible,
+        setSignState,
+        signState,
+      }}
+    >
       <div className="header__buttom--top-nav-hostsing-item">
         <i className="fa-solid fa-user header__buttom--top-nav-hostsing-icon" />
         <div className="header__buttom--top-nav-hostsing-content">
@@ -67,7 +79,10 @@ export default function SignAndCart() {
               <ul className="use__submenu--list">
                 <li>
                   <span
-                    onClick={handleShowModal}
+                    onClick={() => {
+                      setSignState(SIGN_STATE.SIGNIN_WITH_EMAIL);
+                      handleShowModal();
+                    }}
                     className="use__submenu--list-link"
                   >
                     <span>Đăng nhập</span>
@@ -75,7 +90,10 @@ export default function SignAndCart() {
                 </li>
                 <li>
                   <span
-                    onClick={handleShowModal}
+                    onClick={() => {
+                      setSignState(SIGN_STATE.SIGNUP_WITH_EMAIL);
+                      handleShowModal();
+                    }}
                     className="use__submenu--list-link"
                   >
                     <span>Đăng ký</span>
@@ -98,8 +116,8 @@ export default function SignAndCart() {
           </div>
         </Link>
       </div>
-    </ModalToggleVisibleContext.Provider>
+    </ModalSignContext.Provider>
   );
 }
 
-export { ModalToggleVisibleContext };
+export { ModalSignContext };

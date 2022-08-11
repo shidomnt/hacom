@@ -2,10 +2,10 @@ import React from 'react';
 import { Typography, Divider, Space, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import { StyledButton, StyledInput } from '.';
-import { SIGNIN_WITH_EMAIL, SIGNUP_WITH_EMAIL } from '../../../../constant';
+import { SIGN_STATE } from '../../../../constant';
 
 interface SigninWithPhoneNumberProps {
-  setState?: React.Dispatch<React.SetStateAction<string>>;
+  setState?: React.Dispatch<React.SetStateAction<SIGN_STATE>>;
 }
 
 export default function SigninWithPhoneNumber({
@@ -19,7 +19,7 @@ export default function SigninWithPhoneNumber({
           Đăng nhập hoặc{' '}
           <Button
             type="link"
-            onClick={() => setState(SIGNUP_WITH_EMAIL)}
+            onClick={() => setState(SIGN_STATE.SIGNUP_WITH_EMAIL)}
             style={{ padding: 0 }}
           >
             Tạo tài khoản
@@ -29,7 +29,7 @@ export default function SigninWithPhoneNumber({
       <StyledInput placeholder="Số điện thoại" />
       <StyledButton>Tiếp tục</StyledButton>
       <div style={{ textAlign: 'center' }}>
-        <Button type="link" onClick={() => setState(SIGNIN_WITH_EMAIL)}>
+        <Button type="link" onClick={() => setState(SIGN_STATE.SIGNIN_WITH_EMAIL)}>
           Đăng nhập bằng email
         </Button>
       </div>

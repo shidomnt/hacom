@@ -3,9 +3,9 @@ import { Space, Button, Typography, message } from 'antd';
 import styled from 'styled-components';
 import { StyledButton, StyledInput } from '.';
 import { StyledInputPassword } from './SigninWithEmail';
-import { SIGNIN_WITH_EMAIL, SIGNIN_WITH_PHONE } from '../../../../constant';
 import { CreateUserDto } from '../../../../interfaces';
 import { register } from '../../../../api/userApi';
+import { SIGN_STATE } from '../../../../constant';
 
 const Wrapper = styled.div`
   & {
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 `;
 
 interface SignupWithEmailProps {
-  setState?: React.Dispatch<React.SetStateAction<string>>;
+  setState?: React.Dispatch<React.SetStateAction<SIGN_STATE>>;
 }
 
 export default function SignupWithEmail({ setState }: SignupWithEmailProps) {
@@ -49,7 +49,7 @@ export default function SignupWithEmail({ setState }: SignupWithEmailProps) {
         hide();
         message.success('Tao tk thanh cong!');
         if (setState) {
-          setState(SIGNIN_WITH_EMAIL);
+          setState(SIGN_STATE.SIGNIN_WITH_EMAIL);
         }
       } catch (e) {
         if (e instanceof Error) {
@@ -70,12 +70,17 @@ export default function SignupWithEmail({ setState }: SignupWithEmailProps) {
         <div>
           {setState && (
             <div>
-              <Button type="text" onClick={() => setState(SIGNIN_WITH_PHONE)}>
+              <Button
+                type="text"
+                onClick={() => setState(SIGN_STATE.SIGNIN_WITH_PHONE)}
+              >
                 <i className="fa-solid fa-angle-left"></i>
               </Button>
             </div>
           )}
-          <Typography.Title level={3}>Tạo tài khoản</Typography.Title>
+          <Typography.Title style={{ margin: 0 }} level={3}>
+            Tạo tài khoản
+          </Typography.Title>
         </div>
         <div>
           <Typography.Text>Vui lòng cho biết tên bạn</Typography.Text>
@@ -116,6 +121,17 @@ export default function SignupWithEmail({ setState }: SignupWithEmailProps) {
         <StyledButton disabled={!isAllInputReady} onClick={handleSubmit}>
           Tạo tài khoản
         </StyledButton>
+        <Typography.Text>
+          Đã có tài khoản ?{' '}
+          <Button
+            type="link"
+            onClick={() => setState && setState(SIGN_STATE.SIGNIN_WITH_EMAIL)}
+            style={{ padding: 0 }}
+          >
+            Đăng nhập
+          </Button>{' '}
+          ngay
+        </Typography.Text>
       </Space>
     </Wrapper>
   );

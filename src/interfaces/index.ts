@@ -1,5 +1,6 @@
 import { MenuProps } from 'rc-menu';
 import React from 'react';
+import { SIGN_STATE } from '../constant';
 
 export type ThongSoKiThuat = Record<string, string>;
 
@@ -175,4 +176,11 @@ export interface LoginUserDto {
 export interface UserActionContextInterface {
   login: (payload: LoginUserDto, onSuccess?: () => void) => Promise<void>;
   logout: () => void;
+}
+
+export 
+interface ModalSignContextInterface {
+  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  setSignState: React.Dispatch<React.SetStateAction<SIGN_STATE>>;
+  signState: SIGN_STATE
 }
