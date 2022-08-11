@@ -133,12 +133,16 @@ export interface AddProduct {
   (product: Product, quantify?: number, silent?: boolean): void;
 }
 
+export interface AppendProducts {
+  (cartItems: Array<CartItemType>, silent?: boolean): void;
+}
+
 export interface ChangeQuantify {
   (productId: Product['id'], newQuantify: number): void;
 }
 
 export interface RemoveProduct {
-  (productIds: Array<Product['id']> | 'all'): void;
+  (productIds: Array<Product['id']> | 'all', silent?: boolean): void;
 }
 
 export interface CartContextInterface {
@@ -150,6 +154,7 @@ export interface CartActionContextInterface {
   addProduct: AddProduct;
   removeProduct: RemoveProduct;
   changeQuantify: ChangeQuantify;
+  appendProducts: AppendProducts;
   setDiscountInfo: React.Dispatch<React.SetStateAction<DiscountInfo | null>>;
 }
 

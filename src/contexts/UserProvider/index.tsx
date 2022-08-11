@@ -1,11 +1,14 @@
 import React, {
   PropsWithChildren,
   useCallback,
+  useContext,
   useEffect,
   useState,
 } from 'react';
 import { getProfile } from '../../api/userApi';
 import {
+  CartActionContextInterface,
+  CartContextInterface,
   LoginUserDto,
   User,
   UserActionContextInterface,
@@ -14,6 +17,8 @@ import {
 import { login as loginApi } from '../../api/userApi';
 import { message } from 'antd';
 import { KEY_LOCAL_STORAGE_ACCESS_TOKEN } from '../../constant';
+import { getCart, updateCart } from '../../api/cartApi';
+import { CartActionContext, CartContext } from '../CartProvider';
 
 const UserContext = React.createContext<UserContextInterface | null>(null);
 
@@ -22,6 +27,12 @@ const UserActionContext =
 
 export default function UserProvider({ children }: PropsWithChildren) {
   const [user, setUser] = useState<User | null>(null);
+
+  const { cart } = useContext(CartContext) as CartContextInterface;
+
+  const { removeProduct, appendProducts } = useContext(
+    CartActionContext
+  ) as CartActionContextInterface;
 
   useEffect(() => {
     (async () => {
@@ -38,6 +49,41 @@ export default function UserProvider({ children }: PropsWithChildren) {
       }
     })();
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      (async () => {
+        try {
+          const response = await getCart();
+          console.log('getcart')
+          if (response.data.success) {
+            appendProducts(response.data.data, true);
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      })();
+    }
+  }, [user, appendProducts]);
+
+  useEffect(() => {
+    let idTimeOut: ReturnType<typeof setTimeout>;
+    if (user) {
+      idTimeOut = setTimeout(() => {
+        (async () => {
+          try {
+            console.log('update cart')
+            await updateCart(cart);
+          } catch (e) {
+            console.log(e);
+          }
+        })();
+      }, 1000);
+    }
+    return () => {
+      clearTimeout(idTimeOut);
+    };
+  }, [cart, user]);
 
   const login = useCallback(
     async (payload: LoginUserDto, onSuccess: () => void = () => {}) => {
@@ -71,8 +117,9 @@ export default function UserProvider({ children }: PropsWithChildren) {
 
   const logout = useCallback(() => {
     localStorage.setItem(KEY_LOCAL_STORAGE_ACCESS_TOKEN, '');
+    removeProduct('all', true);
     setUser(null);
-  }, []);
+  }, [removeProduct]);
 
   return (
     <UserActionContext.Provider value={{ login, logout }}>

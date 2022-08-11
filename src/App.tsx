@@ -15,8 +15,8 @@ function App() {
   return (
     <BrowserRouter>
       <HelmetProvider>
-        <UserProvider>
-          <CartProvider>
+        <CartProvider>
+          <UserProvider>
             <Routes>
               <Route path="/" element={<Layout />}>
                 <Route index element={<MainPage />} />
@@ -30,8 +30,8 @@ function App() {
               </Route>
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
-          </CartProvider>
-        </UserProvider>
+          </UserProvider>
+        </CartProvider>
       </HelmetProvider>
     </BrowserRouter>
   );
