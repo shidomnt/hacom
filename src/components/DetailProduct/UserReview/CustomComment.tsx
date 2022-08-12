@@ -9,6 +9,7 @@ import {
   Space,
   Typography,
 } from 'antd';
+import moment from 'moment';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Comment } from '../../../interfaces';
@@ -33,10 +34,18 @@ const Wrapper = styled.div`
 `;
 
 interface CustomCommentProps {
+  onReply: (
+    content: string,
+    replyTo?: Comment['_id'],
+    onFinishCb?: () => void
+  ) => Promise<any>;
   comment: Comment;
 }
 
-export default function CustomComment({ comment }: CustomCommentProps) {
+export default function CustomComment({
+  comment,
+  onReply,
+}: CustomCommentProps) {
   const [replyVisible, setReplyVisible] = useState(false);
   const [replyComment, setReplyComment] = useState('');
 
@@ -53,13 +62,13 @@ export default function CustomComment({ comment }: CustomCommentProps) {
           >
             <Space direction={lg ? 'vertical' : 'horizontal'} align="center">
               <Avatar
-                src={comment.author.avatarSrc}
+                src={comment.author?.avatarSrc}
                 size={50}
                 icon={<UserOutlined />}
               />
               <Typography.Text strong>{comment.author.name}</Typography.Text>
               <Typography.Text type="secondary">
-                {comment.createdAt}
+                {moment(comment.createdAt).startOf('second').fromNow()}
               </Typography.Text>
             </Space>
           </div>
@@ -84,7 +93,11 @@ export default function CustomComment({ comment }: CustomCommentProps) {
                 <CommentBox
                   value={replyComment}
                   onChange={(value) => setReplyComment(value)}
-                  onSubmit={() => {}}
+                  onSubmit={() =>
+                    onReply(replyComment, comment._id, () =>
+                      setReplyComment('')
+                    )
+                  }
                 />
               )}
             </div>

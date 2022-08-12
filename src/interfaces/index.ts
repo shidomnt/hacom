@@ -59,7 +59,16 @@ export interface Comment {
   author: User;
   content: string;
   createdAt: string;
-  reply: Array<Omit<Comment, 'reply'>> | null;
+  updatedAt: string;
+  reply: Array<Omit<Comment, 'reply'>>;
+}
+
+export interface CreateCommentDto {
+  product?: string;
+
+  content: string;
+
+  replyTo?: string;
 }
 
 export interface DanhGia {
@@ -178,9 +187,8 @@ export interface UserActionContextInterface {
   logout: () => void;
 }
 
-export 
-interface ModalSignContextInterface {
+export interface ModalSignContextInterface {
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
   setSignState: React.Dispatch<React.SetStateAction<SIGN_STATE>>;
-  signState: SIGN_STATE
+  signState: SIGN_STATE;
 }

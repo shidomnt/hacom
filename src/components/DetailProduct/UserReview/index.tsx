@@ -3,15 +3,24 @@ import {
   Col,
   Divider,
   Grid,
+  message,
   Progress,
   Rate,
   Row,
   Space,
   Typography,
 } from 'antd';
-import React, { useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Comment } from '../../../interfaces';
+import { ProductContext } from '..';
+import { createComment, getComments } from '../../../api/commentApi';
+import { UserContext } from '../../../contexts/UserProvider';
+import {
+  Comment,
+  CreateCommentDto,
+  ProductContextInterface,
+  UserContextInterface,
+} from '../../../interfaces';
 // import { listCommentFake } from '../../../constant';
 import CommentBox from './CommentBox';
 import CustomComment from './CustomComment';
@@ -68,17 +77,50 @@ export default function UserReview() {
   const [starValue, setStarValue] = useState(5);
   const [starHoverValue, setStarHoverValue] = useState(0);
   const [commentValue, setCommentValue] = useState('');
-  const [listComment] = useState<Array<Comment>>(() => []);
+  const [listComment, setListComment] = useState<Array<Comment>>([]);
+
+  const { product } = useContext(ProductContext) as ProductContextInterface;
+  const { user } = useContext(UserContext) as UserContextInterface;
 
   const { xl } = Grid.useBreakpoint();
 
-  const handleSubmit = () => {
-    if (commentValue) {
-      const comment = {
-        rate: starValue,
-        content: commentValue,
+  const handleGetComments = useCallback(async () => {
+    const response = await getComments(product._id);
+    if (!response?.data?.success) {
+      return message.warn('Ban phai dang nhap de dung tinh nang nay!');
+    }
+    setListComment(response.data.data);
+  }, [product._id]);
+
+  useEffect(() => {
+    handleGetComments();
+  }, [handleGetComments]);
+
+  const handleSubmit = async (
+    content: string,
+    replyTo?: Comment['_id'],
+    onFinishCb?: () => void
+  ) => {
+    if (content) {
+      if (!user) {
+        return message.warn('Ban phai dang nhap de dung tinh nang nay!');
+      }
+      const comment: CreateCommentDto = {
+        product: replyTo ? undefined : product._id,
+        content,
       };
-      console.log(comment);
+      if (replyTo) {
+        comment.replyTo = replyTo;
+      }
+      const response = await createComment(comment);
+      if (!response?.data?.success) {
+        return message.error('Loi khi tao comment');
+      }
+      console.log(response.data.data);
+      await handleGetComments();
+      if (onFinishCb) {
+        onFinishCb();
+      }
     }
   };
 
@@ -143,13 +185,19 @@ export default function UserReview() {
           <CommentBox
             value={commentValue}
             onChange={(value) => setCommentValue(value)}
-            onSubmit={handleSubmit}
+            onSubmit={() =>
+              handleSubmit(commentValue, undefined, () => setCommentValue(''))
+            }
           />
         </Col>
         <Col span={24}>
           {!!listComment.length &&
             listComment.map((comment) => (
-              <CustomComment key={comment._id} comment={comment} />
+              <CustomComment
+                key={comment._id}
+                onReply={handleSubmit}
+                comment={comment}
+              />
             ))}
         </Col>
       </Row>

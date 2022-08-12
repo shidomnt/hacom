@@ -13,14 +13,6 @@ const Wrapper = styled.div`
   }
 `;
 
-/**
- * @typedef {import('react').PropsWithoutRef<Partial<{value: string, onChange: (value: string) => void, onSubmit: () => void}>>} CommentBoxProps
- */
-
-/**
- * @param {Required<CommentBoxProps>} props
- * @returns
- */
 interface CommentBoxProps {
   value: string;
   onChange: (value: string) => void;
