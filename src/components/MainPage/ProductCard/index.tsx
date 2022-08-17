@@ -7,7 +7,6 @@ import { Col, Grid, Row, Typography } from 'antd';
 import React, {
   useContext,
   useEffect,
-  useLayoutEffect,
   useRef,
   useState,
 } from 'react';
