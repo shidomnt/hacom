@@ -4,12 +4,7 @@ import {
   ShoppingCartOutlined,
 } from '@ant-design/icons';
 import { Col, Grid, Row, Typography } from 'antd';
-import React, {
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CartActionContext } from '../../../contexts/CartProvider';
 import {
@@ -47,12 +42,10 @@ export default function ProductCard({ category, product }: ProductCardProps) {
   const swiper = useSwiper();
   const { xs } = Grid.useBreakpoint();
   const imgWrapperRef = useRef<HTMLDivElement>(null);
-  const previewWrapperRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const imgWrapper = imgWrapperRef.current;
-    const previewWrapper = previewWrapperRef.current;
     function handleMouseEnter(this: HTMLDivElement) {
       this.addEventListener('mousemove', handleMouseMove);
       this.addEventListener('mouseleave', handleMouseLeave);
@@ -65,18 +58,19 @@ export default function ProductCard({ category, product }: ProductCardProps) {
       this: HTMLDivElement,
       event: HTMLElementEventMap['mousemove']
     ) {
-      if (previewWrapper) {
-        const clientX = event.clientX;
-        const clientY = event.clientY;
-        const docEl = document.documentElement;
-        setPreviewPos({
-          x:
-            clientX + previewWrapper.offsetWidth + 100 < docEl.scrollWidth
-              ? clientX + 20
-              : clientX - 20 - previewWrapper.offsetWidth,
-          y: docEl.scrollTop + clientY / 6,
-        });
-      }
+      const clientX = event.clientX;
+      const clientY = event.clientY;
+      const docEl = document.documentElement;
+      const previewWrapperWidth = 400;
+      const x =
+        clientX + previewWrapperWidth + 50 < docEl.scrollWidth
+          ? clientX + 20
+          : clientX - 20 - previewWrapperWidth;
+      const y = docEl.scrollTop + clientY / 6;
+      setPreviewPos({
+        x,
+        y,
+      });
     }
     imgWrapper?.addEventListener('mouseenter', handleMouseEnter);
     return () => {
@@ -115,21 +109,18 @@ export default function ProductCard({ category, product }: ProductCardProps) {
   return (
     product && (
       <div ref={wrapperRef}>
-        <Modal>
-          <PreviewWrapper
-            style={
-              previewPos
-                ? {
-                    left: previewPos.x,
-                    top: previewPos.y,
-                  }
-                : { display: 'none' }
-            }
-            ref={previewWrapperRef}
-          >
-            <Preview product={product} />
-          </PreviewWrapper>
-        </Modal>
+        {previewPos && (
+          <Modal>
+            <PreviewWrapper
+              style={{
+                left: previewPos.x,
+                top: previewPos.y,
+              }}
+            >
+              <Preview product={product} />
+            </PreviewWrapper>
+          </Modal>
+        )}
         <StyledCard
           cover={
             <div ref={imgWrapperRef}>

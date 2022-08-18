@@ -386,3 +386,25 @@ export const listBrandImgSrc = [
 //     ],
 //   },
 // ];
+
+export const pathMapping = {
+  cart: 'Giỏ hàng',
+  products: 'Tất cả sản phẩm',
+  'Laptop,Tablet,Mobile': 'Laptop, Tablet, Mobile',
+  'PCGaming,Streaming': 'PC Gaming, Streaming',
+  'PhuKienLaptop,PC,Mobile': 'Phụ Kiện Laptop, PC, Mobile',
+  'PCVanPhong,AIO,MiniPC': 'PC Văn Phòng, AIO, Mini PC',
+  LinhKienMayTinh: 'Linh Kiện Máy Tính',
+  'TanNhietPC,Cooling': 'Tản Nhiệt PC, Cooling',
+  ManHinhMayTinh: 'Màn Hình Máy Tính',
+  'PhimChuot,GheGame,Gear': 'Phím Chuột, Ghế Game, Gear',
+  'Loa,TaiNghe,Mic,Webcam': 'Loa, Tai Nghe, Mic, Webcam',
+  CameraQuanSat: 'Camera Quan Sát',
+  'MayIn,MayChamCong': 'Máy In, Máy Chấm Công',
+  ThietBiVanPhongKhac: 'Thiết Bị Văn Phòng Khác',
+  'TBSieuThi,MayBanHang': 'TB Siêu Thị, Máy Bán Hàng',
+  'PCDoHoa,Render,MayChu': 'PC Đồ Họa, Render, Máy Chủ',
+  'LaptopGaming,DoHoa': 'Laptop Gaming, Đồ Họa',
+  'ThietBiLuuTru,USB,The': 'Thiết Bị Lưu Trữ, USB, Thẻ',
+  'ThietBiMang,PhanMem': 'Thiết Bị Mạng, Phần Mềm',
+};

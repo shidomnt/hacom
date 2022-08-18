@@ -21,6 +21,10 @@ function App() {
               <Route path="/" element={<Layout />}>
                 <Route index element={<MainPage />} />
                 <Route path="cart" element={<Cart />} />
+                <Route path="products">
+                  <Route index element={<Navigate to="/" />} />
+                  <Route path=":id" element={<DetailProduct />} />
+                </Route>
                 <Route path=":category">
                   <Route index element={<ProductsByCategory />} />
                   <Route path=":id" element={<DetailProduct />} />
