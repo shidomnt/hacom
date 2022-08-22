@@ -1,16 +1,18 @@
 import { Button, Checkbox, Col, Row, Tooltip, Typography } from 'antd';
-import React, { useContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { CartActionContext, CartContext } from '../../../contexts/CartProvider';
 import Sidebar from './Sidebar';
 import CartItem from './CartItem';
 import {
-  CartActionContextInterface,
-  CartContextInterface,
   Product,
 } from '../../../interfaces';
 import { CheckboxChangeEvent } from 'antd/lib/checkbox';
 import { CheckboxValueType } from 'antd/lib/checkbox/Group';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import {
+  removeProduct,
+  selectAllCartItem,
+} from '../../../features/cart/cart.slice';
 
 const Wrapper = styled.div`
   & {
@@ -39,10 +41,8 @@ const Wrapper = styled.div`
 `;
 
 export default function CartContent() {
-  const { cart } = useContext(CartContext) as CartContextInterface;
-  const { removeProduct } = useContext(
-    CartActionContext
-  ) as CartActionContextInterface;
+  const cart = useAppSelector((state) => selectAllCartItem(state.cart));
+  const dispatch = useAppDispatch();
   const [checkedList, setCheckedList] = useState<Array<Product['id']>>([]);
   const [checkAll, setCheckAll] = useState(false);
 
@@ -73,9 +73,17 @@ export default function CartContent() {
 
   const handleDeleteAll = () => {
     if (!checkedList.length) {
-      removeProduct('all');
+      dispatch(
+        removeProduct({
+          productIds: 'all',
+        })
+      );
     } else {
-      removeProduct(checkedList);
+      dispatch(
+        removeProduct({
+          productIds: checkedList,
+        })
+      );
     }
   };
 

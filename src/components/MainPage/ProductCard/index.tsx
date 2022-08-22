@@ -4,9 +4,8 @@ import {
   ShoppingCartOutlined,
 } from '@ant-design/icons';
 import { Col, Grid, Row, Typography } from 'antd';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CartActionContext } from '../../../contexts/CartProvider';
 import {
   calculateDiscountRate,
   formatNumberPriceToString,
@@ -21,6 +20,8 @@ import Preview from './Preview';
 import styled from 'styled-components';
 import Modal from '../../Modal';
 import { useSwiper } from 'swiper/react';
+import { useAppDispatch } from '../../../app/hooks';
+import { addProduct } from '../../../features/cart/cart.slice';
 
 const PreviewWrapper = styled.div`
   & {
@@ -35,7 +36,6 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ category, product }: ProductCardProps) {
-  const cartActionContext = useContext(CartActionContext);
   const [previewPos, setPreviewPos] = useState<{ x: number; y: number } | null>(
     null
   );
@@ -43,6 +43,8 @@ export default function ProductCard({ category, product }: ProductCardProps) {
   const { xs } = Grid.useBreakpoint();
   const imgWrapperRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const imgWrapper = imgWrapperRef.current;
@@ -96,14 +98,11 @@ export default function ProductCard({ category, product }: ProductCardProps) {
     };
   }, [swiper]);
 
-  if (!cartActionContext) {
-    return null;
-  }
-
-  const { addProduct } = cartActionContext;
-
   function handleClickCartIcon(product: Product) {
-    addProduct(product);
+    dispatch(addProduct({
+      product,
+      quantify: 1
+    }));
   }
 
   return (

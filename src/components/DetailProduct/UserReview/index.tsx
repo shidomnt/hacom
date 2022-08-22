@@ -10,18 +10,17 @@ import {
   Space,
   Typography,
 } from 'antd';
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { ProductContext } from '..';
 import { createComment, getComments } from '../../../api/commentApi';
-import { UserContext } from '../../../contexts/UserProvider';
+import { useAppSelector } from '../../../app/hooks';
+import { userSelector } from '../../../features/user/user.slice';
 import {
   Comment,
   CreateCommentDto,
   ProductContextInterface,
-  UserContextInterface,
 } from '../../../interfaces';
-// import { listCommentFake } from '../../../constant';
 import CommentBox from './CommentBox';
 import CustomComment from './CustomComment';
 
@@ -80,7 +79,8 @@ export default function UserReview() {
   const [listComment, setListComment] = useState<Array<Comment>>([]);
 
   const { product } = useContext(ProductContext) as ProductContextInterface;
-  const { user } = useContext(UserContext) as UserContextInterface;
+
+  const user = useAppSelector((state) => userSelector(state).data);
 
   const { xl } = Grid.useBreakpoint();
 

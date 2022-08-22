@@ -2,13 +2,14 @@ import React, { useContext, useState } from 'react';
 import { Space, Button, Typography, Input, Row } from 'antd';
 import styled from 'styled-components';
 import { StyledButton, StyledInput } from '.';
-import { UserActionContext } from '../../../../contexts/UserProvider';
 import {
   ModalSignContextInterface,
-  UserActionContextInterface,
 } from '../../../../interfaces';
 import { ModalSignContext } from '..';
 import { SIGN_STATE } from '../../../../constant';
+import { fetchUser, login } from '../../../../features/user/user.slice';
+import { StatusEnum } from '../../../../features/interface/statusEnum.interface';
+import { useAppDispatch } from '../../../../app/hooks';
 
 const Wrapper = styled.div`
   & {
@@ -38,21 +39,26 @@ export default function SigninWithEmail({ setState }: SignupWithEmailProps) {
 
   const isAllInputReady = emailValue && setEmailValue;
 
-  const { login } = useContext(UserActionContext) as UserActionContextInterface;
+  const dispatch = useAppDispatch();
 
   const { setModalVisible } = useContext(
     ModalSignContext
   ) as ModalSignContextInterface;
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (isAllInputReady) {
       const payload = {
         email: emailValue,
         password: passwordValue,
       };
-      login(payload, () => {
-        setModalVisible(false);
-      });
+      await login(payload);
+      await dispatch(fetchUser({
+        onFinish(userStatus) {
+          if (userStatus === StatusEnum.fulfilled) {
+            setModalVisible(false);
+          }
+        },
+      }))
     }
   };
 

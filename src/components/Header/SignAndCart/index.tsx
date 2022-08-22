@@ -1,35 +1,30 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CartContext } from '../../../contexts/CartProvider';
 import SignOtherPlatform from './SignOtherPlatform';
 import SignModal from './SignModal';
-import { UserActionContext, UserContext } from '../../../contexts/UserProvider';
 import {
-  CartContextInterface,
   ModalSignContextInterface,
-  UserActionContextInterface,
-  UserContextInterface,
 } from '../../../interfaces';
 import { SIGN_STATE } from '../../../constant';
+import { selectAllCartItem } from '../../../features/cart/cart.slice';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { logout, userSelector } from '../../../features/user/user.slice';
 
 const ModalSignContext = React.createContext<ModalSignContextInterface | null>(
   null
 );
 
 export default function SignAndCart() {
-  const { cart } = useContext(CartContext) as CartContextInterface;
+  const cartLength = useAppSelector((state) => selectAllCartItem(state.cart).length)
+  const user = useAppSelector((state) => userSelector(state).data);
 
-  const { user } = useContext(UserContext) as UserContextInterface;
+  const dispatch = useAppDispatch();
 
   const [modalVisible, setModalVisible] = useState(false);
 
   const [signState, setSignState] = useState<SIGN_STATE>(
     () => SIGN_STATE.SIGNIN_WITH_PHONE
   );
-
-  const { logout } = useContext(
-    UserActionContext
-  ) as UserActionContextInterface;
 
   function handleShowModal() {
     setModalVisible(true);
@@ -40,7 +35,7 @@ export default function SignAndCart() {
   }
 
   function handleLogout() {
-    logout();
+    dispatch(logout())
   }
 
   return (
@@ -109,7 +104,7 @@ export default function SignAndCart() {
       <div className="header__buttom--top-nav-hostsing-item">
         <Link to="/cart" style={{ display: 'flex', color: 'inherit' }}>
           <i className="fa-solid fa-bag-shopping header__buttom--top-nav-hostsing-icon">
-            <span className="cart__price">{cart.length}</span>
+            <span className="cart__price">{cartLength}</span>
           </i>
           <div className="header__buttom--top-nav-hostsing-content">
             <span>Giỏ hàng</span>

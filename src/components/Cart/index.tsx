@@ -1,12 +1,11 @@
 import { Space, Typography } from 'antd';
-import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { CartContext } from '../../contexts/CartProvider';
 import CustomBreadcrumb from '../CustomBreadcrumb';
 import EmptyCart from './EmptyCart';
 import CartContent from './CartContent';
 import { Helmet } from 'react-helmet-async';
-import { CartContextInterface } from '../../interfaces';
+import { useAppSelector } from '../../app/hooks';
+import { selectAllCartItem } from '../../features/cart/cart.slice';
 
 const Wrapper = styled.div`
   .ant-typography {
@@ -15,7 +14,7 @@ const Wrapper = styled.div`
 `;
 
 export default function Cart() {
-  const { cart } = useContext(CartContext) as CartContextInterface;
+  const cartLength = useAppSelector((state) => selectAllCartItem(state.cart).length)
 
   return (
     <Wrapper>
@@ -26,12 +25,12 @@ export default function Cart() {
       <div className="cart-title">
         <Space direction="horizontal">
           <Typography.Title level={3}>Giỏ hàng</Typography.Title>
-          {!cart.length && (
-            <Typography.Text>({cart.length} sản phẩm)</Typography.Text>
+          {!cartLength && (
+            <Typography.Text>({cartLength} sản phẩm)</Typography.Text>
           )}
         </Space>
       </div>
-      <div>{!cart.length ? <EmptyCart /> : <CartContent />}</div>
+      <div>{!cartLength ? <EmptyCart /> : <CartContent />}</div>
     </Wrapper>
   );
 }

@@ -15,7 +15,7 @@ export async function register(createUserDto: CreateUserDto) {
 export async function login<Type extends 'email' | 'phone' = 'email'>(
   payload: Pick<User, Type> & { password: string }
 ) {
-  const response = axios.post<AxiosCommonResponse & { accessToken: string }>(
+  const response = await axios.post<AxiosCommonResponse & { accessToken: string }>(
     `${API_URL}/auth/login`,
     payload
   );

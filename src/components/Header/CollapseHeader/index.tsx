@@ -1,11 +1,11 @@
 import { Col, Drawer, Image, Row } from 'antd';
-import React, { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { CartContext } from '../../../contexts/CartProvider';
 import SearchBar from './SearchBar';
 import DrawerContent from './DrawerContent';
-import { CartContextInterface } from '../../../interfaces';
+import { useAppSelector } from '../../../app/hooks';
+import { selectAllCartItem } from '../../../features/cart/cart.slice';
 
 const Wrapper = styled.div`
   & {
@@ -64,7 +64,7 @@ const StyledDrawer = styled(Drawer)`
 `;
 
 export default function CollapseHeader() {
-  const { cart } = useContext(CartContext) as CartContextInterface;
+  const cartLength = useAppSelector((state) => selectAllCartItem(state.cart).length)
   const [hideLogo, setHideLogo] = useState(false);
 
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -135,7 +135,7 @@ export default function CollapseHeader() {
                 <Link to="/cart" style={{ color: 'inherit' }}>
                   <i className="fa-solid fa-cart-shopping"></i>
                 </Link>
-                <span className="cart-soluong">{cart.length}</span>
+                <span className="cart-soluong">{cartLength}</span>
               </div>
             </Col>
           </Row>
