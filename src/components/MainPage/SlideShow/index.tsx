@@ -2,11 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Autoplay, Navigation, SwiperOptions } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import ProductCard from '../ProductCard';
-import useApi from '../../../hooks/useApi';
 import Loading from '../../Loading';
-import { initProducts } from '../../../constant';
 import { Category } from '../../../interfaces';
 import { isInViewport } from '../../../utils';
+import {
+  useLazyGetProductsQuery,
+} from '../../../features/api/api.slice';
 
 interface SlideShowProps {
   title: React.ReactNode;
@@ -27,28 +28,25 @@ function SlideShow({
   button = null,
   breakpoints = {},
 }: SlideShowProps) {
-  const [products, setProducts] = useState(initProducts);
 
-  const { getProductsByCategory } = useApi();
+  const [getProducts, result] = useLazyGetProductsQuery();
 
   const [shouldRender, setShouldRender] = useState(false);
 
   const ref = useRef<HTMLDivElement>(null);
 
+  const { data: products, isError, error } = result;
+
   useEffect(() => {
     if (shouldRender) {
       (async () => {
-        const response = await getProductsByCategory(categorySlug, {
-          limit,
-        });
-        if (response) {
-          setProducts(response.data);
-        } else {
-          setProducts([]);
-        }
+        await getProducts({
+          categorySlug,
+          limit
+        }, true)
       })();
     }
-  }, [categorySlug, getProductsByCategory, limit, shouldRender]);
+  }, [categorySlug, getProducts, limit, shouldRender]);
 
   useEffect(() => {
     const divElement = ref.current;
@@ -66,9 +64,13 @@ function SlideShow({
     };
   }, [categorySlug]);
 
+  if (isError) {
+    console.log(error);
+  }
+
   return (
     <div ref={ref}>
-      {!!products.length ? (
+      {!!products?.length ? (
         <React.Fragment>
           {title}
           <Swiper

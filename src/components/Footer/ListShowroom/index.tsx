@@ -1,31 +1,23 @@
 import { Col, Grid, Row } from 'antd';
-import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import useApi from '../../../hooks/useApi';
 import ShowroomCard from './ShowroomCard';
 import ListShowroomCollapse from './ListShowroomCollapse';
-import { initShowrooms } from '../../../constant';
+import { useGetShowroomsQuery } from '../../../features/api/api.slice';
+import Loading from '../../Loading';
 
 const Wrapper = styled.div`
   padding-bottom: 24px;
 `;
 
 export default function ListShowroom() {
-  const [showrooms, setShowrooms] = useState(initShowrooms);
-  const { getShowRooms } = useApi();
 
-  useEffect(() => {
-    (async () => {
-      const response = await getShowRooms();
-      if (response) {
-        setShowrooms(response.data);
-      } else {
-        setShowrooms([]);
-      }
-    })();
-  }, [getShowRooms]);
+  const { data: showrooms } = useGetShowroomsQuery();
 
   const { md } = Grid.useBreakpoint();
+
+  if (!showrooms) {
+    return <Loading />;
+  }
 
   if (!md) {
     return <ListShowroomCollapse showrooms={showrooms} />;

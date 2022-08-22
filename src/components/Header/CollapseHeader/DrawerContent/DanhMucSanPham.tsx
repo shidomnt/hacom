@@ -2,7 +2,7 @@ import { Menu } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { initSideBarContent } from '../../../../constant';
+import { useGetSideBarQuery } from '../../../../features/api/api.slice';
 import useApi from '../../../../hooks/useApi';
 import { getItem } from '../../../../utils/';
 
@@ -15,11 +15,9 @@ const StyledMenu = styled(Menu)`
 `;
 
 export default function DanhMucSanPham() {
-  const { getSideBarContent, getSideBarMappingIcon } = useApi();
+  const { getSideBarMappingIcon } = useApi();
 
   const [mappingIcon] = useState(() => getSideBarMappingIcon());
-
-  const [sideBarContent, setSideBarContent] = useState(initSideBarContent);
 
   const [items, setItems] = useState(() => [
     getItem(
@@ -29,22 +27,12 @@ export default function DanhMucSanPham() {
     ),
   ]);
 
-  useEffect(() => {
-    (async () => {
-      const response = await getSideBarContent();
-      if (response) {
-        setSideBarContent(response.data);
-      } else {
-        setSideBarContent(null);
-      }
-    })();
-  }, [getSideBarContent]);
+  const { data: sideBarContent } = useGetSideBarQuery();
 
   useEffect(() => {
     if (sideBarContent) {
       const listCategory = sideBarContent.map((catalog, index) => {
         const category = catalog.category;
-        /** @type {import('../../../../hooks/useApi').SideBarContentChild[]} */
         const itemsOfCategory = catalog.content;
         const listItem = itemsOfCategory.map((item) => {
           const listSubitem = item.children.map((child) => {
