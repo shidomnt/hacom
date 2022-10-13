@@ -1,19 +1,30 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CartContext } from '../../../contexts/CartProvider';
 import SignOtherPlatform from './SignOtherPlatform';
 import SignModal from './SignModal';
+import {
+  ModalSignContextInterface,
+} from '../../../interfaces';
+import { SIGN_STATE } from '../../../constant';
+import { selectAllCartItem } from '../../../features/cart/cart.slice';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { logout, userSelector } from '../../../features/user/user.slice';
+
+const ModalSignContext = React.createContext<ModalSignContextInterface | null>(
+  null
+);
 
 export default function SignAndCart() {
-  const cartContext = useContext(CartContext);
+  const cartLength = useAppSelector((state) => selectAllCartItem(state.cart).length)
+  const user = useAppSelector((state) => userSelector(state).data);
+
+  const dispatch = useAppDispatch();
 
   const [modalVisible, setModalVisible] = useState(false);
 
-  if (!cartContext) {
-    return null;
-  }
-
-  const { cart } = cartContext;
+  const [signState, setSignState] = useState<SIGN_STATE>(
+    () => SIGN_STATE.SIGNIN_WITH_PHONE
+  );
 
   function handleShowModal() {
     setModalVisible(true);
@@ -23,33 +34,69 @@ export default function SignAndCart() {
     setModalVisible(false);
   }
 
+  function handleLogout() {
+    dispatch(logout())
+  }
+
   return (
-    <React.Fragment>
+    <ModalSignContext.Provider
+      value={{
+        setModalVisible,
+        setSignState,
+        signState,
+      }}
+    >
       <div className="header__buttom--top-nav-hostsing-item">
         <i className="fa-solid fa-user header__buttom--top-nav-hostsing-icon" />
         <div className="header__buttom--top-nav-hostsing-content">
-          <span>Đăng ký</span>
-          <span>Đăng nhập</span>
+          {user ? (
+            <React.Fragment>
+              <span>Xin chào</span>
+              <span>{user.name}</span>
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              <span>Đăng ký</span>
+              <span>Đăng nhập</span>
+            </React.Fragment>
+          )}
           <div className="use__submenu">
-            <ul className="use__submenu--list">
-              <li>
+            {user ? (
+              <ul className="user__submenu--list">
                 <span
-                  onClick={handleShowModal}
+                  onClick={handleLogout}
                   className="use__submenu--list-link"
                 >
-                  <span>Đăng nhập</span>
+                  <span>Đăng xuất</span>
                 </span>
-              </li>
-              <li>
-                <span
-                  onClick={handleShowModal}
-                  className="use__submenu--list-link"
-                >
-                  <span>Đăng ký</span>
-                </span>
-              </li>
-              <SignOtherPlatform />
-            </ul>
+              </ul>
+            ) : (
+              <ul className="use__submenu--list">
+                <li>
+                  <span
+                    onClick={() => {
+                      setSignState(SIGN_STATE.SIGNIN_WITH_EMAIL);
+                      handleShowModal();
+                    }}
+                    className="use__submenu--list-link"
+                  >
+                    <span>Đăng nhập</span>
+                  </span>
+                </li>
+                <li>
+                  <span
+                    onClick={() => {
+                      setSignState(SIGN_STATE.SIGNUP_WITH_EMAIL);
+                      handleShowModal();
+                    }}
+                    className="use__submenu--list-link"
+                  >
+                    <span>Đăng ký</span>
+                  </span>
+                </li>
+                <SignOtherPlatform />
+              </ul>
+            )}
           </div>
           <SignModal visible={modalVisible} onCancel={handleHideModal} />
         </div>
@@ -57,13 +104,15 @@ export default function SignAndCart() {
       <div className="header__buttom--top-nav-hostsing-item">
         <Link to="/cart" style={{ display: 'flex', color: 'inherit' }}>
           <i className="fa-solid fa-bag-shopping header__buttom--top-nav-hostsing-icon">
-            <span className="cart__price">{cart.length}</span>
+            <span className="cart__price">{cartLength}</span>
           </i>
           <div className="header__buttom--top-nav-hostsing-content">
             <span>Giỏ hàng</span>
           </div>
         </Link>
       </div>
-    </React.Fragment>
+    </ModalSignContext.Provider>
   );
 }
+
+export { ModalSignContext };

@@ -1,10 +1,9 @@
 import { Button, Col, Divider, Input, message, Row, Typography } from 'antd';
-import React, { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { CartActionContext, CartContext } from '../../../contexts/CartProvider';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { discountInfoSelector, selectAllCartItem, setDiscountInfo } from '../../../features/cart/cart.slice';
 import {
-  CartActionContextInterface,
-  CartContextInterface,
   Product,
 } from '../../../interfaces';
 import {
@@ -42,12 +41,9 @@ export default function Sidebar({ checkedList }: SidebarProps) {
   const [cost, setCost] = useState(0);
   const [discountCode, setDisCountCode] = useState('');
 
-  const { cart, discountInfo } = useContext(
-    CartContext
-  ) as CartContextInterface;
-  const { setDiscountInfo } = useContext(
-    CartActionContext
-  ) as CartActionContextInterface;
+  const cart = useAppSelector((state) => selectAllCartItem(state.cart));
+  const discountInfo = useAppSelector(discountInfoSelector);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const selectedItems = cart.filter((item) =>
@@ -74,13 +70,13 @@ export default function Sidebar({ checkedList }: SidebarProps) {
           content: 'Mã giảm giá không hợp lệ!',
           className: 'custom-message',
         });
-        setDiscountInfo(null);
+        dispatch(setDiscountInfo(null));
       } else {
         message.success({
           content: 'Áp dụng mã giảm giá thành công!',
           className: 'custom-message',
         });
-        setDiscountInfo(result.discount);
+        dispatch(setDiscountInfo(result.discount));
       }
     }
   }

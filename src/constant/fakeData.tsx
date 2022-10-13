@@ -1,4 +1,4 @@
-import { Comment, DiscountInfo, SortButton } from '../interfaces';
+import { DiscountInfo, SortButton } from '../interfaces';
 
 export const discountMapping: Record<string, DiscountInfo> = {
   CDNBK: {
@@ -312,77 +312,99 @@ export const listBrandImgSrc = [
   '/assets/img/samsung.jpg',
 ];
 
-export const listCommentFake: Array<Comment> = [
-  {
-    _id: '1231sdsada2',
-    author: {
-      _id: 'dsadsaee123',
-      avatarSrc: '',
-      name: 'Quân',
-    },
-    content: 'Cấu hình này quá ngon so với tầm giá rồi',
-    createdAt: '30/7/2022 8:24',
-    reply: [],
-  },
-  {
-    _id: '641239asdasddas',
-    author: {
-      _id: 'dsadsaeeadsad123',
-      avatarSrc: '',
-      name: 'Đỗ Quốc Hưng',
-    },
-    content: 'Cuối tháng này đã có chưa ạ',
-    createdAt: '23/2/2022 13:58',
-    reply: [
-      {
-        _id: '912321ddasdsadsa',
-        author: {
-          _id: 'dasd12321ed',
-          avatarSrc: 'https://hacom.vn/media/lib/hnc_40x.png',
-          name: 'HACOM',
-          nameTag: 'HACOM Care',
-        },
-        content: `Dạ bên em sắp về hàng anh nhé.
-        Khi nào có hàng Website sẽ cập nhật ạ.
-        Thông tin đến anh.`,
-        createdAt: '23/2/2022 18:21',
-      },
-    ],
-  },
-  {
-    _id: '6412ad39asdas',
-    author: {
-      _id: 'dsadsaeeadsad123',
-      avatarSrc: '',
-      name: 'Đỗ Quốc Hưng',
-    },
-    content: 'Khi nào máy này về vậy ạ?',
-    createdAt: '23/2/2022 13:58',
-    reply: [
-      {
-        _id: '9123asd21dsadsa',
-        author: {
-          _id: 'dasd12321ed',
-          name: 'HACOM',
-          nameTag: 'HACOM Care',
-          avatarSrc: 'https://hacom.vn/media/lib/hnc_40x.png',
-        },
-        content: `Dạ hiện tại bên em chưa có lịch về hàng cụ thể ạ.
-        Khi nào có trang web sẽ cập nhật thông tin anh nhé.`,
-        createdAt: '10/2/2022 11:4',
-      },
-      {
-        _id: 'dasdasdasd',
-        author: {
-          _id: 'dasd12321ed',
-          name: 'HACOM',
-          nameTag: 'HACOM Care',
-          avatarSrc: 'https://hacom.vn/media/lib/hnc_40x.png',
-        },
-        content: `Dạ hiện tại bên em chưa có lịch về hàng cụ thể ạ.
-        Khi nào có trang web sẽ cập nhật thông tin anh nhé.`,
-        createdAt: '10/2/2022 11:4',
-      },
-    ],
-  },
-];
+// export const listCommentFake: Array<Comment> = [
+//   {
+//     _id: '1231sdsada2',
+//     author: {
+//       _id: 'dsadsaee123',
+//       avatarSrc: '',
+//       name: 'Quân',
+//     },
+//     content: 'Cấu hình này quá ngon so với tầm giá rồi',
+//     createdAt: '30/7/2022 8:24',
+//     reply: [],
+//   },
+//   {
+//     _id: '641239asdasddas',
+//     author: {
+//       _id: 'dsadsaeeadsad123',
+//       avatarSrc: '',
+//       name: 'Đỗ Quốc Hưng',
+//     },
+//     content: 'Cuối tháng này đã có chưa ạ',
+//     createdAt: '23/2/2022 13:58',
+//     reply: [
+//       {
+//         _id: '912321ddasdsadsa',
+//         author: {
+//           _id: 'dasd12321ed',
+//           avatarSrc: 'https://hacom.vn/media/lib/hnc_40x.png',
+//           name: 'HACOM',
+//           nameTag: 'HACOM Care',
+//         },
+//         content: `Dạ bên em sắp về hàng anh nhé.
+//         Khi nào có hàng Website sẽ cập nhật ạ.
+//         Thông tin đến anh.`,
+//         createdAt: '23/2/2022 18:21',
+//       },
+//     ],
+//   },
+//   {
+//     _id: '6412ad39asdas',
+//     author: {
+//       _id: 'dsadsaeeadsad123',
+//       avatarSrc: '',
+//       name: 'Đỗ Quốc Hưng',
+//     },
+//     content: 'Khi nào máy này về vậy ạ?',
+//     createdAt: '23/2/2022 13:58',
+//     reply: [
+//       {
+//         _id: '9123asd21dsadsa',
+//         author: {
+//           _id: 'dasd12321ed',
+//           name: 'HACOM',
+//           nameTag: 'HACOM Care',
+//           avatarSrc: 'https://hacom.vn/media/lib/hnc_40x.png',
+//         },
+//         content: `Dạ hiện tại bên em chưa có lịch về hàng cụ thể ạ.
+//         Khi nào có trang web sẽ cập nhật thông tin anh nhé.`,
+//         createdAt: '10/2/2022 11:4',
+//       },
+//       {
+//         _id: 'dasdasdasd',
+//         author: {
+//           _id: 'dasd12321ed',
+//           name: 'HACOM',
+//           nameTag: 'HACOM Care',
+//           avatarSrc: 'https://hacom.vn/media/lib/hnc_40x.png',
+//         },
+//         content: `Dạ hiện tại bên em chưa có lịch về hàng cụ thể ạ.
+//         Khi nào có trang web sẽ cập nhật thông tin anh nhé.`,
+//         createdAt: '10/2/2022 11:4',
+//       },
+//     ],
+//   },
+// ];
+
+export const pathMapping = {
+  cart: 'Giỏ hàng',
+  products: 'Tất cả sản phẩm',
+  'Laptop,Tablet,Mobile': 'Laptop, Tablet, Mobile',
+  'PCGaming,Streaming': 'PC Gaming, Streaming',
+  'PhuKienLaptop,PC,Mobile': 'Phụ Kiện Laptop, PC, Mobile',
+  'PCVanPhong,AIO,MiniPC': 'PC Văn Phòng, AIO, Mini PC',
+  LinhKienMayTinh: 'Linh Kiện Máy Tính',
+  'TanNhietPC,Cooling': 'Tản Nhiệt PC, Cooling',
+  ManHinhMayTinh: 'Màn Hình Máy Tính',
+  'PhimChuot,GheGame,Gear': 'Phím Chuột, Ghế Game, Gear',
+  'Loa,TaiNghe,Mic,Webcam': 'Loa, Tai Nghe, Mic, Webcam',
+  CameraQuanSat: 'Camera Quan Sát',
+  'MayIn,MayChamCong': 'Máy In, Máy Chấm Công',
+  ThietBiVanPhongKhac: 'Thiết Bị Văn Phòng Khác',
+  'TBSieuThi,MayBanHang': 'TB Siêu Thị, Máy Bán Hàng',
+  'PCDoHoa,Render,MayChu': 'PC Đồ Họa, Render, Máy Chủ',
+  'LaptopGaming,DoHoa': 'Laptop Gaming, Đồ Họa',
+  'ThietBiLuuTru,USB,The': 'Thiết Bị Lưu Trữ, USB, Thẻ',
+  'ThietBiMang,PhanMem': 'Thiết Bị Mạng, Phần Mềm',
+};

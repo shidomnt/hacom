@@ -56,7 +56,7 @@ export default function ThongSoKiThuat() {
           {Object.keys(product.tskt)
             .slice(0, 16)
             .map((thongso) => (
-              <div key={thongso} className="row-wrapper">
+              <div key={JSON.stringify(thongso)} className="row-wrapper">
                 {isPC ? (
                   <Row gutter={6}>
                     <Col span={19}>

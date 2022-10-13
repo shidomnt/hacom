@@ -1,8 +1,8 @@
 import { Grid } from 'antd';
-import React, { useContext, useEffect, useState } from 'react';
-import { CartActionContext } from '../../../../contexts/CartProvider';
+import React, { useEffect, useState } from 'react';
+import { useAppDispatch } from '../../../../app/hooks';
+import { changeQuantify } from '../../../../features/cart/cart.slice';
 import {
-  CartActionContextInterface,
   CartItemType,
 } from '../../../../interfaces';
 import { calculateThanhTien } from '../../../../utils';
@@ -21,10 +21,8 @@ interface CartItemProps {
 }
 
 export default function CartItem({ item }: CartItemProps) {
-  const { changeQuantify } = useContext(
-    CartActionContext
-  ) as CartActionContextInterface;
   const [quantify, setQuantify] = useState(item.quantify);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!quantify) {
@@ -34,9 +32,12 @@ export default function CartItem({ item }: CartItemProps) {
 
   useEffect(() => {
     if (quantify && quantify !== item.quantify) {
-      changeQuantify(item.product.id, quantify);
+      dispatch(changeQuantify({
+        productId: item.product.id,
+        newQuantify: quantify,
+      }));
     }
-  }, [quantify, changeQuantify, item.product.id, item.quantify]);
+  }, [quantify, dispatch, item.product.id, item.quantify]);
 
   const thanhTien = calculateThanhTien(item.product.price, item.quantify);
 

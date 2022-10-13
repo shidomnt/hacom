@@ -2,6 +2,7 @@ import { Breadcrumb } from 'antd';
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import { pathMapping } from '../../constant';
 
 const Wrapper = styled.div`
   padding: 10px 0;
@@ -14,10 +15,6 @@ const StyledBreadcrumb = styled(Breadcrumb)`
     font-weight: bold;
   }
 `;
-
-const pathMapping = {
-  cart: 'Giỏ hàng',
-};
 
 export default function CustomBreadcrumb() {
   const location = useLocation();

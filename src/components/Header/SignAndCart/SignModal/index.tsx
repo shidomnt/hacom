@@ -1,15 +1,13 @@
 import { Button, Col, Image, Input, Modal, Row, Typography } from 'antd';
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-import {
-  SIGNIN_WITH_EMAIL,
-  SIGNIN_WITH_PHONE,
-  SIGNUP_WITH_EMAIL,
-} from '../../../../constant';
 import CloseButton from './CloseButton';
 import SignupWithEmail from './SignupWithEmail';
 import SigninWithEmail from './SigninWithEmail';
 import SigninWithPhoneNumber from './SigninWithPhoneNumber';
+import { ModalSignContext } from '..';
+import { ModalSignContextInterface } from '../../../../interfaces';
+import { SIGN_STATE } from '../../../../constant';
 
 const StyledModal = styled(Modal)`
   & {
@@ -92,7 +90,7 @@ interface SignModalProps {
 }
 
 export default function SignModal({ visible, onCancel }: SignModalProps) {
-  const [state, setState] = useState(() => SIGNIN_WITH_PHONE);
+  const { signState, setSignState } = useContext(ModalSignContext) as ModalSignContextInterface;
 
   return (
     <StyledModal
@@ -106,14 +104,14 @@ export default function SignModal({ visible, onCancel }: SignModalProps) {
       <Row>
         <Col span={15}>
           <StyledMainContent>
-            {state === SIGNIN_WITH_PHONE && (
-              <SigninWithPhoneNumber setState={setState} />
+            {signState === SIGN_STATE.SIGNIN_WITH_PHONE && (
+              <SigninWithPhoneNumber setState={setSignState} />
             )}
-            {state === SIGNIN_WITH_EMAIL && (
-              <SigninWithEmail setState={setState} />
+            {signState === SIGN_STATE.SIGNIN_WITH_EMAIL && (
+              <SigninWithEmail setState={setSignState} />
             )}
-            {state === SIGNUP_WITH_EMAIL && (
-              <SignupWithEmail setState={setState} />
+            {signState === SIGN_STATE.SIGNUP_WITH_EMAIL && (
+              <SignupWithEmail setState={setSignState} />
             )}
           </StyledMainContent>
         </Col>

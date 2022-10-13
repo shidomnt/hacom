@@ -1,5 +1,6 @@
 import { UserOutlined } from '@ant-design/icons';
 import { Avatar, Col, Row, Space, Typography } from 'antd';
+import moment from 'moment';
 import React from 'react';
 import styled from 'styled-components';
 import { Comment } from '../../../interfaces';
@@ -41,7 +42,7 @@ export default function ReplyComments({ comment }: ReplyCommentsProps) {
             <Row gutter={[8, 8]}>
               <Col span={2} xxl={2} xl={2} lg={2} md={3} sm={2} xs={3}>
                 <Avatar
-                  src={replyComment.author.avatarSrc}
+                  src={replyComment.author?.avatarSrc}
                   icon={<UserOutlined />}
                 />
               </Col>
@@ -60,7 +61,7 @@ export default function ReplyComments({ comment }: ReplyCommentsProps) {
                   {replyComment.content}
                 </Typography.Paragraph>
                 <Typography.Text type="secondary">
-                  {replyComment.createdAt}
+                  {moment(replyComment.createdAt).startOf("second").fromNow()}
                 </Typography.Text>
               </Col>
             </Row>

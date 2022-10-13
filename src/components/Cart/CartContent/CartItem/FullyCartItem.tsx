@@ -9,12 +9,11 @@ import {
   Tooltip,
   Typography,
 } from 'antd';
-import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FullyCartItemProps } from '.';
+import { useAppDispatch } from '../../../../app/hooks';
 import { MAX_SOLUONG, MIN_SOLUONG } from '../../../../constant';
-import { CartActionContext } from '../../../../contexts/CartProvider';
-import { CartActionContextInterface } from '../../../../interfaces';
+import { removeProduct } from '../../../../features/cart/cart.slice';
 import { formatNumberPriceToString } from '../../../../utils';
 import InputQuantify from '../../../DetailProduct/DetailInfo/InputQuantify';
 
@@ -24,9 +23,8 @@ export default function FullyCartItem({
   thanhTien,
   setQuantify,
 }: FullyCartItemProps) {
-  const { removeProduct } = useContext(
-    CartActionContext
-  ) as CartActionContextInterface;
+  const dispatch = useAppDispatch();
+
   const { lg } = Grid.useBreakpoint();
 
   return (
@@ -91,7 +89,13 @@ export default function FullyCartItem({
       <Col span={1}>
         <Tooltip placement="bottomRight" title="Xóa khỏi giỏ hàng">
           <Button
-            onClick={() => removeProduct([item.product.id])}
+            onClick={() =>
+              dispatch(
+                removeProduct({
+                  productIds: [item.product.id],
+                })
+              )
+            }
             className="cart-remove-btn"
             type="text"
           >

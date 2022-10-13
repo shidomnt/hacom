@@ -97,3 +97,15 @@ export const calculateDiscountRate = (product: Product) => {
   }
   return 100 - Math.floor((product.price / product.maxPrice) * 100);
 };
+
+export function isInViewport(element: HTMLElement) {
+  const rect = element.getBoundingClientRect();
+  const check =
+    rect.top >= 0 &&
+    rect.left >= 0 &&
+    rect.bottom <=
+      (window.innerHeight || document.documentElement.clientHeight) + 200 &&
+    rect.right <=
+      (window.innerWidth || document.documentElement.clientWidth) + 200;
+  return check;
+}

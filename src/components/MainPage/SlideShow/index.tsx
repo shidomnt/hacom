@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Autoplay, Navigation, SwiperOptions } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import ProductCard from '../ProductCard';
-import useApi from '../../../hooks/useApi';
 import Loading from '../../Loading';
-import { initProducts } from '../../../constant';
 import { Category } from '../../../interfaces';
+import { isInViewport } from '../../../utils';
+import {
+  useLazyGetProductsQuery,
+} from '../../../features/api/api.slice';
 
 interface SlideShowProps {
   title: React.ReactNode;
@@ -26,47 +28,74 @@ function SlideShow({
   button = null,
   breakpoints = {},
 }: SlideShowProps) {
-  const [products, setProducts] = useState(initProducts);
 
-  const { getProductsByCategory } = useApi();
+  const [getProducts, result] = useLazyGetProductsQuery();
+
+  const [shouldRender, setShouldRender] = useState(false);
+
+  const ref = useRef<HTMLDivElement>(null);
+
+  const { data: products, isError, error } = result;
 
   useEffect(() => {
-    (async () => {
-      const response = await getProductsByCategory(categorySlug, {
-        limit,
-      });
-      if (response) {
-        setProducts(response.data);
-      } else {
-        setProducts([]);
-      }
-    })();
-  }, [categorySlug, getProductsByCategory, limit]);
+    if (shouldRender) {
+      (async () => {
+        await getProducts({
+          categorySlug,
+          limit
+        }, true)
+      })();
+    }
+  }, [categorySlug, getProducts, limit, shouldRender]);
 
-  return !!products.length ? (
-    <React.Fragment>
-      {title}
-      <Swiper
-        spaceBetween={spaceBetween}
-        slidesPerView={slidesPerView}
-        modules={[Navigation, Autoplay]}
-        navigation
-        loop={true}
-        autoplay={{ delay: 8000 }}
-        breakpoints={breakpoints}
-        lazy={true}
-        watchSlidesProgress={true}
-      >
-        {products.map((product) => (
-          <SwiperSlide key={product.id}>
-            <ProductCard category={categorySlug} product={product} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      {button && <div style={{ marginTop: '16px' }}>{button}</div>}
-    </React.Fragment>
-  ) : (
-    <Loading />
+  useEffect(() => {
+    const divElement = ref.current;
+    const handleScroll = () => {
+      if (divElement) {
+        const check = isInViewport(divElement);
+        if (check) {
+          setShouldRender(true);
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [categorySlug]);
+
+  if (isError) {
+    console.log(error);
+  }
+
+  return (
+    <div ref={ref}>
+      {!!products?.length ? (
+        <React.Fragment>
+          {title}
+          <Swiper
+            spaceBetween={spaceBetween}
+            slidesPerView={slidesPerView}
+            modules={[Navigation, Autoplay]}
+            navigation
+            loop={true}
+            autoplay={{ delay: 8000 }}
+            breakpoints={breakpoints}
+            lazy={true}
+            watchSlidesProgress={true}
+          >
+            {products.map((product) => (
+              <SwiperSlide key={product.id}>
+                <ProductCard category={categorySlug} product={product} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          {button && <div style={{ marginTop: '16px' }}>{button}</div>}
+        </React.Fragment>
+      ) : (
+        <Loading />
+      )}
+    </div>
   );
 }
 

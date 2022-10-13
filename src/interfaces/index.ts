@@ -1,5 +1,6 @@
 import { MenuProps } from 'rc-menu';
 import React from 'react';
+import { SIGN_STATE } from '../constant';
 
 export type ThongSoKiThuat = Record<string, string>;
 
@@ -8,6 +9,15 @@ export type Url = string;
 export type Cart = Array<CartItemType>;
 
 export type MenuItem = Required<MenuProps>['items'][number];
+
+export type CreateUserDto = Pick<User, 'name' | 'email'> & {
+  password: string;
+};
+
+export interface AxiosCommonResponse {
+  success?: boolean;
+  message?: string;
+}
 
 export interface SortButton {
   title: string;
@@ -26,9 +36,22 @@ export interface CartItemType {
 
 export interface User {
   _id: string;
+
   name: string;
-  avatarSrc: string;
+
+  avatarSrc?: string;
+
   nameTag?: string;
+
+  phone?: string;
+
+  email: string;
+
+  gender?: boolean;
+
+  city?: string;
+
+  address?: string;
 }
 
 export interface Comment {
@@ -36,7 +59,16 @@ export interface Comment {
   author: User;
   content: string;
   createdAt: string;
-  reply: Array<Omit<Comment, 'reply'>> | null;
+  updatedAt: string;
+  reply: Array<Omit<Comment, 'reply'>>;
+}
+
+export interface CreateCommentDto {
+  product?: string;
+
+  content: string;
+
+  replyTo?: string;
 }
 
 export interface DanhGia {
@@ -46,6 +78,7 @@ export interface DanhGia {
 }
 
 export interface Product {
+  _id: string;
   id: string;
   originalUrl: Url;
   imgSrc: Url;
@@ -107,7 +140,11 @@ export interface ProductQuery {
 }
 
 export interface AddProduct {
-  (product: Product, quantify?: number): void;
+  (product: Product, quantify?: number, silent?: boolean): void;
+}
+
+export interface AppendProducts {
+  (cartItems: Array<CartItemType>, silent?: boolean): void;
 }
 
 export interface ChangeQuantify {
@@ -115,7 +152,7 @@ export interface ChangeQuantify {
 }
 
 export interface RemoveProduct {
-  (productIds: Array<Product['id']> | 'all'): void;
+  (productIds: Array<Product['id']> | 'all', silent?: boolean): void;
 }
 
 export interface CartContextInterface {
@@ -127,9 +164,31 @@ export interface CartActionContextInterface {
   addProduct: AddProduct;
   removeProduct: RemoveProduct;
   changeQuantify: ChangeQuantify;
+  appendProducts: AppendProducts;
   setDiscountInfo: React.Dispatch<React.SetStateAction<DiscountInfo | null>>;
+}
+
+export interface UserContextInterface {
+  user: User | null;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
 }
 
 export interface ProductContextInterface {
   product: Product;
+}
+
+export interface LoginUserDto {
+  email: User['email'];
+  password: string;
+}
+
+export interface UserActionContextInterface {
+  login: (payload: LoginUserDto, onSuccess?: () => void) => Promise<void>;
+  logout: () => void;
+}
+
+export interface ModalSignContextInterface {
+  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  setSignState: React.Dispatch<React.SetStateAction<SIGN_STATE>>;
+  signState: SIGN_STATE;
 }

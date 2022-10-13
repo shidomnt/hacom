@@ -1,8 +1,7 @@
 import { Col, Divider, Empty, Row, Typography } from 'antd';
-import React, { createContext, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { createContext } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import useApi from '../../hooks/useApi';
 import CustomBreadcrumb from '../CustomBreadcrumb';
 import Loading from '../Loading';
 import DetailInfo from './DetailInfo';
@@ -11,9 +10,9 @@ import StaticInfo from './StaticInfo';
 import Review from './Review';
 import ThongSoKiThuat from './ThongSoKiThuat';
 import { Helmet } from 'react-helmet-async';
-import { initProduct } from '../../constant';
 import UserReview from './UserReview';
 import { ProductContextInterface } from '../../interfaces';
+import { useGetProductQuery } from '../../features/api/api.slice';
 
 const StyledDetailProductWrapper = styled.div`
   & {
@@ -30,28 +29,21 @@ const StyledDetailProductWrapper = styled.div`
 const ProductContext = createContext<ProductContextInterface | null>(null);
 
 export default function DetailProduct() {
-  const [product, setProduct] = useState(initProduct);
-  const [isLoading, setIsLoading] = useState(true);
 
   const { id } = useParams();
 
-  const navigate = useNavigate();
+  const {
+    data: product,
+    isLoading,
+    isError,
+    error,
+  } = useGetProductQuery({
+    productId: id ?? '',
+  });
 
-  const { getProduct } = useApi();
-
-  useEffect(() => {
-    (async () => {
-      if (id) {
-        const response = await getProduct(id);
-        if (response?.data) {
-          setProduct(response.data);
-        } else {
-          setProduct(null);
-        }
-        setIsLoading(false);
-      }
-    })();
-  }, [getProduct, id, navigate]);
+  if (isError) {
+    console.log(error);
+  }
 
   if (isLoading) {
     return <Loading />;

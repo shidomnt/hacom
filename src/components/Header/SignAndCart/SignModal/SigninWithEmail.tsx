@@ -1,8 +1,15 @@
-import React from 'react';
-import { Space, Button, Typography, Input } from 'antd';
+import React, { useContext, useState } from 'react';
+import { Space, Button, Typography, Input, Row } from 'antd';
 import styled from 'styled-components';
 import { StyledButton, StyledInput } from '.';
-import { SIGNIN_WITH_PHONE } from '../../../../constant';
+import {
+  ModalSignContextInterface,
+} from '../../../../interfaces';
+import { ModalSignContext } from '..';
+import { SIGN_STATE } from '../../../../constant';
+import { fetchUser, login } from '../../../../features/user/user.slice';
+import { StatusEnum } from '../../../../features/interface/statusEnum.interface';
+import { useAppDispatch } from '../../../../app/hooks';
 
 const Wrapper = styled.div`
   & {
@@ -23,17 +30,48 @@ export const StyledInputPassword = styled(Input.Password)`
 `;
 
 interface SignupWithEmailProps {
-  setState?: React.Dispatch<React.SetStateAction<string>>;
+  setState?: React.Dispatch<React.SetStateAction<SIGN_STATE>>;
 }
 
 export default function SigninWithEmail({ setState }: SignupWithEmailProps) {
+  const [emailValue, setEmailValue] = useState('');
+  const [passwordValue, setPasswordValue] = useState('');
+
+  const isAllInputReady = emailValue && setEmailValue;
+
+  const dispatch = useAppDispatch();
+
+  const { setModalVisible } = useContext(
+    ModalSignContext
+  ) as ModalSignContextInterface;
+
+  const handleSubmit = async () => {
+    if (isAllInputReady) {
+      const payload = {
+        email: emailValue,
+        password: passwordValue,
+      };
+      await login(payload);
+      await dispatch(fetchUser({
+        onFinish(userStatus) {
+          if (userStatus === StatusEnum.fulfilled) {
+            setModalVisible(false);
+          }
+        },
+      }))
+    }
+  };
+
   return (
     <Wrapper>
       <Space direction="vertical" size="large" style={{ width: '100%' }}>
         <div>
           {setState && (
             <div>
-              <Button type="text" onClick={() => setState(SIGNIN_WITH_PHONE)}>
+              <Button
+                type="text"
+                onClick={() => setState(SIGN_STATE.SIGNIN_WITH_PHONE)}
+              >
                 <i className="fa-solid fa-angle-left"></i>
               </Button>
             </div>
@@ -45,15 +83,37 @@ export default function SigninWithEmail({ setState }: SignupWithEmailProps) {
         </div>
         <div>
           <Space direction="vertical" size="middle" style={{ width: '100%' }}>
-            <StyledInput className="font-size-2" placeholder="abc@gmail.com" />
+            <StyledInput
+              className="font-size-2"
+              placeholder="abc@gmail.com"
+              value={emailValue}
+              onChange={(event) => setEmailValue(event.target.value)}
+            />
             <StyledInputPassword
               className="font-size-2"
               placeholder="Mật khẩu"
+              value={passwordValue}
+              onChange={(event) => setPasswordValue(event.target.value)}
             />
           </Space>
         </div>
-        <StyledButton>Đăng nhập</StyledButton>
-        <Button type="link">Quên mật khẩu?</Button>
+        <StyledButton disabled={!isAllInputReady} onClick={handleSubmit}>
+          Đăng nhập
+        </StyledButton>
+        <Row justify="space-between">
+          <Button type="link">Quên mật khẩu?</Button>
+          <Typography.Text>
+            Chưa có tài khoản?{' '}
+            <Button
+              style={{ padding: 0 }}
+              type="link"
+              onClick={() => setState && setState(SIGN_STATE.SIGNUP_WITH_EMAIL)}
+            >
+              Đăng kí
+            </Button>{' '}
+            ngay
+          </Typography.Text>
+        </Row>
       </Space>
     </Wrapper>
   );

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card } from 'antd';
 import styled from 'styled-components';
 import ShowroomCardHeader from './ShowroomCardHeader';

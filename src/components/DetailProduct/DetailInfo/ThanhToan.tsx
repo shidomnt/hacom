@@ -1,16 +1,16 @@
 import { Button, Col, Row, Typography } from 'antd';
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { ProductContext } from '..';
-import { CartActionContext } from '../../../contexts/CartProvider';
 import InputQuantify from './InputQuantify';
 import { MAX_SOLUONG, MIN_SOLUONG } from '../../../constant';
 import {
-  CartActionContextInterface,
   Product,
   ProductContextInterface,
 } from '../../../interfaces';
+import { useAppDispatch } from '../../../app/hooks';
+import { addProduct } from '../../../features/cart/cart.slice';
 
 const Wrapper = styled.div`
   & {
@@ -56,9 +56,7 @@ export default function ThanhToan() {
   const [quantify, setQuantify] = useState(1);
 
   const { product } = useContext(ProductContext) as ProductContextInterface;
-  const { addProduct } = useContext(
-    CartActionContext
-  ) as CartActionContextInterface;
+  const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
 
@@ -73,7 +71,9 @@ export default function ThanhToan() {
     quantify: number,
     redirect: boolean = false
   ) => {
-    addProduct(product, quantify);
+    dispatch(addProduct({
+      product, quantify
+    }));
     if (redirect) {
       navigate('/cart');
     }

@@ -10,6 +10,8 @@ export const MAX_SOLUONG = 99;
 
 export const KEY_LOCAL_STORAGE_CART = 'KEY_CART';
 
+export const KEY_LOCAL_STORAGE_ACCESS_TOKEN = 'KEY_ACCESS_TOKEN';
+
 export const API_URL = 'http://localhost:5000';
 
 export const DEFAULT_PAGE_SIZE = 12;
@@ -25,3 +27,15 @@ export const COLLECTION_PRODUCT_SLIDE_SHOW_SIZE = 3;
 export const DEFAULT_FILTER_MIN_PRICE = '200.000';
 
 export const DEFAULT_FILTER_MAX_PRICE = '5.000.000';
+
+export const getProtectedApiRouteOptions = () => {
+  const accessToken = localStorage.getItem(KEY_LOCAL_STORAGE_ACCESS_TOKEN);
+  if (!accessToken) {
+    throw new Error('Chua dang nhap');
+  }
+  return {
+    headers: {
+      Authorization: 'Bearer ' + accessToken,
+    },
+  };
+};
