@@ -42,8 +42,11 @@ const Wrapper = styled.div`
 
 export default function CartContent() {
   const cart = useAppSelector((state) => selectAllCartItem(state.cart));
+  
   const dispatch = useAppDispatch();
-  const [checkedList, setCheckedList] = useState<Array<Product['id']>>([]);
+  const [checkedList, setCheckedList] = useState<Array<Product['id']>>(() => {
+    return cart.map(cartItem => cartItem.product.id)
+  });
   const [checkAll, setCheckAll] = useState(false);
 
   useEffect(() => {

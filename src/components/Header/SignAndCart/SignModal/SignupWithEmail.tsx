@@ -6,6 +6,7 @@ import { StyledInputPassword } from './SigninWithEmail';
 import { CreateUserDto } from '../../../../interfaces';
 import { register } from '../../../../api/userApi';
 import { SIGN_STATE } from '../../../../constant';
+import { MessageType } from 'antd/lib/message';
 
 const Wrapper = styled.div`
   & {
@@ -40,8 +41,8 @@ export default function SignupWithEmail({ setState }: SignupWithEmailProps) {
         email: emailValue,
         password: passwordValue,
       };
+      const hide = message.loading('Action in progress..', 0);
       try {
-        const hide = message.loading('Action in progress..', 0);
         const response = await register(createUserDto);
         if (!response.data?.success) {
           throw new Error('Tao tk that bai');
@@ -52,6 +53,7 @@ export default function SignupWithEmail({ setState }: SignupWithEmailProps) {
           setState(SIGN_STATE.SIGNIN_WITH_EMAIL);
         }
       } catch (e) {
+        hide();
         if (e instanceof Error) {
           message.error(e.message);
         }
