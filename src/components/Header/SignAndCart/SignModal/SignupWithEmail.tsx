@@ -6,7 +6,6 @@ import { StyledInputPassword } from './SigninWithEmail';
 import { CreateUserDto } from '../../../../interfaces';
 import { register } from '../../../../api/userApi';
 import { SIGN_STATE } from '../../../../constant';
-import { MessageType } from 'antd/lib/message';
 
 const Wrapper = styled.div`
   & {
