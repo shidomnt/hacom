@@ -1,28 +1,4 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-:root {
-  --primary-color: #243a76;
-  --btn-color: #f78d1c;
-  --text-white: #fff;
-  --text-black: #222;
-  --primary-btn: #ed1b24;
-}
-html {
-  font-size: 62.5%;
-  line-height: 1.6rem;
-}
 /* main */
-@keyframes gradient {
-  0% {
-    background-position: 100% 100%;
-  }
-  100% {
-    background-position: -33% 100%;
-  }
-}
 .btn-primary {
   background: repeating-linear-gradient(90deg, red 0, #00f 50%, red 100%);
   background-repeat: repeat-x;
@@ -60,4 +36,3 @@ html {
   color: black !important;
 }
 /* Swiper Change Next And Prev Button Style */
-

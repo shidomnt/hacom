@@ -13,7 +13,7 @@
 }
 .footer__title::after {
   display: block;
-  content: "";
+  content: '';
   height: 2px;
   width: 200px;
   background: #333;
@@ -98,7 +98,7 @@
 }
 .footet__buttom--body-title::after {
   display: block;
-  content: "";
+  content: '';
   height: 2px;
   width: 100px;
   background: red;
