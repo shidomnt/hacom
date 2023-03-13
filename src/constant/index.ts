@@ -12,7 +12,7 @@ export const KEY_LOCAL_STORAGE_CART = 'KEY_CART';
 
 export const KEY_LOCAL_STORAGE_ACCESS_TOKEN = 'KEY_ACCESS_TOKEN';
 
-export const API_URL = 'https://hacom123.herokuapp.com';
+export const API_URL = 'https://shop-laptop-service.onrender.com/';
 
 export const DEFAULT_PAGE_SIZE = 12;
 
